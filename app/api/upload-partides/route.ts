@@ -3,6 +3,25 @@ import Papa from 'papaparse'
 import { supabase } from '../../../lib/supabase'
 import { Partides } from '../../../types/database'
 
+interface CsvRow {
+  campionat_id: string
+  ronda: number
+  jugador_1_id: string
+  jugador_2_id: string
+  punts_1: number
+  punts_2: number
+  scrabbles_1?: number
+  scrabbles_2?: number
+  mot_1?: string
+  mot_2?: string
+  punts_mot_1?: number
+  punts_mot_2?: number
+  especial_1?: string
+  especial_2?: string
+  punts_especial_1?: number
+  punts_especial_2?: number
+}
+
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
@@ -33,7 +52,7 @@ export async function POST(request: NextRequest) {
 
     // Validate required fields and map to Partides format
     const partides: Omit<Partides, 'id'>[] = []
-    for (const [index, row] of parseResult.data.entries()) {
+    for (const [index, row] of (parseResult.data as CsvRow[]).entries()) {
       // Check required fields
       if (!row.jugador_1_id || !row.jugador_2_id || row.punts_1 === undefined || row.punts_2 === undefined) {
         return NextResponse.json({
