@@ -90,14 +90,14 @@ export async function POST(request: NextRequest) {
         punts_2: row.punts_2!,
         scrabbles_1: row.scrabbles_1 || 0,
         scrabbles_2: row.scrabbles_2 || 0,
-        mot_1: row.mot_1,
-        mot_2: row.mot_2,
-        punts_mot_1: row.punts_mot_1,
-        punts_mot_2: row.punts_mot_2,
-        especial_1: row.especial_1,
-        especial_2: row.especial_2,
-        punts_especial_1: row.punts_especial_1,
-        punts_especial_2: row.punts_especial_2,
+        mot_1: row.mot_1 || '',
+        mot_2: row.mot_2 || '',
+        punts_mot_1: row.punts_mot_1 || 0,
+        punts_mot_2: row.punts_mot_2 || 0,
+        especial_1: row.especial_1 || '',
+        especial_2: row.especial_2 || '' ,
+        punts_especial_1: row.punts_especial_1 || 0,
+        punts_especial_2: row.punts_especial_2 || 0,
       })
     }
 
