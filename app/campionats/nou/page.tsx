@@ -39,6 +39,7 @@ export default function NouCampionat() {
   const [selectedDesempat, setSelectedDesempat] = useState(availableDesempatOptions[0]?.value || '')
   const [matchesData, setMatchesData] = useState('')
   const [matchesFileName, setMatchesFileName] = useState('')
+  const [uniqueNames, setUniqueNames] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     if (availableDesempatOptions.length > 0) {
@@ -90,16 +91,18 @@ export default function NouCampionat() {
       return
     }
 
-    const uniqueNames = new Set<string>()
+    const namesSet = new Set<string>()
     parseResult.data.forEach((row: any) => {
-      if (row.jugador_1) uniqueNames.add(row.jugador_1.trim())
-      if (row.jugador_2) uniqueNames.add(row.jugador_2.trim())
+      if (row.jugador_1) namesSet.add(row.jugador_1.trim())
+      if (row.jugador_2) namesSet.add(row.jugador_2.trim())
     })
 
-    console.log('Unique player names found:', Array.from(uniqueNames))
+    setUniqueNames(namesSet)
+
+    console.log('Unique player names found:', Array.from(namesSet))
 
     // Create resolutions with auto-selection
-    const resolutions: PlayerResolution[] = Array.from(uniqueNames).map(name => {
+    const resolutions: PlayerResolution[] = Array.from(namesSet).map(name => {
       const suggestions = findSimilarPlayers(name, allPlayers)
       let selectedId: string | null = null
       let isNew = false
