@@ -5,21 +5,21 @@ import { Partides } from '../../../types/database'
 
 interface CsvRow {
   campionat_id: string
-  ronda: number
+  ronda: number | undefined
   jugador_1_id: string
   jugador_2_id: string
-  punts_1: number
-  punts_2: number
-  scrabbles_1?: number
-  scrabbles_2?: number
-  mot_1?: string
-  mot_2?: string
-  punts_mot_1?: number
-  punts_mot_2?: number
-  especial_1?: string
-  especial_2?: string
-  punts_especial_1?: number
-  punts_especial_2?: number
+  punts_1: number | undefined
+  punts_2: number | undefined
+  scrabbles_1: number | null
+  scrabbles_2: number | null
+  mot_1: string | null
+  mot_2: string | null
+  punts_mot_1: number | null
+  punts_mot_2: number | null
+  especial_1: string | null
+  especial_2: string | null
+  punts_especial_1: number | null
+  punts_especial_2: number | null
 }
 
 export async function POST(request: NextRequest) {
@@ -39,10 +39,18 @@ export async function POST(request: NextRequest) {
       skipEmptyLines: true,
       transformHeader: (header: string) => header.trim(),
       transform: (value: string, field: string) => {
-        if (['ronda', 'punts_1', 'punts_2', 'scrabbles_1', 'scrabbles_2', 'punts_mot_1', 'punts_mot_2', 'punts_especial_1', 'punts_especial_2'].includes(field)) {
-          return value ? parseInt(value, 10) : 0
+        const trimmed = value.trim()
+        if (['ronda', 'punts_1', 'punts_2'].includes(field)) {
+          if (!trimmed) return undefined
+          const num = parseInt(trimmed, 10)
+          return isNaN(num) ? undefined : num
         }
-        return value.trim()
+        if (['scrabbles_1', 'scrabbles_2', 'punts_mot_1', 'punts_mot_2', 'punts_especial_1', 'punts_especial_2'].includes(field)) {
+          if (!trimmed) return null
+          const num = parseInt(trimmed, 10)
+          return isNaN(num) ? null : num
+        }
+        return trimmed || null
       }
     })
 
@@ -75,21 +83,21 @@ export async function POST(request: NextRequest) {
 
       partides.push({
         campionat_id: row.campionat_id,
-        ronda: parseInt(row.ronda, 10),
+        ronda: row.ronda!,
         jugador_1_id: row.jugador_1_id,
         jugador_2_id: row.jugador_2_id,
-        punts_1: parseInt(row.punts_1, 10),
-        punts_2: parseInt(row.punts_2, 10),
-        scrabbles_1: row.scrabbles_1 ? parseInt(row.scrabbles_1, 10) : 0,
-        scrabbles_2: row.scrabbles_2 ? parseInt(row.scrabbles_2, 10) : 0,
-        mot_1: row.mot_1 || null,
-        mot_2: row.mot_2 || null,
-        punts_mot_1: row.punts_mot_1 ? parseInt(row.punts_mot_1, 10) : null,
-        punts_mot_2: row.punts_mot_2 ? parseInt(row.punts_mot_2, 10) : null,
-        especial_1: row.especial_1 || null,
-        especial_2: row.especial_2 || null,
-        punts_especial_1: row.punts_especial_1 ? parseInt(row.punts_especial_1, 10) : null,
-        punts_especial_2: row.punts_especial_2 ? parseInt(row.punts_especial_2, 10) : null,
+        punts_1: row.punts_1!,
+        punts_2: row.punts_2!,
+        scrabbles_1: row.scrabbles_1 || 0,
+        scrabbles_2: row.scrabbles_2 || 0,
+        mot_1: row.mot_1,
+        mot_2: row.mot_2,
+        punts_mot_1: row.punts_mot_1,
+        punts_mot_2: row.punts_mot_2,
+        especial_1: row.especial_1,
+        especial_2: row.especial_2,
+        punts_especial_1: row.punts_especial_1,
+        punts_especial_2: row.punts_especial_2,
       })
     }
 
