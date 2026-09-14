@@ -1,0 +1,4269 @@
+{
+ "temporadaActual": "2025-26",
+ "origen": "GENERADOR_BARRUF · DadesÚltimBarruf",
+ "jugadors": [
+  {
+   "nom": "Xisco Truyols",
+   "partidesTotals": 357,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Mateu Xurí",
+   "partidesTotals": 407,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Miquel Sesé",
+   "partidesTotals": 538,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Carles Cassanyes",
+   "partidesTotals": 377,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Andreu Fuster",
+   "partidesTotals": 306,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Lluís de Yzaguirre",
+   "partidesTotals": 584,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Carles Llull",
+   "partidesTotals": 335,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Octavian Mocanu",
+   "partidesTotals": 350,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Pere Grimalt Vert",
+   "partidesTotals": 325,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Maribel Servera",
+   "partidesTotals": 387,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Aina Garcia",
+   "partidesTotals": 425,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Màrius Serra",
+   "partidesTotals": 242,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Albert Rodríguez",
+   "partidesTotals": 419,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Montse Hergueta",
+   "partidesTotals": 383,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Antoni Riera",
+   "partidesTotals": 528,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Beatriu Defior",
+   "partidesTotals": 140,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Martí Roé",
+   "partidesTotals": 143,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Esperança Martí",
+   "partidesTotals": 405,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joaquim Roé",
+   "partidesTotals": 92,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Marta Rovira",
+   "partidesTotals": 504,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Adrià Maynés",
+   "partidesTotals": 368,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Llodrà",
+   "partidesTotals": 479,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Maria Moll",
+   "partidesTotals": 200,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Eric Olmedo",
+   "partidesTotals": 372,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Xavier Albons",
+   "partidesTotals": 441,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Cristina Bassons",
+   "partidesTotals": 72,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Roger Cosso",
+   "partidesTotals": 391,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Andreu",
+   "partidesTotals": 323,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Lina Maria Riera",
+   "partidesTotals": 521,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Pascual",
+   "partidesTotals": 363,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Maria Gayà",
+   "partidesTotals": 423,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Lluís Fuster Amer",
+   "partidesTotals": 181,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Aina M. Vicens",
+   "partidesTotals": 201,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Salvador Alsius",
+   "partidesTotals": 396,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Àlex Abad",
+   "partidesTotals": 282,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Àngels Castells",
+   "partidesTotals": 104,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Bel Andreu",
+   "partidesTotals": 327,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Francesc Gelabert",
+   "partidesTotals": 718,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Sayaka Kamikariya",
+   "partidesTotals": 158,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Anna Perales",
+   "partidesTotals": 214,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Albert Rico",
+   "partidesTotals": 406,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Carles Díez",
+   "partidesTotals": 307,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Bel Llull",
+   "partidesTotals": 298,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Antoni Alzamora",
+   "partidesTotals": 263,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "M. M. Matamalas",
+   "partidesTotals": 403,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Jaume Rigo",
+   "partidesTotals": 186,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Gelabert",
+   "partidesTotals": 330,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Jordi Plana Espanyol",
+   "partidesTotals": 118,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Daniel Ramos",
+   "partidesTotals": 299,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Pep Vinyals",
+   "partidesTotals": 385,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Isaac Asensio",
+   "partidesTotals": 104,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Catalina Vallbona",
+   "partidesTotals": 89,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Montané",
+   "partidesTotals": 303,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Pasqual Sánchez",
+   "partidesTotals": 103,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "David Roig",
+   "partidesTotals": 24,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Salvador Batlle",
+   "partidesTotals": 460,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Antònia Riera",
+   "partidesTotals": 318,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Dani Bardés",
+   "partidesTotals": 102,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Mercè Illa",
+   "partidesTotals": 87,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Sebastià Llodrà",
+   "partidesTotals": 390,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Enric Borràs",
+   "partidesTotals": 344,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Rosa Maria Cot",
+   "partidesTotals": 448,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Eulàlia Llargués",
+   "partidesTotals": 350,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Jaume Vives",
+   "partidesTotals": 290,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Roger Bru Martínez",
+   "partidesTotals": 33,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Eulàlia Abelló",
+   "partidesTotals": 397,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Jordi Pujol",
+   "partidesTotals": 40,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Armand Sanmamed",
+   "partidesTotals": 59,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Miquela Grimalt",
+   "partidesTotals": 184,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Margalida Bonnín",
+   "partidesTotals": 247,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Manolo Matoses",
+   "partidesTotals": 34,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Maria Josep Carrasco",
+   "partidesTotals": 211,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Quico Beltrà",
+   "partidesTotals": 39,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Xavi Castelló",
+   "partidesTotals": 95,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Francesca Font",
+   "partidesTotals": 167,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Antoni Llull",
+   "partidesTotals": 226,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Gemma Rado",
+   "partidesTotals": 63,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Balbina Brescó",
+   "partidesTotals": 169,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Víctor Nebreda",
+   "partidesTotals": 42,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joan Sans",
+   "partidesTotals": 308,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Xabier Larrañaga",
+   "partidesTotals": 288,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Montserrat Carbó",
+   "partidesTotals": 48,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Bernat Amer",
+   "partidesTotals": 276,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Rosa Barrientos",
+   "partidesTotals": 247,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Felipe Calvo",
+   "partidesTotals": 238,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Neus Torres",
+   "partidesTotals": 82,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Marga Gelabert",
+   "partidesTotals": 179,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Manuel Granados",
+   "partidesTotals": 232,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Torra",
+   "partidesTotals": 260,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Guillem Melis",
+   "partidesTotals": 218,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Puigmalet",
+   "partidesTotals": 67,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Gabriel Bas",
+   "partidesTotals": 496,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Júlia Boqué",
+   "partidesTotals": 74,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Anna Salgot",
+   "partidesTotals": 67,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Àngels Marcé",
+   "partidesTotals": 218,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Margalida Rosselló",
+   "partidesTotals": 215,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Antonio Caballero",
+   "partidesTotals": 86,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Margalida Cubells",
+   "partidesTotals": 137,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Barceló",
+   "partidesTotals": 681,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Victòria Sancho",
+   "partidesTotals": 206,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joan Moragues",
+   "partidesTotals": 135,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Francesc Gallén",
+   "partidesTotals": 130,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Mateu Marcé",
+   "partidesTotals": 220,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Lluís Parera",
+   "partidesTotals": 196,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Miquel Morey",
+   "partidesTotals": 202,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Meritxell Charavia",
+   "partidesTotals": 13,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Lluc Cànovas",
+   "partidesTotals": 124,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Marc Velasco",
+   "partidesTotals": 17,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Elba Ubri",
+   "partidesTotals": 12,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Cati Sureda",
+   "partidesTotals": 293,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "M. Rosa Guarro",
+   "partidesTotals": 15,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Caterina Sureda Vallespir",
+   "partidesTotals": 34,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Munar",
+   "partidesTotals": 58,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Esther Alcover",
+   "partidesTotals": 74,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Sebastiana Mascaró",
+   "partidesTotals": 101,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Maria Antònia Llodrà",
+   "partidesTotals": 217,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Miquel Servera",
+   "partidesTotals": 89,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "César Magaldi",
+   "partidesTotals": 15,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Manuel Rivas",
+   "partidesTotals": 54,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Maria Rosa Cons",
+   "partidesTotals": 141,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Guillem Casacuberta",
+   "partidesTotals": 16,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Josep Fiol",
+   "partidesTotals": 16,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Maria Bel Bauzà",
+   "partidesTotals": 54,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joana Maria Pasqual",
+   "partidesTotals": 301,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Anna Rodrigo",
+   "partidesTotals": 55,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "M. Lluïsa Penelas",
+   "partidesTotals": 489,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Cati Bauzà",
+   "partidesTotals": 48,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Marga Vera",
+   "partidesTotals": 25,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Jordi Places",
+   "partidesTotals": 17,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Bel Fullana",
+   "partidesTotals": 51,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Bonet",
+   "partidesTotals": 30,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Clara Zambrana",
+   "partidesTotals": 94,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Andreu Pasqual",
+   "partidesTotals": 232,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Gerard Castro",
+   "partidesTotals": 18,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Neus Franch",
+   "partidesTotals": 73,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Antoni Nicolau",
+   "partidesTotals": 54,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Josep Marbà",
+   "partidesTotals": 54,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Nicolau Vidal",
+   "partidesTotals": 21,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joan Cabalgante",
+   "partidesTotals": 55,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Montse Barbany",
+   "partidesTotals": 6,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Jaume Vidal",
+   "partidesTotals": 9,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Jordi Bonet",
+   "partidesTotals": 6,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Josep Coll",
+   "partidesTotals": 9,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Joan Pons",
+   "partidesTotals": 12,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Maria Sampol",
+   "partidesTotals": 38,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Marga Gené",
+   "partidesTotals": 9,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Joan Umbert",
+   "partidesTotals": 9,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Joan Casasayas",
+   "partidesTotals": 4,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "M. Àngels Isern",
+   "partidesTotals": 4,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Ricard Oliver",
+   "partidesTotals": 5,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Alfons Codina",
+   "partidesTotals": 3,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Maria Antònia Guardiola",
+   "partidesTotals": 2,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Anna Daura",
+   "partidesTotals": 3,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Margalida Galmés",
+   "partidesTotals": 3,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Tomeu Perelló",
+   "partidesTotals": 10,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Paz Talens",
+   "partidesTotals": 5,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Ester Casas",
+   "partidesTotals": 6,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Maria Antònia Mora",
+   "partidesTotals": 5,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Nicole Serapio",
+   "partidesTotals": 3,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Joan Gené",
+   "partidesTotals": 5,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Mireia Mena",
+   "partidesTotals": 5,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Alberto Ramirez",
+   "partidesTotals": 9,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Josep M. Elias",
+   "partidesTotals": 9,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Xisca Martínez",
+   "partidesTotals": 4,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Carme Puig",
+   "partidesTotals": 8,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Mercè Oliver",
+   "partidesTotals": 9,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Marga Font",
+   "partidesTotals": 10,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Ferriol Macip",
+   "partidesTotals": 2,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Enric Gelabert",
+   "partidesTotals": 3,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Maria José Bonet",
+   "partidesTotals": 3,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Joana Maria Flaquer",
+   "partidesTotals": 5,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Jaume Amengual",
+   "partidesTotals": 1,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Maria Planells",
+   "partidesTotals": 3,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Margalida Riera",
+   "partidesTotals": 1,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Maria Verdura",
+   "partidesTotals": 4,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Albert Artiaga",
+   "partidesTotals": 1,
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Cati Cànoves",
+   "partidesTotals": 3,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Dolors Lladós",
+   "partidesTotals": 7,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Catalina Quetgles",
+   "partidesTotals": 3,
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Llorenç Carrió",
+   "partidesTotals": 1,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Cristina Salom",
+   "partidesTotals": 2,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Pia Ona Verger",
+   "partidesTotals": 27,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Montse Mateu",
+   "partidesTotals": 6,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Marc Canovas Fons",
+   "partidesTotals": 12,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Toni Siquier",
+   "partidesTotals": 6,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Miquel Àngel Bauçà",
+   "partidesTotals": 1,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Àngels Torrens",
+   "partidesTotals": 2,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Joan Andreu Arribas",
+   "partidesTotals": 3,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Llobet Antònio",
+   "partidesTotals": 2,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Eduard Burguillos",
+   "partidesTotals": 5,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Manel Aparici",
+   "partidesTotals": 2,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Margalida Àngel",
+   "partidesTotals": 5,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Roger Pistola",
+   "partidesTotals": 8,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Toni Calitxo Gil Cobo",
+   "partidesTotals": 4,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "M. Antònia Torrendell",
+   "partidesTotals": 2,
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Cristina Cabré",
+   "partidesTotals": 2,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Joan Antoni Cerrato Rosselló",
+   "partidesTotals": 3,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Xisco Rosselló",
+   "partidesTotals": 2,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Silvia Plana Hernandez",
+   "partidesTotals": 5,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Miquel Gispert",
+   "partidesTotals": 2,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Enric Peig",
+   "partidesTotals": 5,
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Alberto Lahoz",
+   "partidesTotals": 2,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Guillem Prats",
+   "partidesTotals": 7,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Margalida Fuster",
+   "partidesTotals": 3,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Carme Pons",
+   "partidesTotals": 5,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Antònia Galmés",
+   "partidesTotals": 19,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Roser Sacases",
+   "partidesTotals": 2,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Margalida Munar",
+   "partidesTotals": 6,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Mercè Panisello",
+   "partidesTotals": 4,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Joan Riera",
+   "partidesTotals": 3,
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Lluís Ramon",
+   "partidesTotals": 2,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Laureà de Juan",
+   "partidesTotals": 2,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Sebastià Sansó",
+   "partidesTotals": 6,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Nati Estadella",
+   "partidesTotals": 5,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Alex Mas",
+   "partidesTotals": 5,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Jordi Comasòlives",
+   "partidesTotals": 10,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Júlia Mérida",
+   "partidesTotals": 2,
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Aina Oliver",
+   "partidesTotals": 5,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Eulàlia Griera",
+   "partidesTotals": 3,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "M. Dolors Puigdomènech",
+   "partidesTotals": 8,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Montse Ruiz",
+   "partidesTotals": 6,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Lahcene Akrour",
+   "partidesTotals": 3,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Toni Griera",
+   "partidesTotals": 6,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Elisabet Vaquer",
+   "partidesTotals": 3,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Juanjo Corzo",
+   "partidesTotals": 4,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Cristina Balaguer",
+   "partidesTotals": 3,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Elena Ferrer",
+   "partidesTotals": 8,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Eulàlia Farell",
+   "partidesTotals": 5,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Jesús Rodríguez",
+   "partidesTotals": 3,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Antoni Janer",
+   "partidesTotals": 3,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Imma Junqué",
+   "partidesTotals": 3,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Àlex Carol",
+   "partidesTotals": 5,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Joan Soler",
+   "partidesTotals": 4,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Ernest Ferrer",
+   "partidesTotals": 6,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Júlia Miralles",
+   "partidesTotals": 6,
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "M. Rosa Cucurull",
+   "partidesTotals": 10,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Ton Castelló",
+   "partidesTotals": 5,
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Tonina Garcia",
+   "partidesTotals": 3,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Carme Serra",
+   "partidesTotals": 5,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Kate Mulet",
+   "partidesTotals": 4,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Pere Agustí",
+   "partidesTotals": 6,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Toni Clar",
+   "partidesTotals": 7,
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Toni Nadal",
+   "partidesTotals": 5,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Miquel Oliver",
+   "partidesTotals": 5,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "David Monzonis",
+   "partidesTotals": 7,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Montse Fernández",
+   "partidesTotals": 6,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Susanna Jiménez",
+   "partidesTotals": 4,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "M. José Antequera",
+   "partidesTotals": 6,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Javier Robles",
+   "partidesTotals": 4,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Montse Seriol",
+   "partidesTotals": 6,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Josep Arias",
+   "partidesTotals": 37,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Eulàlia Ferriol",
+   "partidesTotals": 10,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Toni Mateu",
+   "partidesTotals": 6,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Arnau Peig",
+   "partidesTotals": 9,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Serafí Lliteres",
+   "partidesTotals": 7,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Rubén Peris",
+   "partidesTotals": 5,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Cristina Duran",
+   "partidesTotals": 8,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Àngela Cuesta",
+   "partidesTotals": 8,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Zhaira Moreno",
+   "partidesTotals": 6,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Carme Pascual",
+   "partidesTotals": 7,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Maria Ferrer",
+   "partidesTotals": 8,
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Francesc Riera",
+   "partidesTotals": 8,
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Pep Bagué",
+   "partidesTotals": 6,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Kica Mas",
+   "partidesTotals": 10,
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Vincent Truant",
+   "partidesTotals": 10,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Joan R. Manchado",
+   "partidesTotals": 357,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Marc Vigo",
+   "partidesTotals": 192,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Josep M. Martí",
+   "partidesTotals": 358,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Anna Genís",
+   "partidesTotals": 453,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Ernest Teniente",
+   "partidesTotals": 296,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Valentí Rossell",
+   "partidesTotals": 137,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Nemesio Moreno",
+   "partidesTotals": 148,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Pau Vidal",
+   "partidesTotals": 140,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Xavier Cardona",
+   "partidesTotals": 211,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Ramon Torres",
+   "partidesTotals": 137,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Roser Salicrú",
+   "partidesTotals": 191,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jep Ferret",
+   "partidesTotals": 213,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Agustí Borrell",
+   "partidesTotals": 92,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joan Agustí",
+   "partidesTotals": 344,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Dani Hernández",
+   "partidesTotals": 88,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Marc Ballús",
+   "partidesTotals": 67,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Adán Cassán",
+   "partidesTotals": 94,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Miquel Casares",
+   "partidesTotals": 164,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Jordi Pinart",
+   "partidesTotals": 49,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Àngela Cortès",
+   "partidesTotals": 27,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Àngels Soldevila",
+   "partidesTotals": 29,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Patxi Navarro",
+   "partidesTotals": 22,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Montse Sánchez",
+   "partidesTotals": 16,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Salvador Comelles",
+   "partidesTotals": 185,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Tomeu Riera",
+   "partidesTotals": 197,
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jaume Serra",
+   "partidesTotals": 76,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jordi Torra",
+   "partidesTotals": 23,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Elvira Sesé",
+   "partidesTotals": 439,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Enric Català",
+   "partidesTotals": 23,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Assumpció Valls",
+   "partidesTotals": 17,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Marc Ajenjo",
+   "partidesTotals": 50,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joan Capdevila",
+   "partidesTotals": 441,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Anna Queralt",
+   "partidesTotals": 41,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Antonio Arcas",
+   "partidesTotals": 441,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Patri Vitri",
+   "partidesTotals": 144,
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Muntsa G. Castells",
+   "partidesTotals": 57,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Marta Vilardell",
+   "partidesTotals": 75,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Montse Mozo",
+   "partidesTotals": 62,
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joan Melià",
+   "partidesTotals": 36,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Muntsa Clotet",
+   "partidesTotals": 239,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Susagna Balagué",
+   "partidesTotals": 12,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Helena Berlanga",
+   "partidesTotals": 124,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Xevi Olivé",
+   "partidesTotals": 9,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Maria Ribes",
+   "partidesTotals": 127,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Albert Cugat",
+   "partidesTotals": 3,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Ton Pons",
+   "partidesTotals": 12,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Lourdes Rado",
+   "partidesTotals": 32,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Helena Troiano",
+   "partidesTotals": 44,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joan López",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Pere Grimalt Riera",
+   "partidesTotals": 27,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Ana M. Martínez",
+   "partidesTotals": 24,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Enric Sánchez",
+   "partidesTotals": 9,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Mercè Tena",
+   "partidesTotals": 2,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joel Segarra",
+   "partidesTotals": 203,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Magdalena Morell",
+   "partidesTotals": 167,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jorra Santiago",
+   "partidesTotals": 69,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Roger Capdevila",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Dan Cohen",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Guida Planes",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Alfred Garrido",
+   "partidesTotals": 1,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Esther Pujol",
+   "partidesTotals": 3,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Cristian Richart",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joan A. Bonet",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Llorenç Carreres",
+   "partidesTotals": 47,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Carlos de Santiago",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Ramon Josep Colell",
+   "partidesTotals": 26,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Antoni Casas",
+   "partidesTotals": 180,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Xavier Torres",
+   "partidesTotals": 40,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Lurdes Cortés",
+   "partidesTotals": 55,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Cristina Tur",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Carme Calvo",
+   "partidesTotals": 11,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jaume Subirana",
+   "partidesTotals": 33,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Sergi Moreso",
+   "partidesTotals": 4,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Romà Vila",
+   "partidesTotals": 2,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Bibiana Olivé",
+   "partidesTotals": 2,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jaume Ferrerons",
+   "partidesTotals": 7,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Teresa Brescó",
+   "partidesTotals": 2,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Marisa Cerdó",
+   "partidesTotals": 91,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Anna Tur",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Irene Jaumà",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jaume Fitó",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Pau Riera",
+   "partidesTotals": 40,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Enric Fontvila",
+   "partidesTotals": 29,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Toni Martínez",
+   "partidesTotals": 4,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Mar Trias",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Pep Torras",
+   "partidesTotals": 51,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Carme Esmerats",
+   "partidesTotals": 252,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Marta Pallarés",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jeroni Rubió",
+   "partidesTotals": 32,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Carla Serra",
+   "partidesTotals": 1,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Xavier Alarcon",
+   "partidesTotals": 3,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Arantxa Delgado",
+   "partidesTotals": 16,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Albert Capel",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Margalida Taberner",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Raul Royo",
+   "partidesTotals": 9,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "David Ibars",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Maria Jose Araque",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Maria Sánchez",
+   "partidesTotals": 1,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Rafel Serra",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Marina Vallés",
+   "partidesTotals": 1,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Caterina Moreno",
+   "partidesTotals": 9,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Maria Ametllé",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Agustí Isard",
+   "partidesTotals": 1,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Anna Tous",
+   "partidesTotals": 1,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Rosa M. Roca",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Santiago Rosales",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Guillem Casòliva",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Andreu Pont",
+   "partidesTotals": 15,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Andreu Cabré",
+   "partidesTotals": 8,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Montserrat Isern",
+   "partidesTotals": 4,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Bernat Joan",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Esther Grimalt",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joana A. Roig",
+   "partidesTotals": 43,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Albert Cartoixà",
+   "partidesTotals": 27,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Armand Viader",
+   "partidesTotals": 3,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "M. del Mar Recasens",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Sandra Luque",
+   "partidesTotals": 2,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Neus Batllori",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jaume Salvanyà",
+   "partidesTotals": 38,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Francesc Masseguer",
+   "partidesTotals": 2,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Helena Crosas",
+   "partidesTotals": 2,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Montserrat Armengol",
+   "partidesTotals": 4,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Toni Escolar",
+   "partidesTotals": 2,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Albert Martí",
+   "partidesTotals": 22,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Ricard Fité",
+   "partidesTotals": 31,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Josep Gene",
+   "partidesTotals": 10,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Josep M. Rovira",
+   "partidesTotals": 2,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Josep Porta",
+   "partidesTotals": 25,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jordi Peralta",
+   "partidesTotals": 2,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joan Jubany",
+   "partidesTotals": 15,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Susana Jimenez",
+   "partidesTotals": 3,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Avel·lina Valls",
+   "partidesTotals": 4,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Carme Cebrian",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Moisès Solé",
+   "partidesTotals": 133,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Albert Mayans",
+   "partidesTotals": 38,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Mònica Molera",
+   "partidesTotals": 3,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Margalida Colombàs",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Mar Bel",
+   "partidesTotals": 21,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Maurici Cuesta",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Núria Esteller",
+   "partidesTotals": 9,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Maria Bartolomé",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joana A. Matas",
+   "partidesTotals": 37,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Apol·lònia Truyol",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jordi Marzà",
+   "partidesTotals": 11,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Mònica Yern",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jordi Patrís",
+   "partidesTotals": 9,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Miquel Vergara",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Anna Ferrer",
+   "partidesTotals": 13,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Alba Vidal",
+   "partidesTotals": 3,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Marina Forteza",
+   "partidesTotals": 30,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Juanjo Edo",
+   "partidesTotals": 62,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Marc Isern",
+   "partidesTotals": 3,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "René Dibusi",
+   "partidesTotals": 20,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Antoni Quetglas",
+   "partidesTotals": 11,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Laia Codina",
+   "partidesTotals": 15,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Arola Conesa",
+   "partidesTotals": 17,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Elisenda Cunill",
+   "partidesTotals": 3,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Aina Dols",
+   "partidesTotals": 51,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "David Cladera",
+   "partidesTotals": 24,
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joan Josep Isern",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Isabel Nadal",
+   "partidesTotals": 8,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Mireia Llecha",
+   "partidesTotals": 4,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Núria Trepat",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Esperança Macià",
+   "partidesTotals": 3,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Maria A. Nadal",
+   "partidesTotals": 103,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Eulàlia Baquès",
+   "partidesTotals": 11,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "M. A. Pujols",
+   "partidesTotals": 9,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Montse Comet",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Núria Pedró",
+   "partidesTotals": 3,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jean-Philippe Roy",
+   "partidesTotals": 7,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jordi Escandell",
+   "partidesTotals": 21,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Isa Hernández",
+   "partidesTotals": 52,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Xavier Nájera",
+   "partidesTotals": 4,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Maria Garcia",
+   "partidesTotals": 12,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Maria Valls",
+   "partidesTotals": 4,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Karma Duch",
+   "partidesTotals": 290,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Marga Hernández",
+   "partidesTotals": 93,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Maurici Corrons",
+   "partidesTotals": 34,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Núria Ferriol",
+   "partidesTotals": 4,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Mònica Pericàs",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Guillem Pallicer",
+   "partidesTotals": 46,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Antoni Ruiz",
+   "partidesTotals": 4,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Pere Marcet",
+   "partidesTotals": 8,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Pilar Zorrilla",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Guillem Pera",
+   "partidesTotals": 4,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Salvador Cases",
+   "partidesTotals": 17,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Sandra Juncosa",
+   "partidesTotals": 10,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Eduard Tolosa",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Maria del Mar Joan",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Montse Puig",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Òscar Hernàndez",
+   "partidesTotals": 27,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Josep M. Domenech",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Daniel Luján",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "David Agustí",
+   "partidesTotals": 5,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Anna Moreso",
+   "partidesTotals": 17,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Marta Pujol",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Àlex Murillo",
+   "partidesTotals": 25,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Oriol de Yzaguirre",
+   "partidesTotals": 8,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Montse Domenech",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Lluís Celià",
+   "partidesTotals": 20,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Mei Brescó",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Antoni Bauçà",
+   "partidesTotals": 133,
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Toni Bellatriu",
+   "partidesTotals": 6,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Lurdes Fabra",
+   "partidesTotals": 8,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "David Llussà",
+   "partidesTotals": 54,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Eva Calafell",
+   "partidesTotals": 7,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Xavier Giol",
+   "partidesTotals": 13,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Macià Ferrer",
+   "partidesTotals": 15,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Isabel Bargalló",
+   "partidesTotals": 40,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Montserrat Albets",
+   "partidesTotals": 28,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joana Gelabert",
+   "partidesTotals": 83,
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Neus Cardona",
+   "partidesTotals": 14,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Pau Arranz",
+   "partidesTotals": 60,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joana Tomàs",
+   "partidesTotals": 28,
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Assumpció Esteva",
+   "partidesTotals": 14,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Mateu Mas",
+   "partidesTotals": 74,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Marta Servera",
+   "partidesTotals": 63,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Pau Gispert",
+   "partidesTotals": 28,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jordi Ballesteros",
+   "partidesTotals": 17,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Carmina Boix",
+   "partidesTotals": 13,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Paula Girart",
+   "partidesTotals": 17,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Peadar Ó Braonáin",
+   "partidesTotals": 45,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joana Salas",
+   "partidesTotals": 84,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Mònica Cardona",
+   "partidesTotals": 50,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "M. Antoni Malagarriga",
+   "partidesTotals": 39,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Pere Riera",
+   "partidesTotals": 70,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Olimpia Viguín",
+   "partidesTotals": 16,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Mari Márquez",
+   "partidesTotals": 11,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Bàrbara Nicolau",
+   "partidesTotals": 12,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Lola Álvarez",
+   "partidesTotals": 13,
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Matias Camacho",
+   "partidesTotals": 14,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Rafel Canosa",
+   "partidesTotals": 22,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Oriol Comas",
+   "partidesTotals": 49,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Mercè Rojals",
+   "partidesTotals": 55,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Marc Capó",
+   "partidesTotals": 16,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Assumpta Codinach",
+   "partidesTotals": 11,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Rosa Riera",
+   "partidesTotals": 85,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "M. Magdalena Brunet",
+   "partidesTotals": 27,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Montse Bargalló",
+   "partidesTotals": 25,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Francesc Vernet",
+   "partidesTotals": 183,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Diana Gill",
+   "partidesTotals": 18,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Cristina Hernández",
+   "partidesTotals": 48,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Maria Magdalena Sureda",
+   "partidesTotals": 16,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Roser Peramiquel",
+   "partidesTotals": 35,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Elena Barceló",
+   "partidesTotals": 22,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Magda Falcó",
+   "partidesTotals": 501,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Xisca Nadal",
+   "partidesTotals": 15,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joana Genovart",
+   "partidesTotals": 17,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Toni Orell",
+   "partidesTotals": 13,
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Aina Capellà",
+   "partidesTotals": 21,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Jordi Caldentey",
+   "partidesTotals": 16,
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Eduard Borràs",
+   "partidesTotals": 20,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Helena Girauta",
+   "partidesTotals": 18,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Maria del Mar Vanrell",
+   "partidesTotals": 23,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Núria Casas",
+   "partidesTotals": 34,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Gemma Capdevila",
+   "partidesTotals": 32,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Maria Griera",
+   "partidesTotals": 15,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Salut Arús",
+   "partidesTotals": 41,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Dani Añor",
+   "partidesTotals": 30,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Pilar Sánchez",
+   "partidesTotals": 15,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Montserrat Torras",
+   "partidesTotals": 35,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Guida Llabrés",
+   "partidesTotals": 18,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Dolors Llargués",
+   "partidesTotals": 66,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Maria Juan",
+   "partidesTotals": 45,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Llucia Alajarín",
+   "partidesTotals": 26,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Joana Font",
+   "partidesTotals": 19,
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Antònia Gelabert",
+   "partidesTotals": 19,
+   "darreraTemporada": null,
+   "cohortLlegat": true,
+   "estat": "inact"
+  },
+  {
+   "nom": "Marga Colillas",
+   "partidesTotals": 253,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Ana Escudero",
+   "partidesTotals": 19,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Margalida Socies",
+   "partidesTotals": 23,
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Pere Berga",
+   "partidesTotals": 46,
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Montserrat Nadal",
+   "partidesTotals": 47,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Nina Furgol",
+   "partidesTotals": 28,
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Montserrat Valls",
+   "partidesTotals": 55,
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Mercè Comas",
+   "partidesTotals": 54,
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false,
+   "estat": "inact"
+  },
+  {
+   "nom": "Gabriel Suau Otero",
+   "partidesTotals": 3,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Joan Roldan Serra",
+   "partidesTotals": 10,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Laura Patrícia Bueno Femenias",
+   "partidesTotals": 37,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Sergi Escura Bassa",
+   "partidesTotals": 56,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Anna Bover",
+   "partidesTotals": 6,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Conxita Marin",
+   "partidesTotals": 12,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Eulàlia Guasch",
+   "partidesTotals": 6,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Francesca Cama",
+   "partidesTotals": 46,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Mercè Gabardós",
+   "partidesTotals": 6,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Vicenç Castelló",
+   "partidesTotals": 40,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Núria Roé",
+   "partidesTotals": 12,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Anna Homet",
+   "partidesTotals": 6,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Ester Querol",
+   "partidesTotals": 6,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Ester Ustrell",
+   "partidesTotals": 30,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Sebastià Quetglas",
+   "partidesTotals": 55,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Martí Plana",
+   "partidesTotals": 12,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "David Barceló",
+   "partidesTotals": 6,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Immaculada Camprubi Rigau",
+   "partidesTotals": 16,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Caterina Gelabert",
+   "partidesTotals": 28,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Antoni Cerrato",
+   "partidesTotals": 39,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Truyols",
+   "partidesTotals": 27,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Josep Reynés",
+   "partidesTotals": 27,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Maria Berrocal",
+   "partidesTotals": 7,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Maria Gironès",
+   "partidesTotals": 20,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Silvia Alcaide",
+   "partidesTotals": 7,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Aina Mas Llodrà",
+   "partidesTotals": 16,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Feriel Rabaï Ladària",
+   "partidesTotals": 15,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Melis Riera",
+   "partidesTotals": 20,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Lluis Molina",
+   "partidesTotals": 24,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Marc Molina Llull",
+   "partidesTotals": 16,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Miquel Quetgles Ensenyat",
+   "partidesTotals": 3,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Mònica Bisbal Sitjar",
+   "partidesTotals": 34,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Antoni Manuel Gorrias",
+   "partidesTotals": 7,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Antònia Nicolau",
+   "partidesTotals": 7,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Bàrbara Mora",
+   "partidesTotals": 14,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Catalina Oliver",
+   "partidesTotals": 7,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Elisenda Farré",
+   "partidesTotals": 7,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Francisca Nicolau",
+   "partidesTotals": 7,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Francisca Obrador",
+   "partidesTotals": 14,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joana Mora",
+   "partidesTotals": 14,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Miquel Gomila",
+   "partidesTotals": 19,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Antònia Ladària",
+   "partidesTotals": 10,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "⁠Bel Miquel Cazorla",
+   "partidesTotals": 12,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Maria del Mar Fuster",
+   "partidesTotals": 10,
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Tomeu Cursach",
+   "partidesTotals": 9,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": " Àlex Castillo",
+   "partidesTotals": 6,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": " Cris Barti",
+   "partidesTotals": 3,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": " Joan Orts",
+   "partidesTotals": 12,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": " Jofre Julià",
+   "partidesTotals": 6,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": " Jofre Sivillà",
+   "partidesTotals": 6,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": " Josep Ferrer",
+   "partidesTotals": 6,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": " Robert Ametller",
+   "partidesTotals": 6,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": " Antoni Casals",
+   "partidesTotals": 6,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": " Gilbert Tirach",
+   "partidesTotals": 6,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": " Thibaut Graell",
+   "partidesTotals": 6,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": " Vicki Vilana",
+   "partidesTotals": 6,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Bel Miquel",
+   "partidesTotals": 6,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Joan Melis",
+   "partidesTotals": 6,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Xavier Adrover",
+   "partidesTotals": 3,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Albert Valentí Vergara",
+   "partidesTotals": 6,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Eva Cama Llordés",
+   "partidesTotals": 11,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "act"
+  },
+  {
+   "nom": "Joan Doria Ribera",
+   "partidesTotals": 3,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Miguel Roig Comamala",
+   "partidesTotals": 5,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Lourdes Sola López",
+   "partidesTotals": 5,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Cosme Munar Adrover",
+   "partidesTotals": 3,
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false,
+   "estat": "exp"
+  },
+  {
+   "nom": "Cristina Gil",
+   "partidesTotals": 0,
+   "darreraTemporada": null,
+   "cohortLlegat": false,
+   "estat": "nov"
+  },
+  {
+   "nom": "Jordi Pedrals",
+   "partidesTotals": 0,
+   "darreraTemporada": null,
+   "cohortLlegat": false,
+   "estat": "nov"
+  },
+  {
+   "nom": "Mary Oliva",
+   "partidesTotals": 0,
+   "darreraTemporada": null,
+   "cohortLlegat": false,
+   "estat": "nov"
+  },
+  {
+   "nom": "Toni Donoso",
+   "partidesTotals": 0,
+   "darreraTemporada": null,
+   "cohortLlegat": false,
+   "estat": "nov"
+  }
+ ]
+}
