@@ -312,9 +312,24 @@ CREATE TABLE barruf_valors (
 
     estat               estat_jugador NOT NULL,
     darrera_temporada   TEXT REFERENCES temporades(codi),
+
+    /*
+     * Cohort anterior al 2014-15: va jugar, però no se'n conserva la temporada
+     * concreta. Només apareix a la llavor; tot el que entri d'ara endavant
+     * sempre porta temporada.
+     */
+    cohort_llegat       BOOLEAN NOT NULL DEFAULT FALSE,
+
+    /* Debuta aquesta temporada. Derivable un cop hi ha cadena; a la llavor
+     * s'importa tal com surt a la llista publicada. */
+    debutant            BOOLEAN NOT NULL DEFAULT FALSE,
+
+    /* Només els jugadors actius tenen posició al rànquing. */
     posicio             INTEGER,
 
-    PRIMARY KEY (edicio_id, jugador_id)
+    PRIMARY KEY (edicio_id, jugador_id),
+
+    CHECK (NOT cohort_llegat OR darrera_temporada IS NULL)
 );
 
 CREATE INDEX barruf_valors_jugador_idx ON barruf_valors(jugador_id);
@@ -389,6 +404,8 @@ CREATE POLICY escriptura_gestors ON barruf_valors     FOR ALL USING (es_gestor()
 CREATE POLICY escriptura_gestors ON barruf_variacions FOR ALL USING (es_gestor()) WITH CHECK (es_gestor());
 
 -- Vista pública de jugadors: nom, número i club, sense dades de contacte.
+-- Amb `security_invoker = false` s'executa amb els permisos del propietari, de
+-- manera que exposa aquestes tres columnes sense obrir la taula `jugadors`.
 CREATE VIEW jugadors_publics
 WITH (security_invoker = false) AS
     SELECT j.id, j.numero, j.nom_complet, j.club_id, c.nom AS club_nom
@@ -396,7 +413,38 @@ WITH (security_invoker = false) AS
     LEFT JOIN clubs c ON c.id = j.club_id
     WHERE j.fusionat_a IS NULL;
 
-GRANT SELECT ON jugadors_publics TO anon, authenticated;
+-- -----------------------------------------------------------------------------
+-- Privilegis
+-- -----------------------------------------------------------------------------
+-- Dues capes independents, i totes dues han de deixar passar l'operació:
+-- els privilegis diuen a quines TAULES pot accedir cada rol, i l'RLS diu a
+-- quines FILES. Es declaren aquí explícitament per no dependre dels privilegis
+-- per defecte de Supabase: si un dia canviessin, aquest esquema continuaria
+-- sent correcte.
+-- -----------------------------------------------------------------------------
+
+REVOKE ALL ON ALL TABLES IN SCHEMA public FROM anon, authenticated;
+
+-- Visitants no identificats: només lectura, i només del que es publica.
+-- Fixeu-vos que `jugadors`, `jugador_alies`, `quotes` i `perfils` no hi surten:
+-- les dades de contacte i les econòmiques no són accessibles ni tan sols en
+-- lectura, amb política o sense.
+GRANT SELECT ON
+    clubs, temporades, campionats, inscripcions, partides,
+    barruf_edicions, barruf_valors, barruf_variacions,
+    jugadors_publics
+TO anon, authenticated;
+
+-- Gestors identificats. Qui tingui un compte però no sigui a `perfils` no
+-- passarà l'RLS, de manera que aquests privilegis no li serveixen de res.
+GRANT SELECT, INSERT, UPDATE, DELETE ON
+    clubs, temporades, jugadors, jugador_alies, quotes,
+    campionats, inscripcions, partides,
+    barruf_edicions, barruf_valors, barruf_variacions
+TO authenticated;
+
+GRANT SELECT ON perfils TO authenticated;
+GRANT USAGE ON SEQUENCE numero_jugador_seq TO authenticated;
 
 -- -----------------------------------------------------------------------------
 -- Manteniment de modificat_el

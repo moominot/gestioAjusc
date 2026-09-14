@@ -93,3 +93,28 @@ Les bases publicades són a https://www.ajuscrabble.cat/barruf/.
 | `estats.ts` | Derivació de `nov` / `exp` / `act` / `inact` |
 | `tipus.ts` | Tipus compartits |
 | `motor.test.ts` | 35 proves, incloses les 609 files reals |
+
+## La llavor
+
+`supabase/migrations/0002_llavor_barruf.sql` conté el punt zero: els 609
+jugadors de l'edició 199, amb el seu BARRUF, les partides i victòries
+acumulades, l'estat i el club. El genera `scripts/genera_llavor.py` a partir del
+full, de manera que és reproduïble i no s'ha d'editar a mà.
+
+La llavor porta les **partides acumulades**, no només el BARRUF. És
+imprescindible: el factor K depèn del llindar de 50 partides, i sembrar-les a
+zero faria que tothom anés amb K=30 per sempre.
+
+Verificada contra el full: 609 jugadors × 11 camps = 6.699 valors, zero
+discrepàncies.
+
+## Avís sobre el canvi de temporada
+
+L'escombrada d'inactivitat s'aplica **al setembre**. La llavor recull l'estat de
+la temporada 2025-26; en entrar a la 2026-27, **16 jugadors passen d'`act` a
+`inact`** perquè la seva darrera participació és del 2023-24.
+
+Aquesta transició l'ha de fer l'aplicació explícitament en obrir la temporada, i
+ha de quedar registrada com una edició nova. No és una conseqüència automàtica
+de mirar el calendari: si algun dia es vol reconstruir la llista tal com era en
+un moment del passat, cal poder replicar les escombrades una per una.
