@@ -14,10 +14,14 @@ sembrés a zero, tothom aniria amb K=30 per sempre.
 Ús:
     python3 scripts/genera_llavor.py GENERADOR_BARRUF.xlsx \\
         > supabase/migrations/0002_llavor_barruf.sql
+
+    python3 scripts/genera_llavor.py GENERADOR_BARRUF.xlsx --json \\
+        > lib/importacio/__fixtures__/registre-llavor.json
 """
 
 from __future__ import annotations
 
+import json
 import re
 import sys
 import unicodedata
@@ -277,10 +281,45 @@ INSERT INTO temporades (codi, any_inici, data_inici, data_fi) VALUES""")
     return "\n".join(linies) + "\n"
 
 
+def genera_json(jugadors: list[dict]) -> str:
+    """Els mateixos jugadors en JSON, per fer-los servir de fixture a les proves.
+
+    Surt del mateix lloc que la migració perquè no puguin divergir.
+    """
+    ordenats = sorted(jugadors, key=lambda j: normalitza(j["nom"]))
+    return json.dumps(
+        {
+            "edicio": EDICIO_LLAVOR,
+            "temporada": TEMPORADA_LLAVOR,
+            "origen": "GENERADOR_BARRUF, pestanya DadesUltimBarruf",
+            "jugadors": [
+                {
+                    "numero": numero,
+                    "nomComplet": j["nom"],
+                    "barruf": j["barruf"],
+                    "partidesTotals": int(j["partides_totals"]),
+                    "victoriesTotals": j["victories_totals"],
+                    "estat": j["estat"],
+                    "darreraTemporada": j["darrera_temporada"],
+                    "cohortLlegat": j["cohort_llegat"],
+                }
+                for numero, j in enumerate(ordenats, start=1)
+            ],
+        },
+        ensure_ascii=False,
+        indent=1,
+    ) + "\n"
+
+
 def main() -> None:
-    if len(sys.argv) != 2:
+    arguments = sys.argv[1:]
+    com_a_json = "--json" in arguments
+    camins = [a for a in arguments if not a.startswith("--")]
+    if len(camins) != 1:
         raise SystemExit(__doc__)
-    sys.stdout.write(genera(llegeix(sys.argv[1])))
+
+    jugadors = llegeix(camins[0])
+    sys.stdout.write(genera_json(jugadors) if com_a_json else genera(jugadors))
 
 
 if __name__ == "__main__":

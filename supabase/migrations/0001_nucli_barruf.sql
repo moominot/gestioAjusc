@@ -172,6 +172,19 @@ CREATE TABLE campionats (
     computa_barruf      BOOLEAN NOT NULL DEFAULT TRUE,
     motiu_no_computa    TEXT,
 
+    /*
+     * Un campionat es barrufa quan s'acaba, mai per trams. Mentre estigui en
+     * curs es pot importar i consultar, i se'n pot simular l'efecte, però no
+     * entra a la cadena.
+     *
+     * La cadena, doncs, es construeix amb `computa_barruf AND finalitzat`.
+     */
+    finalitzat          BOOLEAN NOT NULL DEFAULT FALSE,
+
+    /* Per veure d'un cop d'ull si el que s'ha importat és tot el campionat. */
+    rondes_previstes    INTEGER,
+    rondes_jugades      INTEGER,
+
     -- Desempat de l'ordre de la cadena quan dos campionats són el mateix dia.
     ordre               INTEGER NOT NULL DEFAULT 0,
 

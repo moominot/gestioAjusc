@@ -278,3 +278,51 @@ export function partidesPerParticipant(torneig: Torneig): Map<number, number> {
   }
   return compte
 }
+
+/**
+ * Converteix un torneig ja resolt en l'entrada que espera el motor del BARRUF.
+ *
+ * `correspondencia` va de l'identificador local del torneig a l'identificador
+ * del registre. Ha de cobrir tothom que hagi jugat alguna partida; els inscrits
+ * que no han jugat es poden ometre, perquè no varien.
+ */
+export function aEntradaDelMotor(
+  torneig: Torneig,
+  correspondencia: ReadonlyMap<number, string>,
+  opcions: { campionatId: string; temporadaCodi: string },
+): {
+  id: string
+  temporadaCodi: string
+  inscrits: string[]
+  partides: { ronda: number; jugador1Id: string; jugador2Id: string; resultat1: ResultatSwiss }[]
+} {
+  const resol = (idLocal: number, context: string): string => {
+    const id = correspondencia.get(idLocal)
+    if (id === undefined) {
+      throw new ErrorTorneig(
+        `${context}: el jugador ${idLocal} del torneig no està associat a cap jugador del registre`,
+      )
+    }
+    return id
+  }
+
+  const partides = torneig.partides.map((partida) => ({
+    ronda: partida.ronda,
+    jugador1Id: resol(partida.blancId, `ronda ${partida.ronda}`),
+    jugador2Id: resol(partida.negreId, `ronda ${partida.ronda}`),
+    resultat1: partida.resultatBlanc,
+  }))
+
+  // Només els inscrits que tenim associats. Qui no ha jugat i no s'ha associat
+  // no afecta el càlcul.
+  const inscrits = torneig.participants
+    .map((p) => correspondencia.get(p.id))
+    .filter((id): id is string => id !== undefined)
+
+  return {
+    id: opcions.campionatId,
+    temporadaCodi: opcions.temporadaCodi,
+    inscrits,
+    partides,
+  }
+}

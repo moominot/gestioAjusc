@@ -122,3 +122,44 @@ netejar-ho, aquell jugador fallaria la coincidència exacta a cada importació.
 Amb la neteja aplicada, dels **65 participants del ManaCup, 63 es resolen sols**
 contra el registre. En queden dos per validar a mà: un cas genuïnament ambigu
 («Lluís Fuster» contra «Lluís Fuster Amer») i una alta nova.
+
+## Resolució d'identitats
+
+`resolucio.ts` va de les persones que surten a un fitxer de resultats als
+jugadors del registre. És el punt delicat de tota la importació: una resolució
+errònia no dona cap error, simplement atribueix les partides a qui no toca i mou
+el BARRUF de dues persones.
+
+Per això només resol sol el que és segur, en aquest ordre:
+
+1. **Coincidència exacta** de la forma normalitzada amb el nom del registre.
+2. **Àlies ja validat** per una persona en una importació anterior. És el que fa
+   que el sistema aprengui: cada campionat en deixa de nous i el següent en
+   demana menys.
+3. Si no, **proposa candidats** perquè algú decideixi.
+
+**Mai no resol sol per semblança**, per alta que sigui: «Lluís Fuster» i «Lluís
+Fuster Amer» s'assemblen molt i podrien ser dues persones.
+
+### La puntuació del fitxer com a corroboració
+
+El `.trn` porta la puntuació amb què cada jugador entra al torneig, que sol ser
+el seu BARRUF. No serveix de clau d'identitat —és la que tenia quan es va muntar
+el torneig, i de 63 correspondències segures del ManaCup només 23 la
+conserven— però quan un candidat és **l'únic del registre amb aquella
+puntuació**, és la pista més forta de què disposem.
+
+Al ManaCup passa exactament això: «Lluís Fuster» hi porta 1254 i l'únic jugador
+del registre amb 1254 és «Lluís Fuster Amer». La resolució ho marca i posa el
+candidat al davant, però la confirmació continua sent del gestor.
+
+## Simulació
+
+```
+npm run simula -- <directori amb .trn, .sco i .ini>
+```
+
+Un campionat es barrufa **quan s'acaba**, mai per trams, i per això
+`campionats.finalitzat` guarda la porta: la cadena es construeix amb
+`computa_barruf AND finalitzat`. La simulació serveix per veure abans de
+publicar què passarà, i per seguir un campionat en curs sense tocar res.

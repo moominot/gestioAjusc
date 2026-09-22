@@ -1,0 +1,6097 @@
+{
+ "edicio": 199,
+ "temporada": "2025-26",
+ "origen": "GENERADOR_BARRUF, pestanya DadesUltimBarruf",
+ "jugadors": [
+  {
+   "numero": 1,
+   "nomComplet": "Adán Cassán",
+   "barruf": 1125,
+   "partidesTotals": 94,
+   "victoriesTotals": 46,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 2,
+   "nomComplet": "Adrià Maynés",
+   "barruf": 1181,
+   "partidesTotals": 368,
+   "victoriesTotals": 226.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 3,
+   "nomComplet": "Agustí Borrell",
+   "barruf": 1159,
+   "partidesTotals": 92,
+   "victoriesTotals": 52,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 4,
+   "nomComplet": "Agustí Isard",
+   "barruf": 983,
+   "partidesTotals": 1,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 5,
+   "nomComplet": "Aina Capellà",
+   "barruf": 792,
+   "partidesTotals": 21,
+   "victoriesTotals": 4,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 6,
+   "nomComplet": "Aina Dols",
+   "barruf": 946,
+   "partidesTotals": 51,
+   "victoriesTotals": 17.5,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 7,
+   "nomComplet": "Aina Garcia",
+   "barruf": 1197,
+   "partidesTotals": 425,
+   "victoriesTotals": 274.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 8,
+   "nomComplet": "Aina M. Vicens",
+   "barruf": 1177,
+   "partidesTotals": 201,
+   "victoriesTotals": 112.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 9,
+   "nomComplet": "Aina Mas Llodrà",
+   "barruf": 906,
+   "partidesTotals": 16,
+   "victoriesTotals": 5,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 10,
+   "nomComplet": "Aina Oliver",
+   "barruf": 917,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 11,
+   "nomComplet": "Alba Vidal",
+   "barruf": 954,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 12,
+   "nomComplet": "Albert Artiaga",
+   "barruf": 937,
+   "partidesTotals": 1,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 13,
+   "nomComplet": "Albert Capel",
+   "barruf": 987,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 14,
+   "nomComplet": "Albert Cartoixà",
+   "barruf": 972,
+   "partidesTotals": 27,
+   "victoriesTotals": 14,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 15,
+   "nomComplet": "Albert Cugat",
+   "barruf": 1045,
+   "partidesTotals": 3,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 16,
+   "nomComplet": "Albert Martí",
+   "barruf": 969,
+   "partidesTotals": 22,
+   "victoriesTotals": 8,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 17,
+   "nomComplet": "Albert Mayans",
+   "barruf": 961,
+   "partidesTotals": 38,
+   "victoriesTotals": 20,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 18,
+   "nomComplet": "Albert Rico",
+   "barruf": 1131,
+   "partidesTotals": 406,
+   "victoriesTotals": 206,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 19,
+   "nomComplet": "Albert Rodríguez",
+   "barruf": 1237,
+   "partidesTotals": 419,
+   "victoriesTotals": 277.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 20,
+   "nomComplet": "Albert Valentí Vergara",
+   "barruf": 916,
+   "partidesTotals": 6,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 21,
+   "nomComplet": "Alberto Lahoz",
+   "barruf": 923,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 22,
+   "nomComplet": "Alberto Ramirez",
+   "barruf": 956,
+   "partidesTotals": 9,
+   "victoriesTotals": 3,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 23,
+   "nomComplet": "Àlex Abad",
+   "barruf": 1176,
+   "partidesTotals": 282,
+   "victoriesTotals": 168,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 24,
+   "nomComplet": "Àlex Carol",
+   "barruf": 902,
+   "partidesTotals": 5,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 25,
+   "nomComplet": "Àlex Castillo",
+   "barruf": 930,
+   "partidesTotals": 6,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 26,
+   "nomComplet": "Alex Mas",
+   "barruf": 919,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 27,
+   "nomComplet": "Àlex Murillo",
+   "barruf": 918,
+   "partidesTotals": 25,
+   "victoriesTotals": 5,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 28,
+   "nomComplet": "Alfons Codina",
+   "barruf": 966,
+   "partidesTotals": 3,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 29,
+   "nomComplet": "Alfred Garrido",
+   "barruf": 1015,
+   "partidesTotals": 1,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 30,
+   "nomComplet": "Ana Escudero",
+   "barruf": 710,
+   "partidesTotals": 19,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 31,
+   "nomComplet": "Ana M. Martínez",
+   "barruf": 1030,
+   "partidesTotals": 24,
+   "victoriesTotals": 13,
+   "estat": "inact",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 32,
+   "nomComplet": "Andreu Cabré",
+   "barruf": 976,
+   "partidesTotals": 8,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 33,
+   "nomComplet": "Andreu Fuster",
+   "barruf": 1268,
+   "partidesTotals": 306,
+   "victoriesTotals": 223,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 34,
+   "nomComplet": "Andreu Pasqual",
+   "barruf": 737,
+   "partidesTotals": 232,
+   "victoriesTotals": 45.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 35,
+   "nomComplet": "Andreu Pont",
+   "barruf": 978,
+   "partidesTotals": 15,
+   "victoriesTotals": 6,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 36,
+   "nomComplet": "Àngela Cortès",
+   "barruf": 1156,
+   "partidesTotals": 27,
+   "victoriesTotals": 19,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 37,
+   "nomComplet": "Àngela Cuesta",
+   "barruf": 861,
+   "partidesTotals": 8,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 38,
+   "nomComplet": "Àngels Castells",
+   "barruf": 1157,
+   "partidesTotals": 104,
+   "victoriesTotals": 64,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 39,
+   "nomComplet": "Àngels Marcé",
+   "barruf": 918,
+   "partidesTotals": 218,
+   "victoriesTotals": 82.5,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 40,
+   "nomComplet": "Àngels Soldevila",
+   "barruf": 1110,
+   "partidesTotals": 29,
+   "victoriesTotals": 19,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 41,
+   "nomComplet": "Àngels Torrens",
+   "barruf": 929,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 42,
+   "nomComplet": "Anna Bover",
+   "barruf": 928,
+   "partidesTotals": 6,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 43,
+   "nomComplet": "Anna Daura",
+   "barruf": 961,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 44,
+   "nomComplet": "Anna Ferrer",
+   "barruf": 954,
+   "partidesTotals": 13,
+   "victoriesTotals": 5,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 45,
+   "nomComplet": "Anna Genís",
+   "barruf": 1349,
+   "partidesTotals": 453,
+   "victoriesTotals": 335,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 46,
+   "nomComplet": "Anna Homet",
+   "barruf": 870,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 47,
+   "nomComplet": "Anna Moreso",
+   "barruf": 921,
+   "partidesTotals": 17,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 48,
+   "nomComplet": "Anna Perales",
+   "barruf": 1138,
+   "partidesTotals": 214,
+   "victoriesTotals": 108.5,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 49,
+   "nomComplet": "Anna Queralt",
+   "barruf": 1066,
+   "partidesTotals": 41,
+   "victoriesTotals": 21.5,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 50,
+   "nomComplet": "Anna Rodrigo",
+   "barruf": 845,
+   "partidesTotals": 55,
+   "victoriesTotals": 15,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 51,
+   "nomComplet": "Anna Salgot",
+   "barruf": 935,
+   "partidesTotals": 67,
+   "victoriesTotals": 21.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 52,
+   "nomComplet": "Anna Tous",
+   "barruf": 981,
+   "partidesTotals": 1,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 53,
+   "nomComplet": "Anna Tur",
+   "barruf": 997,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 54,
+   "nomComplet": "Antoni Alzamora",
+   "barruf": 1072,
+   "partidesTotals": 263,
+   "victoriesTotals": 139.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 55,
+   "nomComplet": "Antoni Bauçà",
+   "barruf": 913,
+   "partidesTotals": 133,
+   "victoriesTotals": 60.5,
+   "estat": "inact",
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 56,
+   "nomComplet": "Antoni Casals",
+   "barruf": 939,
+   "partidesTotals": 6,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 57,
+   "nomComplet": "Antoni Casas",
+   "barruf": 1010,
+   "partidesTotals": 180,
+   "victoriesTotals": 95.5,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 58,
+   "nomComplet": "Antoni Janer",
+   "barruf": 903,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 59,
+   "nomComplet": "Antoni Llull",
+   "barruf": 1080,
+   "partidesTotals": 226,
+   "victoriesTotals": 109.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 60,
+   "nomComplet": "Antoni Manuel Gorrias",
+   "barruf": 870,
+   "partidesTotals": 7,
+   "victoriesTotals": 0.5,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 61,
+   "nomComplet": "Antoni Nicolau",
+   "barruf": 717,
+   "partidesTotals": 54,
+   "victoriesTotals": 5,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 62,
+   "nomComplet": "Antoni Quetglas",
+   "barruf": 950,
+   "partidesTotals": 11,
+   "victoriesTotals": 5,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 63,
+   "nomComplet": "Antoni Riera",
+   "barruf": 1312,
+   "partidesTotals": 528,
+   "victoriesTotals": 395,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 64,
+   "nomComplet": "Antoni Ruiz",
+   "barruf": 930,
+   "partidesTotals": 4,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 65,
+   "nomComplet": "Antònia Galmés",
+   "barruf": 921,
+   "partidesTotals": 19,
+   "victoriesTotals": 7,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 66,
+   "nomComplet": "Antònia Gelabert",
+   "barruf": 733,
+   "partidesTotals": 19,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 67,
+   "nomComplet": "Antònia Ladària",
+   "barruf": 861,
+   "partidesTotals": 10,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 68,
+   "nomComplet": "Antònia Nicolau",
+   "barruf": 846,
+   "partidesTotals": 7,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 69,
+   "nomComplet": "Antònia Riera",
+   "barruf": 1154,
+   "partidesTotals": 318,
+   "victoriesTotals": 180.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 70,
+   "nomComplet": "Antonio Arcas",
+   "barruf": 1064,
+   "partidesTotals": 441,
+   "victoriesTotals": 228.5,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 71,
+   "nomComplet": "Antonio Caballero",
+   "barruf": 933,
+   "partidesTotals": 86,
+   "victoriesTotals": 30.5,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 72,
+   "nomComplet": "Apol·lònia Truyol",
+   "barruf": 958,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 73,
+   "nomComplet": "Arantxa Delgado",
+   "barruf": 987,
+   "partidesTotals": 16,
+   "victoriesTotals": 6,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 74,
+   "nomComplet": "Armand Sanmamed",
+   "barruf": 1017,
+   "partidesTotals": 59,
+   "victoriesTotals": 29,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 75,
+   "nomComplet": "Armand Viader",
+   "barruf": 972,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 76,
+   "nomComplet": "Arnau Peig",
+   "barruf": 867,
+   "partidesTotals": 9,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 77,
+   "nomComplet": "Arola Conesa",
+   "barruf": 948,
+   "partidesTotals": 17,
+   "victoriesTotals": 6,
+   "estat": "inact",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 78,
+   "nomComplet": "Assumpció Esteva",
+   "barruf": 894,
+   "partidesTotals": 14,
+   "victoriesTotals": 5,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 79,
+   "nomComplet": "Assumpció Valls",
+   "barruf": 1077,
+   "partidesTotals": 17,
+   "victoriesTotals": 12,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 80,
+   "nomComplet": "Assumpta Codinach",
+   "barruf": 843,
+   "partidesTotals": 11,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 81,
+   "nomComplet": "Avel·lina Valls",
+   "barruf": 962,
+   "partidesTotals": 4,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 82,
+   "nomComplet": "Balbina Brescó",
+   "barruf": 1019,
+   "partidesTotals": 169,
+   "victoriesTotals": 86,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 83,
+   "nomComplet": "Bàrbara Mora",
+   "barruf": 931,
+   "partidesTotals": 14,
+   "victoriesTotals": 6,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 84,
+   "nomComplet": "Bàrbara Nicolau",
+   "barruf": 854,
+   "partidesTotals": 12,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 85,
+   "nomComplet": "Beatriu Defior",
+   "barruf": 1304,
+   "partidesTotals": 140,
+   "victoriesTotals": 104,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 86,
+   "nomComplet": "Bel Andreu",
+   "barruf": 1163,
+   "partidesTotals": 327,
+   "victoriesTotals": 193.5,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 87,
+   "nomComplet": "Bel Fullana",
+   "barruf": 793,
+   "partidesTotals": 51,
+   "victoriesTotals": 13.5,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 88,
+   "nomComplet": "Bel Llull",
+   "barruf": 1118,
+   "partidesTotals": 298,
+   "victoriesTotals": 144,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 89,
+   "nomComplet": "Bel Miquel",
+   "barruf": 952,
+   "partidesTotals": 6,
+   "victoriesTotals": 3,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 90,
+   "nomComplet": "Bel Miquel Cazorla",
+   "barruf": 889,
+   "partidesTotals": 12,
+   "victoriesTotals": 3,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 91,
+   "nomComplet": "Bernat Amer",
+   "barruf": 1048,
+   "partidesTotals": 276,
+   "victoriesTotals": 124,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 92,
+   "nomComplet": "Bernat Joan",
+   "barruf": 975,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 93,
+   "nomComplet": "Bibiana Olivé",
+   "barruf": 999,
+   "partidesTotals": 2,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 94,
+   "nomComplet": "Carla Serra",
+   "barruf": 989,
+   "partidesTotals": 1,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 95,
+   "nomComplet": "Carles Cassanyes",
+   "barruf": 1287,
+   "partidesTotals": 377,
+   "victoriesTotals": 277.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 96,
+   "nomComplet": "Carles Díez",
+   "barruf": 1094,
+   "partidesTotals": 307,
+   "victoriesTotals": 150.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 97,
+   "nomComplet": "Carles Llull",
+   "barruf": 1371,
+   "partidesTotals": 335,
+   "victoriesTotals": 225,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 98,
+   "nomComplet": "Carlos de Santiago",
+   "barruf": 1012,
+   "partidesTotals": 6,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 99,
+   "nomComplet": "Carme Calvo",
+   "barruf": 1007,
+   "partidesTotals": 11,
+   "victoriesTotals": 6,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 100,
+   "nomComplet": "Carme Cebrian",
+   "barruf": 962,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 101,
+   "nomComplet": "Carme Esmerats",
+   "barruf": 992,
+   "partidesTotals": 252,
+   "victoriesTotals": 119,
+   "estat": "inact",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 102,
+   "nomComplet": "Carme Pascual",
+   "barruf": 842,
+   "partidesTotals": 7,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 103,
+   "nomComplet": "Carme Pons",
+   "barruf": 920,
+   "partidesTotals": 5,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 104,
+   "nomComplet": "Carme Puig",
+   "barruf": 947,
+   "partidesTotals": 8,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 105,
+   "nomComplet": "Carme Serra",
+   "barruf": 897,
+   "partidesTotals": 5,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 106,
+   "nomComplet": "Carmina Boix",
+   "barruf": 880,
+   "partidesTotals": 13,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 107,
+   "nomComplet": "Catalina Oliver",
+   "barruf": 996,
+   "partidesTotals": 7,
+   "victoriesTotals": 5,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 108,
+   "nomComplet": "Catalina Quetgles",
+   "barruf": 935,
+   "partidesTotals": 3,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 109,
+   "nomComplet": "Catalina Vallbona",
+   "barruf": 1256,
+   "partidesTotals": 89,
+   "victoriesTotals": 56,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 110,
+   "nomComplet": "Caterina Gelabert",
+   "barruf": 948,
+   "partidesTotals": 28,
+   "victoriesTotals": 13,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 111,
+   "nomComplet": "Caterina Moreno",
+   "barruf": 984,
+   "partidesTotals": 9,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 112,
+   "nomComplet": "Caterina Sureda Vallespir",
+   "barruf": 910,
+   "partidesTotals": 34,
+   "victoriesTotals": 12,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 113,
+   "nomComplet": "Cati Bauzà",
+   "barruf": 829,
+   "partidesTotals": 48,
+   "victoriesTotals": 15.5,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 114,
+   "nomComplet": "Cati Cànoves",
+   "barruf": 937,
+   "partidesTotals": 3,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 115,
+   "nomComplet": "Cati Sureda",
+   "barruf": 915,
+   "partidesTotals": 293,
+   "victoriesTotals": 119,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 116,
+   "nomComplet": "César Magaldi",
+   "barruf": 869,
+   "partidesTotals": 15,
+   "victoriesTotals": 4,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 117,
+   "nomComplet": "Clara Zambrana",
+   "barruf": 816,
+   "partidesTotals": 94,
+   "victoriesTotals": 26,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 118,
+   "nomComplet": "Conxita Marin",
+   "barruf": 906,
+   "partidesTotals": 12,
+   "victoriesTotals": 3,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 119,
+   "nomComplet": "Cosme Munar Adrover",
+   "barruf": 953,
+   "partidesTotals": 3,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 120,
+   "nomComplet": "Cris Barti",
+   "barruf": 927,
+   "partidesTotals": 3,
+   "victoriesTotals": 0.5,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 121,
+   "nomComplet": "Cristian Richart",
+   "barruf": 1015,
+   "partidesTotals": 6,
+   "victoriesTotals": 4,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 122,
+   "nomComplet": "Cristina Balaguer",
+   "barruf": 909,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 123,
+   "nomComplet": "Cristina Bassons",
+   "barruf": 1147,
+   "partidesTotals": 72,
+   "victoriesTotals": 48,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 124,
+   "nomComplet": "Cristina Cabré",
+   "barruf": 925,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 125,
+   "nomComplet": "Cristina Duran",
+   "barruf": 864,
+   "partidesTotals": 8,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 126,
+   "nomComplet": "Cristina Gil",
+   "barruf": 950,
+   "partidesTotals": 0,
+   "victoriesTotals": 0,
+   "estat": "nov",
+   "darreraTemporada": null,
+   "cohortLlegat": false
+  },
+  {
+   "numero": 127,
+   "nomComplet": "Cristina Hernández",
+   "barruf": 822,
+   "partidesTotals": 48,
+   "victoriesTotals": 11,
+   "estat": "inact",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 128,
+   "nomComplet": "Cristina Salom",
+   "barruf": 935,
+   "partidesTotals": 2,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 129,
+   "nomComplet": "Cristina Tur",
+   "barruf": 1007,
+   "partidesTotals": 5,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 130,
+   "nomComplet": "Dan Cohen",
+   "barruf": 1021,
+   "partidesTotals": 5,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 131,
+   "nomComplet": "Dani Añor",
+   "barruf": 770,
+   "partidesTotals": 30,
+   "victoriesTotals": 4,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 132,
+   "nomComplet": "Dani Bardés",
+   "barruf": 1083,
+   "partidesTotals": 102,
+   "victoriesTotals": 59,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 133,
+   "nomComplet": "Dani Hernández",
+   "barruf": 1128,
+   "partidesTotals": 88,
+   "victoriesTotals": 55,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 134,
+   "nomComplet": "Daniel Luján",
+   "barruf": 922,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 135,
+   "nomComplet": "Daniel Ramos",
+   "barruf": 1124,
+   "partidesTotals": 299,
+   "victoriesTotals": 148.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 136,
+   "nomComplet": "David Agustí",
+   "barruf": 921,
+   "partidesTotals": 5,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 137,
+   "nomComplet": "David Barceló",
+   "barruf": 964,
+   "partidesTotals": 6,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 138,
+   "nomComplet": "David Cladera",
+   "barruf": 946,
+   "partidesTotals": 24,
+   "victoriesTotals": 10,
+   "estat": "inact",
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 139,
+   "nomComplet": "David Ibars",
+   "barruf": 985,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 140,
+   "nomComplet": "David Llussà",
+   "barruf": 908,
+   "partidesTotals": 54,
+   "victoriesTotals": 17,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 141,
+   "nomComplet": "David Monzonis",
+   "barruf": 887,
+   "partidesTotals": 7,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 142,
+   "nomComplet": "David Roig",
+   "barruf": 1093,
+   "partidesTotals": 24,
+   "victoriesTotals": 14,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 143,
+   "nomComplet": "Diana Gill",
+   "barruf": 824,
+   "partidesTotals": 18,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 144,
+   "nomComplet": "Dolors Lladós",
+   "barruf": 937,
+   "partidesTotals": 7,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 145,
+   "nomComplet": "Dolors Llargués",
+   "barruf": 744,
+   "partidesTotals": 66,
+   "victoriesTotals": 11,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 146,
+   "nomComplet": "Eduard Borràs",
+   "barruf": 787,
+   "partidesTotals": 20,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 147,
+   "nomComplet": "Eduard Burguillos",
+   "barruf": 928,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 148,
+   "nomComplet": "Eduard Tolosa",
+   "barruf": 926,
+   "partidesTotals": 6,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 149,
+   "nomComplet": "Elba Ubri",
+   "barruf": 902,
+   "partidesTotals": 12,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 150,
+   "nomComplet": "Elena Barceló",
+   "barruf": 811,
+   "partidesTotals": 22,
+   "victoriesTotals": 6,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 151,
+   "nomComplet": "Elena Ferrer",
+   "barruf": 905,
+   "partidesTotals": 8,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 152,
+   "nomComplet": "Elisabet Vaquer",
+   "barruf": 911,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 153,
+   "nomComplet": "Elisenda Cunill",
+   "barruf": 947,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 154,
+   "nomComplet": "Elisenda Farré",
+   "barruf": 900,
+   "partidesTotals": 7,
+   "victoriesTotals": 1.5,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 155,
+   "nomComplet": "Elvira Sesé",
+   "barruf": 1089,
+   "partidesTotals": 439,
+   "victoriesTotals": 191,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 156,
+   "nomComplet": "Enric Borràs",
+   "barruf": 1000,
+   "partidesTotals": 344,
+   "victoriesTotals": 157.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 157,
+   "nomComplet": "Enric Català",
+   "barruf": 1085,
+   "partidesTotals": 23,
+   "victoriesTotals": 14,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 158,
+   "nomComplet": "Enric Fontvila",
+   "barruf": 994,
+   "partidesTotals": 29,
+   "victoriesTotals": 12,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 159,
+   "nomComplet": "Enric Gelabert",
+   "barruf": 943,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 160,
+   "nomComplet": "Enric Peig",
+   "barruf": 923,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 161,
+   "nomComplet": "Enric Sánchez",
+   "barruf": 1030,
+   "partidesTotals": 9,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 162,
+   "nomComplet": "Eric Olmedo",
+   "barruf": 1244,
+   "partidesTotals": 372,
+   "victoriesTotals": 222.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 163,
+   "nomComplet": "Ernest Ferrer",
+   "barruf": 901,
+   "partidesTotals": 6,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 164,
+   "nomComplet": "Ernest Teniente",
+   "barruf": 1335,
+   "partidesTotals": 296,
+   "victoriesTotals": 201.5,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 165,
+   "nomComplet": "Esperança Macià",
+   "barruf": 943,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 166,
+   "nomComplet": "Esperança Martí",
+   "barruf": 1288,
+   "partidesTotals": 405,
+   "victoriesTotals": 255,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 167,
+   "nomComplet": "Ester Casas",
+   "barruf": 957,
+   "partidesTotals": 6,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 168,
+   "nomComplet": "Ester Querol",
+   "barruf": 903,
+   "partidesTotals": 6,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 169,
+   "nomComplet": "Ester Ustrell",
+   "barruf": 997,
+   "partidesTotals": 30,
+   "victoriesTotals": 13,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 170,
+   "nomComplet": "Esther Alcover",
+   "barruf": 865,
+   "partidesTotals": 74,
+   "victoriesTotals": 22,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 171,
+   "nomComplet": "Esther Grimalt",
+   "barruf": 975,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 172,
+   "nomComplet": "Esther Pujol",
+   "barruf": 1015,
+   "partidesTotals": 3,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 173,
+   "nomComplet": "Eulàlia Abelló",
+   "barruf": 1179,
+   "partidesTotals": 397,
+   "victoriesTotals": 201,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 174,
+   "nomComplet": "Eulàlia Baquès",
+   "barruf": 940,
+   "partidesTotals": 11,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 175,
+   "nomComplet": "Eulàlia Farell",
+   "barruf": 904,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 176,
+   "nomComplet": "Eulàlia Ferriol",
+   "barruf": 871,
+   "partidesTotals": 10,
+   "victoriesTotals": 1.5,
+   "estat": "exp",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 177,
+   "nomComplet": "Eulàlia Griera",
+   "barruf": 916,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 178,
+   "nomComplet": "Eulàlia Guasch",
+   "barruf": 856,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 179,
+   "nomComplet": "Eulàlia Llargués",
+   "barruf": 1125,
+   "partidesTotals": 350,
+   "victoriesTotals": 165,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 180,
+   "nomComplet": "Eva Calafell",
+   "barruf": 908,
+   "partidesTotals": 7,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 181,
+   "nomComplet": "Eva Cama Llordés",
+   "barruf": 964,
+   "partidesTotals": 11,
+   "victoriesTotals": 4,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 182,
+   "nomComplet": "Felipe Calvo",
+   "barruf": 1029,
+   "partidesTotals": 238,
+   "victoriesTotals": 91,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 183,
+   "nomComplet": "Feriel Rabaï Ladària",
+   "barruf": 826,
+   "partidesTotals": 15,
+   "victoriesTotals": 2,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 184,
+   "nomComplet": "Ferriol Macip",
+   "barruf": 944,
+   "partidesTotals": 2,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 185,
+   "nomComplet": "Francesc Gallén",
+   "barruf": 1062,
+   "partidesTotals": 130,
+   "victoriesTotals": 49.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 186,
+   "nomComplet": "Francesc Gelabert",
+   "barruf": 1122,
+   "partidesTotals": 718,
+   "victoriesTotals": 345,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 187,
+   "nomComplet": "Francesc Masseguer",
+   "barruf": 970,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 188,
+   "nomComplet": "Francesc Riera",
+   "barruf": 834,
+   "partidesTotals": 8,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 189,
+   "nomComplet": "Francesc Vernet",
+   "barruf": 827,
+   "partidesTotals": 183,
+   "victoriesTotals": 60,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 190,
+   "nomComplet": "Francesca Cama",
+   "barruf": 926,
+   "partidesTotals": 46,
+   "victoriesTotals": 15,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 191,
+   "nomComplet": "Francesca Font",
+   "barruf": 1100,
+   "partidesTotals": 167,
+   "victoriesTotals": 85,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 192,
+   "nomComplet": "Francisca Nicolau",
+   "barruf": 966,
+   "partidesTotals": 7,
+   "victoriesTotals": 4,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 193,
+   "nomComplet": "Francisca Obrador",
+   "barruf": 844,
+   "partidesTotals": 14,
+   "victoriesTotals": 3,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 194,
+   "nomComplet": "Gabriel Bas",
+   "barruf": 951,
+   "partidesTotals": 496,
+   "victoriesTotals": 229,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 195,
+   "nomComplet": "Gabriel Suau Otero",
+   "barruf": 917,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 196,
+   "nomComplet": "Gemma Capdevila",
+   "barruf": 779,
+   "partidesTotals": 32,
+   "victoriesTotals": 5,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 197,
+   "nomComplet": "Gemma Rado",
+   "barruf": 1021,
+   "partidesTotals": 63,
+   "victoriesTotals": 31,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 198,
+   "nomComplet": "Gerard Castro",
+   "barruf": 751,
+   "partidesTotals": 18,
+   "victoriesTotals": 0,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 199,
+   "nomComplet": "Gilbert Tirach",
+   "barruf": 907,
+   "partidesTotals": 6,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 200,
+   "nomComplet": "Guida Llabrés",
+   "barruf": 753,
+   "partidesTotals": 18,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 201,
+   "nomComplet": "Guida Planes",
+   "barruf": 1015,
+   "partidesTotals": 5,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 202,
+   "nomComplet": "Guillem Casacuberta",
+   "barruf": 837,
+   "partidesTotals": 16,
+   "victoriesTotals": 2,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 203,
+   "nomComplet": "Guillem Casòliva",
+   "barruf": 979,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 204,
+   "nomComplet": "Guillem Melis",
+   "barruf": 912,
+   "partidesTotals": 218,
+   "victoriesTotals": 73,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 205,
+   "nomComplet": "Guillem Pallicer",
+   "barruf": 931,
+   "partidesTotals": 46,
+   "victoriesTotals": 23,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 206,
+   "nomComplet": "Guillem Pera",
+   "barruf": 928,
+   "partidesTotals": 4,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 207,
+   "nomComplet": "Guillem Prats",
+   "barruf": 922,
+   "partidesTotals": 7,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 208,
+   "nomComplet": "Helena Berlanga",
+   "barruf": 1050,
+   "partidesTotals": 124,
+   "victoriesTotals": 62,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 209,
+   "nomComplet": "Helena Crosas",
+   "barruf": 970,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 210,
+   "nomComplet": "Helena Girauta",
+   "barruf": 783,
+   "partidesTotals": 18,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 211,
+   "nomComplet": "Helena Troiano",
+   "barruf": 1042,
+   "partidesTotals": 44,
+   "victoriesTotals": 21,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 212,
+   "nomComplet": "Imma Junqué",
+   "barruf": 903,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 213,
+   "nomComplet": "Immaculada Camprubi Rigau",
+   "barruf": 810,
+   "partidesTotals": 16,
+   "victoriesTotals": 0,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 214,
+   "nomComplet": "Irene Jaumà",
+   "barruf": 995,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 215,
+   "nomComplet": "Isa Hernández",
+   "barruf": 936,
+   "partidesTotals": 52,
+   "victoriesTotals": 22,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 216,
+   "nomComplet": "Isaac Asensio",
+   "barruf": 1108,
+   "partidesTotals": 104,
+   "victoriesTotals": 58,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 217,
+   "nomComplet": "Isabel Bargalló",
+   "barruf": 902,
+   "partidesTotals": 40,
+   "victoriesTotals": 12.5,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 218,
+   "nomComplet": "Isabel Nadal",
+   "barruf": 945,
+   "partidesTotals": 8,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 219,
+   "nomComplet": "Jaume Amengual",
+   "barruf": 938,
+   "partidesTotals": 1,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 220,
+   "nomComplet": "Jaume Ferrerons",
+   "barruf": 999,
+   "partidesTotals": 7,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 221,
+   "nomComplet": "Jaume Fitó",
+   "barruf": 995,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 222,
+   "nomComplet": "Jaume Rigo",
+   "barruf": 1119,
+   "partidesTotals": 186,
+   "victoriesTotals": 100,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 223,
+   "nomComplet": "Jaume Salvanyà",
+   "barruf": 1030,
+   "partidesTotals": 38,
+   "victoriesTotals": 17,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 224,
+   "nomComplet": "Jaume Serra",
+   "barruf": 1093,
+   "partidesTotals": 76,
+   "victoriesTotals": 42,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 225,
+   "nomComplet": "Jaume Subirana",
+   "barruf": 1005,
+   "partidesTotals": 33,
+   "victoriesTotals": 15,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 226,
+   "nomComplet": "Jaume Vidal",
+   "barruf": 1005,
+   "partidesTotals": 9,
+   "victoriesTotals": 6,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 227,
+   "nomComplet": "Jaume Vives",
+   "barruf": 1066,
+   "partidesTotals": 290,
+   "victoriesTotals": 139,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 228,
+   "nomComplet": "Javier Robles",
+   "barruf": 878,
+   "partidesTotals": 4,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 229,
+   "nomComplet": "Jean-Philippe Roy",
+   "barruf": 938,
+   "partidesTotals": 7,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 230,
+   "nomComplet": "Jep Ferret",
+   "barruf": 1160,
+   "partidesTotals": 213,
+   "victoriesTotals": 115.5,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 231,
+   "nomComplet": "Jeroni Rubió",
+   "barruf": 991,
+   "partidesTotals": 32,
+   "victoriesTotals": 12,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 232,
+   "nomComplet": "Jesús Rodríguez",
+   "barruf": 904,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 233,
+   "nomComplet": "Joan A. Bonet",
+   "barruf": 1013,
+   "partidesTotals": 5,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 234,
+   "nomComplet": "Joan Agustí",
+   "barruf": 1139,
+   "partidesTotals": 344,
+   "victoriesTotals": 182,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 235,
+   "nomComplet": "Joan Andreu",
+   "barruf": 1223,
+   "partidesTotals": 323,
+   "victoriesTotals": 169.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 236,
+   "nomComplet": "Joan Andreu Arribas",
+   "barruf": 929,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 237,
+   "nomComplet": "Joan Antoni Cerrato",
+   "barruf": 756,
+   "partidesTotals": 39,
+   "victoriesTotals": 7,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 238,
+   "nomComplet": "Joan Antoni Cerrato Rosselló",
+   "barruf": 924,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 239,
+   "nomComplet": "Joan Barceló",
+   "barruf": 970,
+   "partidesTotals": 681,
+   "victoriesTotals": 259,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 240,
+   "nomComplet": "Joan Bonet",
+   "barruf": 786,
+   "partidesTotals": 30,
+   "victoriesTotals": 9,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 241,
+   "nomComplet": "Joan Cabalgante",
+   "barruf": 604,
+   "partidesTotals": 55,
+   "victoriesTotals": 1,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 242,
+   "nomComplet": "Joan Capdevila",
+   "barruf": 1066,
+   "partidesTotals": 441,
+   "victoriesTotals": 218.5,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 243,
+   "nomComplet": "Joan Casasayas",
+   "barruf": 972,
+   "partidesTotals": 4,
+   "victoriesTotals": 3,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 244,
+   "nomComplet": "Joan Doria Ribera",
+   "barruf": 920,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 245,
+   "nomComplet": "Joan Gelabert",
+   "barruf": 1231,
+   "partidesTotals": 330,
+   "victoriesTotals": 183.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 246,
+   "nomComplet": "Joan Gené",
+   "barruf": 952,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 247,
+   "nomComplet": "Joan Josep Isern",
+   "barruf": 945,
+   "partidesTotals": 6,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 248,
+   "nomComplet": "Joan Jubany",
+   "barruf": 964,
+   "partidesTotals": 15,
+   "victoriesTotals": 6,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 249,
+   "nomComplet": "Joan Llodrà",
+   "barruf": 1218,
+   "partidesTotals": 479,
+   "victoriesTotals": 313.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 250,
+   "nomComplet": "Joan López",
+   "barruf": 1041,
+   "partidesTotals": 5,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 251,
+   "nomComplet": "Joan Manuel Rivas",
+   "barruf": 836,
+   "partidesTotals": 54,
+   "victoriesTotals": 14,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 252,
+   "nomComplet": "Joan Melià",
+   "barruf": 1046,
+   "partidesTotals": 36,
+   "victoriesTotals": 20,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 253,
+   "nomComplet": "Joan Melis",
+   "barruf": 940,
+   "partidesTotals": 6,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 254,
+   "nomComplet": "Joan Melis Riera",
+   "barruf": 907,
+   "partidesTotals": 20,
+   "victoriesTotals": 6,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 255,
+   "nomComplet": "Joan Montané",
+   "barruf": 1100,
+   "partidesTotals": 303,
+   "victoriesTotals": 160,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 256,
+   "nomComplet": "Joan Moragues",
+   "barruf": 1012,
+   "partidesTotals": 135,
+   "victoriesTotals": 53,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 257,
+   "nomComplet": "Joan Munar",
+   "barruf": 895,
+   "partidesTotals": 58,
+   "victoriesTotals": 19,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 258,
+   "nomComplet": "Joan Orts",
+   "barruf": 927,
+   "partidesTotals": 12,
+   "victoriesTotals": 4,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 259,
+   "nomComplet": "Joan Pascual",
+   "barruf": 1260,
+   "partidesTotals": 363,
+   "victoriesTotals": 260,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 260,
+   "nomComplet": "Joan Pons",
+   "barruf": 1066,
+   "partidesTotals": 12,
+   "victoriesTotals": 8,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 261,
+   "nomComplet": "Joan Puigmalet",
+   "barruf": 922,
+   "partidesTotals": 67,
+   "victoriesTotals": 25,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 262,
+   "nomComplet": "Joan R. Manchado",
+   "barruf": 1412,
+   "partidesTotals": 357,
+   "victoriesTotals": 252.5,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 263,
+   "nomComplet": "Joan Riera",
+   "barruf": 919,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 264,
+   "nomComplet": "Joan Roldan Serra",
+   "barruf": 986,
+   "partidesTotals": 10,
+   "victoriesTotals": 4,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 265,
+   "nomComplet": "Joan Sans",
+   "barruf": 1001,
+   "partidesTotals": 308,
+   "victoriesTotals": 117,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 266,
+   "nomComplet": "Joan Soler",
+   "barruf": 902,
+   "partidesTotals": 4,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 267,
+   "nomComplet": "Joan Torra",
+   "barruf": 1003,
+   "partidesTotals": 260,
+   "victoriesTotals": 97,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 268,
+   "nomComplet": "Joan Truyols",
+   "barruf": 740,
+   "partidesTotals": 27,
+   "victoriesTotals": 4,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 269,
+   "nomComplet": "Joan Umbert",
+   "barruf": 976,
+   "partidesTotals": 9,
+   "victoriesTotals": 5,
+   "estat": "exp",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 270,
+   "nomComplet": "Joana A. Matas",
+   "barruf": 962,
+   "partidesTotals": 37,
+   "victoriesTotals": 14,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 271,
+   "nomComplet": "Joana A. Roig",
+   "barruf": 930,
+   "partidesTotals": 43,
+   "victoriesTotals": 16.5,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 272,
+   "nomComplet": "Joana Font",
+   "barruf": 734,
+   "partidesTotals": 19,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 273,
+   "nomComplet": "Joana Gelabert",
+   "barruf": 898,
+   "partidesTotals": 83,
+   "victoriesTotals": 30,
+   "estat": "inact",
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 274,
+   "nomComplet": "Joana Genovart",
+   "barruf": 804,
+   "partidesTotals": 17,
+   "victoriesTotals": 2.5,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 275,
+   "nomComplet": "Joana Maria Flaquer",
+   "barruf": 939,
+   "partidesTotals": 5,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 276,
+   "nomComplet": "Joana Maria Pasqual",
+   "barruf": 762,
+   "partidesTotals": 301,
+   "victoriesTotals": 72,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 277,
+   "nomComplet": "Joana Mora",
+   "barruf": 811,
+   "partidesTotals": 14,
+   "victoriesTotals": 2,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 278,
+   "nomComplet": "Joana Salas",
+   "barruf": 864,
+   "partidesTotals": 84,
+   "victoriesTotals": 30,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 279,
+   "nomComplet": "Joana Tomàs",
+   "barruf": 896,
+   "partidesTotals": 28,
+   "victoriesTotals": 8,
+   "estat": "inact",
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 280,
+   "nomComplet": "Joaquim Roé",
+   "barruf": 1240,
+   "partidesTotals": 92,
+   "victoriesTotals": 59,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 281,
+   "nomComplet": "Joel Segarra",
+   "barruf": 1029,
+   "partidesTotals": 203,
+   "victoriesTotals": 95,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 282,
+   "nomComplet": "Jofre Julià",
+   "barruf": 969,
+   "partidesTotals": 6,
+   "victoriesTotals": 3,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 283,
+   "nomComplet": "Jofre Sivillà",
+   "barruf": 920,
+   "partidesTotals": 6,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 284,
+   "nomComplet": "Jordi Ballesteros",
+   "barruf": 881,
+   "partidesTotals": 17,
+   "victoriesTotals": 4,
+   "estat": "inact",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 285,
+   "nomComplet": "Jordi Bonet",
+   "barruf": 1001,
+   "partidesTotals": 6,
+   "victoriesTotals": 3,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 286,
+   "nomComplet": "Jordi Caldentey",
+   "barruf": 791,
+   "partidesTotals": 16,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 287,
+   "nomComplet": "Jordi Comasòlives",
+   "barruf": 915,
+   "partidesTotals": 10,
+   "victoriesTotals": 3,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 288,
+   "nomComplet": "Jordi Escandell",
+   "barruf": 937,
+   "partidesTotals": 21,
+   "victoriesTotals": 8,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 289,
+   "nomComplet": "Jordi Marzà",
+   "barruf": 957,
+   "partidesTotals": 11,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 290,
+   "nomComplet": "Jordi Patrís",
+   "barruf": 957,
+   "partidesTotals": 9,
+   "victoriesTotals": 4,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 291,
+   "nomComplet": "Jordi Pedrals",
+   "barruf": 950,
+   "partidesTotals": 0,
+   "victoriesTotals": 0,
+   "estat": "nov",
+   "darreraTemporada": null,
+   "cohortLlegat": false
+  },
+  {
+   "numero": 292,
+   "nomComplet": "Jordi Peralta",
+   "barruf": 964,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 293,
+   "nomComplet": "Jordi Pinart",
+   "barruf": 1112,
+   "partidesTotals": 49,
+   "victoriesTotals": 28,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 294,
+   "nomComplet": "Jordi Places",
+   "barruf": 798,
+   "partidesTotals": 17,
+   "victoriesTotals": 0,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 295,
+   "nomComplet": "Jordi Plana Espanyol",
+   "barruf": 1129,
+   "partidesTotals": 118,
+   "victoriesTotals": 59,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 296,
+   "nomComplet": "Jordi Pujol",
+   "barruf": 1133,
+   "partidesTotals": 40,
+   "victoriesTotals": 21,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 297,
+   "nomComplet": "Jordi Torra",
+   "barruf": 1091,
+   "partidesTotals": 23,
+   "victoriesTotals": 14,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 298,
+   "nomComplet": "Jorra Santiago",
+   "barruf": 1025,
+   "partidesTotals": 69,
+   "victoriesTotals": 34,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 299,
+   "nomComplet": "Josep Arias",
+   "barruf": 891,
+   "partidesTotals": 37,
+   "victoriesTotals": 9,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 300,
+   "nomComplet": "Josep Coll",
+   "barruf": 991,
+   "partidesTotals": 9,
+   "victoriesTotals": 4,
+   "estat": "exp",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 301,
+   "nomComplet": "Josep Ferrer",
+   "barruf": 958,
+   "partidesTotals": 6,
+   "victoriesTotals": 3,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 302,
+   "nomComplet": "Josep Fiol",
+   "barruf": 854,
+   "partidesTotals": 16,
+   "victoriesTotals": 3,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 303,
+   "nomComplet": "Josep Gene",
+   "barruf": 968,
+   "partidesTotals": 10,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 304,
+   "nomComplet": "Josep M. Domenech",
+   "barruf": 923,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 305,
+   "nomComplet": "Josep M. Elias",
+   "barruf": 948,
+   "partidesTotals": 9,
+   "victoriesTotals": 3,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 306,
+   "nomComplet": "Josep M. Martí",
+   "barruf": 1366,
+   "partidesTotals": 358,
+   "victoriesTotals": 250,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 307,
+   "nomComplet": "Josep M. Rovira",
+   "barruf": 967,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 308,
+   "nomComplet": "Josep Marbà",
+   "barruf": 677,
+   "partidesTotals": 54,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 309,
+   "nomComplet": "Josep Porta",
+   "barruf": 964,
+   "partidesTotals": 25,
+   "victoriesTotals": 9,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 310,
+   "nomComplet": "Josep Reynés",
+   "barruf": 990,
+   "partidesTotals": 27,
+   "victoriesTotals": 12,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 311,
+   "nomComplet": "Juanjo Corzo",
+   "barruf": 909,
+   "partidesTotals": 4,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 312,
+   "nomComplet": "Juanjo Edo",
+   "barruf": 952,
+   "partidesTotals": 62,
+   "victoriesTotals": 22,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 313,
+   "nomComplet": "Júlia Boqué",
+   "barruf": 987,
+   "partidesTotals": 74,
+   "victoriesTotals": 32,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 314,
+   "nomComplet": "Júlia Mérida",
+   "barruf": 917,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 315,
+   "nomComplet": "Júlia Miralles",
+   "barruf": 901,
+   "partidesTotals": 6,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 316,
+   "nomComplet": "Karma Duch",
+   "barruf": 934,
+   "partidesTotals": 290,
+   "victoriesTotals": 78,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 317,
+   "nomComplet": "Kate Mulet",
+   "barruf": 896,
+   "partidesTotals": 4,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 318,
+   "nomComplet": "Kica Mas",
+   "barruf": 819,
+   "partidesTotals": 10,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 319,
+   "nomComplet": "Lahcene Akrour",
+   "barruf": 912,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 320,
+   "nomComplet": "Laia Codina",
+   "barruf": 949,
+   "partidesTotals": 15,
+   "victoriesTotals": 5,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 321,
+   "nomComplet": "Laura Patrícia Bueno Femenias",
+   "barruf": 1000,
+   "partidesTotals": 37,
+   "victoriesTotals": 16,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 322,
+   "nomComplet": "Laureà de Juan",
+   "barruf": 918,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 323,
+   "nomComplet": "Lina Maria Riera",
+   "barruf": 1246,
+   "partidesTotals": 521,
+   "victoriesTotals": 326,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 324,
+   "nomComplet": "Llobet Antònio",
+   "barruf": 929,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 325,
+   "nomComplet": "Llorenç Carreres",
+   "barruf": 1012,
+   "partidesTotals": 47,
+   "victoriesTotals": 23,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 326,
+   "nomComplet": "Llorenç Carrió",
+   "barruf": 935,
+   "partidesTotals": 1,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 327,
+   "nomComplet": "Lluc Cànovas",
+   "barruf": 994,
+   "partidesTotals": 124,
+   "victoriesTotals": 51,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 328,
+   "nomComplet": "Llucia Alajarín",
+   "barruf": 740,
+   "partidesTotals": 26,
+   "victoriesTotals": 3.5,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 329,
+   "nomComplet": "Lluís Celià",
+   "barruf": 915,
+   "partidesTotals": 20,
+   "victoriesTotals": 8,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 330,
+   "nomComplet": "Lluís de Yzaguirre",
+   "barruf": 1342,
+   "partidesTotals": 584,
+   "victoriesTotals": 407,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 331,
+   "nomComplet": "Lluís Fuster Amer",
+   "barruf": 1254,
+   "partidesTotals": 181,
+   "victoriesTotals": 105,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 332,
+   "nomComplet": "Lluis Molina",
+   "barruf": 899,
+   "partidesTotals": 24,
+   "victoriesTotals": 8,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 333,
+   "nomComplet": "Lluís Parera",
+   "barruf": 909,
+   "partidesTotals": 196,
+   "victoriesTotals": 76,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 334,
+   "nomComplet": "Lluís Ramon",
+   "barruf": 919,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 335,
+   "nomComplet": "Lola Álvarez",
+   "barruf": 854,
+   "partidesTotals": 13,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 336,
+   "nomComplet": "Lourdes Rado",
+   "barruf": 1043,
+   "partidesTotals": 32,
+   "victoriesTotals": 21,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 337,
+   "nomComplet": "Lourdes Sola López",
+   "barruf": 960,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 338,
+   "nomComplet": "Lurdes Cortés",
+   "barruf": 1010,
+   "partidesTotals": 55,
+   "victoriesTotals": 26,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 339,
+   "nomComplet": "Lurdes Fabra",
+   "barruf": 910,
+   "partidesTotals": 8,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 340,
+   "nomComplet": "M. A. Pujols",
+   "barruf": 940,
+   "partidesTotals": 9,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 341,
+   "nomComplet": "M. Àngels Isern",
+   "barruf": 972,
+   "partidesTotals": 4,
+   "victoriesTotals": 3,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 342,
+   "nomComplet": "M. Antoni Malagarriga",
+   "barruf": 862,
+   "partidesTotals": 39,
+   "victoriesTotals": 9,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 343,
+   "nomComplet": "M. Antònia Torrendell",
+   "barruf": 926,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 344,
+   "nomComplet": "M. del Mar Recasens",
+   "barruf": 972,
+   "partidesTotals": 6,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 345,
+   "nomComplet": "M. Dolors Puigdomènech",
+   "barruf": 882,
+   "partidesTotals": 8,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 346,
+   "nomComplet": "M. José Antequera",
+   "barruf": 883,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 347,
+   "nomComplet": "M. Lluïsa Penelas",
+   "barruf": 801,
+   "partidesTotals": 489,
+   "victoriesTotals": 202.5,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 348,
+   "nomComplet": "M. M. Matamalas",
+   "barruf": 1241,
+   "partidesTotals": 403,
+   "victoriesTotals": 222.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 349,
+   "nomComplet": "M. Magdalena Brunet",
+   "barruf": 835,
+   "partidesTotals": 27,
+   "victoriesTotals": 8,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 350,
+   "nomComplet": "M. Rosa Cucurull",
+   "barruf": 898,
+   "partidesTotals": 10,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 351,
+   "nomComplet": "M. Rosa Guarro",
+   "barruf": 901,
+   "partidesTotals": 15,
+   "victoriesTotals": 4,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 352,
+   "nomComplet": "Macià Ferrer",
+   "barruf": 904,
+   "partidesTotals": 15,
+   "victoriesTotals": 4,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 353,
+   "nomComplet": "Magda Falcó",
+   "barruf": 810,
+   "partidesTotals": 501,
+   "victoriesTotals": 195.5,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 354,
+   "nomComplet": "Magdalena Morell",
+   "barruf": 1027,
+   "partidesTotals": 167,
+   "victoriesTotals": 90,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 355,
+   "nomComplet": "Manel Aparici",
+   "barruf": 928,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 356,
+   "nomComplet": "Manolo Matoses",
+   "barruf": 1056,
+   "partidesTotals": 34,
+   "victoriesTotals": 17,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 357,
+   "nomComplet": "Manuel Granados",
+   "barruf": 957,
+   "partidesTotals": 232,
+   "victoriesTotals": 93.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 358,
+   "nomComplet": "Mar Bel",
+   "barruf": 959,
+   "partidesTotals": 21,
+   "victoriesTotals": 9,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 359,
+   "nomComplet": "Mar Trias",
+   "barruf": 993,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 360,
+   "nomComplet": "Marc Ajenjo",
+   "barruf": 1069,
+   "partidesTotals": 50,
+   "victoriesTotals": 27,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 361,
+   "nomComplet": "Marc Ballús",
+   "barruf": 1126,
+   "partidesTotals": 67,
+   "victoriesTotals": 43,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 362,
+   "nomComplet": "Marc Canovas Fons",
+   "barruf": 975,
+   "partidesTotals": 12,
+   "victoriesTotals": 5,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 363,
+   "nomComplet": "Marc Capó",
+   "barruf": 846,
+   "partidesTotals": 16,
+   "victoriesTotals": 4.5,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 364,
+   "nomComplet": "Marc Isern",
+   "barruf": 952,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 365,
+   "nomComplet": "Marc Molina Llull",
+   "barruf": 832,
+   "partidesTotals": 16,
+   "victoriesTotals": 2,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 366,
+   "nomComplet": "Marc Velasco",
+   "barruf": 910,
+   "partidesTotals": 17,
+   "victoriesTotals": 5,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 367,
+   "nomComplet": "Marc Vigo",
+   "barruf": 1412,
+   "partidesTotals": 192,
+   "victoriesTotals": 138,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 368,
+   "nomComplet": "Marga Colillas",
+   "barruf": 725,
+   "partidesTotals": 253,
+   "victoriesTotals": 54,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 369,
+   "nomComplet": "Marga Font",
+   "barruf": 946,
+   "partidesTotals": 10,
+   "victoriesTotals": 5,
+   "estat": "exp",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 370,
+   "nomComplet": "Marga Gelabert",
+   "barruf": 1051,
+   "partidesTotals": 179,
+   "victoriesTotals": 79,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 371,
+   "nomComplet": "Marga Gené",
+   "barruf": 972,
+   "partidesTotals": 9,
+   "victoriesTotals": 5,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 372,
+   "nomComplet": "Marga Hernández",
+   "barruf": 920,
+   "partidesTotals": 93,
+   "victoriesTotals": 42,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 373,
+   "nomComplet": "Marga Vera",
+   "barruf": 826,
+   "partidesTotals": 25,
+   "victoriesTotals": 6,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 374,
+   "nomComplet": "Margalida Àngel",
+   "barruf": 927,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 375,
+   "nomComplet": "Margalida Bonnín",
+   "barruf": 1033,
+   "partidesTotals": 247,
+   "victoriesTotals": 140.5,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 376,
+   "nomComplet": "Margalida Colombàs",
+   "barruf": 961,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 377,
+   "nomComplet": "Margalida Cubells",
+   "barruf": 1041,
+   "partidesTotals": 137,
+   "victoriesTotals": 60.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 378,
+   "nomComplet": "Margalida Fuster",
+   "barruf": 922,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 379,
+   "nomComplet": "Margalida Galmés",
+   "barruf": 972,
+   "partidesTotals": 3,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 380,
+   "nomComplet": "Margalida Munar",
+   "barruf": 919,
+   "partidesTotals": 6,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 381,
+   "nomComplet": "Margalida Riera",
+   "barruf": 938,
+   "partidesTotals": 1,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 382,
+   "nomComplet": "Margalida Rosselló",
+   "barruf": 977,
+   "partidesTotals": 215,
+   "victoriesTotals": 86,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 383,
+   "nomComplet": "Margalida Socies",
+   "barruf": 704,
+   "partidesTotals": 23,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 384,
+   "nomComplet": "Margalida Taberner",
+   "barruf": 986,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 385,
+   "nomComplet": "Mari Márquez",
+   "barruf": 857,
+   "partidesTotals": 11,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 386,
+   "nomComplet": "Maria A. Nadal",
+   "barruf": 969,
+   "partidesTotals": 103,
+   "victoriesTotals": 42,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 387,
+   "nomComplet": "Maria Ametllé",
+   "barruf": 983,
+   "partidesTotals": 6,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 388,
+   "nomComplet": "Maria Antònia Guardiola",
+   "barruf": 962,
+   "partidesTotals": 2,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 389,
+   "nomComplet": "Maria Antònia Llodrà",
+   "barruf": 960,
+   "partidesTotals": 217,
+   "victoriesTotals": 84,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 390,
+   "nomComplet": "Maria Antònia Mora",
+   "barruf": 955,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 391,
+   "nomComplet": "Maria Bartolomé",
+   "barruf": 959,
+   "partidesTotals": 6,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 392,
+   "nomComplet": "Maria Bel Bauzà",
+   "barruf": 910,
+   "partidesTotals": 54,
+   "victoriesTotals": 17.5,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 393,
+   "nomComplet": "Maria Berrocal",
+   "barruf": 855,
+   "partidesTotals": 7,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 394,
+   "nomComplet": "Maria del Mar Fuster",
+   "barruf": 803,
+   "partidesTotals": 10,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 395,
+   "nomComplet": "Maria del Mar Joan",
+   "barruf": 925,
+   "partidesTotals": 5,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 396,
+   "nomComplet": "Maria del Mar Vanrell",
+   "barruf": 782,
+   "partidesTotals": 23,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 397,
+   "nomComplet": "Maria Ferrer",
+   "barruf": 838,
+   "partidesTotals": 8,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 398,
+   "nomComplet": "Maria Garcia",
+   "barruf": 936,
+   "partidesTotals": 12,
+   "victoriesTotals": 4,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 399,
+   "nomComplet": "Maria Gayà",
+   "barruf": 1130,
+   "partidesTotals": 423,
+   "victoriesTotals": 249,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 400,
+   "nomComplet": "Maria Gironès",
+   "barruf": 741,
+   "partidesTotals": 20,
+   "victoriesTotals": 0,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 401,
+   "nomComplet": "Maria Griera",
+   "barruf": 772,
+   "partidesTotals": 15,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 402,
+   "nomComplet": "Maria Jose Araque",
+   "barruf": 985,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 403,
+   "nomComplet": "Maria José Bonet",
+   "barruf": 940,
+   "partidesTotals": 3,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 404,
+   "nomComplet": "Maria Josep Carrasco",
+   "barruf": 1002,
+   "partidesTotals": 211,
+   "victoriesTotals": 106,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 405,
+   "nomComplet": "Maria Juan",
+   "barruf": 742,
+   "partidesTotals": 45,
+   "victoriesTotals": 8,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 406,
+   "nomComplet": "Maria Magdalena Sureda",
+   "barruf": 820,
+   "partidesTotals": 16,
+   "victoriesTotals": 4,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 407,
+   "nomComplet": "Maria Moll",
+   "barruf": 1245,
+   "partidesTotals": 200,
+   "victoriesTotals": 128.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 408,
+   "nomComplet": "Maria Planells",
+   "barruf": 938,
+   "partidesTotals": 3,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 409,
+   "nomComplet": "Maria Ribes",
+   "barruf": 1046,
+   "partidesTotals": 127,
+   "victoriesTotals": 48.5,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 410,
+   "nomComplet": "Maria Rosa Cons",
+   "barruf": 866,
+   "partidesTotals": 141,
+   "victoriesTotals": 52,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 411,
+   "nomComplet": "Maria Sampol",
+   "barruf": 971,
+   "partidesTotals": 38,
+   "victoriesTotals": 16,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 412,
+   "nomComplet": "Maria Sánchez",
+   "barruf": 985,
+   "partidesTotals": 1,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 413,
+   "nomComplet": "Maria Valls",
+   "barruf": 935,
+   "partidesTotals": 4,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 414,
+   "nomComplet": "Maria Verdura",
+   "barruf": 938,
+   "partidesTotals": 4,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 415,
+   "nomComplet": "Maribel Servera",
+   "barruf": 1343,
+   "partidesTotals": 387,
+   "victoriesTotals": 283.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 416,
+   "nomComplet": "Marina Forteza",
+   "barruf": 953,
+   "partidesTotals": 30,
+   "victoriesTotals": 12,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 417,
+   "nomComplet": "Marina Vallés",
+   "barruf": 985,
+   "partidesTotals": 1,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 418,
+   "nomComplet": "Marisa Cerdó",
+   "barruf": 997,
+   "partidesTotals": 91,
+   "victoriesTotals": 44.5,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 419,
+   "nomComplet": "Màrius Serra",
+   "barruf": 1283,
+   "partidesTotals": 242,
+   "victoriesTotals": 157.5,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 420,
+   "nomComplet": "Marta Pallarés",
+   "barruf": 992,
+   "partidesTotals": 6,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 421,
+   "nomComplet": "Marta Pujol",
+   "barruf": 919,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 422,
+   "nomComplet": "Marta Rovira",
+   "barruf": 1240,
+   "partidesTotals": 504,
+   "victoriesTotals": 324,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 423,
+   "nomComplet": "Marta Servera",
+   "barruf": 885,
+   "partidesTotals": 63,
+   "victoriesTotals": 27,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 424,
+   "nomComplet": "Marta Vilardell",
+   "barruf": 1059,
+   "partidesTotals": 75,
+   "victoriesTotals": 40,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 425,
+   "nomComplet": "Martí Plana",
+   "barruf": 973,
+   "partidesTotals": 12,
+   "victoriesTotals": 4.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 426,
+   "nomComplet": "Martí Roé",
+   "barruf": 1374,
+   "partidesTotals": 143,
+   "victoriesTotals": 105,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 427,
+   "nomComplet": "Mary Oliva",
+   "barruf": 950,
+   "partidesTotals": 0,
+   "victoriesTotals": 0,
+   "estat": "nov",
+   "darreraTemporada": null,
+   "cohortLlegat": false
+  },
+  {
+   "numero": 428,
+   "nomComplet": "Mateu Marcé",
+   "barruf": 924,
+   "partidesTotals": 220,
+   "victoriesTotals": 77,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 429,
+   "nomComplet": "Mateu Mas",
+   "barruf": 887,
+   "partidesTotals": 74,
+   "victoriesTotals": 28,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 430,
+   "nomComplet": "Mateu Xurí",
+   "barruf": 1397,
+   "partidesTotals": 407,
+   "victoriesTotals": 312,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 431,
+   "nomComplet": "Matias Camacho",
+   "barruf": 853,
+   "partidesTotals": 14,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 432,
+   "nomComplet": "Maurici Corrons",
+   "barruf": 933,
+   "partidesTotals": 34,
+   "victoriesTotals": 13.5,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 433,
+   "nomComplet": "Maurici Cuesta",
+   "barruf": 959,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 434,
+   "nomComplet": "Mei Brescó",
+   "barruf": 914,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 435,
+   "nomComplet": "Mercè Comas",
+   "barruf": 597,
+   "partidesTotals": 54,
+   "victoriesTotals": 0.5,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 436,
+   "nomComplet": "Mercè Gabardós",
+   "barruf": 960,
+   "partidesTotals": 6,
+   "victoriesTotals": 3,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 437,
+   "nomComplet": "Mercè Illa",
+   "barruf": 1071,
+   "partidesTotals": 87,
+   "victoriesTotals": 39,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 438,
+   "nomComplet": "Mercè Oliver",
+   "barruf": 994,
+   "partidesTotals": 9,
+   "victoriesTotals": 5,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 439,
+   "nomComplet": "Mercè Panisello",
+   "barruf": 919,
+   "partidesTotals": 4,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 440,
+   "nomComplet": "Mercè Rojals",
+   "barruf": 847,
+   "partidesTotals": 55,
+   "victoriesTotals": 18,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 441,
+   "nomComplet": "Mercè Tena",
+   "barruf": 1030,
+   "partidesTotals": 2,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 442,
+   "nomComplet": "Meritxell Charavia",
+   "barruf": 912,
+   "partidesTotals": 13,
+   "victoriesTotals": 4,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 443,
+   "nomComplet": "Miguel Roig Comamala",
+   "barruf": 933,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 444,
+   "nomComplet": "Miquel Àngel Bauçà",
+   "barruf": 931,
+   "partidesTotals": 1,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 445,
+   "nomComplet": "Miquel Casares",
+   "barruf": 1134,
+   "partidesTotals": 164,
+   "victoriesTotals": 94,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 446,
+   "nomComplet": "Miquel Gispert",
+   "barruf": 923,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 447,
+   "nomComplet": "Miquel Gomila",
+   "barruf": 1041,
+   "partidesTotals": 19,
+   "victoriesTotals": 11,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 448,
+   "nomComplet": "Miquel Morey",
+   "barruf": 913,
+   "partidesTotals": 202,
+   "victoriesTotals": 87.5,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 449,
+   "nomComplet": "Miquel Oliver",
+   "barruf": 888,
+   "partidesTotals": 5,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 450,
+   "nomComplet": "Miquel Quetgles Ensenyat",
+   "barruf": 947,
+   "partidesTotals": 3,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 451,
+   "nomComplet": "Miquel Servera",
+   "barruf": 880,
+   "partidesTotals": 89,
+   "victoriesTotals": 35.5,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 452,
+   "nomComplet": "Miquel Sesé",
+   "barruf": 1374,
+   "partidesTotals": 538,
+   "victoriesTotals": 388.5,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 453,
+   "nomComplet": "Miquel Vergara",
+   "barruf": 956,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 454,
+   "nomComplet": "Miquela Grimalt",
+   "barruf": 1021,
+   "partidesTotals": 184,
+   "victoriesTotals": 82,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 455,
+   "nomComplet": "Mireia Llecha",
+   "barruf": 945,
+   "partidesTotals": 4,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 456,
+   "nomComplet": "Mireia Mena",
+   "barruf": 951,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 457,
+   "nomComplet": "Moisès Solé",
+   "barruf": 961,
+   "partidesTotals": 133,
+   "victoriesTotals": 61,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 458,
+   "nomComplet": "Mònica Bisbal Sitjar",
+   "barruf": 1081,
+   "partidesTotals": 34,
+   "victoriesTotals": 21,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 459,
+   "nomComplet": "Mònica Cardona",
+   "barruf": 863,
+   "partidesTotals": 50,
+   "victoriesTotals": 14,
+   "estat": "inact",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 460,
+   "nomComplet": "Mònica Molera",
+   "barruf": 961,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 461,
+   "nomComplet": "Mònica Pericàs",
+   "barruf": 932,
+   "partidesTotals": 5,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 462,
+   "nomComplet": "Mònica Yern",
+   "barruf": 957,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 463,
+   "nomComplet": "Montse Barbany",
+   "barruf": 1012,
+   "partidesTotals": 6,
+   "victoriesTotals": 3,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 464,
+   "nomComplet": "Montse Bargalló",
+   "barruf": 834,
+   "partidesTotals": 25,
+   "victoriesTotals": 6,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 465,
+   "nomComplet": "Montse Comet",
+   "barruf": 940,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 466,
+   "nomComplet": "Montse Domenech",
+   "barruf": 917,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 467,
+   "nomComplet": "Montse Fernández",
+   "barruf": 887,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 468,
+   "nomComplet": "Montse Hergueta",
+   "barruf": 1209,
+   "partidesTotals": 383,
+   "victoriesTotals": 224.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 469,
+   "nomComplet": "Montse Mateu",
+   "barruf": 934,
+   "partidesTotals": 6,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 470,
+   "nomComplet": "Montse Mozo",
+   "barruf": 1057,
+   "partidesTotals": 62,
+   "victoriesTotals": 30,
+   "estat": "inact",
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 471,
+   "nomComplet": "Montse Puig",
+   "barruf": 925,
+   "partidesTotals": 5,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 472,
+   "nomComplet": "Montse Ruiz",
+   "barruf": 914,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 473,
+   "nomComplet": "Montse Sánchez",
+   "barruf": 1108,
+   "partidesTotals": 16,
+   "victoriesTotals": 9,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 474,
+   "nomComplet": "Montse Seriol",
+   "barruf": 872,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 475,
+   "nomComplet": "Montserrat Albets",
+   "barruf": 900,
+   "partidesTotals": 28,
+   "victoriesTotals": 10,
+   "estat": "inact",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 476,
+   "nomComplet": "Montserrat Armengol",
+   "barruf": 970,
+   "partidesTotals": 4,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 477,
+   "nomComplet": "Montserrat Carbó",
+   "barruf": 987,
+   "partidesTotals": 48,
+   "victoriesTotals": 19,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 478,
+   "nomComplet": "Montserrat Isern",
+   "barruf": 976,
+   "partidesTotals": 4,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 479,
+   "nomComplet": "Montserrat Nadal",
+   "barruf": 650,
+   "partidesTotals": 47,
+   "victoriesTotals": 5,
+   "estat": "inact",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 480,
+   "nomComplet": "Montserrat Torras",
+   "barruf": 756,
+   "partidesTotals": 35,
+   "victoriesTotals": 5,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 481,
+   "nomComplet": "Montserrat Valls",
+   "barruf": 621,
+   "partidesTotals": 55,
+   "victoriesTotals": 4,
+   "estat": "inact",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 482,
+   "nomComplet": "Muntsa Clotet",
+   "barruf": 1070,
+   "partidesTotals": 239,
+   "victoriesTotals": 142,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 483,
+   "nomComplet": "Muntsa G. Castells",
+   "barruf": 1060,
+   "partidesTotals": 57,
+   "victoriesTotals": 33,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 484,
+   "nomComplet": "Nati Estadella",
+   "barruf": 918,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 485,
+   "nomComplet": "Nemesio Moreno",
+   "barruf": 1273,
+   "partidesTotals": 148,
+   "victoriesTotals": 107.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 486,
+   "nomComplet": "Neus Batllori",
+   "barruf": 971,
+   "partidesTotals": 6,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 487,
+   "nomComplet": "Neus Cardona",
+   "barruf": 898,
+   "partidesTotals": 14,
+   "victoriesTotals": 4,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 488,
+   "nomComplet": "Neus Franch",
+   "barruf": 690,
+   "partidesTotals": 73,
+   "victoriesTotals": 4,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 489,
+   "nomComplet": "Neus Torres",
+   "barruf": 959,
+   "partidesTotals": 82,
+   "victoriesTotals": 32,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 490,
+   "nomComplet": "Nicolau Vidal",
+   "barruf": 650,
+   "partidesTotals": 21,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 491,
+   "nomComplet": "Nicole Serapio",
+   "barruf": 954,
+   "partidesTotals": 3,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 492,
+   "nomComplet": "Nina Furgol",
+   "barruf": 648,
+   "partidesTotals": 28,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 493,
+   "nomComplet": "Núria Casas",
+   "barruf": 781,
+   "partidesTotals": 34,
+   "victoriesTotals": 6,
+   "estat": "inact",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 494,
+   "nomComplet": "Núria Esteller",
+   "barruf": 959,
+   "partidesTotals": 9,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 495,
+   "nomComplet": "Núria Ferriol",
+   "barruf": 933,
+   "partidesTotals": 4,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 496,
+   "nomComplet": "Núria Pedró",
+   "barruf": 940,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 497,
+   "nomComplet": "Núria Roé",
+   "barruf": 976,
+   "partidesTotals": 12,
+   "victoriesTotals": 4,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 498,
+   "nomComplet": "Núria Trepat",
+   "barruf": 943,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 499,
+   "nomComplet": "Octavian Mocanu",
+   "barruf": 1250,
+   "partidesTotals": 350,
+   "victoriesTotals": 239.5,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 500,
+   "nomComplet": "Olimpia Viguín",
+   "barruf": 857,
+   "partidesTotals": 16,
+   "victoriesTotals": 5,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 501,
+   "nomComplet": "Oriol Comas",
+   "barruf": 851,
+   "partidesTotals": 49,
+   "victoriesTotals": 16,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 502,
+   "nomComplet": "Oriol de Yzaguirre",
+   "barruf": 918,
+   "partidesTotals": 8,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 503,
+   "nomComplet": "Òscar Hernàndez",
+   "barruf": 923,
+   "partidesTotals": 27,
+   "victoriesTotals": 7,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 504,
+   "nomComplet": "Pasqual Sánchez",
+   "barruf": 1093,
+   "partidesTotals": 103,
+   "victoriesTotals": 61.5,
+   "estat": "act",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 505,
+   "nomComplet": "Patri Vitri",
+   "barruf": 1062,
+   "partidesTotals": 144,
+   "victoriesTotals": 82.5,
+   "estat": "inact",
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 506,
+   "nomComplet": "Patxi Navarro",
+   "barruf": 1108,
+   "partidesTotals": 22,
+   "victoriesTotals": 12,
+   "estat": "inact",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 507,
+   "nomComplet": "Pau Arranz",
+   "barruf": 897,
+   "partidesTotals": 60,
+   "victoriesTotals": 20,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 508,
+   "nomComplet": "Pau Gispert",
+   "barruf": 882,
+   "partidesTotals": 28,
+   "victoriesTotals": 9,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 509,
+   "nomComplet": "Pau Riera",
+   "barruf": 994,
+   "partidesTotals": 40,
+   "victoriesTotals": 21,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 510,
+   "nomComplet": "Pau Vidal",
+   "barruf": 1235,
+   "partidesTotals": 140,
+   "victoriesTotals": 82.5,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 511,
+   "nomComplet": "Paula Girart",
+   "barruf": 879,
+   "partidesTotals": 17,
+   "victoriesTotals": 4,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 512,
+   "nomComplet": "Paz Talens",
+   "barruf": 957,
+   "partidesTotals": 5,
+   "victoriesTotals": 3,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 513,
+   "nomComplet": "Peadar Ó Braonáin",
+   "barruf": 871,
+   "partidesTotals": 45,
+   "victoriesTotals": 11,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 514,
+   "nomComplet": "Pep Bagué",
+   "barruf": 823,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 515,
+   "nomComplet": "Pep Torras",
+   "barruf": 992,
+   "partidesTotals": 51,
+   "victoriesTotals": 23,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 516,
+   "nomComplet": "Pep Vinyals",
+   "barruf": 1146,
+   "partidesTotals": 385,
+   "victoriesTotals": 166,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 517,
+   "nomComplet": "Pere Agustí",
+   "barruf": 895,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 518,
+   "nomComplet": "Pere Berga",
+   "barruf": 684,
+   "partidesTotals": 46,
+   "victoriesTotals": 6,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 519,
+   "nomComplet": "Pere Grimalt Riera",
+   "barruf": 1010,
+   "partidesTotals": 27,
+   "victoriesTotals": 14,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 520,
+   "nomComplet": "Pere Grimalt Vert",
+   "barruf": 1268,
+   "partidesTotals": 325,
+   "victoriesTotals": 203,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 521,
+   "nomComplet": "Pere Marcet",
+   "barruf": 928,
+   "partidesTotals": 8,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 522,
+   "nomComplet": "Pere Riera",
+   "barruf": 860,
+   "partidesTotals": 70,
+   "victoriesTotals": 19,
+   "estat": "inact",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 523,
+   "nomComplet": "Pia Ona Verger",
+   "barruf": 862,
+   "partidesTotals": 27,
+   "victoriesTotals": 6,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 524,
+   "nomComplet": "Pilar Sánchez",
+   "barruf": 767,
+   "partidesTotals": 15,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 525,
+   "nomComplet": "Pilar Zorrilla",
+   "barruf": 928,
+   "partidesTotals": 5,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 526,
+   "nomComplet": "Quico Beltrà",
+   "barruf": 1030,
+   "partidesTotals": 39,
+   "victoriesTotals": 18,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 527,
+   "nomComplet": "Rafel Canosa",
+   "barruf": 852,
+   "partidesTotals": 22,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 528,
+   "nomComplet": "Rafel Serra",
+   "barruf": 985,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 529,
+   "nomComplet": "Ramon Josep Colell",
+   "barruf": 1011,
+   "partidesTotals": 26,
+   "victoriesTotals": 12,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 530,
+   "nomComplet": "Ramon Torres",
+   "barruf": 1170,
+   "partidesTotals": 137,
+   "victoriesTotals": 79.5,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 531,
+   "nomComplet": "Raul Royo",
+   "barruf": 986,
+   "partidesTotals": 9,
+   "victoriesTotals": 4,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 532,
+   "nomComplet": "René Dibusi",
+   "barruf": 952,
+   "partidesTotals": 20,
+   "victoriesTotals": 8,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 533,
+   "nomComplet": "Ricard Fité",
+   "barruf": 969,
+   "partidesTotals": 31,
+   "victoriesTotals": 11,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 534,
+   "nomComplet": "Ricard Oliver",
+   "barruf": 969,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 535,
+   "nomComplet": "Robert Ametller",
+   "barruf": 924,
+   "partidesTotals": 6,
+   "victoriesTotals": 1.5,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 536,
+   "nomComplet": "Roger Bru Martínez",
+   "barruf": 1060,
+   "partidesTotals": 33,
+   "victoriesTotals": 16,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 537,
+   "nomComplet": "Roger Capdevila",
+   "barruf": 1022,
+   "partidesTotals": 6,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 538,
+   "nomComplet": "Roger Cosso",
+   "barruf": 1138,
+   "partidesTotals": 391,
+   "victoriesTotals": 226.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 539,
+   "nomComplet": "Roger Pistola",
+   "barruf": 927,
+   "partidesTotals": 8,
+   "victoriesTotals": 3,
+   "estat": "exp",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 540,
+   "nomComplet": "Romà Vila",
+   "barruf": 1000,
+   "partidesTotals": 2,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 541,
+   "nomComplet": "Rosa Barrientos",
+   "barruf": 998,
+   "partidesTotals": 247,
+   "victoriesTotals": 97.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 542,
+   "nomComplet": "Rosa M. Roca",
+   "barruf": 981,
+   "partidesTotals": 5,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 543,
+   "nomComplet": "Rosa Maria Cot",
+   "barruf": 1082,
+   "partidesTotals": 448,
+   "victoriesTotals": 219,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 544,
+   "nomComplet": "Rosa Riera",
+   "barruf": 841,
+   "partidesTotals": 85,
+   "victoriesTotals": 19,
+   "estat": "inact",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 545,
+   "nomComplet": "Roser Peramiquel",
+   "barruf": 820,
+   "partidesTotals": 35,
+   "victoriesTotals": 5,
+   "estat": "inact",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 546,
+   "nomComplet": "Roser Sacases",
+   "barruf": 920,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 547,
+   "nomComplet": "Roser Salicrú",
+   "barruf": 1162,
+   "partidesTotals": 191,
+   "victoriesTotals": 107,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 548,
+   "nomComplet": "Rubén Peris",
+   "barruf": 866,
+   "partidesTotals": 5,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 549,
+   "nomComplet": "Salut Arús",
+   "barruf": 772,
+   "partidesTotals": 41,
+   "victoriesTotals": 7,
+   "estat": "inact",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 550,
+   "nomComplet": "Salvador Alsius",
+   "barruf": 1248,
+   "partidesTotals": 396,
+   "victoriesTotals": 217,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 551,
+   "nomComplet": "Salvador Batlle",
+   "barruf": 1181,
+   "partidesTotals": 460,
+   "victoriesTotals": 236,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 552,
+   "nomComplet": "Salvador Cases",
+   "barruf": 927,
+   "partidesTotals": 17,
+   "victoriesTotals": 5,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 553,
+   "nomComplet": "Salvador Comelles",
+   "barruf": 1104,
+   "partidesTotals": 185,
+   "victoriesTotals": 112.5,
+   "estat": "inact",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 554,
+   "nomComplet": "Sandra Juncosa",
+   "barruf": 926,
+   "partidesTotals": 10,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 555,
+   "nomComplet": "Sandra Luque",
+   "barruf": 971,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 556,
+   "nomComplet": "Santiago Rosales",
+   "barruf": 979,
+   "partidesTotals": 6,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 557,
+   "nomComplet": "Sayaka Kamikariya",
+   "barruf": 1149,
+   "partidesTotals": 158,
+   "victoriesTotals": 81.5,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 558,
+   "nomComplet": "Sebastià Llodrà",
+   "barruf": 1088,
+   "partidesTotals": 390,
+   "victoriesTotals": 201.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 559,
+   "nomComplet": "Sebastià Quetglas",
+   "barruf": 859,
+   "partidesTotals": 55,
+   "victoriesTotals": 15,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 560,
+   "nomComplet": "Sebastià Sansó",
+   "barruf": 918,
+   "partidesTotals": 6,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 561,
+   "nomComplet": "Sebastiana Mascaró",
+   "barruf": 894,
+   "partidesTotals": 101,
+   "victoriesTotals": 38,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 562,
+   "nomComplet": "Serafí Lliteres",
+   "barruf": 866,
+   "partidesTotals": 7,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 563,
+   "nomComplet": "Sergi Escura Bassa",
+   "barruf": 926,
+   "partidesTotals": 56,
+   "victoriesTotals": 23,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 564,
+   "nomComplet": "Sergi Moreso",
+   "barruf": 1003,
+   "partidesTotals": 4,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 565,
+   "nomComplet": "Silvia Alcaide",
+   "barruf": 903,
+   "partidesTotals": 7,
+   "victoriesTotals": 2.5,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 566,
+   "nomComplet": "Silvia Plana Hernandez",
+   "barruf": 923,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 567,
+   "nomComplet": "Susagna Balagué",
+   "barruf": 1054,
+   "partidesTotals": 12,
+   "victoriesTotals": 7,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 568,
+   "nomComplet": "Susana Jimenez",
+   "barruf": 963,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 569,
+   "nomComplet": "Susanna Jiménez",
+   "barruf": 885,
+   "partidesTotals": 4,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2018-19",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 570,
+   "nomComplet": "Teresa Brescó",
+   "barruf": 998,
+   "partidesTotals": 2,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 571,
+   "nomComplet": "Thibaut Graell",
+   "barruf": 870,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 572,
+   "nomComplet": "Tomeu Cursach",
+   "barruf": 852,
+   "partidesTotals": 9,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 573,
+   "nomComplet": "Tomeu Perelló",
+   "barruf": 957,
+   "partidesTotals": 10,
+   "victoriesTotals": 5,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 574,
+   "nomComplet": "Tomeu Riera",
+   "barruf": 1100,
+   "partidesTotals": 197,
+   "victoriesTotals": 121.5,
+   "estat": "inact",
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 575,
+   "nomComplet": "Ton Castelló",
+   "barruf": 897,
+   "partidesTotals": 5,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2020-21",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 576,
+   "nomComplet": "Ton Pons",
+   "barruf": 1044,
+   "partidesTotals": 12,
+   "victoriesTotals": 7,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 577,
+   "nomComplet": "Toni Bellatriu",
+   "barruf": 912,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 578,
+   "nomComplet": "Toni Calitxo Gil Cobo",
+   "barruf": 926,
+   "partidesTotals": 4,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 579,
+   "nomComplet": "Toni Clar",
+   "barruf": 890,
+   "partidesTotals": 7,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 580,
+   "nomComplet": "Toni Donoso",
+   "barruf": 950,
+   "partidesTotals": 0,
+   "victoriesTotals": 0,
+   "estat": "nov",
+   "darreraTemporada": null,
+   "cohortLlegat": false
+  },
+  {
+   "numero": 581,
+   "nomComplet": "Toni Escolar",
+   "barruf": 970,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 582,
+   "nomComplet": "Toni Griera",
+   "barruf": 912,
+   "partidesTotals": 6,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2016-17",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 583,
+   "nomComplet": "Toni Martínez",
+   "barruf": 993,
+   "partidesTotals": 4,
+   "victoriesTotals": 2,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 584,
+   "nomComplet": "Toni Mateu",
+   "barruf": 870,
+   "partidesTotals": 6,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2015-16",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 585,
+   "nomComplet": "Toni Nadal",
+   "barruf": 890,
+   "partidesTotals": 5,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 586,
+   "nomComplet": "Toni Orell",
+   "barruf": 794,
+   "partidesTotals": 13,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": "2017-18",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 587,
+   "nomComplet": "Toni Siquier",
+   "barruf": 916,
+   "partidesTotals": 6,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 588,
+   "nomComplet": "Tonina Garcia",
+   "barruf": 897,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 589,
+   "nomComplet": "Valentí Rossell",
+   "barruf": 1319,
+   "partidesTotals": 137,
+   "victoriesTotals": 104.5,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 590,
+   "nomComplet": "Vicenç Castelló",
+   "barruf": 1054,
+   "partidesTotals": 40,
+   "victoriesTotals": 19,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 591,
+   "nomComplet": "Vicki Vilana",
+   "barruf": 930,
+   "partidesTotals": 6,
+   "victoriesTotals": 2,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 592,
+   "nomComplet": "Víctor Nebreda",
+   "barruf": 1010,
+   "partidesTotals": 42,
+   "victoriesTotals": 19,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 593,
+   "nomComplet": "Victòria Sancho",
+   "barruf": 920,
+   "partidesTotals": 206,
+   "victoriesTotals": 77,
+   "estat": "inact",
+   "darreraTemporada": "2022-23",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 594,
+   "nomComplet": "Vincent Truant",
+   "barruf": 808,
+   "partidesTotals": 10,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2019-20",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 595,
+   "nomComplet": "Xabier Larrañaga",
+   "barruf": 956,
+   "partidesTotals": 288,
+   "victoriesTotals": 104,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 596,
+   "nomComplet": "Xavi Castelló",
+   "barruf": 1007,
+   "partidesTotals": 95,
+   "victoriesTotals": 40,
+   "estat": "act",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 597,
+   "nomComplet": "Xavier Adrover",
+   "barruf": 914,
+   "partidesTotals": 3,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 598,
+   "nomComplet": "Xavier Alarcon",
+   "barruf": 988,
+   "partidesTotals": 3,
+   "victoriesTotals": 1,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 599,
+   "nomComplet": "Xavier Albons",
+   "barruf": 1227,
+   "partidesTotals": 441,
+   "victoriesTotals": 281.5,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 600,
+   "nomComplet": "Xavier Cardona",
+   "barruf": 1195,
+   "partidesTotals": 211,
+   "victoriesTotals": 121,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 601,
+   "nomComplet": "Xavier Giol",
+   "barruf": 907,
+   "partidesTotals": 13,
+   "victoriesTotals": 4,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 602,
+   "nomComplet": "Xavier Nájera",
+   "barruf": 936,
+   "partidesTotals": 4,
+   "victoriesTotals": 0,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 603,
+   "nomComplet": "Xavier Torres",
+   "barruf": 1010,
+   "partidesTotals": 40,
+   "victoriesTotals": 18,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 604,
+   "nomComplet": "Xevi Olivé",
+   "barruf": 1050,
+   "partidesTotals": 9,
+   "victoriesTotals": 7,
+   "estat": "inact",
+   "darreraTemporada": null,
+   "cohortLlegat": true
+  },
+  {
+   "numero": 605,
+   "nomComplet": "Xisca Martínez",
+   "barruf": 931,
+   "partidesTotals": 4,
+   "victoriesTotals": 1,
+   "estat": "exp",
+   "darreraTemporada": "2024-25",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 606,
+   "nomComplet": "Xisca Nadal",
+   "barruf": 805,
+   "partidesTotals": 15,
+   "victoriesTotals": 3,
+   "estat": "inact",
+   "darreraTemporada": "2021-22",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 607,
+   "nomComplet": "Xisco Rosselló",
+   "barruf": 924,
+   "partidesTotals": 2,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2014-15",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 608,
+   "nomComplet": "Xisco Truyols",
+   "barruf": 1343,
+   "partidesTotals": 357,
+   "victoriesTotals": 253,
+   "estat": "act",
+   "darreraTemporada": "2025-26",
+   "cohortLlegat": false
+  },
+  {
+   "numero": 609,
+   "nomComplet": "Zhaira Moreno",
+   "barruf": 843,
+   "partidesTotals": 6,
+   "victoriesTotals": 0,
+   "estat": "exp",
+   "darreraTemporada": "2023-24",
+   "cohortLlegat": false
+  }
+ ]
+}
