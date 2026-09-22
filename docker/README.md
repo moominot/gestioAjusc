@@ -42,19 +42,20 @@ l'aplicació. Descomenteu-la, poseu-hi l'adreça del vostre servidor i copieu-la
 ## Comprovar que va
 
 ```bash
-# Els 609 jugadors de la llavor
-docker compose exec bd psql -U postgres -d ajusc -c "SELECT count(*) FROM jugadors;"
-
-# L'API respon i la classificació hi és (la clau surt del .env)
-curl -s "http://localhost:8000/rest/v1/barruf_classificacio?estat=eq.act&limit=3&select=posicio,nom_complet,barruf" \
-  -H "Authorization: Bearer <la clau anon>"
-
-# Les dades de contacte continuen tancades: ha de dir permission denied
-curl -s "http://localhost:8000/rest/v1/jugadors?limit=1" -H "Authorization: Bearer <la clau anon>"
-
-# L'autenticació és dreta
-curl -s http://localhost:8000/auth/v1/health
+./comprova.sh
 ```
+
+Ho mira tot —serveis, base de dades, funcions, API i permisos— i escriu un
+informe. **No hi surt cap contrasenya**, de manera que es pot enganxar tal qual
+per demanar ajuda:
+
+```bash
+./comprova.sh > informe.txt
+```
+
+Una línia que val la pena entendre: si diu **ALERTA DE SEGURETAT** vol dir que
+un visitant anònim arriba a llegir la taula `jugadors`, que porta telèfons i
+correus. Si passa, no ho exposeu enlloc fins a resoldre-ho.
 
 ## El primer gestor
 
@@ -122,5 +123,6 @@ docker compose logs auth           # el GoTrue és el més primmirat
 docker compose logs migracions     # si van petar, aquí diu on
 ```
 
-Si el GoTrue no arrenca, sol ser l'etiqueta de la imatge: comproveu-ne una de
-vigent a `github.com/supabase/auth/releases` i canvieu-la al `compose.yml`.
+Les etiquetes de totes les imatges s'han comprovat contra el registre i
+existeixen, inclosa la del GoTrue (`v2.197.0`, l'última estable). Si un dia
+n'hagueu de canviar cap, les vigents són a `github.com/supabase/auth/releases`.

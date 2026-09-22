@@ -44,7 +44,7 @@ services:
   # ---------------------------------------------------------------------------
   # Crea les seves pròpies taules a l'esquema `auth` la primera vegada.
   auth:
-    image: supabase/auth:v2.177.0
+    image: supabase/auth:v2.197.0
     restart: unless-stopped
     depends_on:
       bd:
