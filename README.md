@@ -20,7 +20,8 @@ rejugar refà tota la història posterior sola.
 ## Posar-ho en marxa
 
 Per muntar el projecte de Supabase des de zero, vegeu
-[`docs/desplegament.md`](docs/desplegament.md).
+[`docs/desplegament.md`](docs/desplegament.md). Per aixecar una rèplica local
+amb què assajar-ho tot abans, [`docker/README.md`](docker/README.md).
 
 ```bash
 npm install

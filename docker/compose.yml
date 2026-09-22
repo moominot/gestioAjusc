@@ -1,0 +1,163 @@
+# =============================================================================
+# Rèplica de l'AJUSC per assajar
+# =============================================================================
+# Els tres serveis que l'aplicació fa servir de debò, i prou: la base de dades,
+# l'API i l'autenticació. La instal·lació oficial de Supabase en porta una
+# desena; aquí no hi ha ni emmagatzematge de fitxers, ni temps real, ni
+# processament d'imatges, perquè aquesta aplicació no en fa servir cap.
+#
+# Pensat per a la xarxa local. NO ho exposeu a internet tal com està: els ports
+# surten a totes les interfícies i les contrasenyes venen d'un fitxer .env.
+#
+# Posar-ho en marxa:  vegeu docker/README.md
+# =============================================================================
+
+name: ajusc
+
+services:
+  # ---------------------------------------------------------------------------
+  # La base de dades
+  # ---------------------------------------------------------------------------
+  bd:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: ${CONTRASENYA_BD:?cal definir CONTRASENYA_BD al .env}
+      POSTGRES_DB: ajusc
+      # Els noms catalans al codi, però la base de dades en anglès com sempre.
+      POSTGRES_INITDB_ARGS: '--locale-provider=icu --icu-locale=ca-ES --encoding=UTF8'
+    volumes:
+      - dades:/var/lib/postgresql/data
+      # Rols, esquema auth i funcions. Només s'executa al primer arrencada.
+      - ./inicialitza:/docker-entrypoint-initdb.d:ro
+    ports:
+      # Perquè hi pugueu connectar amb psql o amb un client gràfic.
+      - '${PORT_BD:-5432}:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d ajusc']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # ---------------------------------------------------------------------------
+  # Autenticació: els enllaços d'entrada per correu
+  # ---------------------------------------------------------------------------
+  # Crea les seves pròpies taules a l'esquema `auth` la primera vegada.
+  auth:
+    image: supabase/auth:v2.177.0
+    restart: unless-stopped
+    depends_on:
+      bd:
+        condition: service_healthy
+    environment:
+      GOTRUE_API_HOST: 0.0.0.0
+      GOTRUE_API_PORT: '9999'
+      API_EXTERNAL_URL: ${URL_BASE:?cal definir URL_BASE al .env}
+
+      GOTRUE_DB_DRIVER: postgres
+      GOTRUE_DB_DATABASE_URL: postgres://postgres:${CONTRASENYA_BD}@bd:5432/ajusc?search_path=auth&sslmode=disable
+
+      GOTRUE_SITE_URL: ${URL_APLICACIO:?cal definir URL_APLICACIO al .env}
+      GOTRUE_URI_ALLOW_LIST: ${URLS_PERMESES:-*}
+      GOTRUE_DISABLE_SIGNUP: 'false'
+
+      GOTRUE_JWT_SECRET: ${SECRET_JWT:?cal definir SECRET_JWT al .env}
+      GOTRUE_JWT_EXP: '3600'
+      GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
+      GOTRUE_JWT_AUD: authenticated
+
+      GOTRUE_EXTERNAL_EMAIL_ENABLED: 'true'
+      # Sense contrasenyes: només enllaç per correu.
+      GOTRUE_MAILER_AUTOCONFIRM: 'false'
+      GOTRUE_MAILER_URLPATHS_CONFIRMATION: /auth/retorn
+      GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE: /auth/retorn
+      GOTRUE_MAILER_URLPATHS_RECOVERY: /auth/retorn
+      GOTRUE_MAILER_URLPATHS_INVITE: /auth/retorn
+
+      # Tot el correu va a parar al Mailpit: aquí no en surt cap de debò.
+      GOTRUE_SMTP_HOST: correu
+      GOTRUE_SMTP_PORT: '1025'
+      GOTRUE_SMTP_USER: ajusc
+      GOTRUE_SMTP_PASS: ajusc
+      GOTRUE_SMTP_ADMIN_EMAIL: barruf@ajuscrabble.cat
+      GOTRUE_SMTP_SENDER_NAME: BARRUF
+
+      GOTRUE_LOG_LEVEL: info
+    healthcheck:
+      test: ['CMD', 'wget', '--spider', '-q', 'http://localhost:9999/health']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # ---------------------------------------------------------------------------
+  # Les migracions de l'aplicació
+  # ---------------------------------------------------------------------------
+  # S'executen després del GoTrue, perquè l'esquema fa referència a auth.users.
+  # Un cop acabades, el contenidor es mor: és feina d'un sol cop.
+  migracions:
+    image: postgres:16-alpine
+    depends_on:
+      auth:
+        condition: service_healthy
+    volumes:
+      - ../supabase/migrations:/migracions:ro
+    environment:
+      PGPASSWORD: ${CONTRASENYA_BD}
+    entrypoint:
+      - sh
+      - -c
+      - |
+        set -e
+        for fitxer in /migracions/*.sql; do
+          echo "--> $$(basename $$fitxer)"
+          psql -h bd -U postgres -d ajusc -v ON_ERROR_STOP=1 -q -f "$$fitxer"
+        done
+        echo "Migracions aplicades."
+    restart: 'no'
+
+  # ---------------------------------------------------------------------------
+  # L'API: PostgREST, que és el que hi ha darrere de /rest/v1 a Supabase
+  # ---------------------------------------------------------------------------
+  api:
+    image: postgrest/postgrest:v12.2.3
+    restart: unless-stopped
+    depends_on:
+      migracions:
+        condition: service_completed_successfully
+    environment:
+      PGRST_DB_URI: postgres://autenticador:${CONTRASENYA_AUTENTICADOR:?cal definir CONTRASENYA_AUTENTICADOR}@bd:5432/ajusc
+      PGRST_DB_SCHEMAS: public
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_JWT_SECRET: ${SECRET_JWT}
+      PGRST_DB_USE_LEGACY_GUCS: 'false'
+
+  # ---------------------------------------------------------------------------
+  # La bústia de proves
+  # ---------------------------------------------------------------------------
+  # Recull tots els correus que envia el GoTrue i els ensenya en una pàgina web.
+  # És el que fa que es puguin assajar els enllaços d'entrada sense un servidor
+  # de correu de debò ni enviar res a ningú.
+  correu:
+    image: axllent/mailpit:latest
+    restart: unless-stopped
+    ports:
+      - '${PORT_CORREU:-8025}:8025'
+
+  # ---------------------------------------------------------------------------
+  # La porta d'entrada
+  # ---------------------------------------------------------------------------
+  # Reprodueix l'estructura d'URL de Supabase, que és la que espera el client:
+  # /rest/v1 cap a PostgREST i /auth/v1 cap al GoTrue.
+  porta:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - api
+      - auth
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    ports:
+      - '${PORT_API:-8000}:8000'
+
+volumes:
+  dades:

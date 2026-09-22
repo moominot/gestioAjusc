@@ -1,0 +1,28 @@
+# Porta d'entrada de la rèplica.
+#
+# El client de Supabase demana /rest/v1/... i /auth/v1/..., i aquí es reparteixen
+# entre els dos serveis. A Supabase això ho fa el Kong; per a tres rutes, el
+# Caddy ja fa de sobres.
+
+:8000 {
+	# Sense TLS: això és per a la xarxa local. Si algun dia ho voleu exposar,
+	# no obriu ports al router: feu servir un túnel de Cloudflare.
+	log {
+		output stdout
+		format console
+	}
+
+	handle /rest/v1/* {
+		uri strip_prefix /rest/v1
+		reverse_proxy api:3000
+	}
+
+	handle /auth/v1/* {
+		uri strip_prefix /auth/v1
+		reverse_proxy auth:9999
+	}
+
+	handle {
+		respond "Rèplica del BARRUF. Les rutes són /rest/v1 i /auth/v1." 404
+	}
+}

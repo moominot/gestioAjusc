@@ -8,3 +8,6 @@ build/
 .env.*.local
 *.log
 *.tsbuildinfo
+
+# Rèplica de Docker
+docker/.env
