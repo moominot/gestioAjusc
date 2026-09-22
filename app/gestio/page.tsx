@@ -56,6 +56,19 @@ export default async function Gestio() {
       <section className="rounded-lg border border-stone-200 bg-white p-6">
         <h2 className="font-semibold">Importar un campionat</h2>
         <p className="mt-1 text-sm text-stone-600">
+          Des dels fitxers del SwissPerfect o des d&apos;un full de càlcul.
+        </p>
+        <Link
+          href="/gestio/importar"
+          className="mt-3 inline-block rounded-lg bg-stone-900 px-4 py-2 text-sm text-white hover:bg-stone-700"
+        >
+          Importar
+        </Link>
+      </section>
+
+      <section className="rounded-lg border border-stone-200 bg-white p-6">
+        <h2 className="font-semibold">Simular sense desar</h2>
+        <p className="mt-1 text-sm text-stone-600">
           El lector dels fitxers del SwissPerfect i la resolució de noms ja són fets i provats
           (<code className="rounded bg-stone-100 px-1">lib/importacio</code>), i de moment es fan
           anar des de la línia d&apos;ordres:

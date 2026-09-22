@@ -163,3 +163,53 @@ Un campionat es barrufa **quan s'acaba**, mai per trams, i per això
 `campionats.finalitzat` guarda la porta: la cadena es construeix amb
 `computa_barruf AND finalitzat`. La simulació serveix per veure abans de
 publicar què passarà, i per seguir un campionat en curs sense tocar res.
+
+## Des d'un full de càlcul o CSV
+
+No tots els clubs fan servir SwissPerfect. `fulls.ts` accepta la mateixa llista
+de resultats que ja fa servir el generador de l'AJUSC:
+
+```
+Ronda | Jugador 1 | Puntuació 1 | Jugador 2 | Puntuació 2
+```
+
+Amb força marge: els noms de les columnes s'accepten amb variants (`R`, `Blanc`,
+`Punts 1`, `White`…), el separador del CSV es dedueix sol, els decimals poden
+anar amb coma, i la codificació tant pot ser UTF-8 com la Windows-1252 que
+escriu l'Excel. D'un `.xlsx` se'n llegeix la primera pestanya que tingui una
+capçalera reconeixible, de manera que un llibre amb pestanyes d'instruccions al
+davant també funciona.
+
+**La puntuació s'interpreta sola.** Si les dues xifres són 0, 0,5 o 1 i sumen 1,
+és el resultat de la partida; altrament són punts d'Scrabble i el resultat surt
+de comparar-los. No hi ha ambigüitat possible: cap partida d'Scrabble no acaba
+1 a 0 ni dona mig punt.
+
+**Sense columna de ronda** les partides es reparteixen de manera que ningú no en
+repeteixi cap. Per al BARRUF la ronda és indiferent, però la base de dades no
+admet un jugador dues vegades a la mateixa ronda. La pantalla avisa quan ho fa.
+
+Per a un descans, deixeu l'adversari en blanc o poseu-hi `BYE`.
+
+## La pantalla d'importació
+
+`app/gestio/importar/`. Llegeix els fitxers, resol els noms i ensenya el que ha
+entès; **no desa res fins que el gestor ho confirma**.
+
+El desat va per `importa_campionat()`, una funció de la base de dades que ho fa
+tot en una sola operació. Amb una tanda de crides soltes, una fallada a mig camí
+deixaria el campionat creat, la meitat de les partides desades i cap manera de
+saber per on s'havia quedat.
+
+Cada nom validat es desa com a àlies. En importar el ManaCup, dels 65
+participants només en van caldre dos d'àlies nous: «Lluís Fuster» apuntant a
+«Lluís Fuster Amer» i l'alta nova. La propera importació del Club Manacor no en
+demanarà cap.
+
+### Normalitzada dues vegades
+
+Les regles de normalització de noms existeixen en TypeScript (`noms.ts`) i en
+SQL (`normalitza_nom()`), perquè els àlies els escriu la base de dades. Si
+divergissin, un nom que el codi dona per conegut la base de dades el desaria com
+a àlies nou. `normalitzacio.test.ts` compara les dues implementacions sobre els
+609 noms del registre i uns quants casos difícils.

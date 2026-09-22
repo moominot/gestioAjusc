@@ -1,0 +1,2473 @@
+{
+    "casos": [
+        {
+            "nom": " Àlex  Castillo ",
+            "normalitzat": "alex castillo"
+        },
+        {
+            "nom": "Adrià Maynés",
+            "normalitzat": "adria maynes"
+        },
+        {
+            "nom": "Adán Cassán",
+            "normalitzat": "adan cassan"
+        },
+        {
+            "nom": "Agustí Borrell",
+            "normalitzat": "agusti borrell"
+        },
+        {
+            "nom": "Agustí Isard",
+            "normalitzat": "agusti isard"
+        },
+        {
+            "nom": "Aina Capellà",
+            "normalitzat": "aina capella"
+        },
+        {
+            "nom": "Aina Dols",
+            "normalitzat": "aina dols"
+        },
+        {
+            "nom": "Aina Garcia",
+            "normalitzat": "aina garcia"
+        },
+        {
+            "nom": "Aina M. Vicens",
+            "normalitzat": "aina m. vicens"
+        },
+        {
+            "nom": "Aina Mas Llodrà",
+            "normalitzat": "aina mas llodra"
+        },
+        {
+            "nom": "Aina Oliver",
+            "normalitzat": "aina oliver"
+        },
+        {
+            "nom": "Alba Vidal",
+            "normalitzat": "alba vidal"
+        },
+        {
+            "nom": "Albert Artiaga",
+            "normalitzat": "albert artiaga"
+        },
+        {
+            "nom": "Albert Capel",
+            "normalitzat": "albert capel"
+        },
+        {
+            "nom": "Albert Cartoixà",
+            "normalitzat": "albert cartoixa"
+        },
+        {
+            "nom": "Albert Cugat",
+            "normalitzat": "albert cugat"
+        },
+        {
+            "nom": "Albert Martí",
+            "normalitzat": "albert marti"
+        },
+        {
+            "nom": "Albert Mayans",
+            "normalitzat": "albert mayans"
+        },
+        {
+            "nom": "Albert Rico",
+            "normalitzat": "albert rico"
+        },
+        {
+            "nom": "Albert Rodríguez",
+            "normalitzat": "albert rodriguez"
+        },
+        {
+            "nom": "Albert Valentí Vergara",
+            "normalitzat": "albert valenti vergara"
+        },
+        {
+            "nom": "Alberto Lahoz",
+            "normalitzat": "alberto lahoz"
+        },
+        {
+            "nom": "Alberto Ramirez",
+            "normalitzat": "alberto ramirez"
+        },
+        {
+            "nom": "Alex Mas",
+            "normalitzat": "alex mas"
+        },
+        {
+            "nom": "Alfons Codina",
+            "normalitzat": "alfons codina"
+        },
+        {
+            "nom": "Alfred Garrido",
+            "normalitzat": "alfred garrido"
+        },
+        {
+            "nom": "Ana Escudero",
+            "normalitzat": "ana escudero"
+        },
+        {
+            "nom": "Ana M. Martínez",
+            "normalitzat": "ana m. martinez"
+        },
+        {
+            "nom": "Andreu Cabré",
+            "normalitzat": "andreu cabre"
+        },
+        {
+            "nom": "Andreu Fuster",
+            "normalitzat": "andreu fuster"
+        },
+        {
+            "nom": "Andreu Pasqual",
+            "normalitzat": "andreu pasqual"
+        },
+        {
+            "nom": "Andreu Pont",
+            "normalitzat": "andreu pont"
+        },
+        {
+            "nom": "Anna Bover",
+            "normalitzat": "anna bover"
+        },
+        {
+            "nom": "Anna Daura",
+            "normalitzat": "anna daura"
+        },
+        {
+            "nom": "Anna Ferrer",
+            "normalitzat": "anna ferrer"
+        },
+        {
+            "nom": "Anna Genís",
+            "normalitzat": "anna genis"
+        },
+        {
+            "nom": "Anna Homet",
+            "normalitzat": "anna homet"
+        },
+        {
+            "nom": "Anna Moreso",
+            "normalitzat": "anna moreso"
+        },
+        {
+            "nom": "Anna Perales",
+            "normalitzat": "anna perales"
+        },
+        {
+            "nom": "Anna Queralt",
+            "normalitzat": "anna queralt"
+        },
+        {
+            "nom": "Anna Rodrigo",
+            "normalitzat": "anna rodrigo"
+        },
+        {
+            "nom": "Anna Salgot",
+            "normalitzat": "anna salgot"
+        },
+        {
+            "nom": "Anna Tous",
+            "normalitzat": "anna tous"
+        },
+        {
+            "nom": "Anna Tur",
+            "normalitzat": "anna tur"
+        },
+        {
+            "nom": "Antoni Alzamora",
+            "normalitzat": "antoni alzamora"
+        },
+        {
+            "nom": "Antoni Bauçà",
+            "normalitzat": "antoni bauca"
+        },
+        {
+            "nom": "Antoni Casals",
+            "normalitzat": "antoni casals"
+        },
+        {
+            "nom": "Antoni Casas",
+            "normalitzat": "antoni casas"
+        },
+        {
+            "nom": "Antoni Janer",
+            "normalitzat": "antoni janer"
+        },
+        {
+            "nom": "Antoni Llull",
+            "normalitzat": "antoni llull"
+        },
+        {
+            "nom": "Antoni Manuel Gorrias",
+            "normalitzat": "antoni manuel gorrias"
+        },
+        {
+            "nom": "Antoni Nicolau",
+            "normalitzat": "antoni nicolau"
+        },
+        {
+            "nom": "Antoni Quetglas",
+            "normalitzat": "antoni quetglas"
+        },
+        {
+            "nom": "Antoni Riera",
+            "normalitzat": "antoni riera"
+        },
+        {
+            "nom": "Antoni Ruiz",
+            "normalitzat": "antoni ruiz"
+        },
+        {
+            "nom": "Antonio Arcas",
+            "normalitzat": "antonio arcas"
+        },
+        {
+            "nom": "Antonio Caballero",
+            "normalitzat": "antonio caballero"
+        },
+        {
+            "nom": "Antònia Galmés",
+            "normalitzat": "antonia galmes"
+        },
+        {
+            "nom": "Antònia Gelabert",
+            "normalitzat": "antonia gelabert"
+        },
+        {
+            "nom": "Antònia Ladària",
+            "normalitzat": "antonia ladaria"
+        },
+        {
+            "nom": "Antònia Nicolau",
+            "normalitzat": "antonia nicolau"
+        },
+        {
+            "nom": "Antònia Riera",
+            "normalitzat": "antonia riera"
+        },
+        {
+            "nom": "Apol·lònia Truyol",
+            "normalitzat": "apollonia truyol"
+        },
+        {
+            "nom": "Arantxa Delgado",
+            "normalitzat": "arantxa delgado"
+        },
+        {
+            "nom": "Armand Sanmamed",
+            "normalitzat": "armand sanmamed"
+        },
+        {
+            "nom": "Armand Viader",
+            "normalitzat": "armand viader"
+        },
+        {
+            "nom": "Arnau Peig",
+            "normalitzat": "arnau peig"
+        },
+        {
+            "nom": "Arola Conesa",
+            "normalitzat": "arola conesa"
+        },
+        {
+            "nom": "Assumpció Esteva",
+            "normalitzat": "assumpcio esteva"
+        },
+        {
+            "nom": "Assumpció Valls",
+            "normalitzat": "assumpcio valls"
+        },
+        {
+            "nom": "Assumpta Codinach",
+            "normalitzat": "assumpta codinach"
+        },
+        {
+            "nom": "Avel·lina Valls",
+            "normalitzat": "avellina valls"
+        },
+        {
+            "nom": "Balbina Brescó",
+            "normalitzat": "balbina bresco"
+        },
+        {
+            "nom": "Beatriu Defior",
+            "normalitzat": "beatriu defior"
+        },
+        {
+            "nom": "Bel Andreu",
+            "normalitzat": "bel andreu"
+        },
+        {
+            "nom": "Bel Fullana",
+            "normalitzat": "bel fullana"
+        },
+        {
+            "nom": "Bel Llull",
+            "normalitzat": "bel llull"
+        },
+        {
+            "nom": "Bel Miquel",
+            "normalitzat": "bel miquel"
+        },
+        {
+            "nom": "Bel Miquel Cazorla",
+            "normalitzat": "bel miquel cazorla"
+        },
+        {
+            "nom": "Bernat Amer",
+            "normalitzat": "bernat amer"
+        },
+        {
+            "nom": "Bernat Joan",
+            "normalitzat": "bernat joan"
+        },
+        {
+            "nom": "Bibiana Olivé",
+            "normalitzat": "bibiana olive"
+        },
+        {
+            "nom": "Bàrbara Mora",
+            "normalitzat": "barbara mora"
+        },
+        {
+            "nom": "Bàrbara Nicolau",
+            "normalitzat": "barbara nicolau"
+        },
+        {
+            "nom": "Carla Serra",
+            "normalitzat": "carla serra"
+        },
+        {
+            "nom": "Carles Cassanyes",
+            "normalitzat": "carles cassanyes"
+        },
+        {
+            "nom": "Carles Díez",
+            "normalitzat": "carles diez"
+        },
+        {
+            "nom": "Carles Llull",
+            "normalitzat": "carles llull"
+        },
+        {
+            "nom": "Carlos de Santiago",
+            "normalitzat": "carlos de santiago"
+        },
+        {
+            "nom": "Carme Calvo",
+            "normalitzat": "carme calvo"
+        },
+        {
+            "nom": "Carme Cebrian",
+            "normalitzat": "carme cebrian"
+        },
+        {
+            "nom": "Carme Esmerats",
+            "normalitzat": "carme esmerats"
+        },
+        {
+            "nom": "Carme Pascual",
+            "normalitzat": "carme pascual"
+        },
+        {
+            "nom": "Carme Pons",
+            "normalitzat": "carme pons"
+        },
+        {
+            "nom": "Carme Puig",
+            "normalitzat": "carme puig"
+        },
+        {
+            "nom": "Carme Serra",
+            "normalitzat": "carme serra"
+        },
+        {
+            "nom": "Carmina Boix",
+            "normalitzat": "carmina boix"
+        },
+        {
+            "nom": "Catalina Oliver",
+            "normalitzat": "catalina oliver"
+        },
+        {
+            "nom": "Catalina Quetgles",
+            "normalitzat": "catalina quetgles"
+        },
+        {
+            "nom": "Catalina Vallbona",
+            "normalitzat": "catalina vallbona"
+        },
+        {
+            "nom": "Caterina Gelabert",
+            "normalitzat": "caterina gelabert"
+        },
+        {
+            "nom": "Caterina Moreno",
+            "normalitzat": "caterina moreno"
+        },
+        {
+            "nom": "Caterina Sureda Vallespir",
+            "normalitzat": "caterina sureda vallespir"
+        },
+        {
+            "nom": "Cati Bauzà",
+            "normalitzat": "cati bauza"
+        },
+        {
+            "nom": "Cati Cànoves",
+            "normalitzat": "cati canoves"
+        },
+        {
+            "nom": "Cati Sureda",
+            "normalitzat": "cati sureda"
+        },
+        {
+            "nom": "Clara Zambrana",
+            "normalitzat": "clara zambrana"
+        },
+        {
+            "nom": "Conxita Marin",
+            "normalitzat": "conxita marin"
+        },
+        {
+            "nom": "Cosme Munar Adrover",
+            "normalitzat": "cosme munar adrover"
+        },
+        {
+            "nom": "Cris Barti",
+            "normalitzat": "cris barti"
+        },
+        {
+            "nom": "Cristian Richart",
+            "normalitzat": "cristian richart"
+        },
+        {
+            "nom": "Cristina Balaguer",
+            "normalitzat": "cristina balaguer"
+        },
+        {
+            "nom": "Cristina Bassons",
+            "normalitzat": "cristina bassons"
+        },
+        {
+            "nom": "Cristina Cabré",
+            "normalitzat": "cristina cabre"
+        },
+        {
+            "nom": "Cristina Duran",
+            "normalitzat": "cristina duran"
+        },
+        {
+            "nom": "Cristina Gil",
+            "normalitzat": "cristina gil"
+        },
+        {
+            "nom": "Cristina Hernández",
+            "normalitzat": "cristina hernandez"
+        },
+        {
+            "nom": "Cristina Salom",
+            "normalitzat": "cristina salom"
+        },
+        {
+            "nom": "Cristina Tur",
+            "normalitzat": "cristina tur"
+        },
+        {
+            "nom": "César Magaldi",
+            "normalitzat": "cesar magaldi"
+        },
+        {
+            "nom": "Dan Cohen",
+            "normalitzat": "dan cohen"
+        },
+        {
+            "nom": "Dani Añor",
+            "normalitzat": "dani anor"
+        },
+        {
+            "nom": "Dani Bardés",
+            "normalitzat": "dani bardes"
+        },
+        {
+            "nom": "Dani Hernández",
+            "normalitzat": "dani hernandez"
+        },
+        {
+            "nom": "Daniel Luján",
+            "normalitzat": "daniel lujan"
+        },
+        {
+            "nom": "Daniel Ramos",
+            "normalitzat": "daniel ramos"
+        },
+        {
+            "nom": "David Agustí",
+            "normalitzat": "david agusti"
+        },
+        {
+            "nom": "David Barceló",
+            "normalitzat": "david barcelo"
+        },
+        {
+            "nom": "David Cladera",
+            "normalitzat": "david cladera"
+        },
+        {
+            "nom": "David Ibars",
+            "normalitzat": "david ibars"
+        },
+        {
+            "nom": "David Llussà",
+            "normalitzat": "david llussa"
+        },
+        {
+            "nom": "David Monzonis",
+            "normalitzat": "david monzonis"
+        },
+        {
+            "nom": "David Roig",
+            "normalitzat": "david roig"
+        },
+        {
+            "nom": "Diana Gill",
+            "normalitzat": "diana gill"
+        },
+        {
+            "nom": "Dolors Lladós",
+            "normalitzat": "dolors llados"
+        },
+        {
+            "nom": "Dolors Llargués",
+            "normalitzat": "dolors llargues"
+        },
+        {
+            "nom": "Eduard Borràs",
+            "normalitzat": "eduard borras"
+        },
+        {
+            "nom": "Eduard Burguillos",
+            "normalitzat": "eduard burguillos"
+        },
+        {
+            "nom": "Eduard Tolosa",
+            "normalitzat": "eduard tolosa"
+        },
+        {
+            "nom": "Elba Ubri",
+            "normalitzat": "elba ubri"
+        },
+        {
+            "nom": "Elena Barceló",
+            "normalitzat": "elena barcelo"
+        },
+        {
+            "nom": "Elena Ferrer",
+            "normalitzat": "elena ferrer"
+        },
+        {
+            "nom": "Elisabet Vaquer",
+            "normalitzat": "elisabet vaquer"
+        },
+        {
+            "nom": "Elisenda Cunill",
+            "normalitzat": "elisenda cunill"
+        },
+        {
+            "nom": "Elisenda Farré",
+            "normalitzat": "elisenda farre"
+        },
+        {
+            "nom": "Elvira Sesé",
+            "normalitzat": "elvira sese"
+        },
+        {
+            "nom": "Enric Borràs",
+            "normalitzat": "enric borras"
+        },
+        {
+            "nom": "Enric Català",
+            "normalitzat": "enric catala"
+        },
+        {
+            "nom": "Enric Fontvila",
+            "normalitzat": "enric fontvila"
+        },
+        {
+            "nom": "Enric Gelabert",
+            "normalitzat": "enric gelabert"
+        },
+        {
+            "nom": "Enric Peig",
+            "normalitzat": "enric peig"
+        },
+        {
+            "nom": "Enric Sánchez",
+            "normalitzat": "enric sanchez"
+        },
+        {
+            "nom": "Eric Olmedo",
+            "normalitzat": "eric olmedo"
+        },
+        {
+            "nom": "Ernest Ferrer",
+            "normalitzat": "ernest ferrer"
+        },
+        {
+            "nom": "Ernest Teniente",
+            "normalitzat": "ernest teniente"
+        },
+        {
+            "nom": "Esperança Macià",
+            "normalitzat": "esperanca macia"
+        },
+        {
+            "nom": "Esperança Martí",
+            "normalitzat": "esperanca marti"
+        },
+        {
+            "nom": "Ester Casas",
+            "normalitzat": "ester casas"
+        },
+        {
+            "nom": "Ester Querol",
+            "normalitzat": "ester querol"
+        },
+        {
+            "nom": "Ester Ustrell",
+            "normalitzat": "ester ustrell"
+        },
+        {
+            "nom": "Esther Alcover",
+            "normalitzat": "esther alcover"
+        },
+        {
+            "nom": "Esther Grimalt",
+            "normalitzat": "esther grimalt"
+        },
+        {
+            "nom": "Esther Pujol",
+            "normalitzat": "esther pujol"
+        },
+        {
+            "nom": "Eulàlia Abelló",
+            "normalitzat": "eulalia abello"
+        },
+        {
+            "nom": "Eulàlia Baquès",
+            "normalitzat": "eulalia baques"
+        },
+        {
+            "nom": "Eulàlia Farell",
+            "normalitzat": "eulalia farell"
+        },
+        {
+            "nom": "Eulàlia Ferriol",
+            "normalitzat": "eulalia ferriol"
+        },
+        {
+            "nom": "Eulàlia Griera",
+            "normalitzat": "eulalia griera"
+        },
+        {
+            "nom": "Eulàlia Guasch",
+            "normalitzat": "eulalia guasch"
+        },
+        {
+            "nom": "Eulàlia Llargués",
+            "normalitzat": "eulalia llargues"
+        },
+        {
+            "nom": "Eva Calafell",
+            "normalitzat": "eva calafell"
+        },
+        {
+            "nom": "Eva Cama Llordés",
+            "normalitzat": "eva cama llordes"
+        },
+        {
+            "nom": "Felipe Calvo",
+            "normalitzat": "felipe calvo"
+        },
+        {
+            "nom": "Feriel Rabaï Ladària",
+            "normalitzat": "feriel rabai ladaria"
+        },
+        {
+            "nom": "Ferriol Macip",
+            "normalitzat": "ferriol macip"
+        },
+        {
+            "nom": "Francesc Gallén",
+            "normalitzat": "francesc gallen"
+        },
+        {
+            "nom": "Francesc Gelabert",
+            "normalitzat": "francesc gelabert"
+        },
+        {
+            "nom": "Francesc Masseguer",
+            "normalitzat": "francesc masseguer"
+        },
+        {
+            "nom": "Francesc Riera",
+            "normalitzat": "francesc riera"
+        },
+        {
+            "nom": "Francesc Vernet",
+            "normalitzat": "francesc vernet"
+        },
+        {
+            "nom": "Francesca Cama",
+            "normalitzat": "francesca cama"
+        },
+        {
+            "nom": "Francesca Font",
+            "normalitzat": "francesca font"
+        },
+        {
+            "nom": "Francisca Nicolau",
+            "normalitzat": "francisca nicolau"
+        },
+        {
+            "nom": "Francisca Obrador",
+            "normalitzat": "francisca obrador"
+        },
+        {
+            "nom": "Gabriel Bas",
+            "normalitzat": "gabriel bas"
+        },
+        {
+            "nom": "Gabriel Suau Otero",
+            "normalitzat": "gabriel suau otero"
+        },
+        {
+            "nom": "Gemma Capdevila",
+            "normalitzat": "gemma capdevila"
+        },
+        {
+            "nom": "Gemma Rado",
+            "normalitzat": "gemma rado"
+        },
+        {
+            "nom": "Gerard Castro",
+            "normalitzat": "gerard castro"
+        },
+        {
+            "nom": "Gilbert Tirach",
+            "normalitzat": "gilbert tirach"
+        },
+        {
+            "nom": "Guida Llabrés",
+            "normalitzat": "guida llabres"
+        },
+        {
+            "nom": "Guida Planes",
+            "normalitzat": "guida planes"
+        },
+        {
+            "nom": "Guillem Casacuberta",
+            "normalitzat": "guillem casacuberta"
+        },
+        {
+            "nom": "Guillem Casòliva",
+            "normalitzat": "guillem casoliva"
+        },
+        {
+            "nom": "Guillem Melis",
+            "normalitzat": "guillem melis"
+        },
+        {
+            "nom": "Guillem Pallicer",
+            "normalitzat": "guillem pallicer"
+        },
+        {
+            "nom": "Guillem Pera",
+            "normalitzat": "guillem pera"
+        },
+        {
+            "nom": "Guillem Prats",
+            "normalitzat": "guillem prats"
+        },
+        {
+            "nom": "Helena Berlanga",
+            "normalitzat": "helena berlanga"
+        },
+        {
+            "nom": "Helena Crosas",
+            "normalitzat": "helena crosas"
+        },
+        {
+            "nom": "Helena Girauta",
+            "normalitzat": "helena girauta"
+        },
+        {
+            "nom": "Helena Troiano",
+            "normalitzat": "helena troiano"
+        },
+        {
+            "nom": "Imma Junqué",
+            "normalitzat": "imma junque"
+        },
+        {
+            "nom": "Immaculada Camprubi Rigau",
+            "normalitzat": "immaculada camprubi rigau"
+        },
+        {
+            "nom": "Irene Jaumà",
+            "normalitzat": "irene jauma"
+        },
+        {
+            "nom": "Isa Hernández",
+            "normalitzat": "isa hernandez"
+        },
+        {
+            "nom": "Isaac Asensio",
+            "normalitzat": "isaac asensio"
+        },
+        {
+            "nom": "Isabel Bargalló",
+            "normalitzat": "isabel bargallo"
+        },
+        {
+            "nom": "Isabel Nadal",
+            "normalitzat": "isabel nadal"
+        },
+        {
+            "nom": "Jaume Amengual",
+            "normalitzat": "jaume amengual"
+        },
+        {
+            "nom": "Jaume Ferrerons",
+            "normalitzat": "jaume ferrerons"
+        },
+        {
+            "nom": "Jaume Fitó",
+            "normalitzat": "jaume fito"
+        },
+        {
+            "nom": "Jaume Rigo",
+            "normalitzat": "jaume rigo"
+        },
+        {
+            "nom": "Jaume Salvanyà",
+            "normalitzat": "jaume salvanya"
+        },
+        {
+            "nom": "Jaume Serra",
+            "normalitzat": "jaume serra"
+        },
+        {
+            "nom": "Jaume Subirana",
+            "normalitzat": "jaume subirana"
+        },
+        {
+            "nom": "Jaume Vidal",
+            "normalitzat": "jaume vidal"
+        },
+        {
+            "nom": "Jaume Vives",
+            "normalitzat": "jaume vives"
+        },
+        {
+            "nom": "Javier Robles",
+            "normalitzat": "javier robles"
+        },
+        {
+            "nom": "Jean-Philippe Roy",
+            "normalitzat": "jean-philippe roy"
+        },
+        {
+            "nom": "Jep Ferret",
+            "normalitzat": "jep ferret"
+        },
+        {
+            "nom": "Jeroni Rubió",
+            "normalitzat": "jeroni rubio"
+        },
+        {
+            "nom": "Jesús Rodríguez",
+            "normalitzat": "jesus rodriguez"
+        },
+        {
+            "nom": "Joan A. Bonet",
+            "normalitzat": "joan a. bonet"
+        },
+        {
+            "nom": "Joan Agustí",
+            "normalitzat": "joan agusti"
+        },
+        {
+            "nom": "Joan Andreu",
+            "normalitzat": "joan andreu"
+        },
+        {
+            "nom": "Joan Andreu Arribas",
+            "normalitzat": "joan andreu arribas"
+        },
+        {
+            "nom": "Joan Antoni Cerrato",
+            "normalitzat": "joan antoni cerrato"
+        },
+        {
+            "nom": "Joan Antoni Cerrato Rosselló",
+            "normalitzat": "joan antoni cerrato rossello"
+        },
+        {
+            "nom": "Joan Barceló",
+            "normalitzat": "joan barcelo"
+        },
+        {
+            "nom": "Joan Bonet",
+            "normalitzat": "joan bonet"
+        },
+        {
+            "nom": "Joan Cabalgante",
+            "normalitzat": "joan cabalgante"
+        },
+        {
+            "nom": "Joan Capdevila",
+            "normalitzat": "joan capdevila"
+        },
+        {
+            "nom": "Joan Casasayas",
+            "normalitzat": "joan casasayas"
+        },
+        {
+            "nom": "Joan Doria Ribera",
+            "normalitzat": "joan doria ribera"
+        },
+        {
+            "nom": "Joan Gelabert",
+            "normalitzat": "joan gelabert"
+        },
+        {
+            "nom": "Joan Gené",
+            "normalitzat": "joan gene"
+        },
+        {
+            "nom": "Joan Josep Isern",
+            "normalitzat": "joan josep isern"
+        },
+        {
+            "nom": "Joan Jubany",
+            "normalitzat": "joan jubany"
+        },
+        {
+            "nom": "Joan Llodrà",
+            "normalitzat": "joan llodra"
+        },
+        {
+            "nom": "Joan López",
+            "normalitzat": "joan lopez"
+        },
+        {
+            "nom": "Joan Manuel Rivas",
+            "normalitzat": "joan manuel rivas"
+        },
+        {
+            "nom": "Joan Melis",
+            "normalitzat": "joan melis"
+        },
+        {
+            "nom": "Joan Melis Riera",
+            "normalitzat": "joan melis riera"
+        },
+        {
+            "nom": "Joan Melià",
+            "normalitzat": "joan melia"
+        },
+        {
+            "nom": "Joan Montané",
+            "normalitzat": "joan montane"
+        },
+        {
+            "nom": "Joan Moragues",
+            "normalitzat": "joan moragues"
+        },
+        {
+            "nom": "Joan Munar",
+            "normalitzat": "joan munar"
+        },
+        {
+            "nom": "Joan Orts",
+            "normalitzat": "joan orts"
+        },
+        {
+            "nom": "Joan Pascual",
+            "normalitzat": "joan pascual"
+        },
+        {
+            "nom": "Joan Pons",
+            "normalitzat": "joan pons"
+        },
+        {
+            "nom": "Joan Puigmalet",
+            "normalitzat": "joan puigmalet"
+        },
+        {
+            "nom": "Joan R. Manchado",
+            "normalitzat": "joan r. manchado"
+        },
+        {
+            "nom": "Joan Riera",
+            "normalitzat": "joan riera"
+        },
+        {
+            "nom": "Joan Roldan Serra",
+            "normalitzat": "joan roldan serra"
+        },
+        {
+            "nom": "Joan Sans",
+            "normalitzat": "joan sans"
+        },
+        {
+            "nom": "Joan Soler",
+            "normalitzat": "joan soler"
+        },
+        {
+            "nom": "Joan Torra",
+            "normalitzat": "joan torra"
+        },
+        {
+            "nom": "Joan Truyols",
+            "normalitzat": "joan truyols"
+        },
+        {
+            "nom": "Joan Umbert",
+            "normalitzat": "joan umbert"
+        },
+        {
+            "nom": "Joana A. Matas",
+            "normalitzat": "joana a. matas"
+        },
+        {
+            "nom": "Joana A. Roig",
+            "normalitzat": "joana a. roig"
+        },
+        {
+            "nom": "Joana Font",
+            "normalitzat": "joana font"
+        },
+        {
+            "nom": "Joana Gelabert",
+            "normalitzat": "joana gelabert"
+        },
+        {
+            "nom": "Joana Genovart",
+            "normalitzat": "joana genovart"
+        },
+        {
+            "nom": "Joana Maria Flaquer",
+            "normalitzat": "joana maria flaquer"
+        },
+        {
+            "nom": "Joana Maria Pasqual",
+            "normalitzat": "joana maria pasqual"
+        },
+        {
+            "nom": "Joana Mora",
+            "normalitzat": "joana mora"
+        },
+        {
+            "nom": "Joana Salas",
+            "normalitzat": "joana salas"
+        },
+        {
+            "nom": "Joana Tomàs",
+            "normalitzat": "joana tomas"
+        },
+        {
+            "nom": "Joan﻿Llodrà",
+            "normalitzat": "joanllodra"
+        },
+        {
+            "nom": "Joaquim Roé",
+            "normalitzat": "joaquim roe"
+        },
+        {
+            "nom": "Joel Segarra",
+            "normalitzat": "joel segarra"
+        },
+        {
+            "nom": "Jofre Julià",
+            "normalitzat": "jofre julia"
+        },
+        {
+            "nom": "Jofre Sivillà",
+            "normalitzat": "jofre sivilla"
+        },
+        {
+            "nom": "Jordi Ballesteros",
+            "normalitzat": "jordi ballesteros"
+        },
+        {
+            "nom": "Jordi Bonet",
+            "normalitzat": "jordi bonet"
+        },
+        {
+            "nom": "Jordi Caldentey",
+            "normalitzat": "jordi caldentey"
+        },
+        {
+            "nom": "Jordi Comasòlives",
+            "normalitzat": "jordi comasolives"
+        },
+        {
+            "nom": "Jordi Escandell",
+            "normalitzat": "jordi escandell"
+        },
+        {
+            "nom": "Jordi Marzà",
+            "normalitzat": "jordi marza"
+        },
+        {
+            "nom": "Jordi Patrís",
+            "normalitzat": "jordi patris"
+        },
+        {
+            "nom": "Jordi Pedrals",
+            "normalitzat": "jordi pedrals"
+        },
+        {
+            "nom": "Jordi Peralta",
+            "normalitzat": "jordi peralta"
+        },
+        {
+            "nom": "Jordi Pinart",
+            "normalitzat": "jordi pinart"
+        },
+        {
+            "nom": "Jordi Places",
+            "normalitzat": "jordi places"
+        },
+        {
+            "nom": "Jordi Plana Espanyol",
+            "normalitzat": "jordi plana espanyol"
+        },
+        {
+            "nom": "Jordi Pujol",
+            "normalitzat": "jordi pujol"
+        },
+        {
+            "nom": "Jordi Torra",
+            "normalitzat": "jordi torra"
+        },
+        {
+            "nom": "Jorra Santiago",
+            "normalitzat": "jorra santiago"
+        },
+        {
+            "nom": "Josep Arias",
+            "normalitzat": "josep arias"
+        },
+        {
+            "nom": "Josep Coll",
+            "normalitzat": "josep coll"
+        },
+        {
+            "nom": "Josep Ferrer",
+            "normalitzat": "josep ferrer"
+        },
+        {
+            "nom": "Josep Fiol",
+            "normalitzat": "josep fiol"
+        },
+        {
+            "nom": "Josep Gene",
+            "normalitzat": "josep gene"
+        },
+        {
+            "nom": "Josep M. Domenech",
+            "normalitzat": "josep m. domenech"
+        },
+        {
+            "nom": "Josep M. Elias",
+            "normalitzat": "josep m. elias"
+        },
+        {
+            "nom": "Josep M. Martí",
+            "normalitzat": "josep m. marti"
+        },
+        {
+            "nom": "Josep M. Rovira",
+            "normalitzat": "josep m. rovira"
+        },
+        {
+            "nom": "Josep Marbà",
+            "normalitzat": "josep marba"
+        },
+        {
+            "nom": "Josep Porta",
+            "normalitzat": "josep porta"
+        },
+        {
+            "nom": "Josep Reynés",
+            "normalitzat": "josep reynes"
+        },
+        {
+            "nom": "Juanjo Corzo",
+            "normalitzat": "juanjo corzo"
+        },
+        {
+            "nom": "Juanjo Edo",
+            "normalitzat": "juanjo edo"
+        },
+        {
+            "nom": "Júlia Boqué",
+            "normalitzat": "julia boque"
+        },
+        {
+            "nom": "Júlia Miralles",
+            "normalitzat": "julia miralles"
+        },
+        {
+            "nom": "Júlia Mérida",
+            "normalitzat": "julia merida"
+        },
+        {
+            "nom": "Karma Duch",
+            "normalitzat": "karma duch"
+        },
+        {
+            "nom": "Kate Mulet",
+            "normalitzat": "kate mulet"
+        },
+        {
+            "nom": "Kica Mas",
+            "normalitzat": "kica mas"
+        },
+        {
+            "nom": "Lahcene Akrour",
+            "normalitzat": "lahcene akrour"
+        },
+        {
+            "nom": "Laia Codina",
+            "normalitzat": "laia codina"
+        },
+        {
+            "nom": "Laura Patrícia Bueno Femenias",
+            "normalitzat": "laura patricia bueno femenias"
+        },
+        {
+            "nom": "Laureà de Juan",
+            "normalitzat": "laurea de juan"
+        },
+        {
+            "nom": "Lina Maria Riera",
+            "normalitzat": "lina maria riera"
+        },
+        {
+            "nom": "Llobet Antònio",
+            "normalitzat": "llobet antonio"
+        },
+        {
+            "nom": "Llorenç Carreres",
+            "normalitzat": "llorenc carreres"
+        },
+        {
+            "nom": "Llorenç Carrió",
+            "normalitzat": "llorenc carrio"
+        },
+        {
+            "nom": "Lluc Cànovas",
+            "normalitzat": "lluc canovas"
+        },
+        {
+            "nom": "Llucia Alajarín",
+            "normalitzat": "llucia alajarin"
+        },
+        {
+            "nom": "Lluis Molina",
+            "normalitzat": "lluis molina"
+        },
+        {
+            "nom": "Lluís Celià",
+            "normalitzat": "lluis celia"
+        },
+        {
+            "nom": "Lluís Fuster Amer",
+            "normalitzat": "lluis fuster amer"
+        },
+        {
+            "nom": "Lluís Parera",
+            "normalitzat": "lluis parera"
+        },
+        {
+            "nom": "Lluís Ramon",
+            "normalitzat": "lluis ramon"
+        },
+        {
+            "nom": "Lluís de Yzaguirre",
+            "normalitzat": "lluis de yzaguirre"
+        },
+        {
+            "nom": "Lola Álvarez",
+            "normalitzat": "lola alvarez"
+        },
+        {
+            "nom": "Lourdes Rado",
+            "normalitzat": "lourdes rado"
+        },
+        {
+            "nom": "Lourdes Sola López",
+            "normalitzat": "lourdes sola lopez"
+        },
+        {
+            "nom": "Lurdes Cortés",
+            "normalitzat": "lurdes cortes"
+        },
+        {
+            "nom": "Lurdes Fabra",
+            "normalitzat": "lurdes fabra"
+        },
+        {
+            "nom": "M. A. Pujols",
+            "normalitzat": "m. a. pujols"
+        },
+        {
+            "nom": "M. Antoni Malagarriga",
+            "normalitzat": "m. antoni malagarriga"
+        },
+        {
+            "nom": "M. Antònia Torrendell",
+            "normalitzat": "m. antonia torrendell"
+        },
+        {
+            "nom": "M. Dolors Puigdomènech",
+            "normalitzat": "m. dolors puigdomenech"
+        },
+        {
+            "nom": "M. José Antequera",
+            "normalitzat": "m. jose antequera"
+        },
+        {
+            "nom": "M. Lluïsa Penelas",
+            "normalitzat": "m. lluisa penelas"
+        },
+        {
+            "nom": "M. M. Matamalas",
+            "normalitzat": "m. m. matamalas"
+        },
+        {
+            "nom": "M. Magdalena Brunet",
+            "normalitzat": "m. magdalena brunet"
+        },
+        {
+            "nom": "M. Rosa Cucurull",
+            "normalitzat": "m. rosa cucurull"
+        },
+        {
+            "nom": "M. Rosa Guarro",
+            "normalitzat": "m. rosa guarro"
+        },
+        {
+            "nom": "M. del Mar Recasens",
+            "normalitzat": "m. del mar recasens"
+        },
+        {
+            "nom": "M. Àngels Isern",
+            "normalitzat": "m. angels isern"
+        },
+        {
+            "nom": "MATEU XURI",
+            "normalitzat": "mateu xuri"
+        },
+        {
+            "nom": "Macià Ferrer",
+            "normalitzat": "macia ferrer"
+        },
+        {
+            "nom": "Magda Falcó",
+            "normalitzat": "magda falco"
+        },
+        {
+            "nom": "Magdalena Morell",
+            "normalitzat": "magdalena morell"
+        },
+        {
+            "nom": "Manel Aparici",
+            "normalitzat": "manel aparici"
+        },
+        {
+            "nom": "Manolo Matoses",
+            "normalitzat": "manolo matoses"
+        },
+        {
+            "nom": "Manuel Granados",
+            "normalitzat": "manuel granados"
+        },
+        {
+            "nom": "Mar Bel",
+            "normalitzat": "mar bel"
+        },
+        {
+            "nom": "Mar Trias",
+            "normalitzat": "mar trias"
+        },
+        {
+            "nom": "Marc Ajenjo",
+            "normalitzat": "marc ajenjo"
+        },
+        {
+            "nom": "Marc Ballús",
+            "normalitzat": "marc ballus"
+        },
+        {
+            "nom": "Marc Canovas Fons",
+            "normalitzat": "marc canovas fons"
+        },
+        {
+            "nom": "Marc Capó",
+            "normalitzat": "marc capo"
+        },
+        {
+            "nom": "Marc Isern",
+            "normalitzat": "marc isern"
+        },
+        {
+            "nom": "Marc Molina Llull",
+            "normalitzat": "marc molina llull"
+        },
+        {
+            "nom": "Marc Velasco",
+            "normalitzat": "marc velasco"
+        },
+        {
+            "nom": "Marc Vigo",
+            "normalitzat": "marc vigo"
+        },
+        {
+            "nom": "Marcel·lí N'Alzamora",
+            "normalitzat": "marcelli n'alzamora"
+        },
+        {
+            "nom": "Marga Colillas",
+            "normalitzat": "marga colillas"
+        },
+        {
+            "nom": "Marga Font",
+            "normalitzat": "marga font"
+        },
+        {
+            "nom": "Marga Gelabert",
+            "normalitzat": "marga gelabert"
+        },
+        {
+            "nom": "Marga Gené",
+            "normalitzat": "marga gene"
+        },
+        {
+            "nom": "Marga Hernández",
+            "normalitzat": "marga hernandez"
+        },
+        {
+            "nom": "Marga Vera",
+            "normalitzat": "marga vera"
+        },
+        {
+            "nom": "Margalida Bonnín",
+            "normalitzat": "margalida bonnin"
+        },
+        {
+            "nom": "Margalida Colombàs",
+            "normalitzat": "margalida colombas"
+        },
+        {
+            "nom": "Margalida Cubells",
+            "normalitzat": "margalida cubells"
+        },
+        {
+            "nom": "Margalida Fuster",
+            "normalitzat": "margalida fuster"
+        },
+        {
+            "nom": "Margalida Galmés",
+            "normalitzat": "margalida galmes"
+        },
+        {
+            "nom": "Margalida Munar",
+            "normalitzat": "margalida munar"
+        },
+        {
+            "nom": "Margalida Riera",
+            "normalitzat": "margalida riera"
+        },
+        {
+            "nom": "Margalida Rosselló",
+            "normalitzat": "margalida rossello"
+        },
+        {
+            "nom": "Margalida Socies",
+            "normalitzat": "margalida socies"
+        },
+        {
+            "nom": "Margalida Taberner",
+            "normalitzat": "margalida taberner"
+        },
+        {
+            "nom": "Margalida Àngel",
+            "normalitzat": "margalida angel"
+        },
+        {
+            "nom": "Mari Márquez",
+            "normalitzat": "mari marquez"
+        },
+        {
+            "nom": "Maria A. Nadal",
+            "normalitzat": "maria a. nadal"
+        },
+        {
+            "nom": "Maria Ametllé",
+            "normalitzat": "maria ametlle"
+        },
+        {
+            "nom": "Maria Antònia Guardiola",
+            "normalitzat": "maria antonia guardiola"
+        },
+        {
+            "nom": "Maria Antònia Llodrà",
+            "normalitzat": "maria antonia llodra"
+        },
+        {
+            "nom": "Maria Antònia Mora",
+            "normalitzat": "maria antonia mora"
+        },
+        {
+            "nom": "Maria Bartolomé",
+            "normalitzat": "maria bartolome"
+        },
+        {
+            "nom": "Maria Bel Bauzà",
+            "normalitzat": "maria bel bauza"
+        },
+        {
+            "nom": "Maria Berrocal",
+            "normalitzat": "maria berrocal"
+        },
+        {
+            "nom": "Maria Ferrer",
+            "normalitzat": "maria ferrer"
+        },
+        {
+            "nom": "Maria Garcia",
+            "normalitzat": "maria garcia"
+        },
+        {
+            "nom": "Maria Gayà",
+            "normalitzat": "maria gaya"
+        },
+        {
+            "nom": "Maria Gironès",
+            "normalitzat": "maria girones"
+        },
+        {
+            "nom": "Maria Griera",
+            "normalitzat": "maria griera"
+        },
+        {
+            "nom": "Maria Jose Araque",
+            "normalitzat": "maria jose araque"
+        },
+        {
+            "nom": "Maria Josep Carrasco",
+            "normalitzat": "maria josep carrasco"
+        },
+        {
+            "nom": "Maria José Bonet",
+            "normalitzat": "maria jose bonet"
+        },
+        {
+            "nom": "Maria Juan",
+            "normalitzat": "maria juan"
+        },
+        {
+            "nom": "Maria Magdalena Sureda",
+            "normalitzat": "maria magdalena sureda"
+        },
+        {
+            "nom": "Maria Moll",
+            "normalitzat": "maria moll"
+        },
+        {
+            "nom": "Maria Planells",
+            "normalitzat": "maria planells"
+        },
+        {
+            "nom": "Maria Ribes",
+            "normalitzat": "maria ribes"
+        },
+        {
+            "nom": "Maria Rosa Cons",
+            "normalitzat": "maria rosa cons"
+        },
+        {
+            "nom": "Maria Sampol",
+            "normalitzat": "maria sampol"
+        },
+        {
+            "nom": "Maria Sánchez",
+            "normalitzat": "maria sanchez"
+        },
+        {
+            "nom": "Maria Valls",
+            "normalitzat": "maria valls"
+        },
+        {
+            "nom": "Maria Verdura",
+            "normalitzat": "maria verdura"
+        },
+        {
+            "nom": "Maria del Mar Fuster",
+            "normalitzat": "maria del mar fuster"
+        },
+        {
+            "nom": "Maria del Mar Joan",
+            "normalitzat": "maria del mar joan"
+        },
+        {
+            "nom": "Maria del Mar Vanrell",
+            "normalitzat": "maria del mar vanrell"
+        },
+        {
+            "nom": "Maria Gayà",
+            "normalitzat": "maria gaya"
+        },
+        {
+            "nom": "Maribel Servera",
+            "normalitzat": "maribel servera"
+        },
+        {
+            "nom": "Marina Forteza",
+            "normalitzat": "marina forteza"
+        },
+        {
+            "nom": "Marina Vallés",
+            "normalitzat": "marina valles"
+        },
+        {
+            "nom": "Marisa Cerdó",
+            "normalitzat": "marisa cerdo"
+        },
+        {
+            "nom": "Marta Pallarés",
+            "normalitzat": "marta pallares"
+        },
+        {
+            "nom": "Marta Pujol",
+            "normalitzat": "marta pujol"
+        },
+        {
+            "nom": "Marta Rovira",
+            "normalitzat": "marta rovira"
+        },
+        {
+            "nom": "Marta Servera",
+            "normalitzat": "marta servera"
+        },
+        {
+            "nom": "Marta Vilardell",
+            "normalitzat": "marta vilardell"
+        },
+        {
+            "nom": "Martí Plana",
+            "normalitzat": "marti plana"
+        },
+        {
+            "nom": "Martí Roé",
+            "normalitzat": "marti roe"
+        },
+        {
+            "nom": "Mary Oliva",
+            "normalitzat": "mary oliva"
+        },
+        {
+            "nom": "Mateu Marcé",
+            "normalitzat": "mateu marce"
+        },
+        {
+            "nom": "Mateu Mas",
+            "normalitzat": "mateu mas"
+        },
+        {
+            "nom": "Mateu Xurí",
+            "normalitzat": "mateu xuri"
+        },
+        {
+            "nom": "Matias Camacho",
+            "normalitzat": "matias camacho"
+        },
+        {
+            "nom": "Maurici Corrons",
+            "normalitzat": "maurici corrons"
+        },
+        {
+            "nom": "Maurici Cuesta",
+            "normalitzat": "maurici cuesta"
+        },
+        {
+            "nom": "Mei Brescó",
+            "normalitzat": "mei bresco"
+        },
+        {
+            "nom": "Mercè Comas",
+            "normalitzat": "merce comas"
+        },
+        {
+            "nom": "Mercè Gabardós",
+            "normalitzat": "merce gabardos"
+        },
+        {
+            "nom": "Mercè Illa",
+            "normalitzat": "merce illa"
+        },
+        {
+            "nom": "Mercè Oliver",
+            "normalitzat": "merce oliver"
+        },
+        {
+            "nom": "Mercè Panisello",
+            "normalitzat": "merce panisello"
+        },
+        {
+            "nom": "Mercè Rojals",
+            "normalitzat": "merce rojals"
+        },
+        {
+            "nom": "Mercè Tena",
+            "normalitzat": "merce tena"
+        },
+        {
+            "nom": "Meritxell Charavia",
+            "normalitzat": "meritxell charavia"
+        },
+        {
+            "nom": "Miguel Roig Comamala",
+            "normalitzat": "miguel roig comamala"
+        },
+        {
+            "nom": "Miquel Casares",
+            "normalitzat": "miquel casares"
+        },
+        {
+            "nom": "Miquel Gispert",
+            "normalitzat": "miquel gispert"
+        },
+        {
+            "nom": "Miquel Gomila",
+            "normalitzat": "miquel gomila"
+        },
+        {
+            "nom": "Miquel Morey",
+            "normalitzat": "miquel morey"
+        },
+        {
+            "nom": "Miquel Oliver",
+            "normalitzat": "miquel oliver"
+        },
+        {
+            "nom": "Miquel Quetgles Ensenyat",
+            "normalitzat": "miquel quetgles ensenyat"
+        },
+        {
+            "nom": "Miquel Servera",
+            "normalitzat": "miquel servera"
+        },
+        {
+            "nom": "Miquel Sesé",
+            "normalitzat": "miquel sese"
+        },
+        {
+            "nom": "Miquel Vergara",
+            "normalitzat": "miquel vergara"
+        },
+        {
+            "nom": "Miquel Àngel Bauçà",
+            "normalitzat": "miquel angel bauca"
+        },
+        {
+            "nom": "Miquela Grimalt",
+            "normalitzat": "miquela grimalt"
+        },
+        {
+            "nom": "Mireia Llecha",
+            "normalitzat": "mireia llecha"
+        },
+        {
+            "nom": "Mireia Mena",
+            "normalitzat": "mireia mena"
+        },
+        {
+            "nom": "Moisès Solé",
+            "normalitzat": "moises sole"
+        },
+        {
+            "nom": "Montse Barbany",
+            "normalitzat": "montse barbany"
+        },
+        {
+            "nom": "Montse Bargalló",
+            "normalitzat": "montse bargallo"
+        },
+        {
+            "nom": "Montse Comet",
+            "normalitzat": "montse comet"
+        },
+        {
+            "nom": "Montse Domenech",
+            "normalitzat": "montse domenech"
+        },
+        {
+            "nom": "Montse Fernández",
+            "normalitzat": "montse fernandez"
+        },
+        {
+            "nom": "Montse Hergueta",
+            "normalitzat": "montse hergueta"
+        },
+        {
+            "nom": "Montse Mateu",
+            "normalitzat": "montse mateu"
+        },
+        {
+            "nom": "Montse Mozo",
+            "normalitzat": "montse mozo"
+        },
+        {
+            "nom": "Montse Puig",
+            "normalitzat": "montse puig"
+        },
+        {
+            "nom": "Montse Ruiz",
+            "normalitzat": "montse ruiz"
+        },
+        {
+            "nom": "Montse Seriol",
+            "normalitzat": "montse seriol"
+        },
+        {
+            "nom": "Montse Sánchez",
+            "normalitzat": "montse sanchez"
+        },
+        {
+            "nom": "Montserrat Albets",
+            "normalitzat": "montserrat albets"
+        },
+        {
+            "nom": "Montserrat Armengol",
+            "normalitzat": "montserrat armengol"
+        },
+        {
+            "nom": "Montserrat Carbó",
+            "normalitzat": "montserrat carbo"
+        },
+        {
+            "nom": "Montserrat Isern",
+            "normalitzat": "montserrat isern"
+        },
+        {
+            "nom": "Montserrat Nadal",
+            "normalitzat": "montserrat nadal"
+        },
+        {
+            "nom": "Montserrat Torras",
+            "normalitzat": "montserrat torras"
+        },
+        {
+            "nom": "Montserrat Valls",
+            "normalitzat": "montserrat valls"
+        },
+        {
+            "nom": "Muntsa Clotet",
+            "normalitzat": "muntsa clotet"
+        },
+        {
+            "nom": "Muntsa G. Castells",
+            "normalitzat": "muntsa g. castells"
+        },
+        {
+            "nom": "Màrius Serra",
+            "normalitzat": "marius serra"
+        },
+        {
+            "nom": "Mònica Bisbal Sitjar",
+            "normalitzat": "monica bisbal sitjar"
+        },
+        {
+            "nom": "Mònica Cardona",
+            "normalitzat": "monica cardona"
+        },
+        {
+            "nom": "Mònica Molera",
+            "normalitzat": "monica molera"
+        },
+        {
+            "nom": "Mònica Pericàs",
+            "normalitzat": "monica pericas"
+        },
+        {
+            "nom": "Mònica Yern",
+            "normalitzat": "monica yern"
+        },
+        {
+            "nom": "Nati Estadella",
+            "normalitzat": "nati estadella"
+        },
+        {
+            "nom": "Nemesio Moreno",
+            "normalitzat": "nemesio moreno"
+        },
+        {
+            "nom": "Neus Batllori",
+            "normalitzat": "neus batllori"
+        },
+        {
+            "nom": "Neus Cardona",
+            "normalitzat": "neus cardona"
+        },
+        {
+            "nom": "Neus Franch",
+            "normalitzat": "neus franch"
+        },
+        {
+            "nom": "Neus Torres",
+            "normalitzat": "neus torres"
+        },
+        {
+            "nom": "Nicolau Vidal",
+            "normalitzat": "nicolau vidal"
+        },
+        {
+            "nom": "Nicole Serapio",
+            "normalitzat": "nicole serapio"
+        },
+        {
+            "nom": "Nina Furgol",
+            "normalitzat": "nina furgol"
+        },
+        {
+            "nom": "Núria Casas",
+            "normalitzat": "nuria casas"
+        },
+        {
+            "nom": "Núria Esteller",
+            "normalitzat": "nuria esteller"
+        },
+        {
+            "nom": "Núria Ferriol",
+            "normalitzat": "nuria ferriol"
+        },
+        {
+            "nom": "Núria Pedró",
+            "normalitzat": "nuria pedro"
+        },
+        {
+            "nom": "Núria Roé",
+            "normalitzat": "nuria roe"
+        },
+        {
+            "nom": "Núria Trepat",
+            "normalitzat": "nuria trepat"
+        },
+        {
+            "nom": "N’Alzamora",
+            "normalitzat": "n'alzamora"
+        },
+        {
+            "nom": "Octavian Mocanu",
+            "normalitzat": "octavian mocanu"
+        },
+        {
+            "nom": "Olimpia Viguín",
+            "normalitzat": "olimpia viguin"
+        },
+        {
+            "nom": "Oriol Comas",
+            "normalitzat": "oriol comas"
+        },
+        {
+            "nom": "Oriol de Yzaguirre",
+            "normalitzat": "oriol de yzaguirre"
+        },
+        {
+            "nom": "Pasqual Sánchez",
+            "normalitzat": "pasqual sanchez"
+        },
+        {
+            "nom": "Patri Vitri",
+            "normalitzat": "patri vitri"
+        },
+        {
+            "nom": "Patxi Navarro",
+            "normalitzat": "patxi navarro"
+        },
+        {
+            "nom": "Pau Arranz",
+            "normalitzat": "pau arranz"
+        },
+        {
+            "nom": "Pau Gispert",
+            "normalitzat": "pau gispert"
+        },
+        {
+            "nom": "Pau Riera",
+            "normalitzat": "pau riera"
+        },
+        {
+            "nom": "Pau Vidal",
+            "normalitzat": "pau vidal"
+        },
+        {
+            "nom": "Paula Girart",
+            "normalitzat": "paula girart"
+        },
+        {
+            "nom": "Paz Talens",
+            "normalitzat": "paz talens"
+        },
+        {
+            "nom": "Peadar Ó Braonáin",
+            "normalitzat": "peadar o braonain"
+        },
+        {
+            "nom": "Pep Bagué",
+            "normalitzat": "pep bague"
+        },
+        {
+            "nom": "Pep Torras",
+            "normalitzat": "pep torras"
+        },
+        {
+            "nom": "Pep Vinyals",
+            "normalitzat": "pep vinyals"
+        },
+        {
+            "nom": "Pere Agustí",
+            "normalitzat": "pere agusti"
+        },
+        {
+            "nom": "Pere Berga",
+            "normalitzat": "pere berga"
+        },
+        {
+            "nom": "Pere Grimalt Riera",
+            "normalitzat": "pere grimalt riera"
+        },
+        {
+            "nom": "Pere Grimalt Vert",
+            "normalitzat": "pere grimalt vert"
+        },
+        {
+            "nom": "Pere Marcet",
+            "normalitzat": "pere marcet"
+        },
+        {
+            "nom": "Pere Riera",
+            "normalitzat": "pere riera"
+        },
+        {
+            "nom": "Pere Riera",
+            "normalitzat": "pere riera"
+        },
+        {
+            "nom": "Pia Ona Verger",
+            "normalitzat": "pia ona verger"
+        },
+        {
+            "nom": "Pilar Sánchez",
+            "normalitzat": "pilar sanchez"
+        },
+        {
+            "nom": "Pilar Zorrilla",
+            "normalitzat": "pilar zorrilla"
+        },
+        {
+            "nom": "Quico Beltrà",
+            "normalitzat": "quico beltra"
+        },
+        {
+            "nom": "Rafel Canosa",
+            "normalitzat": "rafel canosa"
+        },
+        {
+            "nom": "Rafel Serra",
+            "normalitzat": "rafel serra"
+        },
+        {
+            "nom": "Ramon Josep Colell",
+            "normalitzat": "ramon josep colell"
+        },
+        {
+            "nom": "Ramon Torres",
+            "normalitzat": "ramon torres"
+        },
+        {
+            "nom": "Raul Royo",
+            "normalitzat": "raul royo"
+        },
+        {
+            "nom": "René Dibusi",
+            "normalitzat": "rene dibusi"
+        },
+        {
+            "nom": "Ricard Fité",
+            "normalitzat": "ricard fite"
+        },
+        {
+            "nom": "Ricard Oliver",
+            "normalitzat": "ricard oliver"
+        },
+        {
+            "nom": "Robert Ametller",
+            "normalitzat": "robert ametller"
+        },
+        {
+            "nom": "Roger Bru Martínez",
+            "normalitzat": "roger bru martinez"
+        },
+        {
+            "nom": "Roger Capdevila",
+            "normalitzat": "roger capdevila"
+        },
+        {
+            "nom": "Roger Cosso",
+            "normalitzat": "roger cosso"
+        },
+        {
+            "nom": "Roger Pistola",
+            "normalitzat": "roger pistola"
+        },
+        {
+            "nom": "Romà Vila",
+            "normalitzat": "roma vila"
+        },
+        {
+            "nom": "Rosa Barrientos",
+            "normalitzat": "rosa barrientos"
+        },
+        {
+            "nom": "Rosa M. Roca",
+            "normalitzat": "rosa m. roca"
+        },
+        {
+            "nom": "Rosa Maria Cot",
+            "normalitzat": "rosa maria cot"
+        },
+        {
+            "nom": "Rosa Riera",
+            "normalitzat": "rosa riera"
+        },
+        {
+            "nom": "Roser Peramiquel",
+            "normalitzat": "roser peramiquel"
+        },
+        {
+            "nom": "Roser Sacases",
+            "normalitzat": "roser sacases"
+        },
+        {
+            "nom": "Roser Salicrú",
+            "normalitzat": "roser salicru"
+        },
+        {
+            "nom": "Rubén Peris",
+            "normalitzat": "ruben peris"
+        },
+        {
+            "nom": "Salut Arús",
+            "normalitzat": "salut arus"
+        },
+        {
+            "nom": "Salvador Alsius",
+            "normalitzat": "salvador alsius"
+        },
+        {
+            "nom": "Salvador Batlle",
+            "normalitzat": "salvador batlle"
+        },
+        {
+            "nom": "Salvador Cases",
+            "normalitzat": "salvador cases"
+        },
+        {
+            "nom": "Salvador Comelles",
+            "normalitzat": "salvador comelles"
+        },
+        {
+            "nom": "Sandra Juncosa",
+            "normalitzat": "sandra juncosa"
+        },
+        {
+            "nom": "Sandra Luque",
+            "normalitzat": "sandra luque"
+        },
+        {
+            "nom": "Santiago Rosales",
+            "normalitzat": "santiago rosales"
+        },
+        {
+            "nom": "Sayaka Kamikariya",
+            "normalitzat": "sayaka kamikariya"
+        },
+        {
+            "nom": "Sebastiana Mascaró",
+            "normalitzat": "sebastiana mascaro"
+        },
+        {
+            "nom": "Sebastià Llodrà",
+            "normalitzat": "sebastia llodra"
+        },
+        {
+            "nom": "Sebastià Quetglas",
+            "normalitzat": "sebastia quetglas"
+        },
+        {
+            "nom": "Sebastià Sansó",
+            "normalitzat": "sebastia sanso"
+        },
+        {
+            "nom": "Serafí Lliteres",
+            "normalitzat": "serafi lliteres"
+        },
+        {
+            "nom": "Sergi Escura Bassa",
+            "normalitzat": "sergi escura bassa"
+        },
+        {
+            "nom": "Sergi Moreso",
+            "normalitzat": "sergi moreso"
+        },
+        {
+            "nom": "Silvia Alcaide",
+            "normalitzat": "silvia alcaide"
+        },
+        {
+            "nom": "Silvia Plana Hernandez",
+            "normalitzat": "silvia plana hernandez"
+        },
+        {
+            "nom": "Susagna Balagué",
+            "normalitzat": "susagna balague"
+        },
+        {
+            "nom": "Susana Jimenez",
+            "normalitzat": "susana jimenez"
+        },
+        {
+            "nom": "Susanna Jiménez",
+            "normalitzat": "susanna jimenez"
+        },
+        {
+            "nom": "Teresa Brescó",
+            "normalitzat": "teresa bresco"
+        },
+        {
+            "nom": "Thibaut Graell",
+            "normalitzat": "thibaut graell"
+        },
+        {
+            "nom": "Tomeu Cursach",
+            "normalitzat": "tomeu cursach"
+        },
+        {
+            "nom": "Tomeu Perelló",
+            "normalitzat": "tomeu perello"
+        },
+        {
+            "nom": "Tomeu Riera",
+            "normalitzat": "tomeu riera"
+        },
+        {
+            "nom": "Ton Castelló",
+            "normalitzat": "ton castello"
+        },
+        {
+            "nom": "Ton Pons",
+            "normalitzat": "ton pons"
+        },
+        {
+            "nom": "Toni Bellatriu",
+            "normalitzat": "toni bellatriu"
+        },
+        {
+            "nom": "Toni Calitxo Gil Cobo",
+            "normalitzat": "toni calitxo gil cobo"
+        },
+        {
+            "nom": "Toni Clar",
+            "normalitzat": "toni clar"
+        },
+        {
+            "nom": "Toni Donoso",
+            "normalitzat": "toni donoso"
+        },
+        {
+            "nom": "Toni Escolar",
+            "normalitzat": "toni escolar"
+        },
+        {
+            "nom": "Toni Griera",
+            "normalitzat": "toni griera"
+        },
+        {
+            "nom": "Toni Martínez",
+            "normalitzat": "toni martinez"
+        },
+        {
+            "nom": "Toni Mateu",
+            "normalitzat": "toni mateu"
+        },
+        {
+            "nom": "Toni Nadal",
+            "normalitzat": "toni nadal"
+        },
+        {
+            "nom": "Toni Orell",
+            "normalitzat": "toni orell"
+        },
+        {
+            "nom": "Toni Siquier",
+            "normalitzat": "toni siquier"
+        },
+        {
+            "nom": "Tonina Garcia",
+            "normalitzat": "tonina garcia"
+        },
+        {
+            "nom": "Valentí Rossell",
+            "normalitzat": "valenti rossell"
+        },
+        {
+            "nom": "Vicenç Castelló",
+            "normalitzat": "vicenc castello"
+        },
+        {
+            "nom": "Vicki Vilana",
+            "normalitzat": "vicki vilana"
+        },
+        {
+            "nom": "Victòria Sancho",
+            "normalitzat": "victoria sancho"
+        },
+        {
+            "nom": "Vincent Truant",
+            "normalitzat": "vincent truant"
+        },
+        {
+            "nom": "Víctor Nebreda",
+            "normalitzat": "victor nebreda"
+        },
+        {
+            "nom": "Xabier Larrañaga",
+            "normalitzat": "xabier larranaga"
+        },
+        {
+            "nom": "Xavi Castelló",
+            "normalitzat": "xavi castello"
+        },
+        {
+            "nom": "Xavier Adrover",
+            "normalitzat": "xavier adrover"
+        },
+        {
+            "nom": "Xavier Alarcon",
+            "normalitzat": "xavier alarcon"
+        },
+        {
+            "nom": "Xavier Albons",
+            "normalitzat": "xavier albons"
+        },
+        {
+            "nom": "Xavier Cardona",
+            "normalitzat": "xavier cardona"
+        },
+        {
+            "nom": "Xavier Giol",
+            "normalitzat": "xavier giol"
+        },
+        {
+            "nom": "Xavier Nájera",
+            "normalitzat": "xavier najera"
+        },
+        {
+            "nom": "Xavier Torres",
+            "normalitzat": "xavier torres"
+        },
+        {
+            "nom": "Xevi Olivé",
+            "normalitzat": "xevi olive"
+        },
+        {
+            "nom": "Xisca Martínez",
+            "normalitzat": "xisca martinez"
+        },
+        {
+            "nom": "Xisca Nadal",
+            "normalitzat": "xisca nadal"
+        },
+        {
+            "nom": "Xisco Rosselló",
+            "normalitzat": "xisco rossello"
+        },
+        {
+            "nom": "Xisco Truyols",
+            "normalitzat": "xisco truyols"
+        },
+        {
+            "nom": "Zhaira Moreno",
+            "normalitzat": "zhaira moreno"
+        },
+        {
+            "nom": "Àlex Abad",
+            "normalitzat": "alex abad"
+        },
+        {
+            "nom": "Àlex Carol",
+            "normalitzat": "alex carol"
+        },
+        {
+            "nom": "Àlex Castillo",
+            "normalitzat": "alex castillo"
+        },
+        {
+            "nom": "Àlex Murillo",
+            "normalitzat": "alex murillo"
+        },
+        {
+            "nom": "Àngela Cortès",
+            "normalitzat": "angela cortes"
+        },
+        {
+            "nom": "Àngela Cuesta",
+            "normalitzat": "angela cuesta"
+        },
+        {
+            "nom": "Àngels Castells",
+            "normalitzat": "angels castells"
+        },
+        {
+            "nom": "Àngels Marcé",
+            "normalitzat": "angels marce"
+        },
+        {
+            "nom": "Àngels Soldevila",
+            "normalitzat": "angels soldevila"
+        },
+        {
+            "nom": "Àngels Torrens",
+            "normalitzat": "angels torrens"
+        },
+        {
+            "nom": "Òscar Hernàndez",
+            "normalitzat": "oscar hernandez"
+        },
+        {
+            "nom": "⁠Bel Miquel Cazorla",
+            "normalitzat": "bel miquel cazorla"
+        }
+    ],
+    "origen": "generat amb normalitza_nom() de supabase/migrations/0004_importa_campionat.sql"
+}
