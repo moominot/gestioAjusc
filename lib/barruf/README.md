@@ -96,7 +96,7 @@ Les bases publicades són a https://www.ajuscrabble.cat/barruf/.
 
 ## La llavor
 
-`supabase/migrations/0002_llavor_barruf.sql` conté el punt zero: els 609
+`supabase/migrations/20260922100200_llavor_barruf.sql` conté el punt zero: els 609
 jugadors de l'edició 199, amb el seu BARRUF, les partides i victòries
 acumulades, l'estat i el club. El genera `scripts/genera_llavor.py` a partir del
 full, de manera que és reproduïble i no s'ha d'editar a mà.

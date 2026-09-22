@@ -19,14 +19,17 @@ rejugar refà tota la història posterior sola.
 
 ## Posar-ho en marxa
 
+Per muntar el projecte de Supabase des de zero, vegeu
+[`docs/desplegament.md`](docs/desplegament.md).
+
 ```bash
 npm install
 cp .env.example .env.local     # ompliu-hi les dades del projecte Supabase
 npm run dev
 ```
 
-Les migracions de `supabase/migrations/` s'apliquen en ordre. La `0002` és la
-llavor: els 609 jugadors de l'edició 199, importats del full de càlcul.
+Les cinc migracions de `supabase/migrations/` s'apliquen en ordre. La segona és
+la llavor: els 609 jugadors de l'edició 199, importats del full de càlcul.
 
 ```bash
 npm test          # proves del motor i dels lectors

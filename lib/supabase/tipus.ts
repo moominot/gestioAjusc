@@ -1,7 +1,7 @@
 /**
  * Tipus del model de lectura.
  *
- * Es corresponen amb les vistes de `supabase/migrations/0003_vistes_publiques.sql`.
+ * Es corresponen amb les vistes de `supabase/migrations/20260922100300_vistes_publiques.sql`.
  * Les xifres arriben com a text perquè PostgreSQL retorna els NUMERIC així per
  * no perdre precisió; es converteixen on es mostren.
  */

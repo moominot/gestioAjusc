@@ -13,7 +13,7 @@ sembrés a zero, tothom aniria amb K=30 per sempre.
 
 Ús:
     python3 scripts/genera_llavor.py GENERADOR_BARRUF.xlsx \\
-        > supabase/migrations/0002_llavor_barruf.sql
+        > supabase/migrations/20260922100200_llavor_barruf.sql
 
     python3 scripts/genera_llavor.py GENERADOR_BARRUF.xlsx --json \\
         > lib/importacio/__fixtures__/registre-llavor.json
