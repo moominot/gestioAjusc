@@ -48,12 +48,32 @@ COLUMNES = {
 }
 
 
+# Mateixes regles que lib/importacio/noms.ts. Si en canvieu cap, canvieu-les als
+# dos llocs i regenereu els àlies.
+def neteja(nom: str) -> str:
+    """Treu del nom el que no s'hi veu pero hi es.
+
+    Les dades d'origen en porten: a la llista del BARRUF hi ha un jugador amb un
+    WORD JOINER (U+2060) al davant del nom i uns quants amb espai al comencament.
+    Si no es neteja, la coincidencia exacta hi falla sempre i la mateixa persona
+    demana validacio manual a cada importacio.
+
+    'Cf' son els caracters de format invisibles i 'Zs' els separadors que no son
+    l'espai normal.
+    """
+    text = "".join(
+        " " if unicodedata.category(c) == "Zs" else c
+        for c in nom
+        if unicodedata.category(c) != "Cf"
+    )
+    return re.sub(r"\s+", " ", text).strip()
+
+
 def normalitza(nom: str) -> str:
     """Forma canònica per comparar noms: sense accents, ni punt volat, ni majúscules."""
-    text = nom.replace("·", "").replace("’", "'")
+    text = neteja(nom).replace("·", "").replace("’", "'").replace("‘", "'")
     descompost = unicodedata.normalize("NFD", text)
-    sense_accents = "".join(c for c in descompost if unicodedata.category(c) != "Mn")
-    return re.sub(r"\s+", " ", sense_accents).strip().lower()
+    return "".join(c for c in descompost if unicodedata.category(c) != "Mn").lower()
 
 
 def temporada(valor) -> tuple[str | None, bool]:
@@ -95,10 +115,10 @@ def llegeix(cami: str) -> list[dict]:
 
         jugadors.append(
             {
-                "nom": str(nom).strip(),
+                "nom": neteja(str(nom)),
                 "barruf": valor("barruf"),
                 "estat": valor("estat"),
-                "club": (str(valor("club")).strip() if valor("club") else None),
+                "club": (neteja(str(valor("club"))) or None) if valor("club") else None,
                 "victories_temporada": valor("victories_temporada") or 0,
                 "partides_temporada": valor("partides_temporada") or 0,
                 "victories_totals": valor("victories_totals") or 0,

@@ -67,3 +67,58 @@ Un cop hi hagi els noms, la cadena és: nom del fitxer → `jugador_alies` →
 `nameMatching` per als que no hi constin → validació manual dels dubtosos →
 identificador del registre. I cada nom validat s'hi desa com a àlies, de manera
 que la propera importació d'aquell club ja el reconeixerà.
+
+## El camí d'importació bo: `.trn` + `.sco` + `.ini`
+
+Els fitxers de text `.rnd` i `.stg` són una exportació parcial. El torneig de
+debò viu en tres fitxers que el SwissPerfect desa sempre:
+
+| Fitxer | Format | Contingut |
+|---|---|---|
+| `.trn` | dBase III | Participants: nom, cognoms, puntuació inicial, retirada |
+| `.sco` | dBase III | Tots els resultats, amb la puntuació d'Scrabble |
+| `.ini` | INI | Nom del torneig, organitzador, rondes previstes |
+
+Comparat amb l'exportació de text, hi guanyem tres coses: **els noms dels
+jugadors**, **la puntuació d'Scrabble** i **totes les rondes** sense dependre
+que l'organitzador se'n recordi d'exportar-les. Al ManaCup, els `.rnd` porten 15
+rondes de les 23 jugades; el `.sco` les porta totes.
+
+### Les xifres van doblades
+
+El SwissPerfect ho desa tot multiplicat per dos per treballar només amb enters:
+
+- `W_SCORE`: 2 victòria, 1 empat, 0 derrota → dividiu per 2.
+- `W_SUBSCO`: el doble de la puntuació d'Scrabble → dividiu per 2.
+
+Comprovat: la primera partida del ManaCup hi consta 722–766, i al full de
+l'AJUSC és 361–383.
+
+### Altres detalls del format
+
+- La codificació és **Windows-1252**, no la pàgina de codis DOS que solia fer
+  servir el dBase. `Xurí` hi surt com a `58 75 72 ED`.
+- El `.trn` acaba amb registres en blanc de reserva: al ManaCup n'hi ha 7 per a
+  65 jugadors.
+- `W_TYPE`/`B_TYPE` valen 1 quan la partida s'ha jugat. Les rondes ja
+  aparellades però pendents hi consten amb tot a zero: al ManaCup, la 24 i la 25.
+- `WITHDRAWAL` és la ronda a partir de la qual el jugador es retira. No afecta
+  el càlcul, perquè el motor només mira les partides realment jugades.
+
+El `.sco` i els `.rnd` s'han contrastat partida a partida: **450 coincidències,
+cap discrepància**.
+
+## Neteja de noms
+
+`noms.ts` centralitza la normalització, i `scripts/genera_llavor.py` aplica les
+mateixes regles. Treu els caràcters de format invisibles (`\p{Cf}`) i unifica
+els separadors que no són l'espai normal (`\p{Zs}`), a més dels accents, el punt
+volat i els apòstrofs tipogràfics per a la forma de comparació.
+
+No és teòric: la llista del BARRUF porta un jugador amb un **WORD JOINER
+(U+2060)** al davant del nom i uns quants amb espai al començament. Sense
+netejar-ho, aquell jugador fallaria la coincidència exacta a cada importació.
+
+Amb la neteja aplicada, dels **65 participants del ManaCup, 63 es resolen sols**
+contra el registre. En queden dos per validar a mà: un cas genuïnament ambigu
+(«Lluís Fuster» contra «Lluís Fuster Amer») i una alta nova.
