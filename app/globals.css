@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-stone-50 text-stone-900 antialiased;
+}
+
+/* Les taules de classificació són llargues i estretes: números tabulars perquè
+   les columnes no ballin de fila en fila. */
+.xifres {
+  font-variant-numeric: tabular-nums;
+}

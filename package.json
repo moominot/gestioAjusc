@@ -13,6 +13,7 @@
     "simula": "vite-node scripts/simula_campionat.ts --"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.38.4",
     "fast-levenshtein": "^3.0.0",
     "next": "^16.0.0",
