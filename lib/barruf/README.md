@@ -118,3 +118,35 @@ Aquesta transició l'ha de fer l'aplicació explícitament en obrir la temporada
 ha de quedar registrada com una edició nova. No és una conseqüència automàtica
 de mirar el calendari: si algun dia es vol reconstruir la llista tal com era en
 un moment del passat, cal poder replicar les escombrades una per una.
+
+## Publicar una edició
+
+`publicacio.ts` calcula una edició sencera: rejuga la cadena des de la llavor
+amb tots els campionats barrufats, en deriva els estats i assigna les posicions.
+
+No s'actualitza res de manera incremental. Es recalcula tot cada vegada, i per
+això corregir un resultat antic i tornar a publicar refà tota la història
+posterior sola.
+
+**La temporada de referència importa.** És des d'on es mira qui fa dues
+temporades que no juga, i com que l'escombrada d'inactivitat s'aplica a l'inici
+de temporada, publicar amb una temporada o una altra dona llistes diferents.
+Això és volgut, i la pantalla de publicació ho demana explícitament.
+
+Les posicions segueixen el criteri de sempre: els empatats la comparteixen i la
+següent se salta tantes places com empats hi hagi. Només en tenen els actius.
+
+### Què es reescriu i què no
+
+| | En publicar |
+|---|---|
+| `barruf_edicions` i els seus `barruf_valors` | S'hi afegeix l'edició nova. Les anteriors **no es toquen mai**: són el que es va publicar en el seu moment. |
+| `barruf_variacions` | Es reescriuen senceres. Són una projecció del càlcul actual, no un registre històric. |
+
+### Comprovat de punta a punta
+
+Amb el ManaCup importat i marcat com a finalitzat, la publicació del BARRUF 200
+dona exactament les xifres de `npm run simula`, que al seu dia es van contrastar
+amb una implementació independent en Python. En Xisco Truyols passa de 1343 a
+1403 —21 victòries de 23 contra les 18 esperades, amb K=20— i esdevé el primer
+Gran Gran Mestre de la llista.

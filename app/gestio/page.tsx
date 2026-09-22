@@ -67,6 +67,19 @@ export default async function Gestio() {
       </section>
 
       <section className="rounded-lg border border-stone-200 bg-white p-6">
+        <h2 className="font-semibold">Publicar el BARRUF</h2>
+        <p className="mt-1 text-sm text-stone-600">
+          Rejugar la cadena amb els campionats barrufats i publicar l&apos;edició nova.
+        </p>
+        <Link
+          href="/gestio/publicar"
+          className="mt-3 inline-block rounded-lg border border-stone-900 px-4 py-2 text-sm hover:bg-stone-100"
+        >
+          Publicar
+        </Link>
+      </section>
+
+      <section className="rounded-lg border border-stone-200 bg-white p-6">
         <h2 className="font-semibold">Simular sense desar</h2>
         <p className="mt-1 text-sm text-stone-600">
           El lector dels fitxers del SwissPerfect i la resolució de noms ja són fets i provats
