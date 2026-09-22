@@ -88,7 +88,7 @@ Si s'apliquen netes aquí, a producció també. I si peten, ha estat a casa.
 ## Portar-hi una còpia de producció
 
 ```bash
-supabase db dump -f produccio.sql          # des de l'arrel del projecte
+npx supabase db dump -f produccio.sql      # des de l'arrel del projecte
 docker compose exec -T bd psql -U postgres -d ajusc < produccio.sql
 ```
 

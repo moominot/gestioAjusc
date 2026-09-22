@@ -41,20 +41,26 @@ nom porta la marca de temps al davant justament per això.
 ### Amb el CLI (recomanat)
 
 És el que permetrà anar afegint migracions més endavant sense tocar res a mà.
+El CLI ja ve com a dependència del projecte, o sigui que amb `npm install` n'hi
+ha prou.
+
+> **No proveu `npm install -g supabase`**: falla a posta. El paquet no admet la
+> instal·lació global. Aquí es fa servir amb `npx`, que és la manera
+> recomanada; si en voleu un de global, és per Homebrew o Scoop.
 
 ```bash
-npm install -g supabase
-supabase login
-supabase link --project-ref <la-referència-del-projecte>
-supabase db push
+npx supabase login
+npx supabase link --project-ref <la-referència-del-projecte>
+npx supabase db push
 ```
 
 La referència del projecte és el tros de l'URL:
 `https://<referència>.supabase.co`.
 
-El primer `db push` crea la taula d'historial `supabase_migrations.schema_migrations`,
-i a partir d'aquí cada migració s'aplica un sol cop. Les següents vegades només
-cal `supabase db push`.
+El primer `db push` crea la taula d'historial
+`supabase_migrations.schema_migrations`, i a partir d'aquí cada migració
+s'aplica un sol cop: executar-lo dues vegades seguides diu
+`Remote database is up to date` i no toca res.
 
 ### Sense CLI
 
@@ -193,7 +199,7 @@ malament és un resultat; corregiu-lo i torneu a publicar.
 retenció. Abans d'una operació grossa, val la pena baixar-se un bolcat:
 
 ```bash
-supabase db dump -f copia-$(date +%F).sql
+npx supabase db dump -f copia-$(date +%F).sql
 ```
 
 **Si la llavor s'ha de refer** (perquè trobeu un error a l'edició 199), es
