@@ -211,3 +211,20 @@ python3 scripts/genera_llavor.py GENERADOR_BARRUF.xlsx \
 python3 scripts/genera_llavor.py GENERADOR_BARRUF.xlsx --json \
   > lib/importacio/__fixtures__/registre-llavor.json
 ```
+
+---
+
+## Les migracions, automàtiques
+
+Si connecteu el repositori de GitHub al projecte de Supabase (al tauler,
+**Project Settings → Integrations → GitHub**), Supabase aplica sol les
+migracions noves de `supabase/migrations/` cada vegada que es puja a la branca
+de producció. Llavors no cal ni `supabase login` ni `db push`: n'hi ha prou amb
+pujar el codi.
+
+`supabase/config.toml` porta l'identificador del projecte i és el que fa que la
+integració sàpiga on ha d'anar.
+
+Compte amb una cosa: amb això, **pujar una migració a main l'aplica a la base de
+dades de debò**. És còmode, però vol dir que el que es puja ha d'estar provat.
+Per a això hi ha la rèplica de [`docker/`](../docker/README.md).
