@@ -1,6 +1,8 @@
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
+import { configuracioSupabase } from './configuracio'
+
 /**
  * Client de Supabase per a components de servidor i accions.
  *
@@ -10,10 +12,9 @@ import { cookies } from 'next/headers'
 export async function clientServidor() {
   const magatzem = await cookies()
 
-  return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
+  const { url, clau } = configuracioSupabase()
+
+  return createServerClient(url, clau, {
       cookies: {
         getAll: () => magatzem.getAll(),
         setAll: (galetes) => {
