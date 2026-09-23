@@ -25,7 +25,8 @@ DO $$ BEGIN CREATE ROLE service_role NOLOGIN NOINHERIT BYPASSRLS;
 EXCEPTION WHEN duplicate_object THEN NULL; END $$;
 
 -- El rol amb què es connecta PostgREST, que després es transforma en un dels
--- de dalt segons qui faci la petició.
+-- de dalt segons qui faci la petició. La contrasenya de debò la hi posa
+-- 02-contrasenya-autenticador.sh, que sí que pot llegir el .env.
 DO $$ BEGIN
     CREATE ROLE autenticador NOINHERIT LOGIN PASSWORD 'canvieu-me';
 EXCEPTION WHEN duplicate_object THEN NULL; END $$;

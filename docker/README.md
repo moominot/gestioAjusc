@@ -14,30 +14,59 @@ a la vista i resol el certificat.
 |---|---|
 | `bd` | PostgreSQL 16 |
 | `auth` | Els enllaços d'entrada per correu (GoTrue, el mateix que Supabase) |
-| `migracions` | Aplica `supabase/migrations/` i es mor. Feina d'un sol cop. |
+| `migracions` | Aplica les migracions noves de `supabase/migrations/` i es mor |
 | `api` | PostgREST: el que hi ha darrere de `/rest/v1` |
 | `correu` | Bústia de proves. Recull els correus i els ensenya; no en surt cap. |
 | `porta` | Reparteix `/rest/v1` i `/auth/v1` entre els dos serveis |
+| `aplicacio` | La mateixa aplicació que a Vercel, apuntant a aquesta rèplica |
 
-Són sis. La instal·lació oficial de Supabase en porta una desena: aquí no hi ha
+La instal·lació oficial de Supabase en porta una desena: aquí no hi ha
 emmagatzematge de fitxers, ni temps real, ni processament d'imatges, perquè
 aquesta aplicació no en fa servir cap.
 
 ## Posar-ho en marxa
 
+Al servidor, amb Docker i prou (no cal Node):
+
 ```bash
-cd docker
+git clone https://github.com/moominot/gestioAjusc.git ~/ajusc
+cd ~/ajusc/docker
 ./genera-claus.sh > .env      # contrasenyes, secret del JWT i la clau de l'aplicació
-docker compose up -d
-docker compose logs -f migracions
 ```
 
-Quan el registre digui `Migracions aplicades`, ja hi és tot.
+Obriu el `.env` i reviseu-hi l'adreça del servidor i els ports. Si algun ja és
+ocupat per un altre servei, canvieu-lo **i també les URL que el porten**. Per
+exemple, si l'API va al 8010, `URL_BASE` ha de dir `:8010`.
 
-El `.env` porta comentada, al final, la configuració per al `.env.local` de
-l'aplicació. Descomenteu-la, poseu-hi l'adreça del vostre servidor i copieu-la.
+```bash
+docker compose up -d --build
+./comprova.sh
+```
+
+La primera vegada triga uns minuts: baixa les imatges i compila l'aplicació,
+que en compilar passa les proves i la comprovació de tipus. Si fallen, no
+arrenca.
+
+| Què | On |
+|---|---|
+| L'aplicació | `http://<servidor>:3000` (`PORT_APLICACIO`) |
+| La bústia de proves | `http://<servidor>:8025` (`PORT_CORREU`) |
+| L'API, per al client de Supabase | `http://<servidor>:8000` (`PORT_API`) |
+| La base de dades, per a psql | `<servidor>:5432` (`PORT_BD`) |
 
 > El fitxer `.env` porta les contrasenyes. Està ignorat pel git; no el pugeu.
+
+## Portar-hi la darrera versió
+
+```bash
+cd ~/ajusc
+git pull
+cd docker
+docker compose up -d --build
+```
+
+Les migracions noves s'apliquen soles, i les que ja hi eren se salten: es porta
+l'historial a `supabase_migrations.schema_migrations`, igual que Supabase.
 
 ## Comprovar que va
 
@@ -62,25 +91,39 @@ correus. Si passa, no ho exposeu enlloc fins a resoldre-ho.
 Igual que a producció, cal entrar un cop perquè existeixi la fila a
 `auth.users`:
 
-1. Aixequeu l'aplicació apuntant a la rèplica i aneu a `/entrar`.
+1. Aneu a `http://<servidor>:3000/entrar`.
 2. Demaneu l'enllaç amb el vostre correu.
-3. **Obriu la bústia de proves a `http://<el-servidor>:8025`**: el correu és
-   allà, no us arribarà enlloc més. Cliqueu-hi l'enllaç.
+3. **Obriu la bústia de proves a `http://<servidor>:8025`**: el correu és
+   allà, no us arribarà enlloc més. Cliqueu-hi l'enllaç. Us tornarà a
+   `/entrar`, perquè encara no sou gestor.
 4. Afegiu-vos a `perfils`:
 
 ```bash
 docker compose exec bd psql -U postgres -d ajusc -c \
-  "INSERT INTO perfils (id, nom, rol) SELECT id, 'El vostre nom', 'admin' FROM auth.users;"
+  "INSERT INTO perfils (id, nom, rol) SELECT id, 'El vostre nom', 'admin' FROM auth.users WHERE email = 'el-vostre@correu.cat';"
 ```
+
+5. Torneu a carregar `/gestio`.
+
+Si demaneu dos enllaços seguits amb el mateix correu, el segon el refusa: hi
+ha un minut d'espera entre enllaços, com a Supabase.
 
 ## Assajar una migració
 
-És per a això que existeix la rèplica:
+És per a això que existeix la rèplica. Poseu la migració nova a
+`supabase/migrations/` i:
+
+```bash
+docker compose up -d migracions
+docker compose logs migracions
+```
+
+Només s'aplica la nova. Per assajar-les totes des de zero:
 
 ```bash
 docker compose down -v          # esborra el volum i comença de zero
 docker compose up -d
-docker compose logs -f migracions
+docker compose logs migracions
 ```
 
 Si s'apliquen netes aquí, a producció també. I si peten, ha estat a casa.
@@ -95,34 +138,29 @@ docker compose exec -T bd psql -U postgres -d ajusc < produccio.sql
 Amb això assageu contra les dades de debò, que és quan surten els problemes que
 no s'havien vist.
 
-## Què hi ha provat i què no
+## Què s'ha provat
 
-Aquesta és la part del projecte que **no he pogut executar sencera**: l'entorn
-on es va escriure no deixa baixar imatges de contenidor. El que sí que s'ha
-comprovat contra un PostgreSQL de debò:
+Tot, al servidor de casa (Ubuntu 26.04, Docker 29) i des de zero, el 23 de
+setembre de 2026:
 
-- El guió d'inicialització: els rols, l'esquema `auth` i les funcions
-  `auth.uid()`, `auth.jwt()` i `auth.role()`.
-- Les cinc migracions aplicades al damunt, en ordre.
-- PostgREST amb el rol `autenticador` i la clau que genera `genera-claus.sh`,
-  amb la mateixa configuració que el compose (`db-use-legacy-gucs = false`):
-  un visitant anònim llegeix la classificació i xoca amb les dades de contacte;
-  un gestor llegeix els jugadors i `auth.uid()` el reconeix; un usuari
-  identificat que no és gestor no veu res i no pot importar.
-- La sintaxi del `compose.yml` i l'ordre de dependències.
+- Els set serveis arrenquen i es troben entre ells.
+- Les cinc migracions s'apliquen en ordre, i en tornar a aixecar la pila se
+  salten.
+- `comprova.sh` surt net: 609 jugadors, 167 d'actius, l'anònim llegeix la
+  classificació i xoca amb les dades de contacte.
+- L'entrada per correu de punta a punta: el formulari, el correu a la bústia,
+  l'enllaç, la sessió oberta i, un cop donat d'alta a `perfils`, la zona de
+  gestió.
 
-El que **no** s'ha pogut provar: que les imatges arrenquin i es trobin entre
-elles, que el GoTrue creï bé les seves taules abans que corrin les migracions,
-i el repartiment de rutes del Caddy. Si alguna cosa falla, serà per aquí.
-
-Els primers llocs on mirar:
+Si alguna cosa falla, els primers llocs on mirar:
 
 ```bash
 docker compose ps                  # qui és dret i qui no
 docker compose logs auth           # el GoTrue és el més primmirat
 docker compose logs migracions     # si van petar, aquí diu on
+docker compose logs aplicacio
 ```
 
-Les etiquetes de totes les imatges s'han comprovat contra el registre i
-existeixen, inclosa la del GoTrue (`v2.197.0`, l'última estable). Si un dia
-n'hagueu de canviar cap, les vigents són a `github.com/supabase/auth/releases`.
+Les etiquetes de les imatges són fixes, excepte la de la bústia. Si un dia n'heu
+de canviar la del GoTrue, les vigents són a
+`github.com/supabase/auth/releases`.

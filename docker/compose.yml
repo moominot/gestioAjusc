@@ -24,6 +24,8 @@ services:
     environment:
       POSTGRES_PASSWORD: ${CONTRASENYA_BD:?cal definir CONTRASENYA_BD al .env}
       POSTGRES_DB: ajusc
+      # La llegeix inicialitza/02-contrasenya-autenticador.sh.
+      CONTRASENYA_AUTENTICADOR: ${CONTRASENYA_AUTENTICADOR:?cal definir CONTRASENYA_AUTENTICADOR}
       # Els noms catalans al codi, però la base de dades en anglès com sempre.
       POSTGRES_INITDB_ARGS: '--locale-provider=icu --icu-locale=ca-ES --encoding=UTF8'
     volumes:
@@ -69,10 +71,13 @@ services:
       GOTRUE_EXTERNAL_EMAIL_ENABLED: 'true'
       # Sense contrasenyes: només enllaç per correu.
       GOTRUE_MAILER_AUTOCONFIRM: 'false'
-      GOTRUE_MAILER_URLPATHS_CONFIRMATION: /auth/retorn
-      GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE: /auth/retorn
-      GOTRUE_MAILER_URLPATHS_RECOVERY: /auth/retorn
-      GOTRUE_MAILER_URLPATHS_INVITE: /auth/retorn
+      # L'enllaç del correu va primer al GoTrue, que el valida i després envia
+      # cap a l'aplicació (/auth/retorn?code=…). Si apuntés directament a
+      # /auth/retorn, cauria a l'API i no a l'aplicació.
+      GOTRUE_MAILER_URLPATHS_CONFIRMATION: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_EMAIL_CHANGE: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_RECOVERY: /auth/v1/verify
+      GOTRUE_MAILER_URLPATHS_INVITE: /auth/v1/verify
 
       # Tot el correu va a parar al Mailpit: aquí no en surt cap de debò.
       GOTRUE_SMTP_HOST: correu
@@ -93,7 +98,8 @@ services:
   # Les migracions de l'aplicació
   # ---------------------------------------------------------------------------
   # S'executen després del GoTrue, perquè l'esquema fa referència a auth.users.
-  # Un cop acabades, el contenidor es mor: és feina d'un sol cop.
+  # Un cop acabades, el contenidor es mor. Cada vegada que s'aixeca la pila
+  # aplica només les noves, com fa Supabase.
   migracions:
     image: postgres:16-alpine
     depends_on:
@@ -101,18 +107,12 @@ services:
         condition: service_healthy
     volumes:
       - ../supabase/migrations:/migracions:ro
+      - ./aplica-migracions.sh:/aplica-migracions.sh:ro
     environment:
       PGPASSWORD: ${CONTRASENYA_BD}
-    entrypoint:
-      - sh
-      - -c
-      - |
-        set -e
-        for fitxer in /migracions/*.sql; do
-          echo "--> $$(basename $$fitxer)"
-          psql -h bd -U postgres -d ajusc -v ON_ERROR_STOP=1 -q -f "$$fitxer"
-        done
-        echo "Migracions aplicades."
+      # Sense els NOTICE de cada IF NOT EXISTS, que tapen els errors de debò.
+      PGOPTIONS: '-c client_min_messages=warning'
+    entrypoint: ['sh', '/aplica-migracions.sh']
     restart: 'no'
 
   # ---------------------------------------------------------------------------
@@ -158,6 +158,26 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
     ports:
       - '${PORT_API:-8000}:8000'
+
+  # ---------------------------------------------------------------------------
+  # L'aplicació
+  # ---------------------------------------------------------------------------
+  # La mateixa que a Vercel, apuntant a aquesta rèplica. En construir-la passa
+  # les proves i la comprovació de tipus: si fallen, no arrenca.
+  aplicacio:
+    build:
+      context: ..
+      dockerfile: docker/aplicacio.Dockerfile
+      args:
+        NEXT_PUBLIC_SUPABASE_URL: ${URL_BASE}
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: ${CLAU_ANON:?cal definir CLAU_ANON al .env}
+    restart: unless-stopped
+    depends_on:
+      - porta
+    environment:
+      NEXT_PUBLIC_URL_BASE: ${URL_APLICACIO}
+    ports:
+      - '${PORT_APLICACIO:-3000}:3000'
 
 volumes:
   dades:

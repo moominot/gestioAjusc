@@ -26,6 +26,7 @@ jwt() {
 
 # Caduquen d'aquí a deu anys: és una rèplica de proves, no producció.
 CADUCITAT=$(($(date +%s) + 315360000))
+CLAU_ANON=$(jwt '{"role":"anon","iss":"ajusc","aud":"authenticated","exp":'"$CADUCITAT"'}')
 
 cat <<FI
 # Generat per docker/genera-claus.sh. No el pugeu al repositori.
@@ -42,11 +43,15 @@ URLS_PERMESES=http://192.168.178.122:3000/auth/retorn,http://localhost:3000/auth
 PORT_API=8000
 PORT_BD=5432
 PORT_CORREU=8025
+PORT_APLICACIO=3000
+
+# La clau pública, la que fa servir l'aplicació.
+CLAU_ANON=$CLAU_ANON
 
 # ---------------------------------------------------------------------------
-# Per al .env.local de l'aplicació
+# Per al .env.local, si voleu córrer l'aplicació en un altre ordinador
 # ---------------------------------------------------------------------------
 # NEXT_PUBLIC_SUPABASE_URL=http://192.168.178.122:8000
-# NEXT_PUBLIC_SUPABASE_ANON_KEY=$(jwt '{"role":"anon","iss":"ajusc","aud":"authenticated","exp":'"$CADUCITAT"'}')
+# NEXT_PUBLIC_SUPABASE_ANON_KEY=$CLAU_ANON
 # NEXT_PUBLIC_URL_BASE=http://192.168.178.122:3000
 FI

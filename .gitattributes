@@ -1,0 +1,3 @@
+# Els guions de docker/ corren a Linux: amb finals de línia de Windows no
+# arrenquen («/bin/sh^M: bad interpreter»).
+*.sh text eol=lf

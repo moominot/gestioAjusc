@@ -108,8 +108,8 @@ vegada.
 
 1. Aixequeu l'aplicació (pas 5) i aneu a `/entrar`.
 2. Poseu-hi el vostre correu i demaneu l'enllaç.
-3. Obriu-lo. Us durà a `/gestio` i us dirà que no hi teniu accés: és correcte,
-   encara no sou gestor.
+3. Obriu-lo. Us tornarà a `/entrar`: és correcte, encara no sou gestor, però
+   la sessió ja és oberta.
 4. Al SQL Editor:
 
 ```sql
