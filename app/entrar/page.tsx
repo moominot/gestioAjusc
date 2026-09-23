@@ -1,3 +1,4 @@
+import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import { clientServidor, gestorConnectat } from '../../lib/supabase/servidor'
@@ -11,6 +12,27 @@ export const metadata = { title: 'Entrar' }
  * per correu estalvia haver de gestionar contrasenyes perdudes. Qui no consti a
  * `perfils` pot rebre l'enllaç, però l'RLS no el deixarà veure ni tocar res.
  */
+/**
+ * On ha de tornar l'enllaç del correu.
+ *
+ * Si no s'ha fixat NEXT_PUBLIC_URL_BASE, la treu de la mateixa petició: així
+ * funciona igual a localhost, al domini de producció i a les previsualitzacions
+ * de Vercel sense configurar res. Supabase només hi envia si l'adreça consta a
+ * les Redirect URLs, o sigui que no es pot desviar cap a un altre lloc.
+ */
+async function adrecaBase(): Promise<string> {
+  const fixada = process.env.NEXT_PUBLIC_URL_BASE?.trim()
+  if (fixada) return fixada.replace(/\/+$/, '')
+
+  const capcaleres = await headers()
+  const origen = capcaleres.get('origin')
+  if (origen) return origen
+
+  const amfitrio = capcaleres.get('x-forwarded-host') ?? capcaleres.get('host')
+  const protocol = capcaleres.get('x-forwarded-proto') ?? 'https'
+  return `${protocol}://${amfitrio}`
+}
+
 export default async function Entrar({
   searchParams,
 }: {
@@ -28,7 +50,7 @@ export default async function Entrar({
     const { error } = await supabase.auth.signInWithOtp({
       email: correu,
       options: {
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_URL_BASE ?? ''}/auth/retorn`,
+        emailRedirectTo: `${await adrecaBase()}/auth/retorn`,
       },
     })
 

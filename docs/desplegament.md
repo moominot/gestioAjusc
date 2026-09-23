@@ -161,11 +161,23 @@ npm run dev
 
 1. A [vercel.com](https://vercel.com), **Add New → Project**, i trieu el
    repositori. Detecta Next.js sol.
-2. A **Environment Variables**, poseu-hi les tres d'abans, amb
-   `NEXT_PUBLIC_URL_BASE` apuntant al domini de producció.
-3. **Deploy**.
-4. Torneu al pas 3 i afegiu l'URL de producció a les *Redirect URLs* de
+2. Connecteu-hi Supabase des de **Integrations → Supabase** (o, des de
+   Supabase, **Project Settings → Integrations → Vercel**). La integració posa
+   sola `NEXT_PUBLIC_SUPABASE_URL` i la clau publicable
+   (`NEXT_PUBLIC_SUPABASE_ANON_KEY` o `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`;
+   l'aplicació accepta qualsevol de les dues). Sense integració, poseu-les a mà
+   a **Environment Variables**.
+3. `NEXT_PUBLIC_URL_BASE` no cal: si no hi és, l'enllaç del correu torna al
+   mateix domini des d'on s'ha demanat. Poseu-la només si voleu forçar-ne un.
+4. **Deploy**, o torneu a desplegar si les variables han arribat després de la
+   primera compilació: les `NEXT_PUBLIC_` s'incrusten en compilar.
+5. Torneu al pas 3 i afegiu l'URL de producció a les *Redirect URLs* de
    Supabase.
+
+La integració també afegeix variables que aquesta aplicació **no** fa servir,
+com `SUPABASE_SERVICE_ROLE_KEY` o `SUPABASE_SECRET_KEY`. No passa res que hi
+siguin mentre no portin el prefix `NEXT_PUBLIC_`; no les copieu mai a una
+variable que el porti.
 
 Cada empenta a la branca principal es desplegarà sola.
 

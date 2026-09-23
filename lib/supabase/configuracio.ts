@@ -31,10 +31,15 @@ export function configuracioSupabase(): ConfiguracioSupabase {
     "l'adreça del projecte, https://<referència>.supabase.co",
   )
 
+  // La integració de Vercel amb Supabase posa totes dues; a mà n'hi ha prou
+  // amb una. Cal escriure-les senceres: Next.js només incrusta al navegador les
+  // NEXT_PUBLIC_ que apareixen literalment al codi.
   const clau = exigeix(
     'NEXT_PUBLIC_SUPABASE_ANON_KEY',
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    'la clau publicable, la que va al navegador',
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+    'la clau publicable, la que va al navegador; també val ' +
+      'NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY',
   )
 
   if (!/^https?:\/\//.test(url)) {

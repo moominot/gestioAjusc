@@ -1,6 +1,8 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
+import { configuracioSupabase } from './lib/supabase/configuracio'
+
 /**
  * Refresca la sessió a cada petició.
  *
@@ -10,9 +12,11 @@ import { NextResponse, type NextRequest } from 'next/server'
 export async function proxy(peticio: NextRequest) {
   let resposta = NextResponse.next({ request: peticio })
 
+  const { url, clau } = configuracioSupabase()
+
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    url,
+    clau,
     {
       cookies: {
         getAll: () => peticio.cookies.getAll(),

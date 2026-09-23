@@ -12,6 +12,7 @@ const posa = (url?: string, clau?: string) => {
   else process.env.NEXT_PUBLIC_SUPABASE_URL = url
   if (clau === undefined) delete process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   else process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = clau
+  delete process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 }
 
 describe('configuracioSupabase', () => {
@@ -30,6 +31,12 @@ describe('configuracioSupabase', () => {
 
     posa('https://x.supabase.co', undefined)
     expect(() => configuracioSupabase()).toThrow(/NEXT_PUBLIC_SUPABASE_ANON_KEY/)
+  })
+
+  it('accepta la clau amb el nom que posa la integració de Vercel', () => {
+    posa('https://x.supabase.co', undefined)
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_vercel'
+    expect(configuracioSupabase().clau).toBe('sb_publishable_vercel')
   })
 
   it('no es deixa enganyar per una variable amb espais', () => {
