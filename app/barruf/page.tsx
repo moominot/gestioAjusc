@@ -38,9 +38,20 @@ export default async function Classificacio({
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Classificació BARRUF</h1>
-        {edicio ? <p className="mt-1 text-sm text-stone-500">Edició {edicio}</p> : null}
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">Classificació BARRUF</h1>
+          {edicio ? <p className="mt-1 text-sm text-stone-500">Edició {edicio}</p> : null}
+        </div>
+        {edicio ? (
+          // Un <a> i no un <Link>: és un fitxer, no una pàgina de l'aplicació.
+          <a
+            href={`/barruf/pdf?edicio=${edicio}`}
+            className="rounded border border-stone-300 px-3 py-1.5 text-sm text-stone-700 hover:border-stone-500"
+          >
+            Descarrega el PDF
+          </a>
+        ) : null}
       </div>
 
       <div className="flex flex-wrap gap-2">

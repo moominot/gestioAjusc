@@ -16,6 +16,7 @@ rejugar refà tota la història posterior sola.
 | Importació de resultats | [`lib/importacio/`](lib/importacio/README.md) |
 | Esquema i model de lectura | `supabase/migrations/` |
 | Aplicació | `app/` (Next.js, App Router) |
+| PDF del BARRUF | `lib/informe/`, servit a `/barruf/pdf?edicio=N` |
 
 ## Posar-ho en marxa
 
@@ -29,8 +30,9 @@ cp .env.example .env.local     # ompliu-hi les dades del projecte Supabase
 npm run dev
 ```
 
-Les cinc migracions de `supabase/migrations/` s'apliquen en ordre. La segona és
-la llavor: els 609 jugadors de l'edició 199, importats del full de càlcul.
+Les migracions de `supabase/migrations/` s'apliquen en ordre. La llavor, el punt
+de partida de la cadena, és l'edició 209: 629 jugadors importats del full de
+càlcul de l'AJUSC (`…_llavor_209.sql`, que substitueix la 199 original).
 
 ```bash
 npm test          # proves del motor i dels lectors

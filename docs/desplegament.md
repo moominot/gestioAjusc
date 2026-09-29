@@ -27,16 +27,21 @@ A [supabase.com](https://supabase.com), **New project**.
 
 ## 2. Aplicar l'esquema
 
-Les cinc migracions de `supabase/migrations/` s'han d'aplicar **en ordre**. El
-nom porta la marca de temps al davant justament per això.
+Les migracions de `supabase/migrations/` s'han d'aplicar **en ordre**. El nom
+porta la marca de temps al davant justament per això.
 
 | Fitxer | Què fa |
 |---|---|
 | `…100_nucli_barruf` | Taules, RLS, privilegis |
-| `…200_llavor_barruf` | Els 609 jugadors de l'edició 199 |
+| `…200_llavor_barruf` | La llavor original: 609 jugadors de l'edició 199 |
 | `…300_vistes_publiques` | El model de lectura |
 | `…400_importa_campionat` | Importació atòmica |
 | `…500_publica_edicio` | Publicació d'edicions |
+| `20260930…100_informe_barruf` | El que cal per al PDF: ordre de la llista, llegenda de clubs, totals |
+| `20260930…200_llavor_209` | Canvia la llavor per l'edició 209 (629 jugadors), amb la 208 d'arxiu |
+
+La darrera es planta si ja hi ha cap campionat computat: canviar el punt de
+partida llavors canviaria tot el que s'ha publicat.
 
 ### Amb el CLI (recomanat)
 
@@ -73,9 +78,9 @@ haureu de recordar quines heu aplicat.
 Al SQL Editor:
 
 ```sql
-SELECT count(*) AS jugadors FROM jugadors;                  -- 609
-SELECT numero, es_llavor FROM barruf_edicions;              -- 199, true
-SELECT count(*) FROM barruf_classificacio WHERE estat='act'; -- 167
+SELECT count(*) AS jugadors FROM jugadors;                  -- 629
+SELECT numero, es_llavor FROM barruf_edicions;              -- 208 false, 209 true
+SELECT count(*) FROM barruf_classificacio WHERE estat='act'; -- 191
 ```
 
 ---

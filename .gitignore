@@ -11,3 +11,8 @@ build/
 
 # Rèplica de Docker
 docker/.env
+
+# Documents de l'AJUSC amb dades de jugadors: el repositori és públic
+docs/*.pdf
+docs/*.xlsx
+docs/*.csv
