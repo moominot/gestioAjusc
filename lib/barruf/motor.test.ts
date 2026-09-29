@@ -4,6 +4,7 @@ import { BARRUF_INICIAL, K_NOVELL, K_VETERA, SIGMA } from './constants'
 import { calculaEstat } from './estats'
 import {
   aplicaCampionat,
+  arrodoneix,
   calculaCampionat,
   esperancaPartida,
   estatInicial,
@@ -336,7 +337,7 @@ describe('rejugaCadena', () => {
 
     expect([...variacionsPerCampionat.keys()]).toEqual(['c1', 'c2'])
     const [primera] = variacionsPerCampionat.get('c1')!
-    expect(primera.barrufAbans + primera.variacio).toBeCloseTo(primera.barrufDespres, 10)
+    expect(primera.barrufAbans + arrodoneix(primera.variacio)).toBe(primera.barrufDespres)
   })
 
   it('encadena: el BARRUF de sortida de l’un és el d’entrada del següent', () => {
@@ -348,6 +349,37 @@ describe('rejugaCadena', () => {
 
     expect(c2.barrufAbans).toBeCloseTo(c1.barrufDespres, 12)
     expect(estatFinal.get('a')!.barruf).toBeCloseTo(c2.barrufDespres, 12)
+  })
+})
+
+describe('arrodoneix', () => {
+  it('allunya les meitats del zero, com el ROUND del full', () => {
+    expect(arrodoneix(2.5)).toBe(3)
+    expect(arrodoneix(-2.5)).toBe(-3)
+    expect(arrodoneix(-0.4)).toBe(0)
+    expect(arrodoneix(51.74)).toBe(52)
+    expect(arrodoneix(-110.95)).toBe(-111)
+  })
+
+  /**
+   * El full desa el BARRUF en enters i hi suma la variació arrodonida. Si
+   * encadenéssim els decimals, dos campionats seguits ja podrien donar un punt
+   * de diferència amb el que publica l'AJUSC.
+   */
+  it('la cadena va sempre en enters', () => {
+    const llavor = new Map<string, EstatBarruf>([
+      ['a', { ...estatInicial('a'), barruf: 1000, partidesTotals: 100 }],
+      ['b', { ...estatInicial('b'), barruf: 1137, partidesTotals: 100 }],
+    ])
+    const campionat = (id: string): CampionatEntrada => ({
+      id,
+      inscrits: ['a', 'b'],
+      partides: [{ ronda: 1, jugador1Id: 'a', jugador2Id: 'b', resultat1: 1 }],
+      temporadaCodi: '2025-26',
+    })
+    const { estatFinal } = rejugaCadena(llavor, [campionat('c1'), campionat('c2')])
+    expect(Number.isInteger(estatFinal.get('a')!.barruf)).toBe(true)
+    expect(Number.isInteger(estatFinal.get('b')!.barruf)).toBe(true)
   })
 })
 

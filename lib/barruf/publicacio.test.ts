@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest'
 
 import { resolNoms, type JugadorRegistre } from '../importacio/resolucio'
 import { aEntradaDelMotor, llegeixTorneig } from '../importacio/torneig'
+import { arrodoneix } from './motor'
 import { calculaEdicio, type JugadorLlavor } from './publicacio'
 import type { CampionatEntrada } from './tipus'
 
@@ -151,7 +152,7 @@ describe('calculaEdicio amb el ManaCup', () => {
     const variacions = edicio.variacions.get('manacup')!
     expect(variacions).toHaveLength(63)
     for (const v of variacions) {
-      expect(v.barrufDespres).toBeCloseTo(v.barrufAbans + v.variacio, 9)
+      expect(v.barrufDespres).toBe(v.barrufAbans + arrodoneix(v.variacio))
     }
   })
 

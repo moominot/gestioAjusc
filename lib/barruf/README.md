@@ -23,7 +23,13 @@ Eᵣ = Φ( (BarrufJugador − BarrufAdversariᵣ) / σ )      σ = 283,84
 E  = Σ Eᵣ
 K  = 20 si (partides_acumulades + partides_del_torneig) > 50, si no 30
 Δ  = (Victòries_reals − E) × K
+BARRUF_nou = BARRUF + ROUND(Δ)
 ```
+
+**El BARRUF va sempre en enters.** El full de l'AJUSC suma la variació
+arrodonida (`ROUND`, que allunya les meitats del zero), i el motor fa el mateix:
+si s'encadenessin els decimals, cada campionat ens allunyaria una mica del que
+publica l'AJUSC. La variació exacta es desa igualment a `barruf_variacions`.
 
 `Φ` és la normal acumulada. El BARRUF fa servir la normal, com l'Elo original de
 la USCF, i no la logística de la FIDE o el Glicko. La σ de 283,84 és pràcticament
@@ -95,6 +101,12 @@ Les bases publicades són a https://www.ajuscrabble.cat/barruf/.
 | `motor.test.ts` | 35 proves, incloses les 609 files reals |
 
 ## La llavor
+
+> **Ara la llavor és l'edició 209.** La migració `20260930100200_llavor_209.sql`
+> la canvia i desa la 208 com a edició d'arxiu, perquè el PDF de la llavor
+> pugui mostrar què es va moure. La genera `scripts/genera_relleu_llavor.py` a
+> partir del full de l'AJUSC que calcula la 209. El que segueix descriu la
+> llavor original, la 199.
 
 `supabase/migrations/20260922100200_llavor_barruf.sql` conté el punt zero: els 609
 jugadors de l'edició 199, amb el seu BARRUF, les partides i victòries

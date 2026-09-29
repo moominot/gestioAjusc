@@ -13,7 +13,7 @@ import { join } from 'node:path'
 
 import { describe, expect, it } from 'vitest'
 
-import { calculaCampionat, estatInicial, rejugaCadena } from '../barruf/motor'
+import { arrodoneix, calculaCampionat, estatInicial, rejugaCadena } from '../barruf/motor'
 import type { EstatBarruf } from '../barruf/tipus'
 import { resolNoms, resumeix, type JugadorRegistre } from './resolucio'
 import { aEntradaDelMotor, llegeixTorneig, partidesPerParticipant } from './torneig'
@@ -146,7 +146,7 @@ describe('càlcul del BARRUF del ManaCup', () => {
   it('cada variació quadra amb la seva pròpia fórmula', () => {
     for (const v of calculaCampionat(entrada(), llavorDelMotor())) {
       expect(v.variacio).toBeCloseTo((v.victories - v.esperanca) * v.factorK, 9)
-      expect(v.barrufDespres).toBeCloseTo(v.barrufAbans + v.variacio, 9)
+      expect(v.barrufDespres).toBe(v.barrufAbans + arrodoneix(v.variacio))
     }
   })
 

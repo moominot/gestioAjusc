@@ -35,6 +35,15 @@ export function factorK(partidesPrevies: number, partidesCampionat: number): num
   return partidesPrevies + partidesCampionat > LLINDAR_PARTIDES_K ? K_VETERA : K_NOVELL
 }
 
+/**
+ * Arrodoniment a l'enter, com el `ROUND` del full: les meitats s'allunyen del
+ * zero (2,5 → 3 i −2,5 → −3). `Math.round` les arrodoniria cap amunt (−2,5 → −2).
+ */
+export function arrodoneix(valor: number): number {
+  // El `|| 0` treu el −0, que surt d'arrodonir negatius petits.
+  return Math.sign(valor) * Math.round(Math.abs(valor)) || 0
+}
+
 /** Estat inicial d'un jugador que encara no és a cap llista. */
 export function estatInicial(jugadorId: string): EstatBarruf {
   return {
@@ -125,7 +134,11 @@ export function calculaCampionat(
       esperanca,
       factorK: k,
       variacio,
-      barrufDespres: barrufAbans + variacio,
+      // El full suma la variació ARRODONIDA (Dades9Barruf!B: anterior +
+      // ROUND(variació)), de manera que la cadena oficial va sempre en enters.
+      // Si aquí es sumessin els decimals, cada campionat ens n'allunyaria una
+      // mica. La variació exacta es conserva igualment per a l'auditoria.
+      barrufDespres: barrufAbans + arrodoneix(variacio),
     })
   }
 
