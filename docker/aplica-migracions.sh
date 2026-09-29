@@ -37,4 +37,9 @@ INSERT INTO supabase_migrations.schema_migrations (version, name) VALUES (:'vers
 SQL
 done
 
+# Si l'API ja corria, no sap res de les taules i funcions noves fins que se li
+# diu. Supabase ho fa sol; aquí, si no, sortiria «Could not find the function
+# … in the schema cache».
+sql -c "NOTIFY pgrst, 'reload schema'"
+
 echo "Migracions aplicades."
