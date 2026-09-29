@@ -145,6 +145,35 @@ describe('construeixTorneigDeFull', () => {
     ).toThrow(/més d'una partida a la ronda 1/)
   })
 
+  /**
+   * El Xàmpions d'estiu 2026: dues partides per ronda, i el full en posa les
+   * rondes 1 a 5 i després, una altra vegada, 1 a 5.
+   */
+  it('numera seguides les rondes que el full repeteix per blocs', () => {
+    const torneig = construeixTorneigDeFull(
+      csv(
+        `${CAPCALERA}\n1,Anna,1,Berta,0\n1,Cesc,1,Dídac,0\n2,Anna,0,Cesc,1\n2,Berta,1,Dídac,0\n` +
+          `1,Anna,1,Berta,0\n1,Cesc,0,Dídac,1\n2,Anna,1,Cesc,0\n2,Berta,0,Dídac,1`,
+      ),
+    )
+    expect(torneig.rondesPerBlocs).toBe(true)
+    expect(torneig.rondesDeduides).toBe(false)
+    expect(torneig.partides.map((p) => p.ronda)).toEqual([1, 1, 2, 2, 3, 3, 4, 4])
+  })
+
+  it('no confon amb blocs un jugador repetit dins la mateixa ronda', () => {
+    // Aquí la numeració no torna enrere: és un error del full i s'ha de dir.
+    expect(() =>
+      construeixTorneigDeFull(csv(`${CAPCALERA}\n1,Anna,1,Berta,0\n2,Anna,1,Cesc,0\n2,Anna,0,Dídac,1`)),
+    ).toThrow(/més d'una partida a la ronda 2/)
+  })
+
+  it('amb les rondes bé, les deixa com són', () => {
+    const torneig = construeixTorneigDeFull(csv(`${CAPCALERA}\n1,Anna,1,Berta,0\n2,Anna,1,Cesc,0`))
+    expect(torneig.rondesPerBlocs).toBe(false)
+    expect(torneig.partides.map((p) => p.ronda)).toEqual([1, 2])
+  })
+
   it('es planta si algú juga contra si mateix', () => {
     expect(() => construeixTorneigDeFull(csv(`${CAPCALERA}\n1,Anna,1,Anna,0`))).toThrow(
       /contra si mateix/,

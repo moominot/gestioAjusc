@@ -196,9 +196,52 @@ function reparteixEnRondes(resultats: FilaResultat[]): number[] {
   })
 }
 
+/** Hi ha algun jugador amb més d'una partida en una mateixa ronda? */
+function repeteixRonda(resultats: FilaResultat[], rondes: number[]): boolean {
+  const vistos = new Set<string>()
+  return resultats.some((resultat, index) =>
+    [resultat.jugador1, resultat.jugador2]
+      .filter((n): n is string => n !== null)
+      .some((nom) => {
+        const clau = `${rondes[index]}|${normalitzaNom(nom)}`
+        if (vistos.has(clau)) return true
+        vistos.add(clau)
+        return false
+      }),
+  )
+}
+
+/**
+ * Numera seguides les rondes d'un full que les repeteix per blocs.
+ *
+ * Quan es juguen dues partides per ronda, el full de l'AJUSC en posa les rondes
+ * 1 a 5 i després, una altra vegada, 1 a 5. Cada cop que la numeració torna
+ * enrere comença un bloc nou, que continua on acabava l'anterior: 1–5 i 6–10.
+ */
+function numeraPerBlocs(resultats: FilaResultat[]): number[] {
+  let desplacament = 0
+  let maximDelBloc = 0
+  let anterior = 0
+  return resultats.map((resultat) => {
+    const ronda = resultat.ronda ?? 1
+    if (ronda < anterior) {
+      desplacament += maximDelBloc
+      maximDelBloc = 0
+    }
+    anterior = ronda
+    maximDelBloc = Math.max(maximDelBloc, ronda)
+    return ronda + desplacament
+  })
+}
+
 export interface TorneigDeFull extends Torneig {
   /** Les rondes s'han deduït perquè el full no en portava columna. */
   rondesDeduides: boolean
+  /**
+   * El full repetia les rondes per blocs (1–5 i 1–5) i s'han numerat seguides
+   * (1–10). Passa quan es juguen dues partides per ronda.
+   */
+  rondesPerBlocs: boolean
   /** Les xifres eren puntuacions d'Scrabble i no resultats de partida. */
   ambPuntsScrabble: boolean
 }
@@ -209,7 +252,16 @@ export function construeixTorneigDeFull(
   info?: { nom?: string; organitzador?: string },
 ): TorneigDeFull {
   const rondesDeduides = resultats.every((r) => r.ronda === null)
-  const rondesDeduidesValors = rondesDeduides ? reparteixEnRondes(resultats) : []
+  const delFull = resultats.map((r) => r.ronda ?? 1)
+  // Si amb les rondes del full algú en repeteix, potser és que van per blocs.
+  // Si tampoc així quadren, es deixen com eren perquè l'error surti més avall.
+  const perBlocs = rondesDeduides || !repeteixRonda(resultats, delFull) ? null : numeraPerBlocs(resultats)
+  const rondesPerBlocs = perBlocs !== null && !repeteixRonda(resultats, perBlocs)
+  const rondes = rondesDeduides
+    ? reparteixEnRondes(resultats)
+    : rondesPerBlocs
+      ? perBlocs!
+      : delFull
 
   // Número local per ordre d'aparició, només per lligar les partides.
   const identificadors = new Map<string, number>()
@@ -240,7 +292,7 @@ export function construeixTorneigDeFull(
   const rondesJugades = new Set<number>()
 
   resultats.forEach((resultat, index) => {
-    const ronda = rondesDeduides ? rondesDeduidesValors[index] : (resultat.ronda ?? 1)
+    const ronda = rondes[index]
     const blancId = identifica(resultat.jugador1)
 
     // Un descans no és una partida jugada: es registra el participant i prou.
@@ -296,6 +348,7 @@ export function construeixTorneigDeFull(
     rondesJugades: [...rondesJugades].sort((a, b) => a - b),
     rondesPendents: [],
     rondesDeduides,
+    rondesPerBlocs,
     ambPuntsScrabble,
   }
 }
