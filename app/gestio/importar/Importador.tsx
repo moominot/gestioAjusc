@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState, useTransition } from 'react'
 
+import { CercaJugador, type JugadorCercable } from '../../../components/CercaJugador'
 import {
   analitza,
   desa,
@@ -29,6 +30,7 @@ const ETIQUETA_COM: Record<string, { text: string; classe: string }> = {
 
 export function Importador({ temporades }: { temporades: string[] }) {
   const [proposta, setProposta] = useState<Proposta | null>(null)
+  const [registre, setRegistre] = useState<JugadorCercable[]>([])
   const [error, setError] = useState<string | null>(null)
   const [decisions, setDecisions] = useState<Record<number, number | null>>({})
   const [desat, setDesat] = useState<ResultatDesat | null>(null)
@@ -53,6 +55,7 @@ export function Importador({ temporades }: { temporades: string[] }) {
         return
       }
       setProposta(resultat.proposta)
+      setRegistre(resultat.registre)
       setCampionat((actual) => ({
         ...actual,
         nom: resultat.proposta.nom || actual.nom,
@@ -197,6 +200,13 @@ export function Importador({ temporades }: { temporades: string[] }) {
                 repeteixi cap. Per al BARRUF és indiferent.
               </p>
             ) : null}
+            {proposta.rondesPerBlocs ? (
+              <p className="mt-2 text-sm text-amber-800">
+                El full tornava a començar la numeració de les rondes (dues partides per ronda?):
+                s’han numerat seguides, de manera que el segon bloc continua on acaba el primer.
+                Per al BARRUF és indiferent.
+              </p>
+            ) : null}
           </section>
 
           <section className="space-y-4 rounded-lg border border-stone-200 bg-white p-5">
@@ -323,6 +333,14 @@ export function Importador({ temporades }: { temporades: string[] }) {
                       {resolt ? (
                         <span className="text-sm text-stone-500">núm. {decisio}</span>
                       ) : (
+                        <>
+                        <CercaJugador
+                          registre={registre}
+                          placeholder="Cerca’l a tot el registre…"
+                          onTria={(jugador) =>
+                            setDecisions({ ...decisions, [participant.localId]: jugador.numero })
+                          }
+                        />
                         <select
                           value={decisio === null ? '' : String(decisio)}
                           onChange={(e) =>
@@ -343,7 +361,16 @@ export function Importador({ temporades }: { temporades: string[] }) {
                               {candidat.corroborat ? ', mateixa puntuació' : ''})
                             </option>
                           ))}
+                          {/* El que s'ha triat amb el cercador, si no era entre els candidats. */}
+                          {decisio !== null &&
+                          !participant.candidats.some((c) => c.numero === decisio) ? (
+                            <option value={decisio}>
+                              {registre.find((j) => j.numero === decisio)?.nom ?? 'Jugador'} (núm.{' '}
+                              {decisio}, triat del registre)
+                            </option>
+                          ) : null}
                         </select>
+                        </>
                       )}
                     </div>
                     {participant.candidats.some((c) => c.corroborat) && decisio === null ? (

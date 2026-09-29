@@ -25,7 +25,7 @@ export default async function Gestio() {
   }
 
   const xifres = [
-    { etiqueta: 'Jugadors', valor: jugadors ?? 0, enllac: '/barruf' },
+    { etiqueta: 'Jugadors', valor: jugadors ?? 0, enllac: '/gestio/jugadors' },
     { etiqueta: 'Campionats', valor: campionats ?? 0, enllac: '/campionats' },
     { etiqueta: 'Sense finalitzar', valor: pendents ?? 0, enllac: '/campionats' },
   ]
@@ -80,19 +80,16 @@ export default async function Gestio() {
       </section>
 
       <section className="rounded-lg border border-stone-200 bg-white p-6">
-        <h2 className="font-semibold">Simular sense desar</h2>
+        <h2 className="font-semibold">Jugadors</h2>
         <p className="mt-1 text-sm text-stone-600">
-          El lector dels fitxers del SwissPerfect i la resolució de noms ja són fets i provats
-          (<code className="rounded bg-stone-100 px-1">lib/importacio</code>), i de moment es fan
-          anar des de la línia d&apos;ordres:
+          Corregir el nom d&apos;un jugador o canviar-li el club.
         </p>
-        <pre className="mt-3 overflow-x-auto rounded bg-stone-900 px-4 py-3 text-sm text-stone-100">
-          npm run simula -- &lt;directori amb .trn, .sco i .ini&gt;
-        </pre>
-        <p className="mt-3 text-sm text-stone-600">
-          Queda per fer la pantalla que hi posi la interfície al davant: pujar els fitxers, validar
-          els noms dubtosos i publicar l&apos;edició.
-        </p>
+        <Link
+          href="/gestio/jugadors"
+          className="mt-4 inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm hover:border-stone-500"
+        >
+          Jugadors
+        </Link>
       </section>
     </div>
   )

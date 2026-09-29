@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 
+import type { JugadorCercable } from '../../../components/CercaJugador'
 import { llegeixFitxerDeResultats } from '../../../lib/importacio/fitxers'
 import { construeixTorneigDeFull } from '../../../lib/importacio/fulls'
 import { resolNoms, type JugadorRegistre } from '../../../lib/importacio/resolucio'
@@ -38,11 +39,14 @@ export interface Proposta {
   rondesPendents: number[]
   pestanya: string | null
   rondesDeduides: boolean
+  rondesPerBlocs: boolean
   participants: ParticipantProposat[]
   partides: PartidaProposada[]
 }
 
-export type ResultatAnalisi = { ok: true; proposta: Proposta } | { ok: false; error: string }
+export type ResultatAnalisi =
+  | { ok: true; proposta: Proposta; registre: JugadorCercable[] }
+  | { ok: false; error: string }
 
 async function bytes(fitxer: File): Promise<Uint8Array> {
   return new Uint8Array(await fitxer.arrayBuffer())
@@ -65,6 +69,7 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
     let origen: Proposta['origen']
     let pestanya: string | null = null
     let rondesDeduides = false
+    let rondesPerBlocs = false
 
     if (teContingut(trn) || teContingut(sco)) {
       if (!teContingut(trn) || !teContingut(sco)) {
@@ -83,6 +88,7 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
       origen = 'full'
       pestanya = llegit.pestanya
       rondesDeduides = delFull.rondesDeduides
+      rondesPerBlocs = delFull.rondesPerBlocs
     } else {
       return { ok: false, error: 'Cal pujar els fitxers del SwissPerfect o bé un full de càlcul.' }
     }
@@ -90,7 +96,7 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
     // Registre contra el qual resoldre els noms.
     const supabase = await clientServidor()
     const [{ data: jugadors }, { data: alies }] = await Promise.all([
-      supabase.from('jugadors').select('id, numero, nom_complet').is('fusionat_a', null),
+      supabase.from('jugadors').select('id, numero, nom_complet, clubs(nom)').is('fusionat_a', null),
       supabase.from('jugador_alies').select('jugador_id, alies_norm'),
     ])
 
@@ -158,6 +164,12 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
 
     return {
       ok: true,
+      // El registre sencer, per poder triar a mà un jugador que la resolució no ha proposat.
+      registre: (jugadors ?? []).map((j) => ({
+        numero: j.numero as number,
+        nom: j.nom_complet as string,
+        club: (j.clubs as unknown as { nom: string } | null)?.nom ?? null,
+      })),
       proposta: {
         origen,
         nom: torneig.info?.nom ?? '',
@@ -167,6 +179,7 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
         rondesPendents: torneig.rondesPendents,
         pestanya,
         rondesDeduides,
+        rondesPerBlocs,
         participants,
         partides: torneig.partides.map((p) => ({
           ronda: p.ronda,
