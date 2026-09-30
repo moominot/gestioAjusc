@@ -39,7 +39,7 @@ INSERT INTO temporades (codi, any_inici, data_inici, data_fi) VALUES
 ON CONFLICT (codi) DO NOTHING;
 
 -- -----------------------------------------------------------------------------
--- Els jugadors de l'arxiu (593): els que no hi són, s'hi afegeixen
+-- Els jugadors de l'arxiu (592): els que no hi són, s'hi afegeixen
 -- -----------------------------------------------------------------------------
 CREATE TEMP TABLE noms_arxiu (nom TEXT, nom_norm TEXT PRIMARY KEY, jugador_id UUID) ON COMMIT DROP;
 INSERT INTO noms_arxiu (nom, nom_norm) VALUES
@@ -634,8 +634,7 @@ INSERT INTO noms_arxiu (nom, nom_norm) VALUES
     ('Jofre Julià', 'jofre julia'),
     ('Jofre Sivillà', 'jofre sivilla'),
     ('Josep Ferrer', 'josep ferrer'),
-    ('Robert Ametller', 'robert ametller'),
-    ('Marosa Cons', 'marosa cons');
+    ('Robert Ametller', 'robert ametller');
 
 UPDATE noms_arxiu n SET jugador_id = a.jugador_id FROM jugador_alies a WHERE a.alies_norm = n.nom_norm;
 
@@ -4229,7 +4228,6 @@ FROM (VALUES
     ('albert mayans', 956.7324, 10, 7, 10, 7, 'exp', '2015-16', FALSE, FALSE, NULL),
     ('francesc vernet', 911.1217, 10, 3, 10, 3, 'exp', '2015-16', FALSE, FALSE, NULL),
     ('roger pistola', 926.9481, 8, 3, 8, 3, 'exp', '2015-16', FALSE, FALSE, NULL),
-    ('marosa cons', 884.4919, 8, 2, 8, 2, 'exp', '2015-16', FALSE, FALSE, NULL),
     ('toni mateu', 870.4097, 6, 1, 6, 1, 'exp', '2015-16', FALSE, FALSE, NULL),
     ('peadar o braonain', 895.6368, 6, 1, 6, 1, 'exp', '2015-16', FALSE, FALSE, NULL)
 ) AS v(norm, barruf, pt, vt, ptemp, vtemp, estat, darrera, cohort, deb, pos)
@@ -4529,7 +4527,6 @@ FROM (VALUES
     ('imma junque', 903.15, 3, 0, 0, 0, 'exp', '2015-16', FALSE, FALSE, NULL),
     ('peadar o braonain', 895.64, 6, 1, 0, 0, 'exp', '2015-16', FALSE, FALSE, NULL),
     ('montse fernandez', 887.37, 6, 0, 0, 0, 'exp', '2015-16', FALSE, FALSE, NULL),
-    ('marosa cons', 884.49, 8, 2, 0, 0, 'exp', '2015-16', FALSE, FALSE, NULL),
     ('toni mateu', 870.41, 6, 1, 0, 0, 'exp', '2015-16', FALSE, FALSE, NULL),
     ('valenti rossell', 1303, 117, 90.5, 0, 0, 'inact', NULL, TRUE, FALSE, NULL),
     ('marius serra', 1264, 231, 149.5, 0, 0, 'inact', NULL, TRUE, FALSE, NULL),
@@ -5277,7 +5274,6 @@ FROM (VALUES
     ('imma junque', 903.15, 3, 0, 0, 0, 'exp', '2015-16', FALSE, FALSE, NULL),
     ('peadar o braonain', 895.64, 6, 1, 0, 0, 'exp', '2015-16', FALSE, FALSE, NULL),
     ('montse fernandez', 887.37, 6, 0, 0, 0, 'exp', '2015-16', FALSE, FALSE, NULL),
-    ('marosa cons', 884.49, 8, 2, 0, 0, 'exp', '2015-16', FALSE, FALSE, NULL),
     ('toni mateu', 870.41, 6, 1, 0, 0, 'exp', '2015-16', FALSE, FALSE, NULL),
     ('valenti rossell', 1316.5058, 127, 97.5, 10, 7, 'act', '2016-17', FALSE, FALSE, 8),
     ('marius serra', 1264, 231, 149.5, 0, 0, 'inact', NULL, TRUE, FALSE, NULL),

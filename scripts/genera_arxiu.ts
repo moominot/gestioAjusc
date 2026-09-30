@@ -235,8 +235,20 @@ function detectaRenoms(perEdicio: Map<number, Full[]>, primera: number, darrera:
   return final
 }
 
+/**
+ * Fitxes duplicades de la mateixa persona que es fusionen: nom normalitzat de la
+ * que sobra → nom de la bona. Entre les edicions 75 i 77 la Maria Rosa Cons va
+ * tenir dues fitxes al full («Resolt conflicte Maria Rosa - Marosa Cons»).
+ */
+const NOMS_FUSIONATS = new Map([["marosa cons", "Marosa Cons"]])
+const FUSIONS = new Map([["marosa cons", "Maria Rosa Cons"]])
+
 function aplicaRenoms(full: Full, renoms: Map<string, string>) {
   const nom = (n: string) => renoms.get(id(n)) ?? n
+  // Una fitxa duplicada que es fusiona desapareix de les llistes: a les edicions
+  // on hi era, la persona ja hi surt amb la seva fitxa bona.
+  full.anterior = full.anterior.filter((f) => !FUSIONS.has(id(f.nom)))
+  full.nova = full.nova.filter((f) => !FUSIONS.has(id(f.nom)))
   for (const f of [...full.anterior, ...full.nova]) f.nom = nom(f.nom)
   for (const v of ['comprovats', 'originals'] as const) {
     for (const p of full.partides?.[v] ?? []) {
@@ -339,12 +351,18 @@ async function main() {
   }
   const primera = Math.min(...perEdicio.keys())
 
-  // Canvis de nom: d'una edició a la següent desapareix un nom i n'apareix un
-  // altre amb les mateixes partides i victòries. És la mateixa persona, i tot
-  // l'arxiu passa a portar el nom d'ara («Mateu Matas» → «Mateu Xurí»).
   // Els noms que el generador ha hagut de resoldre, per desar-los com a àlies.
   const resolts = new Map<string, [string, string]>()
+
+  // Canvis de nom: d'una edició a la següent desapareix un nom i n'apareix un
+  // altre amb les mateixes partides i victòries. És la mateixa persona, i tot
+  // l'arxiu passa a portar el nom d'ara («Mateu Matas» → «Mateu Xurí»). Les
+  // fitxes duplicades que es fusionen hi entren igual.
   const renoms = detectaRenoms(perEdicio, primera, llavor + 1)
+  for (const [antic, nou] of FUSIONS) {
+    renoms.set(antic, nou)
+    NOMS_ANTICS.set(antic, NOMS_FUSIONATS.get(antic)!)
+  }
   for (const fulls of perEdicio.values()) for (const f of fulls) aplicaRenoms(f, renoms)
   for (const files of pdfs.values()) for (const f of files) f.nom = renoms.get(id(f.nom)) ?? f.nom
   for (const [antic, nou] of renoms) resolts.set(antic, [NOMS_ANTICS.get(antic) ?? antic, id(nou)])
