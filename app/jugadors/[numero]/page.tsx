@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 
 import { clientServidor } from '../../../lib/supabase/servidor'
 import { PartidesJugador } from './PartidesJugador'
@@ -38,7 +38,12 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
     .eq('numero', identificador)
     .single<FitxaJugador>()
 
-  if (!fitxa) notFound()
+  if (!fitxa) {
+    // Un número fusionat porta a la fitxa que ha quedat.
+    const { data: bo } = await supabase.rpc('jugador_fusionat_a', { p_numero: identificador })
+    if (typeof bo === 'number') redirect(`/jugadors/${bo}`)
+    notFound()
+  }
 
   const [{ data: evolucio }, { data: partides }] = await Promise.all([
     supabase

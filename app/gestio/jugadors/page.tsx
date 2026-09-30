@@ -46,6 +46,11 @@ export default async function Jugadors() {
           àlies, de manera que les importacions que encara l&apos;escriguin així el continuaran
           reconeixent. El club és el nom curt que surt a la llista; si no existeix, es crea.
         </p>
+        <p className="mt-2 text-sm">
+          <Link href="/gestio/jugadors/duplicats" className="underline hover:text-stone-900">
+            Cercar possibles jugadors duplicats i fusionar-los →
+          </Link>
+        </p>
       </div>
 
       <EditorJugadors jugadors={llista} clubs={(clubs ?? []).map((c) => c.nom as string)} />
