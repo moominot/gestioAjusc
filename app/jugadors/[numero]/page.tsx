@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { clientServidor } from '../../../lib/supabase/servidor'
+import { PartidesJugador } from './PartidesJugador'
 import {
   ETIQUETA_ESTAT,
   type FilaEnfrontament,
@@ -52,7 +53,6 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
       .eq('jugador_numero', identificador)
       .order('data', { ascending: false })
       .order('ronda', { ascending: false })
-      .limit(50)
       .returns<FilaEnfrontament[]>(),
   ])
 
@@ -113,7 +113,11 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
                   const variacio = Number(fila.variacio)
                   return (
                     <tr key={fila.campionat_id}>
-                      <td className="px-4 py-2 font-medium">{fila.campionat}</td>
+                      <td className="px-4 py-2 font-medium">
+                        <Link href={`/campionats/${fila.campionat_id}`} className="hover:underline">
+                          {fila.campionat}
+                        </Link>
+                      </td>
                       <td className="px-4 py-2 text-stone-600">
                         {new Date(fila.data).toLocaleDateString('ca-ES')}
                       </td>
@@ -150,48 +154,11 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
       </section>
 
       <section>
-        <h2 className="text-lg font-semibold">Darreres partides</h2>
-        {partides && partides.length > 0 ? (
-          <ul className="mt-3 divide-y divide-stone-100 rounded-lg border border-stone-200 bg-white">
-            {partides.map((partida, index) => {
-              const resultat = Number(partida.resultat)
-              return (
-                <li
-                  key={`${partida.campionat_id}-${partida.ronda}-${index}`}
-                  className="flex flex-wrap items-baseline gap-x-3 gap-y-1 px-4 py-2 text-sm"
-                >
-                  <span
-                    className={`w-6 font-semibold ${
-                      resultat === 1
-                        ? 'text-emerald-700'
-                        : resultat === 0
-                          ? 'text-red-700'
-                          : 'text-stone-500'
-                    }`}
-                  >
-                    {resultat === 1 ? 'V' : resultat === 0 ? 'D' : 'E'}
-                  </span>
-                  <Link
-                    href={`/jugadors/${partida.rival_numero}`}
-                    className="flex-1 hover:underline"
-                  >
-                    {partida.rival}
-                  </Link>
-                  {partida.punts !== null ? (
-                    <span className="xifres text-stone-600">
-                      {partida.punts}–{partida.punts_rival}
-                    </span>
-                  ) : null}
-                  <span className="text-stone-400">
-                    {partida.campionat} · r{partida.ronda}
-                  </span>
-                </li>
-              )
-            })}
-          </ul>
-        ) : (
-          <p className="mt-3 text-sm text-stone-500">Encara no hi ha cap partida registrada.</p>
-        )}
+        <h2 className="text-lg font-semibold">Partides</h2>
+        <p className="mt-1 text-sm text-stone-600">
+          Filtreu per rival, temporada o campionat: les xifres són les de les partides que quedin.
+        </p>
+        <PartidesJugador partides={partides ?? []} />
       </section>
     </div>
   )

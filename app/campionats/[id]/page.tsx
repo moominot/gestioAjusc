@@ -8,7 +8,7 @@ import {
   perRonda,
   type FitxaCampionat,
 } from '../../../lib/campionats/fitxa'
-import { clientServidor } from '../../../lib/supabase/servidor'
+import { clientServidor, gestorConnectat } from '../../../lib/supabase/servidor'
 
 export const revalidate = 300
 
@@ -33,6 +33,7 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
   if (!fitxa) notFound()
 
   const { campionat } = fitxa
+  const gestor = await gestorConnectat()
   const files = classificacio(fitxa.jugadors)
   const xifres = estadistiques(fitxa)
   const rondes = perRonda(fitxa.partides)
@@ -83,6 +84,14 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
               {campionat.finalitzat ? 'Pendent de publicar' : 'En curs'}
             </span>
           )}
+          {gestor ? (
+            <Link
+              href={`/gestio/campionats/${campionat.id}`}
+              className="rounded bg-stone-900 px-3 py-1 text-white hover:bg-stone-700"
+            >
+              Editar
+            </Link>
+          ) : null}
         </div>
       </div>
 

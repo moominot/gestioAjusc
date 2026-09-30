@@ -80,6 +80,7 @@ export interface FilaEnfrontament {
   resultat: string
   punts: number | null
   punts_rival: number | null
+  temporada_codi: string
 }
 
 export interface CampionatPublic {

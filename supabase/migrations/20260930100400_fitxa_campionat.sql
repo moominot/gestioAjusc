@@ -151,6 +151,7 @@ AS $$
         ),
         'partides', (
             SELECT COALESCE(jsonb_agg(jsonb_build_object(
+                'id', p.id,
                 'ronda', p.ronda,
                 'numero_1', j1.numero, 'jugador_1', j1.nom_complet,
                 'numero_2', j2.numero, 'jugador_2', j2.nom_complet,
@@ -166,3 +167,31 @@ AS $$
 $$;
 
 GRANT EXECUTE ON FUNCTION fitxa_campionat(UUID) TO anon, authenticated;
+
+-- -----------------------------------------------------------------------------
+-- Enfrontaments amb la temporada, per poder-los filtrar a la fitxa del jugador
+-- -----------------------------------------------------------------------------
+CREATE OR REPLACE VIEW enfrontaments
+WITH (security_invoker = false) AS
+    SELECT
+        jo.numero               AS jugador_numero,
+        rival.numero            AS rival_numero,
+        rival.nom_complet       AS rival,
+        p.campionat_id,
+        camp.nom                AS campionat,
+        camp.data,
+        p.ronda,
+        d.resultat,
+        d.punts,
+        d.punts_rival,
+        camp.temporada_codi
+    FROM partides p
+    JOIN campionats camp ON camp.id = p.campionat_id
+    CROSS JOIN LATERAL (
+        VALUES
+            (p.jugador_1_id, p.jugador_2_id, p.resultat_1, p.punts_1, p.punts_2),
+            (p.jugador_2_id, p.jugador_1_id, 1 - p.resultat_1, p.punts_2, p.punts_1)
+    ) AS d(jugador_id, rival_id, resultat, punts, punts_rival)
+    JOIN jugadors jo ON jo.id = d.jugador_id
+    JOIN jugadors rival ON rival.id = d.rival_id
+    WHERE p.jugador_2_id IS NOT NULL;

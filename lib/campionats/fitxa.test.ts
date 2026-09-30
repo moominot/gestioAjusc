@@ -53,8 +53,8 @@ describe('estadistiques', () => {
       { ...jugador('Berta', 1, 800, 900), variacio: -12.4 },
     ],
     partides: [
-      { ronda: 2, numero_1: 1, jugador_1: 'Anna', numero_2: 2, jugador_2: 'Berta', resultat_1: 0, punts_1: 350, punts_2: 380 },
-      { ronda: 1, numero_1: 1, jugador_1: 'Anna', numero_2: 2, jugador_2: 'Berta', resultat_1: 1, punts_1: 550, punts_2: 420 },
+      { id: 'b', ronda: 2, numero_1: 1, jugador_1: 'Anna', numero_2: 2, jugador_2: 'Berta', resultat_1: 0, punts_1: 350, punts_2: 380 },
+      { id: 'a', ronda: 1, numero_1: 1, jugador_1: 'Anna', numero_2: 2, jugador_2: 'Berta', resultat_1: 1, punts_1: 550, punts_2: 420 },
     ],
   }
 

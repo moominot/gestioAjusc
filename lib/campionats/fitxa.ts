@@ -23,6 +23,7 @@ export interface JugadorCampionat {
 }
 
 export interface PartidaCampionat {
+  id: string
   ronda: number
   numero_1: number
   jugador_1: string
