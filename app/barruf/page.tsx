@@ -71,6 +71,12 @@ export default async function Classificacio({
             Descarrega el PDF
           </a>
         ) : null}
+        <Link
+          href="/barruf/temporada"
+          className="rounded border border-stone-300 px-3 py-1.5 text-sm text-stone-700 hover:border-stone-500"
+        >
+          Resum de la temporada
+        </Link>
       </div>
 
       <div className="flex flex-wrap gap-2">

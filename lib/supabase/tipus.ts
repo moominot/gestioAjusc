@@ -67,6 +67,8 @@ export interface FilaEvolucio {
   factor_k: number
   variacio: string
   barruf_despres: string
+  /** Edició on es va computar el campionat: l'ordre de la cadena. */
+  edicio?: number | null
 }
 
 export interface FilaEnfrontament {
@@ -82,6 +84,7 @@ export interface FilaEnfrontament {
   punts: number | null
   punts_rival: number | null
   temporada_codi: string
+  edicio?: number | null
 }
 
 export interface CampionatPublic {

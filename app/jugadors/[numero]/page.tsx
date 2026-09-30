@@ -50,13 +50,17 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
       .from('jugador_evolucio')
       .select('*')
       .eq('jugador_numero', identificador)
+      // En l'ordre de la cadena: molts campionats antics comparteixen data.
+      .order('edicio', { ascending: false, nullsFirst: true })
       .order('data', { ascending: false })
       .returns<FilaEvolucio[]>(),
     supabase
       .from('enfrontaments')
       .select('*')
       .eq('jugador_numero', identificador)
+      .order('edicio', { ascending: false, nullsFirst: true })
       .order('data', { ascending: false })
+      .order('campionat_id')
       .order('ronda', { ascending: false })
       .returns<FilaEnfrontament[]>(),
   ])

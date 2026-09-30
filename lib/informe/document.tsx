@@ -22,6 +22,7 @@ import {
   type DocumentProps,
 } from '@react-pdf/renderer'
 
+import type { Destacats, JugadorDestacat } from './destacats'
 import { COLOR, deMes, type Cella, type Fila, type Informe } from './model'
 
 const RECURSOS = path.join(process.cwd(), 'lib/informe/recursos')
@@ -58,6 +59,10 @@ const W = {
   pctT: 30, vt: 32, dt: 29, pt: 28,
   separacio: 2,
 }
+
+/** A l'especial de temporada no hi ha VB ni PjB: aquell espai va al nom. */
+const amplades = (especial: boolean) =>
+  especial ? { ...W, nom: W.nom + W.vb + W.pjb, vb: 0, pjb: 0 } : W
 
 const s = StyleSheet.create({
   pagina: { paddingTop: 23, paddingHorizontal: 23, paddingBottom: 30, fontFamily: 'Carlito', fontSize: 10 },
@@ -137,7 +142,18 @@ function Separacio() {
 
 // --- Capçalera de la taula ------------------------------------------------------
 
-function CapTaula({ numero, temporada, espera }: { numero: number; temporada: string; espera: boolean }) {
+function CapTaula({
+  numero,
+  temporada,
+  espera,
+  especial = false,
+}: {
+  numero: number
+  temporada: string
+  espera: boolean
+  especial?: boolean
+}) {
+  const W = amplades(especial)
   const grup = (text: string, amplada: number) => (
     <View style={{ width: amplada, backgroundColor: LILA, justifyContent: 'center' }}>
       <Text style={s.textCap}>{text}</Text>
@@ -154,9 +170,15 @@ function CapTaula({ numero, temporada, espera }: { numero: number; temporada: st
       <View style={s.capGrup}>
         <View style={{ width: esquerra }} />
         {blanc}
-        {grup(`BARRUF ${numero}`, W.prg + W.vb + W.pjb)}
-        {blanc}
-        {grup(`Temp. ${temporada}`, W.pctTemp + W.vtemp + W.ptemp)}
+        {especial ? (
+          grup(`Temp. ${temporada}`, W.prg + W.pctTemp + W.vtemp + W.ptemp + W.separacio)
+        ) : (
+          <>
+            {grup(`BARRUF ${numero}`, W.prg + W.vb + W.pjb)}
+            {blanc}
+            {grup(`Temp. ${temporada}`, W.pctTemp + W.vtemp + W.ptemp)}
+          </>
+        )}
         {blanc}
         {grup('Total històric', W.pctT + W.vt + W.dt + W.pt)}
       </View>
@@ -168,8 +190,8 @@ function CapTaula({ numero, temporada, espera }: { numero: number; temporada: st
         {col('BARRUF', W.barruf)}
         {blanc}
         {col('prg', W.prg)}
-        {col('VB', W.vb)}
-        {col('PjB', W.pjb)}
+        {especial ? null : col('VB', W.vb)}
+        {especial ? null : col('PjB', W.pjb)}
         {blanc}
         {col('%temp', W.pctTemp)}
         {col('Vtemp', W.vtemp)}
@@ -184,7 +206,18 @@ function CapTaula({ numero, temporada, espera }: { numero: number; temporada: st
   )
 }
 
-function FilaTaula({ f, index, espera }: { f: Fila; index: number; espera: boolean }) {
+function FilaTaula({
+  f,
+  index,
+  espera,
+  especial = false,
+}: {
+  f: Fila
+  index: number
+  espera: boolean
+  especial?: boolean
+}) {
+  const W = amplades(especial)
   return (
     <View style={[s.fila, index % 2 === 1 ? { backgroundColor: ZEBRA } : {}]}>
       {espera ? (
@@ -206,8 +239,8 @@ function FilaTaula({ f, index, espera }: { f: Fila; index: number; espera: boole
       <T c={f.barruf} w={W.barruf} estil={{ ...s.dreta, ...s.negreta }} />
       <Separacio />
       <T c={f.prg} w={W.prg} />
-      <T c={f.vb} w={W.vb} />
-      <T c={f.pjb} w={W.pjb} />
+      {especial ? null : <T c={f.vb} w={W.vb} />}
+      {especial ? null : <T c={f.pjb} w={W.pjb} />}
       <Separacio />
       <T c={f.percentTemp} w={W.pctTemp} estil={s.dreta} />
       <T c={f.vtemp} w={W.vtemp} estil={s.dreta} />
@@ -233,10 +266,23 @@ function Capcalera({ informe }: { informe: Informe }) {
         <Text style={s.liniaBanda}>
           El BARRUF és el rànquing de jugadors de Scrabble clàssic elaborat per l’AJUSC.
         </Text>
-        <Text style={s.liniaBanda}>
-          Temporada {informe.temporada} | Edició número {informe.numero}, {deMes(informe.mes)}
-        </Text>
-        {informe.campionatsComputats ? (
+        {informe.especial ? (
+          <>
+            <Text style={[s.liniaBanda, { fontSize: 11 }]}>
+              {informe.especial.temporada
+                ? `Edició especial de final de temporada ${informe.temporada}`
+                : `Comparativa de dues edicions, temporada ${informe.temporada}`}
+            </Text>
+            <Text style={s.liniaBanda}>
+              Comparativa entre el BARRUF {informe.especial.anterior} i el BARRUF {informe.numero}
+            </Text>
+          </>
+        ) : (
+          <Text style={s.liniaBanda}>
+            Temporada {informe.temporada} | Edició número {informe.numero}, {deMes(informe.mes)}
+          </Text>
+        )}
+        {informe.campionatsComputats && !informe.especial ? (
           <Text style={s.liniaBanda}>Campionat computat: {informe.campionatsComputats}</Text>
         ) : null}
       </View>
@@ -250,7 +296,7 @@ function Capcalera({ informe }: { informe: Informe }) {
   )
 }
 
-function Llegenda() {
+function Llegenda({ especial = false }: { especial?: boolean }) {
   const element = (etiqueta: string | null, amplada: number, descripcio: React.ReactNode) => (
     <View style={s.elementLlegenda} key={etiqueta ?? 'cat2'}>
       {etiqueta ? (
@@ -273,8 +319,8 @@ function Llegenda() {
     <View style={s.llegenda}>
       <View style={[s.columnaLlegenda, { width: 212 }]}>
         {element('p', 18, 'Posició')}
-        {element('var', 18, 'Variació de posició respecte l\'anterior BARRUF')}
-        {element('deb', 18, 'Debutant a la temporada en curs')}
+        {element('var', 18, especial ? 'Variació de posició respecte l’anterior temporada' : 'Variació de posició respecte l\'anterior BARRUF')}
+        {element('deb', 18, especial ? 'Debutant a la temporada' : 'Debutant a la temporada en curs')}
         {element('rec', 18, 'Jugador recuperat, que torna a ser actiu')}
         {element('cat', 18, (
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -287,12 +333,12 @@ function Llegenda() {
         ))}
       </View>
       <View style={[s.columnaLlegenda, { width: 222 }]}>
-        {element('prg', 40, 'Progressió respecte l’anterior BARRUF')}
-        {element('VB', 40, 'Victòries des de l’anterior BARRUF')}
-        {element('PjB', 40, 'Partides jugades des de l’anterior BARRUF')}
-        {element('%temp', 40, '% de victòries de la temporada en curs')}
-        {element('Vtemp', 40, 'Victòries de la temporada en curs')}
-        {element('Ptemp', 40, 'Partides jugades la temporada en curs')}
+        {element('prg', 40, especial ? 'Progressió respecte de l’anterior temporada' : 'Progressió respecte l’anterior BARRUF')}
+        {especial ? null : element('VB', 40, 'Victòries des de l’anterior BARRUF')}
+        {especial ? null : element('PjB', 40, 'Partides jugades des de l’anterior BARRUF')}
+        {element('%temp', 40, especial ? '% de victòries de la temporada' : '% de victòries de la temporada en curs')}
+        {element('Vtemp', 40, especial ? 'Victòries de la temporada' : 'Victòries de la temporada en curs')}
+        {element('Ptemp', 40, especial ? 'Partides jugades a la temporada' : 'Partides jugades la temporada en curs')}
       </View>
       <View style={s.columnaLlegenda}>
         {element('%T', 30, '% total de victòries')}
@@ -323,6 +369,95 @@ function LlegendaClubs({ clubs }: { clubs: Informe['clubs'] }) {
   )
 }
 
+// --- Destacats -------------------------------------------------------------------
+
+const sd = StyleSheet.create({
+  xifres: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 14 },
+  xifra: { width: 86, alignItems: 'center', borderWidth: 0.8, borderColor: LILA, paddingVertical: 5 },
+  numero: { fontSize: 16, fontWeight: 'bold' },
+  etiquetaXifra: { fontSize: 7.5, textAlign: 'center' },
+  columnes: { flexDirection: 'row', justifyContent: 'space-between' },
+  columna: { width: 268 },
+  bloc: { marginBottom: 12 },
+  titolBloc: { backgroundColor: LILA, color: 'white', fontWeight: 'bold', fontSize: 9, paddingVertical: 2.5, paddingHorizontal: 5 },
+  linia: { flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 5, paddingVertical: 1.8, fontSize: 9 },
+})
+
+function Bloc({ titol, jugadors, buit = 'Cap' }: { titol: string; jugadors: JugadorDestacat[]; buit?: string }) {
+  return (
+    <View style={sd.bloc} wrap={false}>
+      <Text style={sd.titolBloc}>{titol}</Text>
+      {jugadors.length === 0 ? (
+        <Text style={sd.linia}>{buit}</Text>
+      ) : (
+        jugadors.map((j, i) => (
+          <View key={j.numero} style={[sd.linia, i % 2 === 1 ? { backgroundColor: ZEBRA } : {}]}>
+            <Text style={{ fontWeight: 'bold' }}>
+              {j.nom}
+              {j.club ? <Text style={{ fontWeight: 'normal', fontSize: 7.5 }}>  {j.club}</Text> : null}
+            </Text>
+            <Text>{j.valor}</Text>
+          </View>
+        ))
+      )}
+    </View>
+  )
+}
+
+const CATEGORIA_NOM = ['Gran Gran Mestre', 'Gran Mestre', 'Mestre', 'Expert', 'Avançat']
+
+function PaginaDestacats({ d }: { d: Destacats }) {
+  const xifres: [string, number | null][] = [
+    ['jugadors actius', d.xifres.actius],
+    ['han jugat aquesta temporada', d.xifres.ambPartides],
+    ['partides jugades', d.xifres.partides],
+    ['campionats barrufats', d.xifres.campionats],
+    ['debutants', d.xifres.debutants],
+    ['recuperats', d.xifres.recuperats],
+  ]
+  return (
+    <View>
+      <View style={s.bandaEspera}>
+        <Text style={s.titolEspera}>Destacats de la temporada {d.temporada}</Text>
+        <Text style={s.liniaEspera}>Comparativa entre el BARRUF {d.anterior} i el BARRUF {d.numero}</Text>
+      </View>
+      <View style={sd.xifres}>
+        {xifres.filter(([, v]) => v !== null).map(([etiqueta, valor]) => (
+          <View key={etiqueta} style={sd.xifra}>
+            <Text style={sd.numero}>{valor}</Text>
+            <Text style={sd.etiquetaXifra}>{etiqueta}</Text>
+          </View>
+        ))}
+      </View>
+      <View style={sd.columnes}>
+        <View style={sd.columna}>
+          <Bloc titol="El podi" jugadors={d.podi.ara.map((j, i) => ({ ...j, valor: `${i + 1}r · ${j.valor}` }))} />
+          <Bloc titol="Qui més ha pujat" jugadors={d.mesPujada} />
+          <Bloc titol="Qui més posicions ha guanyat" jugadors={d.mesPosicions} />
+          <Bloc titol="Qui més ha baixat" jugadors={d.mesBaixada} />
+          <Bloc
+            titol="Pugen de categoria"
+            jugadors={d.pujadesCategoria.map((j) => ({ ...j, valor: `a ${CATEGORIA_NOM[j.ara - 1]}` }))}
+          />
+        </View>
+        <View style={sd.columna}>
+          <Bloc titol="Més partides" jugadors={d.mesPartides} />
+          <Bloc titol="Més victòries" jugadors={d.mesVictories} />
+          <Bloc titol="Millor percentatge (mínim 20 partides)" jugadors={d.millorPercentatge} />
+          <Bloc
+            titol={d.debutants.length > 10 ? `Debutants (els 10 primers de ${d.debutants.length})` : 'Debutants'}
+            jugadors={d.debutants.slice(0, 10)}
+          />
+          <Bloc
+            titol={d.recuperats.length > 10 ? `Tornen a ser actius (10 de ${d.recuperats.length})` : 'Tornen a ser actius'}
+            jugadors={d.recuperats.slice(0, 10)}
+          />
+        </View>
+      </View>
+    </View>
+  )
+}
+
 // --- Paginació -----------------------------------------------------------------
 
 function trosseja<T>(files: T[], primera: number, resta: number): T[][] {
@@ -331,7 +466,8 @@ function trosseja<T>(files: T[], primera: number, resta: number): T[][] {
   return pagines.filter((p) => p.length > 0)
 }
 
-export function DocumentBarruf({ informe }: { informe: Informe }) {
+export function DocumentBarruf({ informe, destacats }: { informe: Informe; destacats?: Destacats }) {
+  const especial = informe.especial !== null
   const actius = trosseja(informe.actius, FILES_PRIMERA, FILES_PAGINA)
   const espera = trosseja(informe.espera, FILES_PRIMERA_ESPERA, FILES_PAGINA)
   const llegendaApart = (actius.at(-1)?.length ?? 0) > FILES_AMB_LLEGENDA
@@ -344,12 +480,12 @@ export function DocumentBarruf({ informe }: { informe: Informe }) {
           {i === 0 ? (
             <>
               <Capcalera informe={informe} />
-              <Llegenda />
+              <Llegenda especial={especial} />
             </>
           ) : null}
-          <CapTaula numero={informe.numero} temporada={informe.temporada} espera={false} />
+          <CapTaula numero={informe.numero} temporada={informe.temporada} espera={false} especial={especial} />
           {files.map((f, j) => (
-            <FilaTaula key={f.nom} f={f} index={j} espera={false} />
+            <FilaTaula key={f.nom} f={f} index={j} espera={false} especial={especial} />
           ))}
           {i === actius.length - 1 && !llegendaApart ? <LlegendaClubs clubs={informe.clubs} /> : null}
           <Text style={s.numPagina} render={({ pageNumber }) => `${pageNumber}`} fixed />
@@ -376,21 +512,27 @@ export function DocumentBarruf({ informe }: { informe: Informe }) {
               </Text>
             </View>
           ) : null}
-          <CapTaula numero={informe.numero} temporada={informe.temporada} espera />
+          <CapTaula numero={informe.numero} temporada={informe.temporada} espera especial={especial} />
           {files.map((f, j) => (
-            <FilaTaula key={f.nom} f={f} index={j} espera />
+            <FilaTaula key={f.nom} f={f} index={j} espera especial={especial} />
           ))}
           <Text style={s.numPagina} render={({ pageNumber }) => `${pageNumber}`} fixed />
         </Page>
       ))}
+      {destacats ? (
+        <Page size="A4" style={s.pagina}>
+          <PaginaDestacats d={destacats} />
+          <Text style={s.numPagina} render={({ pageNumber }) => `${pageNumber}`} fixed />
+        </Page>
+      ) : null}
     </Document>
   )
 }
 
 /** El PDF d'una edició, a punt per servir. */
-export function renderitzaBarruf(informe: Informe): Promise<Buffer> {
+export function renderitzaBarruf(informe: Informe, destacats?: Destacats): Promise<Buffer> {
   // `renderToBuffer` vol un element de `<Document>` i no sap que el component
   // en retorna un.
-  const document = (<DocumentBarruf informe={informe} />) as unknown as ReactElement<DocumentProps>
+  const document = (<DocumentBarruf informe={informe} destacats={destacats} />) as unknown as ReactElement<DocumentProps>
   return renderToBuffer(document)
 }

@@ -48,6 +48,8 @@ export interface InformeCru {
   anterior: number | null
   files: FilaCrua[]
   clubs: { nom: string; nom_llegenda: string }[]
+  /** Només a l'especial de temporada: campionats barrufats a la temporada. */
+  campionats_temporada?: number
 }
 
 // --- El que es pinta ----------------------------------------------------------
@@ -98,6 +100,11 @@ export interface Informe {
   actius: Fila[]
   espera: Fila[]
   clubs: { nom: string; nomLlegenda: string }[]
+  /**
+   * Si no és una edició normal sinó una comparativa: amb quina edició es
+   * compara i si és l'especial de final de temporada.
+   */
+  especial: { anterior: number; temporada: boolean } | null
 }
 
 // --- Format ---------------------------------------------------------------------
@@ -247,7 +254,10 @@ const clauClub = (nom: string) =>
     .replace(/\p{Mn}/gu, '')
     .toLowerCase()
 
-export function construeixInforme(cru: InformeCru): Informe {
+export function construeixInforme(
+  cru: InformeCru,
+  opcions: { especial?: 'temporada' | 'comparativa' } = {},
+): Informe {
   const actius = cru.files.filter((f) => f.estat === 'act').sort(perBarruf)
   const espera = cru.files.filter((f) => f.estat === 'exp' || f.estat === 'inact').sort(perBarruf)
 
@@ -263,11 +273,17 @@ export function construeixInforme(cru: InformeCru): Informe {
     clubs: cru.clubs
       .map((c) => ({ nom: c.nom, nomLlegenda: c.nom_llegenda }))
       .sort((a, b) => clauClub(a.nom).localeCompare(clauClub(b.nom), 'ca')),
+    especial:
+      opcions.especial && cru.anterior !== null
+        ? { anterior: cru.anterior, temporada: opcions.especial === 'temporada' }
+        : null,
   }
 }
 
 /** «BARRUF-210 setembre 2026.pdf», com els anomena el full. */
-export function nomFitxer(informe: Pick<Informe, 'numero' | 'mes'>): string {
+export function nomFitxer(informe: Pick<Informe, 'numero' | 'mes'> & Partial<Pick<Informe, 'temporada' | 'especial'>>): string {
+  if (informe.especial?.temporada) return `BARRUF ESPECIAL TEMPORADA ${informe.temporada}.pdf`
+  if (informe.especial) return `BARRUF-${informe.especial.anterior} a ${informe.numero}.pdf`
   return `BARRUF-${informe.numero} ${informe.mes}.pdf`
 }
 
