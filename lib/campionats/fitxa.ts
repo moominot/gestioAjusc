@@ -29,7 +29,8 @@ export interface PartidaCampionat {
   jugador_1: string
   numero_2: number | null
   jugador_2: string | null
-  resultat_1: number
+  /** `null` si només se sap qui hi va jugar (campionats antics). */
+  resultat_1: number | null
   punts_1: number | null
   punts_2: number | null
 }

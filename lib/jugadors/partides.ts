@@ -25,7 +25,9 @@ export interface Resum {
   victories: number
   empats: number
   derrotes: number
-  /** Victòries (els empats compten mitja) sobre partides, de 0 a 1. */
+  /** Partides de campionats antics de les quals no se sap el resultat. */
+  senseResultat: number
+  /** Victòries (els empats compten mitja) sobre partides amb resultat, de 0 a 1. */
   percentatge: number | null
   ambPunts: number
   mitjanaFavor: number | null
@@ -35,9 +37,12 @@ export interface Resum {
 }
 
 export function resumeix(partides: FilaEnfrontament[]): Resum {
+  // Dels campionats antics no se sap qui va guanyar cada partida: compten com a
+  // jugades, però no entren al balanç de victòries ni al percentatge.
+  const conegudes = partides.filter((p) => p.resultat !== null)
   const r = (p: FilaEnfrontament) => Number(p.resultat)
-  const victories = partides.filter((p) => r(p) === 1).length
-  const empats = partides.filter((p) => r(p) === 0.5).length
+  const victories = conegudes.filter((p) => r(p) === 1).length
+  const empats = conegudes.filter((p) => r(p) === 0.5).length
   const ambPunts = partides.filter((p) => p.punts !== null && p.punts_rival !== null)
 
   let millor: FilaEnfrontament | null = null
@@ -54,8 +59,9 @@ export function resumeix(partides: FilaEnfrontament[]): Resum {
     partides: partides.length,
     victories,
     empats,
-    derrotes: partides.length - victories - empats,
-    percentatge: partides.length ? (victories + empats / 2) / partides.length : null,
+    derrotes: conegudes.length - victories - empats,
+    senseResultat: partides.length - conegudes.length,
+    percentatge: conegudes.length ? (victories + empats / 2) / conegudes.length : null,
     ambPunts: ambPunts.length,
     mitjanaFavor: ambPunts.length ? ambPunts.reduce((s, p) => s + p.punts!, 0) / ambPunts.length : null,
     mitjanaContra: ambPunts.length ? ambPunts.reduce((s, p) => s + p.punts_rival!, 0) / ambPunts.length : null,
@@ -68,20 +74,28 @@ export interface FilaRival {
   numero: number
   nom: string
   partides: number
+  /** Partides amb resultat conegut: sobre aquestes es fa el percentatge. */
+  ambResultat: number
   victories: number
-  percentatge: number
+  /** `null` si contra aquest rival no se'n coneix cap resultat. */
+  percentatge: number | null
 }
 
 /** El balanç contra cada rival, dels més jugats als que menys. */
 export function perRival(partides: FilaEnfrontament[]): FilaRival[] {
   const rivals = new Map<number, FilaRival>()
   for (const p of partides) {
-    const fila = rivals.get(p.rival_numero) ?? { numero: p.rival_numero, nom: p.rival, partides: 0, victories: 0, percentatge: 0 }
+    const fila =
+      rivals.get(p.rival_numero) ??
+      { numero: p.rival_numero, nom: p.rival, partides: 0, ambResultat: 0, victories: 0, percentatge: null }
     fila.partides += 1
-    fila.victories += Number(p.resultat)
+    if (p.resultat !== null) {
+      fila.ambResultat += 1
+      fila.victories += Number(p.resultat)
+    }
     rivals.set(p.rival_numero, fila)
   }
   return [...rivals.values()]
-    .map((f) => ({ ...f, percentatge: f.victories / f.partides }))
+    .map((f) => ({ ...f, percentatge: f.ambResultat ? f.victories / f.ambResultat : null }))
     .sort((a, b) => b.partides - a.partides || a.nom.localeCompare(b.nom, 'ca'))
 }

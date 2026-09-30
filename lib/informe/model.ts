@@ -270,3 +270,8 @@ export function construeixInforme(cru: InformeCru): Informe {
 export function nomFitxer(informe: Pick<Informe, 'numero' | 'mes'>): string {
   return `BARRUF-${informe.numero} ${informe.mes}.pdf`
 }
+
+/** «de setembre 2026», però «d’agost 2018» i «d’octubre 2019». */
+export function deMes(mes: string): string {
+  return /^[aeiouàèéíòóú]/i.test(mes) ? `d’${mes}` : `de ${mes}`
+}

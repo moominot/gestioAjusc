@@ -36,6 +36,19 @@ sencera (`…_temporada_2025_26.sql`): els 20 campionats partida per partida i
 les edicions 191 a 210 rejugades amb el motor, que coincideixen jugador per
 jugador amb els fulls de l'AJUSC. La genera `scripts/genera_temporada.ts`.
 
+Abans de la llavor hi ha **l'arxiu**: les edicions 70 a 189 (temporades 2014-15
+a 2024-25) tal com es van publicar, amb els seus 120 campionats
+(`…_arxiu_2014_2025.sql`). No es rejuguen: la cadena arrenca de la llavor. Dels
+campionats d'abans del 2018-19 només hi ha els aparellaments i les victòries
+totals, no qui va guanyar cada partida. Es regenera així:
+
+```bash
+python3 scripts/extreu_arxiu.py <carpeta Temporades> <json>        # llegeix els fulls
+pdftotext -layout <PDF d'una edició trencada> <json>/../pdfs/N.txt  # si cal
+python3 scripts/llegeix_pdf_barruf.py <json> <pdfs>/*.txt
+npx vite-node scripts/genera_arxiu.ts -- <json> 190 > supabase/migrations/…_arxiu.sql
+```
+
 ```bash
 npm test          # proves del motor i dels lectors
 npm run typecheck

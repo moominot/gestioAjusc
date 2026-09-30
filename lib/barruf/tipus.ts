@@ -22,7 +22,12 @@ export interface PartidaResolta {
   jugador1Id: string
   /** `null` vol dir BYE: no compta per al BARRUF. */
   jugador2Id: string | null
-  resultat1: Resultat
+  /**
+   * `null` si no se sap qui va guanyar. Passa als campionats antics, dels quals
+   * només es conserven els aparellaments i les victòries totals de cada jugador
+   * (vegeu `CampionatEntrada.victories`).
+   */
+  resultat1: Resultat | null
 }
 
 /** Un campionat a punt de ser processat per la cadena. */
@@ -32,6 +37,18 @@ export interface CampionatEntrada {
   inscrits: string[]
   partides: PartidaResolta[]
   temporadaCodi: string
+  /**
+   * Victòries totals de cada jugador, quan no es coneix el resultat de cada
+   * partida. Si hi són, manen sobre els resultats: el BARRUF només necessita
+   * contra qui s'ha jugat i quantes se n'han guanyat.
+   */
+  victories?: Record<string, number>
+  /**
+   * Si la variació s'arrodoneix abans de sumar-la. El full ho fa des de
+   * l'edició 142 (temporada 2021-22); abans encadenava els decimals.
+   * Per defecte, sí.
+   */
+  arrodoneix?: boolean
 }
 
 /** Detall auditable de la variació d'un jugador en un campionat. */

@@ -77,7 +77,8 @@ export interface FilaEnfrontament {
   campionat: string
   data: string
   ronda: number
-  resultat: string
+  /** `null` si no se sap qui va guanyar (campionats antics). */
+  resultat: string | null
   punts: number | null
   punts_rival: number | null
   temporada_codi: string

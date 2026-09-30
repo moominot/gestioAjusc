@@ -64,3 +64,12 @@ it('perRival ordena pels més jugats', () => {
     ['Berta', 2, 1.5],
   ])
 })
+
+it('les partides sense resultat compten com a jugades però no al balanç', () => {
+  const antiga = { ...p(ANNA, 0, null), resultat: null }
+  const r = resumeix([p(ANNA, 1, null), antiga])
+  expect([r.partides, r.victories, r.derrotes, r.senseResultat]).toEqual([2, 1, 0, 1])
+  expect(r.percentatge).toBe(1)
+  const [anna] = perRival([antiga])
+  expect(anna).toMatchObject({ partides: 1, ambResultat: 0, percentatge: null })
+})

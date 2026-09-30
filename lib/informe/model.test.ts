@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { COLOR, categoria, construeixInforme, mesIAny, nomFitxer, type FilaCrua, type InformeCru } from './model'
+import { COLOR, categoria, construeixInforme, deMes, mesIAny, nomFitxer, type FilaCrua, type InformeCru } from './model'
 
 /** Una fila amb valors per defecte; els casos reals surten del PDF 209. */
 function fila(parcial: Partial<FilaCrua> & Pick<FilaCrua, 'nom' | 'barruf'>): FilaCrua {
@@ -136,4 +136,10 @@ it('categoria, mes i nom del fitxer', () => {
   expect([1423, 1387, 1235, 1190, 1045, 999.6, 999.4].map(categoria)).toEqual([1, 2, 3, 4, 5, 5, null])
   expect(mesIAny('2026-09-18')).toBe('setembre 2026')
   expect(nomFitxer({ numero: 210, mes: 'setembre 2026' })).toBe('BARRUF-210 setembre 2026.pdf')
+})
+
+it('apostrofa els mesos que comencen per vocal', () => {
+  expect(deMes('setembre 2026')).toBe('de setembre 2026')
+  expect(deMes('agost 2018')).toBe('d’agost 2018')
+  expect(deMes('octubre 2019')).toBe('d’octubre 2019')
 })

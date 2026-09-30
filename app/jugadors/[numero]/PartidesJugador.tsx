@@ -43,7 +43,10 @@ export function PartidesJugador({ partides }: { partides: FilaEnfrontament[] }) 
 
   const xifres = [
     { etiqueta: 'Partides', valor: String(resum.partides) },
-    { etiqueta: 'V – E – D', valor: `${resum.victories} – ${resum.empats} – ${resum.derrotes}` },
+    {
+      etiqueta: resum.senseResultat ? `V – E – D (+${resum.senseResultat} sense resultat)` : 'V – E – D',
+      valor: `${resum.victories} – ${resum.empats} – ${resum.derrotes}`,
+    },
     { etiqueta: '% victòries', valor: resum.percentatge === null ? '—' : `${Math.round(resum.percentatge * 100)} %` },
     {
       etiqueta: 'Punts per partida',
@@ -159,9 +162,11 @@ export function PartidesJugador({ partides }: { partides: FilaEnfrontament[] }) 
                   <td className="xifres px-4 py-1.5 text-right">{r.partides}</td>
                   <td className="xifres px-4 py-1.5 text-right">{decimal(r.victories)}</td>
                   <td
-                    className={`xifres px-4 py-1.5 text-right ${r.percentatge >= 0.5 ? 'text-emerald-700' : 'text-red-700'}`}
+                    className={`xifres px-4 py-1.5 text-right ${
+                      r.percentatge === null ? 'text-stone-400' : r.percentatge >= 0.5 ? 'text-emerald-700' : 'text-red-700'
+                    }`}
                   >
-                    {Math.round(r.percentatge * 100)} %
+                    {r.percentatge === null ? '—' : `${Math.round(r.percentatge * 100)} %`}
                   </td>
                 </tr>
               ))}
@@ -175,7 +180,7 @@ export function PartidesJugador({ partides }: { partides: FilaEnfrontament[] }) 
       ) : (
         <ul className="divide-y divide-stone-100 rounded-lg border border-stone-200 bg-white">
           {filtrades.slice(0, mostrades).map((partida, index) => {
-            const resultat = Number(partida.resultat)
+            const resultat = partida.resultat === null ? null : Number(partida.resultat)
             return (
               <li
                 key={`${partida.campionat_id}-${partida.ronda}-${partida.rival_numero}-${index}`}
@@ -186,7 +191,9 @@ export function PartidesJugador({ partides }: { partides: FilaEnfrontament[] }) 
                     resultat === 1 ? 'text-emerald-700' : resultat === 0 ? 'text-red-700' : 'text-stone-500'
                   }`}
                 >
-                  {resultat === 1 ? 'V' : resultat === 0 ? 'D' : 'E'}
+                  <span title={resultat === null ? 'Del campionat només se sap qui hi va jugar' : undefined}>
+                    {resultat === null ? '?' : resultat === 1 ? 'V' : resultat === 0 ? 'D' : 'E'}
+                  </span>
                 </span>
                 <Link href={`/jugadors/${partida.rival_numero}`} className="flex-1 hover:underline">
                   {partida.rival}

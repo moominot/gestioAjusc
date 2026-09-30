@@ -22,7 +22,7 @@ import {
   type DocumentProps,
 } from '@react-pdf/renderer'
 
-import { COLOR, type Cella, type Fila, type Informe } from './model'
+import { COLOR, deMes, type Cella, type Fila, type Informe } from './model'
 
 const RECURSOS = path.join(process.cwd(), 'lib/informe/recursos')
 
@@ -234,7 +234,7 @@ function Capcalera({ informe }: { informe: Informe }) {
           El BARRUF és el rànquing de jugadors de Scrabble clàssic elaborat per l’AJUSC.
         </Text>
         <Text style={s.liniaBanda}>
-          Temporada {informe.temporada} | Edició número {informe.numero}, de {informe.mes}
+          Temporada {informe.temporada} | Edició número {informe.numero}, {deMes(informe.mes)}
         </Text>
         {informe.campionatsComputats ? (
           <Text style={s.liniaBanda}>Campionat computat: {informe.campionatsComputats}</Text>

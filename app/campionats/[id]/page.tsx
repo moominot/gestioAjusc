@@ -237,8 +237,9 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
               </summary>
               <ul className="divide-y divide-stone-100 border-t border-stone-100">
                 {partides.map((p, i) => {
-                  const guanya1 = Number(p.resultat_1) === 1
-                  const guanya2 = Number(p.resultat_1) === 0 && p.numero_2 !== null
+                  const conegut = p.resultat_1 !== null
+                  const guanya1 = conegut && Number(p.resultat_1) === 1
+                  const guanya2 = conegut && Number(p.resultat_1) === 0 && p.numero_2 !== null
                   return (
                     <li key={i} className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-1.5 text-sm">
                       <Link href={`/jugadors/${p.numero_1}`} className={`text-right hover:underline ${guanya1 ? 'font-semibold' : 'text-stone-600'}`}>
@@ -249,7 +250,9 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
                           ? 'descansa'
                           : p.punts_1 !== null && p.punts_2 !== null
                             ? `${p.punts_1} – ${p.punts_2}`
-                            : Number(p.resultat_1) === 0.5
+                            : !conegut
+                              ? 'contra'
+                              : Number(p.resultat_1) === 0.5
                               ? '½ – ½'
                               : `${Number(p.resultat_1)} – ${1 - Number(p.resultat_1)}`}
                       </span>

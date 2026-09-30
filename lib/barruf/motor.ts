@@ -60,10 +60,10 @@ export function estatInicial(jugadorId: string): EstatBarruf {
 /** Desdobla cada partida en les dues perspectives, descartant els BYE. */
 function partidesDirigides(
   partides: PartidaResolta[],
-): Map<string, { adversariId: string; resultat: number }[]> {
-  const perJugador = new Map<string, { adversariId: string; resultat: number }[]>()
+): Map<string, { adversariId: string; resultat: number | null }[]> {
+  const perJugador = new Map<string, { adversariId: string; resultat: number | null }[]>()
 
-  const afegeix = (jugadorId: string, adversariId: string, resultat: number) => {
+  const afegeix = (jugadorId: string, adversariId: string, resultat: number | null) => {
     const llista = perJugador.get(jugadorId)
     if (llista) llista.push({ adversariId, resultat })
     else perJugador.set(jugadorId, [{ adversariId, resultat }])
@@ -74,7 +74,7 @@ function partidesDirigides(
     if (partida.jugador2Id === null) continue
 
     afegeix(partida.jugador1Id, partida.jugador2Id, partida.resultat1)
-    afegeix(partida.jugador2Id, partida.jugador1Id, 1 - partida.resultat1)
+    afegeix(partida.jugador2Id, partida.jugador1Id, partida.resultat1 === null ? null : 1 - partida.resultat1)
   }
 
   return perJugador
@@ -120,8 +120,11 @@ export function calculaCampionat(
     let victories = 0
     for (const { adversariId, resultat } of partides) {
       esperanca += esperancaPartida(barrufAbans, barrufDe(adversariId))
-      victories += resultat
+      victories += resultat ?? 0
     }
+
+    // Dels campionats antics només se saben les victòries totals.
+    if (campionat.victories) victories = campionat.victories[jugadorId] ?? 0
 
     const k = factorK(partidesPrevies, partides.length)
     const variacio = (victories - esperanca) * k
@@ -138,7 +141,7 @@ export function calculaCampionat(
       // ROUND(variació)), de manera que la cadena oficial va sempre en enters.
       // Si aquí es sumessin els decimals, cada campionat ens n'allunyaria una
       // mica. La variació exacta es conserva igualment per a l'auditoria.
-      barrufDespres: barrufAbans + arrodoneix(variacio),
+      barrufDespres: barrufAbans + (campionat.arrodoneix === false ? variacio : arrodoneix(variacio)),
     })
   }
 
