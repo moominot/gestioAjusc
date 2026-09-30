@@ -50,6 +50,8 @@ export function LlistaCampionats({ campionats }: { campionats: CampionatPublic[]
   }, [campionats, text, temporada, estat])
 
   const total = perTemporada.reduce((s, [, cs]) => s + cs.length, 0)
+  // Amb una cerca o un filtre posat, es despleguen totes les temporades que hi surten.
+  const filtrant = text.trim() !== '' || temporada !== 'totes' || estat !== 'tots'
 
   return (
     <div className="space-y-6">
@@ -91,12 +93,13 @@ export function LlistaCampionats({ campionats }: { campionats: CampionatPublic[]
       {perTemporada.length === 0 ? (
         <p className="text-sm text-stone-500">Cap campionat coincideix amb la cerca.</p>
       ) : (
-        perTemporada.map(([codi, llista]) => (
-          <section key={codi}>
-            <h2 className="mb-2 text-lg font-semibold">
+        perTemporada.map(([codi, llista], index) => (
+          <details key={`${codi}-${filtrant}`} open={filtrant || index === 0} className="group">
+            <summary className="mb-2 flex cursor-pointer list-none items-baseline gap-2 text-lg font-semibold">
+              <span className="inline-block w-4 text-sm text-stone-400 transition-transform group-open:rotate-90">▶</span>
               Temporada {codi}{' '}
               <span className="text-sm font-normal text-stone-400">· {llista.length} campionats</span>
-            </h2>
+            </summary>
             <ul className="divide-y divide-stone-100 rounded-lg border border-stone-200 bg-white">
               {llista.map((c) => (
                 <li key={c.id}>
@@ -119,7 +122,7 @@ export function LlistaCampionats({ campionats }: { campionats: CampionatPublic[]
                 </li>
               ))}
             </ul>
-          </section>
+          </details>
         ))
       )}
     </div>

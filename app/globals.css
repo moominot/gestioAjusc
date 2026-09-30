@@ -15,3 +15,8 @@ body {
 .xifres {
   font-variant-numeric: tabular-nums;
 }
+
+/* Els desplegables porten la seva pròpia fletxa. */
+summary::-webkit-details-marker {
+  display: none;
+}
