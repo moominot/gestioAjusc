@@ -52,7 +52,8 @@ def main():
 
     for cami in sys.argv[2:]:
         text = Path(cami).read_text(encoding="utf-8")
-        m = re.search(r"Edició número (\d+)", text)
+        # «Edició número 156» als PDF nous, «Edició núm. 121» als antics.
+        m = re.search(r"Edició (?:número|núm\.) (\d+)", text)
         if not m:
             print(f"  {cami}: no hi trobo el número d'edició", file=sys.stderr)
             continue
