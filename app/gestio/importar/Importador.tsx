@@ -7,9 +7,11 @@ import { CercaJugador, type JugadorCercable } from '../../../components/CercaJug
 import {
   analitza,
   desa,
+  reimporta,
   type DadesCampionat,
   type Proposta,
   type ResultatDesat,
+  type ResultatReimportacio,
 } from './accions'
 
 const avui = () => new Date().toISOString().slice(0, 10)
@@ -28,12 +30,28 @@ const ETIQUETA_COM: Record<string, { text: string; classe: string }> = {
   nou: { text: 'Alta nova', classe: 'bg-stone-200 text-stone-700' },
 }
 
-export function Importador({ temporades }: { temporades: string[] }) {
+/** Un campionat ja desat que es torna a importar. */
+export interface CampionatAReimportar {
+  id: string
+  nom: string
+  partides: number
+  /** És de l'arxiu: el BARRUF publicat no se'n recalcula. */
+  arxiu: boolean
+}
+
+export function Importador({
+  temporades,
+  reimportacio,
+}: {
+  temporades: string[]
+  reimportacio?: CampionatAReimportar
+}) {
   const [proposta, setProposta] = useState<Proposta | null>(null)
   const [registre, setRegistre] = useState<JugadorCercable[]>([])
   const [error, setError] = useState<string | null>(null)
   const [decisions, setDecisions] = useState<Record<number, number | null>>({})
   const [desat, setDesat] = useState<ResultatDesat | null>(null)
+  const [reimportat, setReimportat] = useState<ResultatReimportacio | null>(null)
   const [treballant, comença] = useTransition()
 
   const [campionat, setCampionat] = useState<DadesCampionat>({
@@ -67,6 +85,18 @@ export function Importador({ temporades }: { temporades: string[] }) {
   function desaCampionat() {
     if (!proposta) return
     setError(null)
+    if (reimportacio) {
+      const avis =
+        `Se substituiran les ${reimportacio.partides} partides de «${reimportacio.nom}» per ` +
+        `les ${proposta.partides.length} del fitxer. Les correccions fetes a mà es perdran. Continuar?`
+      if (!window.confirm(avis)) return
+      comença(async () => {
+        const resultat = await reimporta(reimportacio.id, proposta, decisions)
+        if (!resultat.ok) setError(resultat.error)
+        else setReimportat(resultat)
+      })
+      return
+    }
     comença(async () => {
       const resultat = await desa(proposta, campionat, decisions)
       if (!resultat.ok) setError(resultat.error)
@@ -76,6 +106,29 @@ export function Importador({ temporades }: { temporades: string[] }) {
 
   const decisioDe = (participant: Proposta['participants'][number]) =>
     participant.localId in decisions ? decisions[participant.localId] : participant.jugadorNumero
+
+  if (reimportacio && reimportat?.ok) {
+    return (
+      <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-6">
+        <h2 className="font-semibold text-emerald-900">Campionat reimportat</h2>
+        <p className="mt-2 text-sm text-emerald-900">
+          Abans hi havia {reimportat.partidesAnteriors} partides; ara n’hi ha {reimportat.partides},
+          de {reimportat.participants} participants
+          {reimportat.jugadorsNous > 0 ? `, amb ${reimportat.jugadorsNous} altes noves` : null}.
+        </p>
+        <p className="mt-3 text-sm text-emerald-900">
+          {reimportacio.arxiu
+            ? 'És un campionat de l’arxiu: el BARRUF publicat no canvia.'
+            : 'El BARRUF en tindrà compte la propera vegada que es publiqui.'}
+        </p>
+        <div className="mt-4 flex gap-3 text-sm">
+          <Link href={`/campionats/${reimportacio.id}`} className="underline">
+            Veure el campionat
+          </Link>
+        </div>
+      </div>
+    )
+  }
 
   if (desat?.ok) {
     return (
@@ -160,6 +213,11 @@ export function Importador({ temporades }: { temporades: string[] }) {
               resultat en 1, 0,5 o 0. Per a un descans, deixeu l’adversari en blanc o poseu-hi
               BYE.
             </p>
+            <p className="mt-2 text-sm text-stone-600">
+              Opcionalment, per a cada jugador (acabades en 1 o 2): <strong>Scrabbles</strong>, la
+              millor jugada (<strong>Mot</strong> i <strong>Puntsmot</strong>) i la millor jugada
+              amb lletra especial (<strong>Lletra</strong> i <strong>Punts lletra</strong>).
+            </p>
             <label className="mt-4 block text-sm">
               <input
                 type="file"
@@ -187,6 +245,9 @@ export function Importador({ temporades }: { temporades: string[] }) {
               {proposta.rondesJugades} rondes jugades
               {proposta.rondesPrevistes ? ` de ${proposta.rondesPrevistes} previstes` : null}
               {proposta.pestanya ? ` · pestanya «${proposta.pestanya}»` : null}
+              {proposta.ambEstadistiques > 0
+                ? ` · ${proposta.ambEstadistiques} partides amb scrabbles o millors jugades`
+                : null}
             </p>
             {proposta.rondesPendents.length > 0 ? (
               <p className="mt-2 text-sm text-amber-800">
@@ -209,6 +270,7 @@ export function Importador({ temporades }: { temporades: string[] }) {
             ) : null}
           </section>
 
+          {reimportacio ? null : (
           <section className="space-y-4 rounded-lg border border-stone-200 bg-white p-5">
             <h2 className="font-semibold">Dades del campionat</h2>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -296,6 +358,7 @@ export function Importador({ temporades }: { temporades: string[] }) {
               </span>
             </label>
           </section>
+          )}
 
           <section className="rounded-lg border border-stone-200 bg-white">
             <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-stone-200 px-5 py-4">
@@ -393,7 +456,11 @@ export function Importador({ temporades }: { temporades: string[] }) {
               disabled={treballant}
               className="rounded-lg bg-stone-900 px-4 py-2 text-white hover:bg-stone-700 disabled:opacity-50"
             >
-              {treballant ? 'Desant…' : 'Importar el campionat'}
+              {treballant
+                ? 'Desant…'
+                : reimportacio
+                  ? 'Substituir les partides'
+                  : 'Importar el campionat'}
             </button>
             <button
               type="button"

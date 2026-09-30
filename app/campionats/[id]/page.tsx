@@ -7,6 +7,7 @@ import {
   estadistiques,
   perRonda,
   type FitxaCampionat,
+  type PartidaCampionat,
 } from '../../../lib/campionats/fitxa'
 import { clientServidor, gestorConnectat } from '../../../lib/supabase/servidor'
 
@@ -104,7 +105,7 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
         ))}
       </dl>
 
-      {xifres.ambPunts || xifres.mesPujada ? (
+      {xifres.ambPunts || xifres.mesPujada || xifres.ambJugades ? (
         <ul className="grid gap-3 text-sm sm:grid-cols-2">
           {xifres.millorPuntuacio ? (
             <li className="rounded-lg border border-stone-200 bg-white px-4 py-3">
@@ -133,6 +134,28 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
               <strong className="text-emerald-700">+{Math.round(xifres.mesPujada.variacio)}</strong>
             </li>
           ) : null}
+          {xifres.millorJugada ? (
+            <li className="rounded-lg border border-stone-200 bg-white px-4 py-3">
+              <span className="text-stone-500">Millor jugada:</span>{' '}
+              {xifres.millorJugada.mot ? <strong className="tracking-wide">{xifres.millorJugada.mot}</strong> : null}{' '}
+              ({xifres.millorJugada.punts} punts) de {xifres.millorJugada.jugador}, ronda{' '}
+              {xifres.millorJugada.ronda}
+            </li>
+          ) : null}
+          {xifres.millorLletra ? (
+            <li className="rounded-lg border border-stone-200 bg-white px-4 py-3">
+              <span className="text-stone-500">Millor jugada amb lletra especial:</span>{' '}
+              {xifres.millorLletra.mot ? <strong className="tracking-wide">{xifres.millorLletra.mot}</strong> : null}{' '}
+              ({xifres.millorLletra.punts} punts) de {xifres.millorLletra.jugador}, ronda{' '}
+              {xifres.millorLletra.ronda}
+            </li>
+          ) : null}
+          {xifres.mesScrabbles ? (
+            <li className="rounded-lg border border-stone-200 bg-white px-4 py-3">
+              <span className="text-stone-500">Més scrabbles:</span> {xifres.mesScrabbles.jugador}{' '}
+              <strong>{xifres.mesScrabbles.scrabbles}</strong>
+            </li>
+          ) : null}
         </ul>
       ) : null}
 
@@ -150,6 +173,13 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
                   <>
                     <th className="px-3 py-2 text-right font-medium">Punts</th>
                     <th className="px-3 py-2 text-right font-medium">Dif.</th>
+                  </>
+                ) : null}
+                {xifres.ambJugades ? (
+                  <>
+                    <th className="px-3 py-2 text-right font-medium" title="Scrabbles">Scr.</th>
+                    <th className="px-3 py-2 font-medium">Millor jugada</th>
+                    <th className="px-3 py-2 font-medium">Lletra especial</th>
                   </>
                 ) : null}
                 {ambBarruf ? (
@@ -181,6 +211,17 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
                       <td className="xifres px-3 py-1.5 text-right text-stone-600">{f.punts_favor ?? '—'}</td>
                       <td className="xifres px-3 py-1.5 text-right text-stone-600">
                         {f.diferencia === null ? '—' : `${f.diferencia > 0 ? '+' : ''}${f.diferencia}`}
+                      </td>
+                    </>
+                  ) : null}
+                  {xifres.ambJugades ? (
+                    <>
+                      <td className="xifres px-3 py-1.5 text-right text-stone-600">{f.scrabbles ?? '—'}</td>
+                      <td className="whitespace-nowrap px-3 py-1.5 text-stone-600">
+                        <Jugada mot={f.mot ?? null} punts={f.punts_mot ?? null} />
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-1.5 text-stone-600">
+                        <Jugada mot={f.mot_lletra ?? null} punts={f.punts_lletra ?? null} />
                       </td>
                     </>
                   ) : null}
@@ -242,9 +283,12 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
                   const guanya2 = conegut && Number(p.resultat_1) === 0 && p.numero_2 !== null
                   return (
                     <li key={i} className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-1.5 text-sm">
-                      <Link href={`/jugadors/${p.numero_1}`} className={`text-right hover:underline ${guanya1 ? 'font-semibold' : 'text-stone-600'}`}>
-                        {p.jugador_1}
-                      </Link>
+                      <span className="text-right">
+                        <Link href={`/jugadors/${p.numero_1}`} className={`hover:underline ${guanya1 ? 'font-semibold' : 'text-stone-600'}`}>
+                          {p.jugador_1}
+                        </Link>
+                        <DetallCostat partida={p} costat={1} />
+                      </span>
                       <span className="xifres whitespace-nowrap text-center text-stone-700">
                         {p.numero_2 === null
                           ? 'descansa'
@@ -257,9 +301,12 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
                               : `${Number(p.resultat_1)} – ${1 - Number(p.resultat_1)}`}
                       </span>
                       {p.numero_2 !== null ? (
-                        <Link href={`/jugadors/${p.numero_2}`} className={`hover:underline ${guanya2 ? 'font-semibold' : 'text-stone-600'}`}>
-                          {p.jugador_2}
-                        </Link>
+                        <span>
+                          <Link href={`/jugadors/${p.numero_2}`} className={`hover:underline ${guanya2 ? 'font-semibold' : 'text-stone-600'}`}>
+                            {p.jugador_2}
+                          </Link>
+                          <DetallCostat partida={p} costat={2} />
+                        </span>
                       ) : (
                         <span />
                       )}
@@ -273,4 +320,30 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
       </section>
     </div>
   )
+}
+
+/** Un mot amb els seus punts, o un guió si no se'n té. */
+function Jugada({ mot, punts }: { mot: string | null; punts: number | null }) {
+  if (punts === null && !mot) return <span className="text-stone-300">—</span>
+  return (
+    <>
+      {mot ? <span className="tracking-wide">{mot}</span> : null}
+      {punts !== null ? <span className="xifres ml-1 text-stone-400">{punts}</span> : null}
+    </>
+  )
+}
+
+/** Scrabbles i millors jugades d'un jugador en una partida, en petit sota el nom. */
+function DetallCostat({ partida: p, costat }: { partida: PartidaCampionat; costat: 1 | 2 }) {
+  const [scrabbles, mot, punts, lletra, puntsLletra] =
+    costat === 1
+      ? [p.scrabbles_1, p.mot_1, p.punts_mot_1, p.mot_lletra_1, p.punts_lletra_1]
+      : [p.scrabbles_2, p.mot_2, p.punts_mot_2, p.mot_lletra_2, p.punts_lletra_2]
+  const parts = [
+    scrabbles !== null && scrabbles !== undefined ? `${scrabbles} scr.` : null,
+    mot || punts ? [mot, punts].filter((x) => x !== null && x !== undefined).join(' ') : null,
+    lletra || puntsLletra ? [lletra, puntsLletra].filter((x) => x !== null && x !== undefined).join(' ') : null,
+  ].filter(Boolean)
+  if (parts.length === 0) return null
+  return <span className="block text-xs text-stone-400">{parts.join(' · ')}</span>
 }

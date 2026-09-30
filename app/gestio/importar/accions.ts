@@ -6,7 +6,11 @@ import type { JugadorCercable } from '../../../components/CercaJugador'
 import { llegeixFitxerDeResultats } from '../../../lib/importacio/fitxers'
 import { construeixTorneigDeFull } from '../../../lib/importacio/fulls'
 import { resolNoms, type JugadorRegistre } from '../../../lib/importacio/resolucio'
-import { llegeixTorneig, type Torneig } from '../../../lib/importacio/torneig'
+import {
+  llegeixTorneig,
+  type EstadistiquesPartida,
+  type Torneig,
+} from '../../../lib/importacio/torneig'
 import { clientServidor, gestorConnectat } from '../../../lib/supabase/servidor'
 
 export interface ParticipantProposat {
@@ -28,6 +32,7 @@ export interface PartidaProposada {
   resultat1: number
   punts1: number | null
   punts2: number | null
+  estadistiques: EstadistiquesPartida | null
 }
 
 export interface Proposta {
@@ -40,6 +45,8 @@ export interface Proposta {
   pestanya: string | null
   rondesDeduides: boolean
   rondesPerBlocs: boolean
+  /** Quantes partides porten scrabbles o millors jugades. */
+  ambEstadistiques: number
   participants: ParticipantProposat[]
   partides: PartidaProposada[]
 }
@@ -180,6 +187,7 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
         pestanya,
         rondesDeduides,
         rondesPerBlocs,
+        ambEstadistiques: torneig.partides.filter((p) => p.estadistiques).length,
         participants,
         partides: torneig.partides.map((p) => ({
           ronda: p.ronda,
@@ -188,12 +196,50 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
           resultat1: p.resultatBlanc,
           punts1: p.puntsBlanc,
           punts2: p.puntsNegre,
+          estadistiques: p.estadistiques ?? null,
         })),
       },
     }
   } catch (error) {
     return { ok: false, error: (error as Error).message }
   }
+}
+
+/** Els participants tal com els vol la base de dades, amb el que hagi decidit el gestor. */
+function participantsPerDesar(proposta: Proposta, decisions: Record<number, number | null>) {
+  return proposta.participants.map((participant) => ({
+    local_id: String(participant.localId),
+    nom: participant.nom,
+    jugador_numero:
+      participant.localId in decisions
+        ? decisions[participant.localId]
+        : participant.jugadorNumero,
+  }))
+}
+
+/** Les partides tal com les vol la base de dades, amb les estadístiques aplanades. */
+function partidesPerDesar(proposta: Proposta) {
+  return proposta.partides.map((p) => {
+    const e = p.estadistiques
+    return {
+      ronda: p.ronda,
+      local_1: String(p.local1),
+      local_2: p.local2 === null ? null : String(p.local2),
+      resultat_1: p.resultat1,
+      punts_1: p.punts1,
+      punts_2: p.punts2,
+      scrabbles_1: e?.jugador1.scrabbles ?? null,
+      scrabbles_2: e?.jugador2.scrabbles ?? null,
+      mot_1: e?.jugador1.mot ?? null,
+      punts_mot_1: e?.jugador1.puntsMot ?? null,
+      mot_lletra_1: e?.jugador1.motLletra ?? null,
+      punts_lletra_1: e?.jugador1.puntsLletra ?? null,
+      mot_2: e?.jugador2.mot ?? null,
+      punts_mot_2: e?.jugador2.puntsMot ?? null,
+      mot_lletra_2: e?.jugador2.motLletra ?? null,
+      punts_lletra_2: e?.jugador2.puntsLletra ?? null,
+    }
+  })
 }
 
 export interface DadesCampionat {
@@ -224,17 +270,8 @@ export async function desa(
     return { ok: false, error: 'Si el campionat no computa, cal dir-ne el motiu.' }
   }
 
-  const participants = proposta.participants.map((participant) => ({
-    local_id: String(participant.localId),
-    nom: participant.nom,
-    jugador_numero:
-      participant.localId in decisions
-        ? decisions[participant.localId]
-        : participant.jugadorNumero,
-  }))
-
-  const senseDecidir = participants.filter((p) => p.jugador_numero === null)
-  const altesNoves = senseDecidir.length
+  const participants = participantsPerDesar(proposta, decisions)
+  const altesNoves = participants.filter((p) => p.jugador_numero === null).length
 
   const supabase = await clientServidor()
   const { data, error } = await supabase.rpc('importa_campionat', {
@@ -251,14 +288,7 @@ export async function desa(
       origen: proposta.origen,
     },
     p_participants: participants,
-    p_partides: proposta.partides.map((p) => ({
-      ronda: p.ronda,
-      local_1: String(p.local1),
-      local_2: p.local2 === null ? null : String(p.local2),
-      resultat_1: p.resultat1,
-      punts_1: p.punts1,
-      punts_2: p.punts2,
-    })),
+    p_partides: partidesPerDesar(proposta),
   })
 
   if (error) return { ok: false, error: error.message }
@@ -279,5 +309,50 @@ export async function desa(
     participants: resum.participants,
     jugadorsNous: resum.jugadors_nous || altesNoves,
     partides: resum.partides,
+  }
+}
+
+export type ResultatReimportacio =
+  | { ok: true; participants: number; jugadorsNous: number; partides: number; partidesAnteriors: number }
+  | { ok: false; error: string }
+
+/**
+ * Substitueix els participants i les partides d'un campionat ja desat pels del
+ * fitxer. Les dades del campionat es conserven. El BARRUF no es mou fins que
+ * es torni a publicar.
+ */
+export async function reimporta(
+  campionatId: string,
+  proposta: Proposta,
+  decisions: Record<number, number | null>,
+): Promise<ResultatReimportacio> {
+  if (!(await gestorConnectat())) return { ok: false, error: 'Cal haver entrat com a gestor.' }
+
+  const supabase = await clientServidor()
+  const { data, error } = await supabase.rpc('reimporta_campionat', {
+    p_campionat_id: campionatId,
+    p_campionat: { rondes_jugades: proposta.rondesJugades, origen: proposta.origen },
+    p_participants: participantsPerDesar(proposta, decisions),
+    p_partides: partidesPerDesar(proposta),
+  })
+
+  if (error) return { ok: false, error: error.message }
+
+  revalidatePath(`/campionats/${campionatId}`)
+  revalidatePath(`/gestio/campionats/${campionatId}`)
+  revalidatePath('/campionats')
+
+  const resum = data as {
+    participants: number
+    jugadors_nous: number
+    partides: number
+    partides_anteriors: number
+  }
+  return {
+    ok: true,
+    participants: resum.participants,
+    jugadorsNous: resum.jugadors_nous,
+    partides: resum.partides,
+    partidesAnteriors: resum.partides_anteriors,
   }
 }

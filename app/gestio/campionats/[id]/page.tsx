@@ -31,6 +31,13 @@ export default async function EditarCampionat({ params }: { params: Promise<{ id
           ← Fitxa del campionat
         </Link>
         <h1 className="mt-2 text-2xl font-semibold tracking-tight">Editar: {fila.nom as string}</h1>
+        <p className="mt-2 text-sm text-stone-600">
+          Si l’organitzador ha enviat els resultats corregits o amb estadístiques,{' '}
+          <Link href={`/gestio/campionats/${id}/reimportar`} className="underline hover:text-stone-900">
+            torneu a importar el campionat des del fitxer
+          </Link>{' '}
+          (SwissPerfect, full de càlcul o CSV).
+        </p>
       </div>
 
       <EditorCampionat

@@ -12,6 +12,12 @@ export interface JugadorCampionat {
   punts_favor: number | null
   punts_contra: number | null
   millor_puntuacio: number | null
+  /** Scrabbles del campionat i millors jugades, si se'n tenen les dades. */
+  scrabbles?: number | null
+  mot?: string | null
+  punts_mot?: number | null
+  mot_lletra?: string | null
+  punts_lletra?: number | null
   barruf_abans: number | null
   barruf_despres: number | null
   variacio: number | null
@@ -33,6 +39,16 @@ export interface PartidaCampionat {
   resultat_1: number | null
   punts_1: number | null
   punts_2: number | null
+  scrabbles_1?: number | null
+  scrabbles_2?: number | null
+  mot_1?: string | null
+  punts_mot_1?: number | null
+  mot_lletra_1?: string | null
+  punts_lletra_1?: number | null
+  mot_2?: string | null
+  punts_mot_2?: number | null
+  mot_lletra_2?: string | null
+  punts_lletra_2?: number | null
 }
 
 export interface FitxaCampionat {
@@ -101,6 +117,41 @@ export interface Estadistiques {
   majorVictoria: { diferencia: number; guanyador: string; perdedor: string; marcador: string } | null
   partidaMesAlta: { total: number; descripcio: string } | null
   mesPujada: { nom: string; variacio: number } | null
+  /** Hi ha scrabbles o millors jugades d'alguna partida. */
+  ambJugades: boolean
+  millorJugada: JugadaDestacada | null
+  millorLletra: JugadaDestacada | null
+  mesScrabbles: { jugador: string; scrabbles: number } | null
+}
+
+export interface JugadaDestacada {
+  mot?: string | null
+  punts: number
+  jugador: string
+  ronda: number
+}
+
+/** La jugada de més punts d'entre les partides, mirant els dos costats. */
+function millorDe(
+  partides: PartidaCampionat[],
+  jugada: (p: PartidaCampionat, costat: 1 | 2) => [string | null | undefined, number | null | undefined],
+): JugadaDestacada | null {
+  let millor: JugadaDestacada | null = null
+  for (const p of partides) {
+    for (const costat of [1, 2] as const) {
+      const [mot, punts] = jugada(p, costat)
+      if (punts === null || punts === undefined) continue
+      if (!millor || punts > millor.punts) {
+        millor = {
+          mot: mot ?? null,
+          punts,
+          jugador: costat === 1 ? p.jugador_1 : (p.jugador_2 ?? ''),
+          ronda: p.ronda,
+        }
+      }
+    }
+  }
+  return millor
 }
 
 /** Les xifres del campionat que no surten directament de la base de dades. */
@@ -143,6 +194,20 @@ export function estadistiques(fitxa: FitxaCampionat): Estadistiques {
     null,
   )
 
+  const millorJugada = millorDe(jugades, (p, c) =>
+    c === 1 ? [p.mot_1, p.punts_mot_1] : [p.mot_2, p.punts_mot_2],
+  )
+  const millorLletra = millorDe(jugades, (p, c) =>
+    c === 1 ? [p.mot_lletra_1, p.punts_lletra_1] : [p.mot_lletra_2, p.punts_lletra_2],
+  )
+  const mesScrabbles = fitxa.jugadors.reduce<Estadistiques['mesScrabbles']>(
+    (millor, j) =>
+      j.scrabbles !== null && j.scrabbles !== undefined && (!millor || j.scrabbles > millor.scrabbles)
+        ? { jugador: j.nom, scrabbles: j.scrabbles }
+        : millor,
+    null,
+  )
+
   return {
     participants: fitxa.jugadors.length,
     partides: jugades.length,
@@ -155,6 +220,10 @@ export function estadistiques(fitxa: FitxaCampionat): Estadistiques {
     majorVictoria,
     partidaMesAlta,
     mesPujada,
+    ambJugades: millorJugada !== null || millorLletra !== null || mesScrabbles !== null,
+    millorJugada,
+    millorLletra,
+    mesScrabbles,
   }
 }
 

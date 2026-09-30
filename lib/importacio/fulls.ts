@@ -16,7 +16,13 @@
  */
 
 import type { ResultatSwiss } from './swissperfect'
-import type { ParticipantTorneig, PartidaTorneig, Torneig } from './torneig'
+import type {
+  EstadistiquesJugador,
+  EstadistiquesPartida,
+  ParticipantTorneig,
+  PartidaTorneig,
+  Torneig,
+} from './torneig'
 
 import { netejaNom, normalitzaNom } from './noms'
 
@@ -52,18 +58,43 @@ const COLUMNES: Record<string, string[]> = {
     'p2',
     'black score',
   ],
+  // Estadístiques, opcionals. Els noms són els del full de les temporades
+  // del Club Scrabble Manacor (Scrabbles_1, Mot_1, Puntsmot_1, Lletra_1,
+  // Punts_lletra_1) i unes quantes variants més llegibles.
+  scrabbles1: ['scrabbles 1', 'scrabbles1'],
+  scrabbles2: ['scrabbles 2', 'scrabbles2'],
+  mot1: ['mot 1', 'mot1', 'millor mot 1', 'millor jugada 1'],
+  mot2: ['mot 2', 'mot2', 'millor mot 2', 'millor jugada 2'],
+  puntsMot1: ['puntsmot 1', 'punts mot 1', 'punts millor mot 1', 'punts millor jugada 1'],
+  puntsMot2: ['puntsmot 2', 'punts mot 2', 'punts millor mot 2', 'punts millor jugada 2'],
+  motLletra1: ['lletra 1', 'mot lletra 1', 'millor lletra 1'],
+  motLletra2: ['lletra 2', 'mot lletra 2', 'millor lletra 2'],
+  puntsLletra1: ['punts lletra 1', 'punts mot lletra 1', 'punts millor lletra 1'],
+  puntsLletra2: ['punts lletra 2', 'punts mot lletra 2', 'punts millor lletra 2'],
 }
 
-const normalitzaCapcalera = (text: string) => normalitzaNom(String(text ?? ''))
+// Els guions baixos valen com a espais: «Puntuacio_1» és «Puntuacio 1».
+const normalitzaCapcalera = (text: string) => normalitzaNom(String(text ?? '').replace(/_/g, ' '))
 
-/** Associa cada columna que ens interessa amb la seva posició a la capçalera. */
+/**
+ * Associa cada columna que ens interessa amb la seva posició a la capçalera.
+ *
+ * Mana l'ordre dels sinònims, no el de les columnes: si el full porta alhora
+ * «Punts 1» (el resultat, 1 o 0) i «Puntuació 1» (la de la partida), es queda
+ * la puntuació, que és la primera de la llista.
+ */
 function mapaColumnes(capcalera: unknown[]): Record<string, number> {
   const normalitzades = capcalera.map((c) => normalitzaCapcalera(String(c ?? '')))
   const mapa: Record<string, number> = {}
 
   for (const [clau, sinonims] of Object.entries(COLUMNES)) {
-    const posicio = normalitzades.findIndex((nom) => sinonims.includes(nom))
-    if (posicio >= 0) mapa[clau] = posicio
+    for (const sinonim of sinonims) {
+      const posicio = normalitzades.indexOf(sinonim)
+      if (posicio >= 0) {
+        mapa[clau] = posicio
+        break
+      }
+    }
   }
 
   const obligatories = ['jugador1', 'puntuacio1', 'jugador2', 'puntuacio2']
@@ -118,6 +149,41 @@ export interface FilaResultat {
   puntuacio1: number
   jugador2: string | null
   puntuacio2: number | null
+  /** `null` si el full no en porta cap per a aquesta partida. */
+  estadistiques?: EstadistiquesPartida | null
+}
+
+/**
+ * Un mot tal com es desa: en majúscules i amb la ela geminada ben escrita,
+ * perquè als fulls s'hi troba «Il.lesa», «AL-LE» o «al·le».
+ */
+export function normalitzaMot(valor: unknown): string | null {
+  if (valor === null || valor === undefined) return null
+  const text = String(valor).replace(/\s+/g, ' ').trim()
+  if (text === '' || text === '-' || text === '0') return null
+  return text
+    .replace(/ŀl/gi, 'l·l')
+    .replace(/l[.\-·•∙]l/gi, 'l·l')
+    .toLocaleUpperCase('ca')
+}
+
+const enter = (valor: unknown): number | null => {
+  const numero = aNombre(valor)
+  return numero === null ? null : Math.round(numero)
+}
+
+function estadistiquesDe(fila: unknown[], columnes: Record<string, number>): EstadistiquesPartida | null {
+  const cel = (clau: string) => (clau in columnes ? fila[columnes[clau]] : null)
+  const costat = (n: 1 | 2): EstadistiquesJugador => ({
+    scrabbles: enter(cel(`scrabbles${n}`)),
+    mot: normalitzaMot(cel(`mot${n}`)),
+    puntsMot: enter(cel(`puntsMot${n}`)),
+    motLletra: normalitzaMot(cel(`motLletra${n}`)),
+    puntsLletra: enter(cel(`puntsLletra${n}`)),
+  })
+  const estadistiques = { jugador1: costat(1), jugador2: costat(2) }
+  const buit = (e: EstadistiquesJugador) => Object.values(e).every((v) => v === null)
+  return buit(estadistiques.jugador1) && buit(estadistiques.jugador2) ? null : estadistiques
 }
 
 /** Converteix les files crues d'un full en resultats, amb la capçalera a la primera. */
@@ -148,6 +214,7 @@ export function interpretaFiles(files: unknown[][]): FilaResultat[] {
       throw new ErrorFull(`Fila ${numeroFila}: falta la puntuació de ${jugador2Cru}`)
     }
 
+    const estadistiques = esBye ? null : estadistiquesDe(fila, columnes)
     resultats.push({
       fila: numeroFila,
       ronda: 'ronda' in columnes ? aNombre(fila[columnes.ronda]) : null,
@@ -155,6 +222,7 @@ export function interpretaFiles(files: unknown[][]): FilaResultat[] {
       puntuacio1: puntuacio1 ?? 1,
       jugador2: esBye ? null : jugador2Cru,
       puntuacio2,
+      ...(estadistiques ? { estadistiques } : {}),
     })
   })
 
@@ -317,6 +385,7 @@ export function construeixTorneigDeFull(
       resultatBlanc: valor,
       puntsBlanc: sonPuntsScrabble ? resultat.puntuacio1 : null,
       puntsNegre: sonPuntsScrabble ? (resultat.puntuacio2 ?? null) : null,
+      estadistiques: resultat.estadistiques ?? null,
     })
   })
 

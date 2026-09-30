@@ -9,6 +9,7 @@ import {
   construeixTorneigDeFull,
   interpretaFiles,
   interpretaResultat,
+  normalitzaMot,
 } from './fulls'
 
 const csv = (text: string) => interpretaFiles(llegeixCsv(text))
@@ -258,5 +259,43 @@ describe('full de càlcul .xlsx', () => {
     expect(torneig.partides[0]).toMatchObject({ puntsBlanc: 361, resultatBlanc: 0 })
     expect(torneig.partides[3]).toMatchObject({ puntsBlanc: null, resultatBlanc: 1 })
     expect(torneig.partides[4]).toMatchObject({ resultatBlanc: 0.5 })
+  })
+})
+
+describe('estadístiques de partida', () => {
+  it('llegeix scrabbles i millors jugades amb els noms de columna del full de Manacor', () => {
+    const files = interpretaFiles([
+      ['Ronda', 'Jugador1', 'Jugador2', 'Punts_1', 'Punts_2', 'Puntuacio_1', 'Puntuacio_2',
+        'Mot_1', 'Puntsmot_1', 'Scrabbles_1', 'Mot_2', 'Puntsmot_2', 'Scrabbles_2',
+        'Lletra_1', 'Punts_lletra_1', 'Lletra_2', 'Punts_lletra_2'],
+      [1, 'Xisco Truyols', 'Joan Pascual', 0, 1, 455, 481,
+        'enrases', 75, 3, 'DESAREU', 82, 3, 'Ral.li', 33, null, null],
+    ])
+
+    // «Punts_1» és el resultat; mana «Puntuacio_1», que és la puntuació.
+    expect(files[0].puntuacio1).toBe(455)
+    expect(files[0].estadistiques).toEqual({
+      jugador1: { scrabbles: 3, mot: 'ENRASES', puntsMot: 75, motLletra: 'RAL·LI', puntsLletra: 33 },
+      jugador2: { scrabbles: 3, mot: 'DESAREU', puntsMot: 82, motLletra: null, puntsLletra: null },
+    })
+  })
+
+  it('les passa a les partides del torneig', () => {
+    const torneig = construeixTorneigDeFull(
+      csv(`${CAPCALERA},Scrabbles 1,Scrabbles 2\n1,Anna,410,Berta,380,2,1\n1,Carles,300,Dani,350,,`),
+    )
+    expect(torneig.partides[0].estadistiques?.jugador1.scrabbles).toBe(2)
+    expect(torneig.partides[0].estadistiques?.jugador2.scrabbles).toBe(1)
+    // Sense cap dada, no n'hi ha.
+    expect(torneig.partides[1].estadistiques).toBeNull()
+  })
+
+  it('normalitza els mots', () => {
+    expect(normalitzaMot('Il.lesa')).toBe('IL·LESA')
+    expect(normalitzaMot('al-le')).toBe('AL·LE')
+    expect(normalitzaMot('col·lega')).toBe('COL·LEGA')
+    expect(normalitzaMot('  xoc ')).toBe('XOC')
+    expect(normalitzaMot('')).toBeNull()
+    expect(normalitzaMot('-')).toBeNull()
   })
 })

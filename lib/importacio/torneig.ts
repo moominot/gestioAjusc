@@ -42,6 +42,24 @@ export interface PartidaTorneig {
   /** Puntuació d'Scrabble. `null` si el torneig no la registra. */
   puntsBlanc: number | null
   puntsNegre: number | null
+  /** Scrabbles i millors jugades, si el fitxer els porta. */
+  estadistiques?: EstadistiquesPartida | null
+}
+
+/** El que es desa de cada jugador d'una partida, a més de la puntuació. */
+export interface EstadistiquesJugador {
+  scrabbles: number | null
+  /** Millor jugada: el mot, en majúscules, i els punts que va fer. */
+  mot: string | null
+  puntsMot: number | null
+  /** Millor jugada amb lletra especial (Ç, L·L, NY, Q, X…). */
+  motLletra: string | null
+  puntsLletra: number | null
+}
+
+export interface EstadistiquesPartida {
+  jugador1: EstadistiquesJugador
+  jugador2: EstadistiquesJugador
 }
 
 export interface InfoTorneig {
