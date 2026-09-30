@@ -31,8 +31,10 @@ npm run dev
 ```
 
 Les migracions de `supabase/migrations/` s'apliquen en ordre. La llavor, el punt
-de partida de la cadena, és l'edició 209: 629 jugadors importats del full de
-càlcul de l'AJUSC (`…_llavor_209.sql`, que substitueix la 199 original).
+de partida de la cadena, és l'edició 190. A sobre hi ha la temporada 2025-26
+sencera (`…_temporada_2025_26.sql`): els 20 campionats partida per partida i
+les edicions 191 a 210 rejugades amb el motor, que coincideixen jugador per
+jugador amb els fulls de l'AJUSC. La genera `scripts/genera_temporada.ts`.
 
 ```bash
 npm test          # proves del motor i dels lectors

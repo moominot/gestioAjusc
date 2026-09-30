@@ -16,3 +16,5 @@ docker/.env
 docs/*.pdf
 docs/*.xlsx
 docs/*.csv
+docs/temporada-*/
+docs/*.zip

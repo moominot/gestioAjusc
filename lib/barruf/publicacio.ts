@@ -8,6 +8,7 @@
  * posterior sola.
  */
 
+import { LLINDAR_PARTIDES_ACTIU } from './constants'
 import { calculaEstat } from './estats'
 import { estatInicial, rejugaCadena } from './motor'
 import type { CampionatEntrada, EstatBarruf, EstatJugador, VariacioBarruf } from './tipus'
@@ -45,6 +46,18 @@ export interface Edicio {
   valors: ValorPublicat[]
   /** Detall auditable de cada campionat de la cadena. */
   variacions: Map<string, VariacioBarruf[]>
+}
+
+/**
+ * Debutant a la temporada en curs: la primera temporada amb un BARRUF ferm.
+ *
+ * És la regla del full (`Dades9Barruf!I`): ha passat de 10 partides, però abans
+ * d'aquesta temporada en tenia 10 o menys. Qui juga per primer cop però encara
+ * no n'ha fet 10 és a la llista d'espera i no ho és; qui en va jugar poques
+ * l'any passat i aquest any passa a actiu, sí.
+ */
+export function esDebutant(partidesTotals: number, partidesTemporada: number): boolean {
+  return partidesTotals > LLINDAR_PARTIDES_ACTIU && partidesTotals - partidesTemporada <= LLINDAR_PARTIDES_ACTIU
 }
 
 /**
@@ -135,8 +148,7 @@ export function calculaEdicio(
       darreraTemporada: estat.darreraTemporada,
       cohortLlegat,
       posicio: null,
-      // Debuta qui no havia jugat mai abans d'aquesta temporada.
-      debutant: estat.partidesTotals > 0 && estat.partidesTotals === partidesTemporada,
+      debutant: esDebutant(estat.partidesTotals, partidesTemporada),
     })
   }
 

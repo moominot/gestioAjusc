@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest'
 import { resolNoms, type JugadorRegistre } from '../importacio/resolucio'
 import { aEntradaDelMotor, llegeixTorneig } from '../importacio/torneig'
 import { arrodoneix } from './motor'
-import { calculaEdicio, type JugadorLlavor } from './publicacio'
+import { calculaEdicio, esDebutant, type JugadorLlavor } from './publicacio'
 import type { CampionatEntrada } from './tipus'
 
 import llavorJson from '../importacio/__fixtures__/registre-llavor.json'
@@ -170,5 +170,16 @@ describe('calculaEdicio amb el ManaCup', () => {
     expect(altra.valors.map((v) => [v.jugadorId, v.barruf])).toEqual(
       edicio.valors.map((v) => [v.jugadorId, v.barruf]),
     )
+  })
+})
+
+describe('esDebutant', () => {
+  // Casos de la temporada 2025-26, tal com els marca el full de l'AJUSC.
+  it('és la primera temporada amb un BARRUF ferm', () => {
+    expect(esDebutant(30, 24)).toBe(true) // Joan Pons: 6 partides l'any passat
+    expect(esDebutant(18, 18)).toBe(true) // Eva Cama: tot aquesta temporada
+    expect(esDebutant(6, 6)).toBe(false) // Àlex Castillo: encara en espera
+    expect(esDebutant(389, 44)).toBe(false) // Xisco Truyols
+    expect(esDebutant(21, 10)).toBe(false) // 11 d'abans: ja era ferm
   })
 })

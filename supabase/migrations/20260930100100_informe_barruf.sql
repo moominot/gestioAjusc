@@ -302,3 +302,65 @@ AS $$
 $$;
 
 GRANT EXECUTE ON FUNCTION informe_barruf(INTEGER) TO anon, authenticated;
+
+-- -----------------------------------------------------------------------------
+-- L'ordre de la cadena
+-- -----------------------------------------------------------------------------
+/**
+ * Igual que abans, però amb la cadena en l'ordre en què es van computar els
+ * campionats, que no sempre és el de les dates: un campionat es pot barrufar
+ * mesos després d'haver-se jugat (el 4t de Barcelona es va jugar el maig del
+ * 2025 i és a l'edició 192, després del del Prat del setembre). Els que encara
+ * no ha computat cap edició van al final, per data.
+ */
+CREATE OR REPLACE FUNCTION dades_per_recalcular()
+RETURNS JSONB
+LANGUAGE sql
+STABLE
+AS $$
+    SELECT jsonb_build_object(
+        'llavor', (
+            SELECT COALESCE(jsonb_agg(jsonb_build_object(
+                'jugador_numero', j.numero,
+                'barruf', v.barruf,
+                'partides_totals', v.partides_totals,
+                'victories_totals', v.victories_totals,
+                'partides_temporada', v.partides_temporada,
+                'victories_temporada', v.victories_temporada,
+                'darrera_temporada', v.darrera_temporada,
+                'cohort_llegat', v.cohort_llegat
+            )), '[]'::jsonb)
+            FROM barruf_valors v
+            JOIN barruf_edicions e ON e.id = v.edicio_id AND e.es_llavor
+            JOIN jugadors j ON j.id = v.jugador_id
+        ),
+        'ultima_edicio', (SELECT COALESCE(max(numero), 0) FROM barruf_edicions),
+        'campionats', (
+            SELECT COALESCE(jsonb_agg(c ORDER BY c.primera_edicio NULLS LAST, c.data, c.ordre), '[]'::jsonb)
+            FROM (
+                SELECT
+                    camp.id,
+                    camp.nom,
+                    camp.data,
+                    camp.ordre,
+                    camp.primera_edicio,
+                    camp.temporada_codi,
+                    (SELECT COALESCE(jsonb_agg(j.numero), '[]'::jsonb)
+                     FROM inscripcions i JOIN jugadors j ON j.id = i.jugador_id
+                     WHERE i.campionat_id = camp.id) AS inscrits,
+                    (SELECT COALESCE(jsonb_agg(jsonb_build_object(
+                        'ronda', p.ronda,
+                        'jugador_1', j1.numero,
+                        'jugador_2', j2.numero,
+                        'resultat_1', p.resultat_1
+                     )), '[]'::jsonb)
+                     FROM partides p
+                     JOIN jugadors j1 ON j1.id = p.jugador_1_id
+                     LEFT JOIN jugadors j2 ON j2.id = p.jugador_2_id
+                     WHERE p.campionat_id = camp.id) AS partides
+                FROM campionats camp
+                WHERE camp.computa_barruf AND camp.finalitzat
+            ) AS c
+        )
+    );
+$$;

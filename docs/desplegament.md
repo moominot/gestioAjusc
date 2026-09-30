@@ -38,9 +38,10 @@ porta la marca de temps al davant justament per això.
 | `…400_importa_campionat` | Importació atòmica |
 | `…500_publica_edicio` | Publicació d'edicions |
 | `20260930…100_informe_barruf` | El que cal per al PDF: ordre de la llista, llegenda de clubs, totals |
-| `20260930…200_llavor_209` | Canvia la llavor per l'edició 209 (629 jugadors), amb la 208 d'arxiu |
+| `20260930…200_temporada_2025_26` | Llavor 190 i la temporada 2025-26: 20 campionats i les edicions 191 a 210 |
+| `20260930…300_edita_jugador` | Canviar el nom i el club d'un jugador |
 
-La darrera es planta si ja hi ha cap campionat computat: canviar el punt de
+La de la temporada es planta si ja hi ha cap campionat: canviar el punt de
 partida llavors canviaria tot el que s'ha publicat.
 
 ### Amb el CLI (recomanat)
@@ -78,8 +79,8 @@ haureu de recordar quines heu aplicat.
 Al SQL Editor:
 
 ```sql
-SELECT count(*) AS jugadors FROM jugadors;                  -- 629
-SELECT numero, es_llavor FROM barruf_edicions;              -- 208 false, 209 true
+SELECT count(*) AS jugadors FROM jugadors;                  -- 630
+SELECT min(numero), max(numero) FROM barruf_edicions;       -- 190, 210
 SELECT count(*) FROM barruf_classificacio WHERE estat='act'; -- 191
 ```
 

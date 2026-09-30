@@ -102,11 +102,17 @@ Les bases publicades són a https://www.ajuscrabble.cat/barruf/.
 
 ## La llavor
 
-> **Ara la llavor és l'edició 209.** La migració `20260930100200_llavor_209.sql`
-> la canvia i desa la 208 com a edició d'arxiu, perquè el PDF de la llavor
-> pugui mostrar què es va moure. La genera `scripts/genera_relleu_llavor.py` a
-> partir del full de l'AJUSC que calcula la 209. El que segueix descriu la
-> llavor original, la 199.
+> **Ara la llavor és l'edició 190**, i a sobre hi ha la temporada 2025-26
+> sencera: `20260930100200_temporada_2025_26.sql` porta els 20 campionats
+> partida per partida i les edicions 191 a 210. La genera
+> `scripts/genera_temporada.ts` a partir dels fulls de l'AJUSC de cada edició, i
+> abans d'escriure-la comprova que cada edició rejugada coincideix amb el seu
+> full en tots els jugadors: BARRUF, partides, victòries, estat, debutant i
+> posició. El que segueix descriu la llavor original, la 199.
+>
+> Dues regles que aquesta comprovació va fixar: el BARRUF s'encadena
+> arrodonit (vegeu més amunt), i és **debutant** qui passa de 10 partides
+> havent-ne jugat 10 o menys abans de la temporada (`esDebutant()`).
 
 `supabase/migrations/20260922100200_llavor_barruf.sql` conté el punt zero: els 609
 jugadors de l'edició 199, amb el seu BARRUF, les partides i victòries
