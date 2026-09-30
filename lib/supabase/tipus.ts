@@ -69,6 +69,9 @@ export interface FilaEvolucio {
   barruf_despres: string
   /** Edició on es va computar el campionat: l'ordre de la cadena. */
   edicio?: number | null
+  /** Partides i victòries totals després del campionat, segons l'edició publicada. */
+  partides_totals?: number | null
+  victories_totals?: string | null
 }
 
 export interface FilaEnfrontament {

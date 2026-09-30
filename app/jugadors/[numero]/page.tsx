@@ -107,14 +107,17 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
             <table className="min-w-full text-sm">
               <thead className="border-b border-stone-200 text-left text-xs uppercase tracking-wide text-stone-500">
                 <tr>
+                  <th className="px-4 py-3 font-medium" title="Edició del BARRUF on es va computar">Núm.</th>
                   <th className="px-4 py-3 font-medium">Campionat</th>
                   <th className="px-4 py-3 font-medium">Data</th>
+                  <th className="px-4 py-3 text-right font-medium">Abans</th>
                   <th className="px-4 py-3 text-right font-medium">Part.</th>
                   <th className="px-4 py-3 text-right font-medium">Vict.</th>
                   <th className="px-4 py-3 text-right font-medium">Esperades</th>
                   <th className="px-4 py-3 text-right font-medium">K</th>
                   <th className="px-4 py-3 text-right font-medium">Variació</th>
                   <th className="px-4 py-3 text-right font-medium">BARRUF</th>
+                  <th className="px-4 py-3 text-right font-medium" title="Partides totals després del campionat">PT</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-stone-100">
@@ -122,6 +125,15 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
                   const variacio = Number(fila.variacio)
                   return (
                     <tr key={fila.campionat_id}>
+                      <td className="xifres px-4 py-2 text-stone-500">
+                        {fila.edicio ? (
+                          <a href={`/barruf/pdf?edicio=${fila.edicio}`} className="hover:underline">
+                            {fila.edicio}
+                          </a>
+                        ) : (
+                          '—'
+                        )}
+                      </td>
                       <td className="px-4 py-2 font-medium">
                         <Link href={`/campionats/${fila.campionat_id}`} className="hover:underline">
                           {fila.campionat}
@@ -129,6 +141,9 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
                       </td>
                       <td className="px-4 py-2 text-stone-600">
                         {new Date(fila.data).toLocaleDateString('ca-ES')}
+                      </td>
+                      <td className="xifres px-4 py-2 text-right text-stone-500">
+                        {nombre(fila.barruf_abans)}
                       </td>
                       <td className="xifres px-4 py-2 text-right">{fila.partides}</td>
                       <td className="xifres px-4 py-2 text-right">{nombre(fila.victories, 1)}</td>
@@ -148,6 +163,9 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
                       </td>
                       <td className="xifres px-4 py-2 text-right font-semibold">
                         {nombre(fila.barruf_despres)}
+                      </td>
+                      <td className="xifres px-4 py-2 text-right text-stone-500">
+                        {fila.partides_totals ?? '—'}
                       </td>
                     </tr>
                   )
