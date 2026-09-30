@@ -8,10 +8,11 @@ export const revalidate = 300
 
 export default async function Campionats() {
   const supabase = await clientServidor()
-  const { data } = await supabase
-    .from('campionats_publics')
-    .select('*')
-    .returns<CampionatPublic[]>()
+  const [{ data }, { data: qui }] = await Promise.all([
+    supabase.from('campionats_publics').select('*').returns<CampionatPublic[]>(),
+    // Qui ha jugat cada campionat, per comptar jugadors diferents del que es filtri.
+    supabase.rpc('jugadors_per_campionat'),
+  ])
 
   const campionats = data ?? []
 
@@ -28,7 +29,11 @@ export default async function Campionats() {
       {campionats.length === 0 ? (
         <Avis titol="Encara no hi ha cap campionat registrat" />
       ) : (
-        <LlistaCampionats campionats={campionats} />
+        <LlistaCampionats
+          campionats={campionats}
+          jugadorsPer={(qui as { campionats: Record<string, number[]> } | null)?.campionats}
+          noms={(qui as { noms: Record<string, string> } | null)?.noms}
+        />
       )}
     </div>
   )

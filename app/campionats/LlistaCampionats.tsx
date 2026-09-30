@@ -5,6 +5,7 @@ import { useMemo, useState } from 'react'
 
 import { normalitzaNom } from '../../lib/importacio/noms'
 import type { CampionatPublic } from '../../lib/supabase/tipus'
+import { ResumCampionats } from './ResumCampionats'
 
 type Estat = 'tots' | 'barrufat' | 'curs' | 'arxiu'
 
@@ -26,7 +27,15 @@ function Etiqueta({ campionat }: { campionat: CampionatPublic }) {
   return <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-800">En curs</span>
 }
 
-export function LlistaCampionats({ campionats }: { campionats: CampionatPublic[] }) {
+export function LlistaCampionats({
+  campionats,
+  jugadorsPer,
+  noms,
+}: {
+  campionats: CampionatPublic[]
+  jugadorsPer?: Record<string, number[]>
+  noms?: Record<string, string>
+}) {
   const [text, setText] = useState('')
   const [temporada, setTemporada] = useState('totes')
   const [estat, setEstat] = useState<Estat>('tots')
@@ -89,6 +98,14 @@ export function LlistaCampionats({ campionats }: { campionats: CampionatPublic[]
           {total} {total === 1 ? 'campionat' : 'campionats'}
         </span>
       </div>
+
+      {total > 0 ? (
+        <ResumCampionats
+          campionats={perTemporada.flatMap(([, llista]) => llista)}
+          jugadorsPer={jugadorsPer}
+          noms={noms}
+        />
+      ) : null}
 
       {perTemporada.length === 0 ? (
         <p className="text-sm text-stone-500">Cap campionat coincideix amb la cerca.</p>
