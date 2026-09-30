@@ -31,6 +31,12 @@ export interface FilaClassificacio {
   victories_temporada: string
   darrera_temporada: string | null
   debutant: boolean
+  /** Com estava a l'edició anterior: d'aquí surten les fletxes. */
+  posicio_anterior: number | null
+  barruf_anterior: string | null
+  /** Partides i victòries des de l'edició anterior: les del campionat barrufat. */
+  partides_edicio: number
+  victories_edicio: string
 }
 
 export interface FitxaJugador {
@@ -90,4 +96,6 @@ export interface CampionatPublic {
   rondes_jugades: number | null
   participants: number
   partides: number
+  /** L'edició del BARRUF que el va computar, si ja s'ha publicat. */
+  primera_edicio: number | null
 }

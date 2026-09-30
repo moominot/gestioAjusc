@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Avis } from '../../components/Avis'
 import { clientServidor } from '../../lib/supabase/servidor'
 import { ETIQUETA_ESTAT, type FilaClassificacio } from '../../lib/supabase/tipus'
+import { TaulaBarruf } from './TaulaBarruf'
 
 export const metadata = { title: 'Classificació' }
 export const revalidate = 300
@@ -28,6 +29,7 @@ export default async function Classificacio({
     .select('*')
     .eq('estat', triat)
     .order('barruf', { ascending: false })
+    .order('nom_complet')
 
   if (error) {
     return <Avis titol="No s&apos;ha pogut carregar la classificació">{error.message}</Avis>
@@ -36,12 +38,29 @@ export default async function Classificacio({
   const files = (data ?? []) as FilaClassificacio[]
   const edicio = files[0]?.edicio
 
+  // El campionat que va entrar en aquesta edició, per enllaçar-hi.
+  const { data: computats } = edicio
+    ? await supabase.from('campionats_publics').select('id, nom').eq('primera_edicio', edicio)
+    : { data: [] }
+
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Classificació BARRUF</h1>
-          {edicio ? <p className="mt-1 text-sm text-stone-500">Edició {edicio}</p> : null}
+          {edicio ? (
+            <p className="mt-1 text-sm text-stone-500">
+              Edició {edicio}
+              {(computats ?? []).map((c) => (
+                <span key={c.id as string}>
+                  {' · '}
+                  <Link href={`/campionats/${c.id}`} className="underline hover:text-stone-900">
+                    {c.nom as string}
+                  </Link>
+                </span>
+              ))}
+            </p>
+          ) : null}
         </div>
         {edicio ? (
           // Un <a> i no un <Link>: és un fitxer, no una pàgina de l'aplicació.
@@ -73,42 +92,7 @@ export default async function Classificacio({
       {files.length === 0 ? (
         <Avis titol={`No hi ha cap jugador en estat «${ETIQUETA_ESTAT[triat as 'act']}»`} />
       ) : (
-        <div className="overflow-x-auto rounded-lg border border-stone-200 bg-white">
-          <table className="min-w-full text-sm">
-            <thead className="border-b border-stone-200 text-left text-xs uppercase tracking-wide text-stone-500">
-              <tr>
-                <th className="px-4 py-3 font-medium">Pos</th>
-                <th className="px-4 py-3 font-medium">Núm</th>
-                <th className="px-4 py-3 font-medium">Jugador</th>
-                <th className="px-4 py-3 font-medium">Club</th>
-                <th className="px-4 py-3 text-right font-medium">BARRUF</th>
-                <th className="px-4 py-3 font-medium">Categoria</th>
-                <th className="px-4 py-3 text-right font-medium">Partides</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-stone-100">
-              {files.map((fila) => (
-                <tr key={fila.jugador_numero} className="hover:bg-stone-50">
-                  <td className="xifres px-4 py-2 text-stone-400">{fila.posicio ?? '—'}</td>
-                  <td className="xifres px-4 py-2 text-stone-400">{fila.jugador_numero}</td>
-                  <td className="px-4 py-2 font-medium">
-                    <Link href={`/jugadors/${fila.jugador_numero}`} className="hover:underline">
-                      {fila.nom_complet}
-                    </Link>
-                  </td>
-                  <td className="px-4 py-2 text-stone-600">{fila.club ?? '—'}</td>
-                  <td className="xifres px-4 py-2 text-right font-semibold">
-                    {Math.round(Number(fila.barruf))}
-                  </td>
-                  <td className="px-4 py-2 text-stone-600">{fila.categoria ?? '—'}</td>
-                  <td className="xifres px-4 py-2 text-right text-stone-600">
-                    {fila.partides_totals}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <TaulaBarruf files={files} ambPosicio={triat === 'act'} />
       )}
     </div>
   )
