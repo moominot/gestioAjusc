@@ -128,6 +128,15 @@ export function TaulaBarruf({ files, ambPosicio }: { files: FilaClassificacio[];
                   <td className="xifres px-3 py-2 text-right font-semibold">{barruf}</td>
                   <td className="px-3 py-2 text-right">
                     <FletxaPunts valor={prg} />
+                    {/* Canvi sense haver jugat: correcció de dades anteriors. */}
+                    {prg !== null && prg !== 0 && f.partides_edicio === 0 ? (
+                      <span
+                        className="cursor-help text-amber-700"
+                        title="No ha jugat en aquesta edició: el canvi és una correcció de dades anteriors (una fusió de duplicats, un resultat corregit) que, en recalcular la cadena, ha mogut lleugerament el seu BARRUF."
+                      >
+                        *
+                      </span>
+                    ) : null}
                   </td>
                   <td className="px-3 py-2 text-stone-600">{f.categoria ?? '—'}</td>
                   <td className="xifres px-3 py-2 text-right text-stone-600">

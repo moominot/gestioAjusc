@@ -27,6 +27,8 @@ interface DadesCrues {
     data: string
     ordre: number
     temporada_codi: string
+    /** Null si encara no l'ha computat cap edició: és dels nous. */
+    primera_edicio: number | null
     inscrits: number[]
     partides: {
       ronda: number
@@ -52,12 +54,20 @@ export interface Previsualitzacio {
   numeroProposat: number
   temporada: string
   campionats: { id: string; nom: string; data: string }[]
+  /** Els que entren per primer cop en aquesta edició. */
+  campionatsNous: { id: string; nom: string; data: string }[]
   totalJugadors: number
   actius: number
   ambVariacio: number
   canvisDEstat: CanviJugador[]
   majorsPujades: CanviJugador[]
   majorsBaixades: CanviJugador[]
+  /**
+   * Jugadors que no juguen cap campionat nou però el BARRUF dels quals canvia
+   * respecte de l'última edició: correccions de dades anteriors (fusions,
+   * resultats corregits) que, en rejugar la cadena, els toquen de retruc.
+   */
+  correccions: CanviJugador[]
 }
 
 export type ResultatPrevi =
@@ -108,10 +118,20 @@ export async function previsualitza(temporadaActual: string): Promise<ResultatPr
     const { crues, llavor, edicio } = await recalcula(temporadaActual)
 
     const supabase = await clientServidor()
-    const { data: jugadors } = await supabase.from('jugadors_publics').select('numero, nom_complet')
+    const [{ data: jugadors }, { data: ultima }] = await Promise.all([
+      supabase.from('jugadors_publics').select('numero, nom_complet'),
+      // L'última edició publicada: és amb la que es compara.
+      supabase.from('barruf_classificacio').select('jugador_numero, barruf'),
+    ])
     const noms = new Map((jugadors ?? []).map((j) => [String(j.numero), j.nom_complet as string]))
 
-    const abansPerJugador = new Map(llavor.map((j) => [j.jugadorId, j]))
+    // Amb l'última edició si n'hi ha; si no, amb la llavor.
+    const abansPerJugador = new Map<string, { barruf: number }>(llavor.map((j) => [j.jugadorId, j]))
+    for (const u of ultima ?? []) abansPerJugador.set(clau(u.jugador_numero as number), { barruf: Number(u.barruf) })
+
+    // Qui juga algun campionat nou.
+    const nous = crues.campionats.filter((c) => c.primera_edicio === null)
+    const juguenNou = new Set(nous.flatMap((c) => (edicio.variacions.get(c.id) ?? []).map((v) => v.jugadorId)))
     const estatsAbans = new Map(
       crues.llavor.map((j) => [clau(j.jugador_numero), j.cohort_llegat ? 'inact' : null]),
     )
@@ -131,6 +151,9 @@ export async function previsualitza(temporadaActual: string): Promise<ResultatPr
     })
 
     const ambVariacio = canvis.filter((c) => Math.abs(c.variacio) > 1e-9)
+    const correccions = canvis
+      .filter((c) => !juguenNou.has(clau(c.numero)) && Math.round(c.barrufDespres) !== Math.round(c.barrufAbans))
+      .sort((a, b) => Math.abs(b.variacio) - Math.abs(a.variacio) || a.nom.localeCompare(b.nom, 'ca'))
     const perVariacio = [...ambVariacio].sort((a, b) => b.variacio - a.variacio)
 
     return {
@@ -139,12 +162,14 @@ export async function previsualitza(temporadaActual: string): Promise<ResultatPr
         numeroProposat: crues.ultima_edicio + 1,
         temporada: temporadaActual,
         campionats: crues.campionats.map((c) => ({ id: c.id, nom: c.nom, data: c.data })),
+        campionatsNous: nous.map((c) => ({ id: c.id, nom: c.nom, data: c.data })),
         totalJugadors: edicio.valors.length,
         actius: edicio.valors.filter((v) => v.estat === 'act').length,
         ambVariacio: ambVariacio.length,
         canvisDEstat: [],
         majorsPujades: perVariacio.slice(0, 10),
         majorsBaixades: perVariacio.slice(-10).reverse(),
+        correccions,
       },
     }
   } catch (error) {

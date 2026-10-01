@@ -71,6 +71,8 @@ const amplades = (especial: boolean) =>
 const s = StyleSheet.create({
   pagina: { paddingTop: 23, paddingHorizontal: 23, paddingBottom: 30, fontFamily: 'Carlito', fontSize: 10 },
   numPagina: { position: 'absolute', bottom: 16, right: 23, fontSize: 10 },
+  // A cada pàgina, centrat a baix.
+  web: { position: 'absolute', bottom: 16, left: 0, right: 0, textAlign: 'center', fontSize: 9, color: '#555' },
 
   banda: {
     backgroundColor: LILA, color: 'white', alignItems: 'center',
@@ -300,7 +302,7 @@ function Capcalera({ informe }: { informe: Informe }) {
   )
 }
 
-function Llegenda({ especial = false }: { especial?: boolean }) {
+function Llegenda({ especial = false, correccions = false }: { especial?: boolean; correccions?: boolean }) {
   const element = (etiqueta: string | null, amplada: number, descripcio: React.ReactNode) => (
     <View style={s.elementLlegenda} key={etiqueta ?? 'cat2'}>
       {etiqueta ? (
@@ -320,7 +322,8 @@ function Llegenda({ especial = false }: { especial?: boolean }) {
   )
 
   return (
-    <View style={s.llegenda}>
+    <View>
+    <View style={[s.llegenda, correccions ? { marginBottom: 4 } : {}]}>
       <View style={[s.columnaLlegenda, { width: 212 }]}>
         {element('p', 18, 'Posició')}
         {element('var', 18, especial ? 'Variació de posició respecte l’anterior temporada' : 'Variació de posició respecte l\'anterior BARRUF')}
@@ -351,9 +354,16 @@ function Llegenda({ especial = false }: { especial?: boolean }) {
         {element('PT', 30, 'Partides jugades en total')}
       </View>
     </View>
+    {correccions ? (
+      <Text style={[s.descripcio, { marginBottom: 12 }]}>
+        * Canvi sense haver jugat: correcció per canvis en dades anteriors (una fusió de jugadors
+        duplicats, un resultat corregit) que, en recalcular la cadena, ha mogut lleugerament el
+        BARRUF dels seus rivals.
+      </Text>
+    ) : null}
+    </View>
   )
 }
-
 function LlegendaClubs({ clubs }: { clubs: Informe['clubs'] }) {
   const perColumna = Math.ceil(clubs.length / 3)
   const columnes = [0, 1, 2].map((i) => clubs.slice(i * perColumna, (i + 1) * perColumna))
@@ -472,7 +482,8 @@ function trosseja<T>(files: T[], primera: number, resta: number): T[][] {
 
 export function DocumentBarruf({ informe, destacats }: { informe: Informe; destacats?: Destacats }) {
   const especial = informe.especial !== null
-  const actius = trosseja(informe.actius, FILES_PRIMERA, FILES_PAGINA)
+  // La nota de l’asterisc ocupa el lloc de dues files a la primera pàgina.
+  const actius = trosseja(informe.actius, informe.ambCorreccions ? FILES_PRIMERA - 2 : FILES_PRIMERA, FILES_PAGINA)
   const espera = trosseja(informe.espera, FILES_PRIMERA_ESPERA, FILES_PAGINA)
   const llegendaApart = (actius.at(-1)?.length ?? 0) > FILES_AMB_LLEGENDA
 
@@ -484,7 +495,7 @@ export function DocumentBarruf({ informe, destacats }: { informe: Informe; desta
           {i === 0 ? (
             <>
               <Capcalera informe={informe} />
-              <Llegenda especial={especial} />
+              <Llegenda especial={especial} correccions={informe.ambCorreccions} />
             </>
           ) : null}
           <CapTaula numero={informe.numero} temporada={informe.temporada} espera={false} especial={especial} />
@@ -492,12 +503,14 @@ export function DocumentBarruf({ informe, destacats }: { informe: Informe; desta
             <FilaTaula key={f.nom} f={f} index={j} espera={false} especial={especial} />
           ))}
           {i === actius.length - 1 && !llegendaApart ? <LlegendaClubs clubs={informe.clubs} /> : null}
+          <Text style={s.web} fixed>www.ajuscrabble.cat</Text>
           <Text style={s.numPagina} render={({ pageNumber }) => `${pageNumber}`} fixed />
         </Page>
       ))}
       {llegendaApart ? (
         <Page size="A4" style={s.pagina}>
           <LlegendaClubs clubs={informe.clubs} />
+          <Text style={s.web} fixed>www.ajuscrabble.cat</Text>
           <Text style={s.numPagina} render={({ pageNumber }) => `${pageNumber}`} fixed />
         </Page>
       ) : null}
@@ -520,12 +533,14 @@ export function DocumentBarruf({ informe, destacats }: { informe: Informe; desta
           {files.map((f, j) => (
             <FilaTaula key={f.nom} f={f} index={j} espera especial={especial} />
           ))}
+          <Text style={s.web} fixed>www.ajuscrabble.cat</Text>
           <Text style={s.numPagina} render={({ pageNumber }) => `${pageNumber}`} fixed />
         </Page>
       ))}
       {destacats ? (
         <Page size="A4" style={s.pagina}>
           <PaginaDestacats d={destacats} />
+          <Text style={s.web} fixed>www.ajuscrabble.cat</Text>
           <Text style={s.numPagina} render={({ pageNumber }) => `${pageNumber}`} fixed />
         </Page>
       ) : null}

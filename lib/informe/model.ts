@@ -105,6 +105,8 @@ export interface Informe {
    * compara i si és l'especial de final de temporada.
    */
   especial: { anterior: number; temporada: boolean } | null
+  /** Algun jugador canvia de BARRUF sense haver jugat: cal la nota de l'asterisc. */
+  ambCorreccions: boolean
 }
 
 // --- Format ---------------------------------------------------------------------
@@ -204,7 +206,7 @@ function filaActiu(f: FilaCrua): Fila {
     club: f.club ?? '',
     nom: f.nom,
     barruf: String(c.barruf),
-    prg: { text: enterAmbSigne(c.prg), color: colorSigne(c.prg) },
+    prg: progressio(c),
     vb: { text: decimalAmbSigne(c.vb), color: c.vb > 0 ? COLOR.verd : undefined },
     pjb: enterAmbSigne(c.pjb),
     percentTemp: { text: percent(c.pctTemp), color: colorPercent(c.pctTemp, COLOR.negre) },
@@ -228,7 +230,7 @@ function filaEspera(f: FilaCrua): Fila {
     club: f.club ?? '',
     nom: f.nom,
     barruf: String(c.barruf),
-    prg: { text: enterAmbSigne(c.prg), color: colorSigne(c.prg) },
+    prg: progressio(c),
     // Aquí el full pinta les victòries en verd si el BARRUF s'ha mogut.
     vb: { text: decimalAmbSigne(c.vb), color: c.prg !== 0 ? COLOR.verd : undefined },
     pjb: enterAmbSigne(c.pjb),
@@ -241,6 +243,23 @@ function filaEspera(f: FilaCrua): Fila {
     dt: { text: decimal(c.dt), color: c.dt > 0 ? COLOR.vermell : undefined },
     pt: String(f.partides_totals),
   }
+}
+
+/**
+ * La progressió. Si el BARRUF ha canviat sense que el jugador hagi jugat cap
+ * partida des de l'edició amb què es compara, porta un asterisc: és una
+ * correcció de dades anteriors (una fusió de duplicats, un resultat corregit)
+ * que, en rejugar la cadena, ha mogut una mica el BARRUF dels seus rivals.
+ */
+function progressio(c: ReturnType<typeof comuns>): Cella {
+  const sensePartides = c.pjb === 0 && c.prg !== 0
+  return { text: enterAmbSigne(c.prg) + (sensePartides ? '*' : ''), color: colorSigne(c.prg) }
+}
+
+/** Canvia de BARRUF sense haver jugat des de l'edició anterior. */
+export const esCorreccio = (f: FilaCrua) => {
+  const c = comuns(f)
+  return c.pjb === 0 && c.prg !== 0
 }
 
 /** Per BARRUF i, en cas d'empat, en l'ordre de la llista del full. */
@@ -273,6 +292,7 @@ export function construeixInforme(
     clubs: cru.clubs
       .map((c) => ({ nom: c.nom, nomLlegenda: c.nom_llegenda }))
       .sort((a, b) => clauClub(a.nom).localeCompare(clauClub(b.nom), 'ca')),
+    ambCorreccions: cru.files.some(esCorreccio),
     especial:
       opcions.especial && cru.anterior !== null
         ? { anterior: cru.anterior, temporada: opcions.especial === 'temporada' }

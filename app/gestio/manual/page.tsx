@@ -162,6 +162,13 @@ export default function Manual() {
           les antigues queden com eren. Publicar no es pot desfer des de l’aplicació.
         </p>
         <p>
+          Com que es rejuga tota la cadena, una correcció de dades anteriors (una fusió de
+          duplicats, un resultat corregit) pot moure un o dos punts el BARRUF dels rivals del jugador
+          corregit, encara que no hagin jugat res de nou. Abans de publicar, la pantalla en fa la
+          llista; al PDF i a la classificació aquests canvis porten un <strong>asterisc</strong> amb
+          una nota que ho explica.
+        </p>
+        <p>
           La <strong>temporada de referència</strong> decideix els estats: un jugador passa a inactiu
           si no ha jugat ni en aquesta temporada ni en l’anterior. A l’inici d’una temporada nova
           (setembre), trieu-la per aplicar les baixes.

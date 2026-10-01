@@ -145,7 +145,15 @@ export function Publicador({ temporades }: { temporades: string[] }) {
             <p className="mt-1 text-sm text-stone-600">
               Es publicaria el <strong>BARRUF {previ.numeroProposat}</strong> rejugant{' '}
               {previ.campionats.length}{' '}
-              {previ.campionats.length === 1 ? 'campionat' : 'campionats'} des de la llavor.
+              {previ.campionats.length === 1 ? 'campionat' : 'campionats'} des de la llavor.{' '}
+              {previ.campionatsNous.length > 0 ? (
+                <>
+                  Hi entren per primer cop:{' '}
+                  <strong>{previ.campionatsNous.map((c) => c.nom).join(', ')}</strong>.
+                </>
+              ) : (
+                <strong className="text-amber-800">Cap campionat nou.</strong>
+              )}
             </p>
             <p className="mt-2 text-sm text-stone-600">
               {previ.totalJugadors} jugadors · {previ.actius} actius · {previ.ambVariacio} amb la
@@ -166,6 +174,30 @@ export function Publicador({ temporades }: { temporades: string[] }) {
               </ul>
             )}
           </section>
+
+          {previ.correccions.length > 0 ? (
+            <section className="rounded-lg border border-amber-200 bg-amber-50 p-5">
+              <h2 className="font-semibold text-amber-900">
+                {previ.correccions.length} jugadors canvien sense haver jugat
+              </h2>
+              <p className="mt-1 text-sm text-amber-900">
+                No juguen cap campionat nou, però el seu BARRUF canvia respecte de l’última edició.
+                És per correccions de dades anteriors (fusions de duplicats, resultats corregits):
+                en rejugar la cadena, els rivals d’un jugador corregit veuen variar una mica les
+                seves victòries esperades. Al PDF portaran un asterisc amb una nota que ho explica.
+              </p>
+              <ul className="mt-3 grid gap-x-6 gap-y-1 text-sm sm:grid-cols-2">
+                {previ.correccions.map((c) => (
+                  <li key={c.numero} className="flex items-baseline justify-between gap-3">
+                    <Link href={`/jugadors/${c.numero}`} className="hover:underline">{c.nom}</Link>
+                    <span className="xifres text-stone-700">
+                      {Math.round(c.barrufAbans)} → {Math.round(c.barrufDespres)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
 
           {previ.ambVariacio > 0 ? (
             <section className="grid gap-6 sm:grid-cols-2">
