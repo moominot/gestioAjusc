@@ -102,7 +102,8 @@ export function TaulaBarruf({ files, ambPosicio }: { files: FilaClassificacio[];
           <tbody className="divide-y divide-stone-100">
             {visibles.map((f) => {
               const barruf = Math.round(Number(f.barruf))
-              const prg = f.barruf_anterior === null ? null : barruf - Math.round(Number(f.barruf_anterior))
+              // Un BARRUF anterior a 0 (novells de l’arxiu) és el de sortida, 950.
+              const prg = f.barruf_anterior === null ? null : barruf - (Math.round(Number(f.barruf_anterior)) || 950)
               return (
                 <tr key={f.jugador_numero} className="hover:bg-stone-50">
                   {ambPosicio ? (

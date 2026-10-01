@@ -173,7 +173,8 @@ const colorSigne = (valor: number): string | undefined =>
  */
 function comuns(f: FilaCrua) {
   const barruf = arrodoneix(f.barruf)
-  const barrufAnterior = f.anterior ? arrodoneix(f.anterior.barruf) : BARRUF_INICIAL
+  // Sense BARRUF anterior (o a 0, com alguns novells de l’arxiu), el de sortida.
+  const barrufAnterior = f.anterior && Number(f.anterior.barruf) > 0 ? arrodoneix(f.anterior.barruf) : BARRUF_INICIAL
   const prg = barruf - barrufAnterior
   const vb = f.victories_totals - (f.anterior?.victories_totals ?? 0)
   const pjb = f.partides_totals - (f.anterior?.partides_totals ?? 0)
