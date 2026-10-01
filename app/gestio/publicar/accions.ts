@@ -241,3 +241,28 @@ export async function publica(
     return { ok: false, error: (error as Error).message }
   }
 }
+
+export type ResultatDespublicacio =
+  | { ok: true; numero: number; campionats: number; noms: string | null }
+  | { ok: false; error: string }
+
+/**
+ * Desfà l'última edició publicada. Els campionats que hi havien entrat tornen
+ * a quedar pendents; es corregeix el que calgui i es torna a publicar.
+ */
+export async function despublica(numero: number): Promise<ResultatDespublicacio> {
+  if (!(await gestorConnectat())) return { ok: false, error: 'Cal haver entrat com a gestor.' }
+
+  const supabase = await clientServidor()
+  const { data, error } = await supabase.rpc('despublica_ultima_edicio', { p_numero: numero })
+  if (error) return { ok: false, error: error.message }
+
+  revalidatePath('/')
+  revalidatePath('/barruf')
+  revalidatePath('/campionats')
+  revalidatePath('/gestio')
+  revalidatePath('/gestio/publicar')
+
+  const r = data as { numero: number; campionats: number; noms: string | null }
+  return { ok: true, numero: r.numero, campionats: r.campionats, noms: r.noms }
+}

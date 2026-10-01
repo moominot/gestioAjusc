@@ -159,7 +159,15 @@ export default function Manual() {
         <p>
           <strong>Les edicions ja publicades no es modifiquen mai</strong>: són el que es va publicar
           en el seu moment. Si es corregeix un resultat antic, l’edició nova ja el porta corregit, i
-          les antigues queden com eren. Publicar no es pot desfer des de l’aplicació.
+          les antigues queden com eren.
+        </p>
+        <p>
+          Si es detecta un error gros <strong>just després de publicar</strong>, a la mateixa
+          pantalla hi ha <em>Despublicar l’última edició</em> (cal escriure’n el número per
+          confirmar-ho). Esborra l’edició, la classificació torna a l’anterior i els campionats que
+          hi havien entrat tornen a quedar pendents; es corregeix i es torna a publicar amb el mateix
+          número. Només l’última, mai la llavor ni l’arxiu, i queda al registre de canvis. Si el PDF
+          ja ha circulat, val més publicar-ne una de nova amb la correcció.
         </p>
         <p>
           Com que es rejuga tota la cadena, una correcció de dades anteriors (una fusió de

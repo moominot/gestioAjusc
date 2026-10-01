@@ -1,16 +1,22 @@
 import Link from 'next/link'
 
 import { clientServidor } from '../../../lib/supabase/servidor'
+import { Despublicador } from './Despublicador'
 import { Publicador } from './Publicador'
 
 export const metadata = { title: 'Publicar el BARRUF' }
 
 export default async function PublicarBarruf() {
   const supabase = await clientServidor()
-  const { data } = await supabase
-    .from('temporades')
-    .select('codi')
-    .order('any_inici', { ascending: false })
+  const [{ data }, { data: ultima }] = await Promise.all([
+    supabase.from('temporades').select('codi').order('any_inici', { ascending: false }),
+    supabase
+      .from('barruf_edicions')
+      .select('numero, data_publicacio, campionats_computats, es_llavor')
+      .order('numero', { ascending: false })
+      .limit(1)
+      .maybeSingle(),
+  ])
 
   return (
     <div className="space-y-6">
@@ -37,6 +43,16 @@ export default async function PublicarBarruf() {
       </div>
 
       <Publicador temporades={(data ?? []).map((t) => t.codi as string)} />
+
+      {ultima && !ultima.es_llavor ? (
+        <Despublicador
+          ultima={{
+            numero: ultima.numero as number,
+            data: ultima.data_publicacio as string,
+            campionats: (ultima.campionats_computats as string | null) ?? null,
+          }}
+        />
+      ) : null}
     </div>
   )
 }
