@@ -84,7 +84,13 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
       <header>
         <p className="text-sm text-stone-500">Jugador núm. {fitxa.numero}</p>
         <h1 className="text-2xl font-semibold tracking-tight">{fitxa.nom_complet}</h1>
-        {fitxa.club ? <p className="mt-1 text-stone-600">{fitxa.club}</p> : null}
+        {fitxa.club ? (
+          <p className="mt-1 text-stone-600">
+            <Link href={`/clubs/${encodeURIComponent(fitxa.club)}`} className="hover:underline">
+              {fitxa.club}
+            </Link>
+          </p>
+        ) : null}
       </header>
 
       <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-stone-200 bg-stone-200 sm:grid-cols-4">

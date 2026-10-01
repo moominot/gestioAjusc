@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 const ENLLACOS = [
   { href: '/barruf', text: 'BARRUF' },
   { href: '/campionats', text: 'Campionats' },
+  { href: '/clubs', text: 'Clubs' },
 ]
 
 export default async function Arrel({ children }: { children: React.ReactNode }) {
