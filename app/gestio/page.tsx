@@ -96,6 +96,27 @@ export default async function Gestio() {
           Jugadors
         </Link>
       </section>
+
+      <section className="rounded-lg border border-stone-200 bg-white p-6">
+        <h2 className="font-semibold">Gestors i registre de canvis</h2>
+        <p className="mt-1 text-sm text-stone-600">
+          Qui pot gestionar, i què ha canviat cadascú.
+        </p>
+        <div className="mt-4 flex gap-2">
+          <Link
+            href="/gestio/gestors"
+            className="inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm hover:border-stone-500"
+          >
+            Gestors
+          </Link>
+          <Link
+            href="/gestio/registre"
+            className="inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm hover:border-stone-500"
+          >
+            Registre de canvis
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }
