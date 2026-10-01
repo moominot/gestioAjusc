@@ -97,6 +97,12 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
         <p className="text-sm text-stone-500">Jugador núm. {fitxa.numero}</p>
         <div className="flex flex-wrap items-center gap-3">
           <h1 className="text-2xl font-semibold tracking-tight">{fitxa.nom_complet}</h1>
+          <Link
+            href={`/comparar?j=${fitxa.numero}`}
+            className="rounded border border-stone-300 px-3 py-1 text-sm text-stone-700 hover:border-stone-500"
+          >
+            Comparar
+          </Link>
           {gestor ? (
             <Link
               href={`/gestio/jugadors/${fitxa.numero}`}

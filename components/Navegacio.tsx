@@ -7,6 +7,7 @@ const ENLLACOS = [
   { href: '/barruf', text: 'BARRUF' },
   { href: '/campionats', text: 'Campionats' },
   { href: '/clubs', text: 'Clubs' },
+  { href: '/comparar', text: 'Comparar' },
 ]
 
 /**
