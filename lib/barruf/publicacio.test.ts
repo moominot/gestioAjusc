@@ -78,15 +78,13 @@ describe('calculaEdicio sense cap campionat', () => {
     expect(moguts).toEqual([])
   })
 
-  // La llavor en tenia 167 amb la regla de tres temporades; amb la de dues,
-  // els 16 que només havien jugat el 2023-24 passen a inactius.
-  it('dona 151 actius a partir de la llavor', () => {
-    expect(edicio.valors.filter((v) => v.estat === 'act')).toHaveLength(151)
+  it('reprodueix els 167 actius de la llavor', () => {
+    expect(edicio.valors.filter((v) => v.estat === 'act')).toHaveLength(167)
   })
 
   it('només els actius tenen posició', () => {
     const ambPosicio = edicio.valors.filter((v) => v.posicio !== null)
-    expect(ambPosicio).toHaveLength(151)
+    expect(ambPosicio).toHaveLength(167)
     expect(ambPosicio.every((v) => v.estat === 'act')).toBe(true)
   })
 
@@ -99,7 +97,7 @@ describe('calculaEdicio sense cap campionat', () => {
 })
 
 describe("l'escombrada d'inactivitat depèn de la temporada", () => {
-  it('en passar a 2026-27, 55 actius passen a inactius', () => {
+  it('en passar a 2026-27, setze actius passen a inactius', () => {
     const ara = calculaEdicio(llavor, [], '2025-26')
     const despres = calculaEdicio(llavor, [], '2026-27')
 
@@ -111,7 +109,7 @@ describe("l'escombrada d'inactivitat depèn de la temporada", () => {
     )
     const perduts = [...actiusAra].filter((id) => !actiusDespres.has(id))
 
-    expect(perduts).toHaveLength(55)
+    expect(perduts).toHaveLength(16)
     expect([...actiusDespres].filter((id) => !actiusAra.has(id))).toEqual([])
   })
 })

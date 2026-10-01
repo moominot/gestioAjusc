@@ -384,11 +384,7 @@ describe('arrodoneix', () => {
 })
 
 describe('calculaEstat', () => {
-  // El full de l'AJUSC mirava tres temporades (la de referència i les dues
-  // anteriors). Des de l'octubre del 2026 se'n miren dues, com diu la llegenda.
-  // Les úniques diferències amb el full han de ser els actius que hi constaven
-  // per haver jugat només fa dues temporades.
-  it('reprodueix els 609 jugadors del full de càlcul, llevat del canvi de regla', () => {
+  it('reprodueix els 609 jugadors del full de càlcul', () => {
     const { temporadaActual, jugadors } = estatsReals as {
       temporadaActual: string
       jugadors: {
@@ -410,9 +406,7 @@ describe('calculaEstat', () => {
         }) !== j.estat,
     )
 
-    const faDuesTemporades = `${Number(temporadaActual.slice(0, 4)) - 2}-${String((Number(temporadaActual.slice(0, 4)) - 1) % 100).padStart(2, '0')}`
-    expect(fallades.every((j) => j.estat === 'act' && j.darreraTemporada === faDuesTemporades)).toBe(true)
-    expect(fallades).toHaveLength(16)
+    expect(fallades).toEqual([])
     expect(jugadors).toHaveLength(609)
   })
 
@@ -437,12 +431,12 @@ describe('calculaEstat', () => {
     ).toBe('exp')
   })
 
-  it('desactiva qui no ha jugat ni la temporada de referència ni l’anterior', () => {
-    expect(
-      calculaEstat({ ...base, partidesTotals: 100, darreraTemporada: '2024-25' }),
-    ).toBe('act')
+  it('desactiva després de dues temporades senceres sense jugar', () => {
     expect(
       calculaEstat({ ...base, partidesTotals: 100, darreraTemporada: '2023-24' }),
+    ).toBe('act')
+    expect(
+      calculaEstat({ ...base, partidesTotals: 100, darreraTemporada: '2022-23' }),
     ).toBe('inact')
   })
 

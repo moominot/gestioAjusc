@@ -71,7 +71,7 @@ export default function Manual() {
           <em>(victòries − esperades) × K</em>, arrodonida. K és 30 per a qui, comptant les del
           campionat, no passa de 50 partides, i 20 per a la resta. Un jugador és{' '}
           <strong>actiu</strong> amb més de 10 partides, està en <strong>expectativa</strong> amb 10
-          o menys, i passa a <strong>inactiu</strong> si no ha jugat cap campionat ni la temporada de referència ni l’anterior.
+          o menys, i passa a <strong>inactiu</strong> si no ha jugat cap campionat ni la temporada de referència ni les dues anteriors.
         </p>
       </Seccio>
 
