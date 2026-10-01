@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 
 import './globals.css'
+import { Navegacio } from '../components/Navegacio'
 import { gestorConnectat } from '../lib/supabase/servidor'
 
 export const metadata: Metadata = {
@@ -13,41 +13,14 @@ export const metadata: Metadata = {
     "Rànquing de Scrabble clàssic en català de l'Associació de Jugadors de Scrabble en Català.",
 }
 
-const ENLLACOS = [
-  { href: '/barruf', text: 'BARRUF' },
-  { href: '/campionats', text: 'Campionats' },
-  { href: '/clubs', text: 'Clubs' },
-]
-
 export default async function Arrel({ children }: { children: React.ReactNode }) {
   const gestor = await gestorConnectat()
 
   return (
     <html lang="ca">
       <body className="min-h-screen flex flex-col">
-        <header className="border-b border-stone-200 bg-white">
-          <nav className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-4">
-            <Link href="/" className="text-lg font-semibold tracking-tight">
-              BARRUF
-            </Link>
-            <div className="flex flex-1 flex-wrap gap-x-5 gap-y-1 text-sm">
-              {ENLLACOS.map((enllac) => (
-                <Link
-                  key={enllac.href}
-                  href={enllac.href}
-                  className="text-stone-600 hover:text-stone-900"
-                >
-                  {enllac.text}
-                </Link>
-              ))}
-            </div>
-            <Link
-              href={gestor ? '/gestio' : '/entrar'}
-              className="text-sm text-stone-500 hover:text-stone-900"
-            >
-              {gestor ? `Gestió · ${gestor.nom}` : 'Entrar'}
-            </Link>
-          </nav>
+        <header className="sticky top-0 z-30 border-b border-stone-200 bg-white/95 backdrop-blur">
+          <Navegacio gestor={gestor?.nom ?? null} />
         </header>
 
         <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">{children}</main>

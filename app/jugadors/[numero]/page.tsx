@@ -12,8 +12,15 @@ import {
 
 export const revalidate = 300
 
+/** Amb coma decimal i sense separador de milers: un BARRUF és «1309», no «1.309». */
 const nombre = (valor: string | number | null, decimals = 0) =>
-  valor === null ? '—' : Number(valor).toFixed(decimals)
+  valor === null
+    ? '—'
+    : Number(valor).toLocaleString('ca-ES', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+        useGrouping: false,
+      })
 
 export async function generateMetadata({ params }: { params: Promise<{ numero: string }> }) {
   const { numero } = await params

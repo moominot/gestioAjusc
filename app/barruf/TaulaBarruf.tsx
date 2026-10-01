@@ -85,7 +85,7 @@ export function TaulaBarruf({ files, ambPosicio }: { files: FilaClassificacio[];
                 </>
               ) : null}
               <th className="px-3 py-3 font-medium">Jugador</th>
-              <th className="px-3 py-3 font-medium">Club</th>
+              <th className="hidden px-3 py-3 font-medium sm:table-cell">Club</th>
               <th className="px-3 py-3 text-right font-medium">BARRUF</th>
               <th className="px-3 py-3 text-right font-medium" title="Progressió respecte de l'edició anterior">
                 Prg
@@ -121,8 +121,10 @@ export function TaulaBarruf({ files, ambPosicio }: { files: FilaClassificacio[];
                     <Link href={`/jugadors/${f.jugador_numero}`} className="hover:underline">
                       {f.nom_complet}
                     </Link>
+                    {/* En un mòbil, el club va sota el nom i no en una columna. */}
+                    {f.club ? <span className="block text-xs font-normal text-stone-500 sm:hidden">{f.club}</span> : null}
                   </td>
-                  <td className="px-3 py-2 text-stone-600">{f.club ?? '—'}</td>
+                  <td className="hidden px-3 py-2 text-stone-600 sm:table-cell">{f.club ?? '—'}</td>
                   <td className="xifres px-3 py-2 text-right font-semibold">{barruf}</td>
                   <td className="px-3 py-2 text-right">
                     <FletxaPunts valor={prg} />
