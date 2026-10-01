@@ -41,6 +41,10 @@ Font.register({ family: 'Caladea', src: path.join(RECURSOS, 'Caladea-Bold.ttf'),
 Font.registerHyphenationCallback((paraula) => [paraula])
 
 const LILA = '#666699'
+/** L'especial de temporada (i les comparatives) va en verd, com el publica l'AJUSC. */
+const VERD = '#274E13'
+/** El color de fons de bandes i capçaleres: lila a les edicions, verd a l'especial. */
+const fons = (especial: boolean) => (especial ? VERD : LILA)
 const ZEBRA = '#E8E7FC'
 
 const FILES_PRIMERA = 34
@@ -155,7 +159,7 @@ function CapTaula({
 }) {
   const W = amplades(especial)
   const grup = (text: string, amplada: number) => (
-    <View style={{ width: amplada, backgroundColor: LILA, justifyContent: 'center' }}>
+    <View style={{ width: amplada, backgroundColor: fons(especial), justifyContent: 'center' }}>
       <Text style={s.textCap}>{text}</Text>
     </View>
   )
@@ -182,7 +186,7 @@ function CapTaula({
         {blanc}
         {grup('Total històric', W.pctT + W.vt + W.dt + W.pt)}
       </View>
-      <View style={[s.capColumnes, { marginTop: 1.5 }]}>
+      <View style={[s.capColumnes, { marginTop: 1.5, backgroundColor: fons(especial) }]}>
         {espera ? col('p', W.p + W.var) : <>{col('p', W.p)}{col('var', W.var)}</>}
         {col('cat', W.cat)}
         {col('club', W.club)}
@@ -259,7 +263,7 @@ function FilaTaula({
 function Capcalera({ informe }: { informe: Informe }) {
   return (
     <View>
-      <View style={s.banda}>
+      <View style={[s.banda, { backgroundColor: fons(informe.especial !== null) }]}>
         {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <Image style={s.logo} src={path.join(RECURSOS, 'logo-ajusc.png')} />
         <Text style={s.titol}>BARRUF</Text>
@@ -300,7 +304,7 @@ function Llegenda({ especial = false }: { especial?: boolean }) {
   const element = (etiqueta: string | null, amplada: number, descripcio: React.ReactNode) => (
     <View style={s.elementLlegenda} key={etiqueta ?? 'cat2'}>
       {etiqueta ? (
-        <Text style={[s.etiqueta, { width: amplada }]}>{etiqueta}</Text>
+        <Text style={[s.etiqueta, { width: amplada, backgroundColor: fons(especial) }]}>{etiqueta}</Text>
       ) : (
         <View style={{ width: amplada + 4 }} />
       )}
@@ -373,13 +377,13 @@ function LlegendaClubs({ clubs }: { clubs: Informe['clubs'] }) {
 
 const sd = StyleSheet.create({
   xifres: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 14 },
-  xifra: { width: 86, alignItems: 'center', borderWidth: 0.8, borderColor: LILA, paddingVertical: 5 },
+  xifra: { width: 86, alignItems: 'center', borderWidth: 0.8, borderColor: VERD, paddingVertical: 5 },
   numero: { fontSize: 16, fontWeight: 'bold' },
   etiquetaXifra: { fontSize: 7.5, textAlign: 'center' },
   columnes: { flexDirection: 'row', justifyContent: 'space-between' },
   columna: { width: 268 },
   bloc: { marginBottom: 12 },
-  titolBloc: { backgroundColor: LILA, color: 'white', fontWeight: 'bold', fontSize: 9, paddingVertical: 2.5, paddingHorizontal: 5 },
+  titolBloc: { backgroundColor: VERD, color: 'white', fontWeight: 'bold', fontSize: 9, paddingVertical: 2.5, paddingHorizontal: 5 },
   linia: { flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 5, paddingVertical: 1.8, fontSize: 9 },
 })
 
@@ -417,7 +421,7 @@ function PaginaDestacats({ d }: { d: Destacats }) {
   ]
   return (
     <View>
-      <View style={s.bandaEspera}>
+      <View style={[s.bandaEspera, { backgroundColor: VERD }]}>
         <Text style={s.titolEspera}>Destacats de la temporada {d.temporada}</Text>
         <Text style={s.liniaEspera}>Comparativa entre el BARRUF {d.anterior} i el BARRUF {d.numero}</Text>
       </View>
@@ -500,7 +504,7 @@ export function DocumentBarruf({ informe, destacats }: { informe: Informe; desta
       {espera.map((files, i) => (
         <Page key={`e${i}`} size="A4" style={s.pagina}>
           {i === 0 ? (
-            <View style={s.bandaEspera}>
+            <View style={[s.bandaEspera, { backgroundColor: fons(especial) }]}>
               <Text style={s.titolEspera}>BARRUF en espera</Text>
               <Text style={s.liniaEspera}>
                 exp = jugadors en expectativa, amb menys de 10 partides, amb resultat publicat, en
