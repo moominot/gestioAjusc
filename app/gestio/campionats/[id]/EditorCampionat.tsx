@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState, useTransition } from 'react'
 
+import { CampSuggerit } from '../../../../components/CampSuggerit'
 import { perRonda, type PartidaCampionat } from '../../../../lib/campionats/fitxa'
 import { desaCampionat, desaPartida, type DadesEditables } from '../accions'
 
@@ -76,21 +77,17 @@ export function EditorCampionat({
               ))}
             </select>
           </label>
-          <label className="text-sm">
+          <div className="text-sm">
             Club organitzador
-            <input
-              className={camp}
-              list="clubs-campionat"
-              value={dades.clubOrganitzador}
-              onChange={(e) => canvia('clubOrganitzador', e.target.value)}
+            <CampSuggerit
+              valor={dades.clubOrganitzador}
+              onCanvi={(v) => canvia('clubOrganitzador', v)}
+              opcions={clubs}
               placeholder="cap"
+              nouText="club nou"
+              className={camp}
             />
-            <datalist id="clubs-campionat">
-              {clubs.map((c) => (
-                <option key={c} value={c} />
-              ))}
-            </datalist>
-          </label>
+          </div>
           <label className="text-sm">
             Organitzador (si no és un club)
             <input className={camp} value={dades.organitzador} onChange={(e) => canvia('organitzador', e.target.value)} />

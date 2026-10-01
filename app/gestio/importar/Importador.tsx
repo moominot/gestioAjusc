@@ -3,7 +3,9 @@
 import Link from 'next/link'
 import { useState, useTransition } from 'react'
 
+import { CampSuggerit } from '../../../components/CampSuggerit'
 import { CercaJugador, type JugadorCercable } from '../../../components/CercaJugador'
+import { normalitzaNom } from '../../../lib/importacio/noms'
 import {
   analitza,
   desa,
@@ -42,9 +44,12 @@ export interface CampionatAReimportar {
 
 export function Importador({
   temporades,
+  clubs = [],
   reimportacio,
 }: {
   temporades: string[]
+  /** Noms curts dels clubs, per suggerir l'organitzador. */
+  clubs?: string[]
   reimportacio?: CampionatAReimportar
 }) {
   const [proposta, setProposta] = useState<Proposta | null>(null)
@@ -60,6 +65,7 @@ export function Importador({
     data: avui(),
     temporadaCodi: temporadaDe(avui()),
     organitzador: '',
+    clubOrganitzador: '',
     computaBarruf: true,
     motiuNoComputa: '',
     finalitzat: false,
@@ -79,6 +85,11 @@ export function Importador({
         ...actual,
         nom: resultat.proposta.nom || actual.nom,
         organitzador: resultat.proposta.organitzador || actual.organitzador,
+        // Si l'organitzador del fitxer és el nom d'un club, es proposa.
+        clubOrganitzador:
+          actual.clubOrganitzador ||
+          clubs.find((c) => normalitzaNom(c) === normalitzaNom(resultat.proposta.organitzador ?? '')) ||
+          '',
       }))
     })
   }
@@ -299,8 +310,22 @@ export function Importador({
                   className="mt-1 w-full rounded border border-stone-300 px-3 py-2"
                 />
               </label>
+              <div className="block text-sm">
+                <span className="font-medium">Club organitzador</span>
+                <div className="mt-1">
+                  <CampSuggerit
+                    valor={campionat.clubOrganitzador}
+                    onCanvi={(v) => setCampionat({ ...campionat, clubOrganitzador: v })}
+                    opcions={clubs}
+                    placeholder="Escriviu per cercar-lo a la llista…"
+                    nouText="club nou"
+                    className="w-full rounded border border-stone-300 px-3 py-2"
+                  />
+                </div>
+              </div>
               <label className="block text-sm">
                 <span className="font-medium">Organitzador</span>
+                <span className="ml-2 text-xs text-stone-500">text lliure, si no és un club</span>
                 <input
                   value={campionat.organitzador}
                   onChange={(e) => setCampionat({ ...campionat, organitzador: e.target.value })}

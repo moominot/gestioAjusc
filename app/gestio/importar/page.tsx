@@ -7,10 +7,10 @@ export const metadata = { title: 'Importar un campionat' }
 
 export default async function ImportarCampionat() {
   const supabase = await clientServidor()
-  const { data } = await supabase
-    .from('temporades')
-    .select('codi')
-    .order('any_inici', { ascending: false })
+  const [{ data }, { data: clubs }] = await Promise.all([
+    supabase.from('temporades').select('codi').order('any_inici', { ascending: false }),
+    supabase.from('clubs').select('nom').order('nom'),
+  ])
 
   return (
     <div className="space-y-6">
@@ -29,7 +29,10 @@ export default async function ImportarCampionat() {
         </p>
       </div>
 
-      <Importador temporades={(data ?? []).map((t) => t.codi as string)} />
+      <Importador
+        temporades={(data ?? []).map((t) => t.codi as string)}
+        clubs={(clubs ?? []).map((c) => c.nom as string)}
+      />
     </div>
   )
 }

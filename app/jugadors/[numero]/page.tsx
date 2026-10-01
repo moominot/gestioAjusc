@@ -47,7 +47,7 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
 
   const gestor = await gestorConnectat()
 
-  const [{ data: evolucio }, { data: partides }] = await Promise.all([
+  const [{ data: evolucio }, { data: partides }, { data: jugadesCrues }] = await Promise.all([
     supabase
       .from('jugador_evolucio')
       .select('*')
@@ -65,7 +65,10 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
       .order('campionat_id')
       .order('ronda', { ascending: false })
       .returns<FilaEnfrontament[]>(),
+    supabase.rpc('jugades_jugador', { p_numero: identificador }),
   ])
+  const jugades = jugadesCrues as Jugades | null
+  const ambJugades = !!jugades && (jugades.millors.length > 0 || jugades.lletra.length > 0 || jugades.scrabbles.partides > 0)
 
   const dades = [
     { etiqueta: 'BARRUF', valor: nombre(fitxa.barruf) },
@@ -113,6 +116,8 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
           </div>
         ))}
       </dl>
+
+      {ambJugades && jugades ? <MillorsJugades j={jugades} /> : null}
 
       <section>
         <h2 className="text-lg font-semibold">Evolució del BARRUF</h2>
@@ -206,5 +211,77 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
         <PartidesJugador partides={partides ?? []} />
       </section>
     </div>
+  )
+}
+
+interface Jugada {
+  mot: string | null
+  punts: number
+  campionat: string
+  campionat_id: string
+  data: string
+  ronda: number
+  rival: string
+  rival_numero: number
+}
+
+interface Jugades {
+  millors: Jugada[]
+  lletra: Jugada[]
+  scrabbles: { total: number; partides: number; record: number | null }
+  record_scrabbles: { scrabbles: number; campionat: string; campionat_id: string; ronda: number; rival: string } | null
+}
+
+function LlistaJugades({ titol, llista }: { titol: string; llista: Jugada[] }) {
+  return (
+    <div className="rounded-lg border border-stone-200 bg-white">
+      <h3 className="border-b border-stone-200 px-4 py-2 text-sm font-semibold">{titol}</h3>
+      {llista.length === 0 ? (
+        <p className="px-4 py-2 text-sm text-stone-500">Sense dades.</p>
+      ) : (
+        <ol className="divide-y divide-stone-100 text-sm">
+          {llista.map((j, i) => (
+            <li key={i} className="flex items-baseline justify-between gap-3 px-4 py-1.5">
+              <span>
+                <span className="font-semibold tracking-wide">{j.mot ?? '—'}</span>
+                <span className="ml-2 text-xs text-stone-500">
+                  contra{' '}
+                  <Link href={`/jugadors/${j.rival_numero}`} className="hover:underline">
+                    {j.rival}
+                  </Link>
+                  {' · '}
+                  <Link href={`/campionats/${j.campionat_id}`} className="hover:underline">
+                    {j.campionat}
+                  </Link>
+                  , ronda {j.ronda}
+                </span>
+              </span>
+              <span className="xifres whitespace-nowrap font-semibold">{j.punts}</span>
+            </li>
+          ))}
+        </ol>
+      )}
+    </div>
+  )
+}
+
+function MillorsJugades({ j }: { j: Jugades }) {
+  return (
+    <section className="space-y-3">
+      <h2 className="text-lg font-semibold">Millors jugades</h2>
+      <p className="text-sm text-stone-600">
+        De les partides que en tenen les dades registrades.
+        {j.scrabbles.partides > 0
+          ? ` ${j.scrabbles.total} scrabbles en ${j.scrabbles.partides} partides (${(j.scrabbles.total / j.scrabbles.partides).toLocaleString('ca-ES', { maximumFractionDigits: 2 })} per partida).`
+          : null}
+        {j.record_scrabbles
+          ? ` Rècord: ${j.record_scrabbles.scrabbles} en una partida, contra ${j.record_scrabbles.rival} (${j.record_scrabbles.campionat}).`
+          : null}
+      </p>
+      <div className="grid gap-4 md:grid-cols-2">
+        <LlistaJugades titol="Millor jugada" llista={j.millors} />
+        <LlistaJugades titol="Millor jugada amb lletra especial" llista={j.lletra} />
+      </div>
+    </section>
   )
 }

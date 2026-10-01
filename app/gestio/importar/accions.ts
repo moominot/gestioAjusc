@@ -258,6 +258,8 @@ export interface DadesCampionat {
   data: string
   temporadaCodi: string
   organitzador: string
+  /** Nom curt del club organitzador. Si no existeix, es crea. */
+  clubOrganitzador: string
   computaBarruf: boolean
   motiuNoComputa: string
   finalitzat: boolean
@@ -285,12 +287,27 @@ export async function desa(
   const altesNoves = participants.filter((p) => p.jugador_numero === null).length
 
   const supabase = await clientServidor()
+
+  // El club organitzador: el de la llista, o un de nou.
+  let clubOrganitzadorId: string | null = null
+  const club = campionat.clubOrganitzador.trim().replace(/s+/g, ' ')
+  if (club) {
+    const { data: existent } = await supabase.from('clubs').select('id').ilike('nom', club).maybeSingle()
+    if (existent) clubOrganitzadorId = existent.id as string
+    else {
+      const { data: nou, error } = await supabase.from('clubs').insert({ nom: club }).select('id').single()
+      if (error) return { ok: false, error: error.message }
+      clubOrganitzadorId = nou.id as string
+    }
+  }
+
   const { data, error } = await supabase.rpc('importa_campionat', {
     p_campionat: {
       nom: campionat.nom.trim(),
       data: campionat.data,
       temporada_codi: campionat.temporadaCodi,
       organitzador: campionat.organitzador.trim(),
+      club_organitzador_id: clubOrganitzadorId,
       computa_barruf: campionat.computaBarruf,
       motiu_no_computa: campionat.computaBarruf ? null : campionat.motiuNoComputa.trim(),
       finalitzat: campionat.finalitzat,
