@@ -268,16 +268,39 @@ function LlistaJugades({ titol, llista }: { titol: string; llista: Jugada[] }) {
 function MillorsJugades({ j }: { j: Jugades }) {
   return (
     <section className="space-y-3">
-      <h2 className="text-lg font-semibold">Millors jugades</h2>
-      <p className="text-sm text-stone-600">
-        De les partides que en tenen les dades registrades.
-        {j.scrabbles.partides > 0
-          ? ` ${j.scrabbles.total} scrabbles en ${j.scrabbles.partides} partides (${(j.scrabbles.total / j.scrabbles.partides).toLocaleString('ca-ES', { maximumFractionDigits: 2 })} per partida).`
-          : null}
-        {j.record_scrabbles
-          ? ` Rècord: ${j.record_scrabbles.scrabbles} en una partida, contra ${j.record_scrabbles.rival} (${j.record_scrabbles.campionat}).`
-          : null}
-      </p>
+      <h2 className="text-lg font-semibold">Estadístiques</h2>
+      <p className="text-sm text-stone-600">De les partides que en tenen les dades registrades.</p>
+      {j.scrabbles.partides > 0 ? (
+        <dl className="grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-stone-200 bg-stone-200 sm:grid-cols-3">
+          <div className="bg-white px-4 py-3">
+            <dt className="text-xs uppercase tracking-wide text-stone-500">Scrabbles</dt>
+            <dd className="xifres mt-1 text-3xl font-semibold">{j.scrabbles.total.toLocaleString('ca-ES')}</dd>
+            <dd className="text-xs text-stone-500">en {j.scrabbles.partides} partides</dd>
+          </div>
+          <div className="bg-white px-4 py-3">
+            <dt className="text-xs uppercase tracking-wide text-stone-500">Mitjana</dt>
+            <dd className="xifres mt-1 text-3xl font-semibold">
+              {(j.scrabbles.total / j.scrabbles.partides).toLocaleString('ca-ES', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </dd>
+            <dd className="text-xs text-stone-500">scrabbles per partida</dd>
+          </div>
+          {j.record_scrabbles ? (
+            <div className="bg-white px-4 py-3">
+              <dt className="text-xs uppercase tracking-wide text-stone-500">Rècord en una partida</dt>
+              <dd className="xifres mt-1 text-3xl font-semibold">{j.record_scrabbles.scrabbles}</dd>
+              <dd className="text-xs text-stone-500">
+                contra {j.record_scrabbles.rival} ·{' '}
+                <Link href={`/campionats/${j.record_scrabbles.campionat_id}`} className="hover:underline">
+                  {j.record_scrabbles.campionat}
+                </Link>
+              </dd>
+            </div>
+          ) : null}
+        </dl>
+      ) : null}
       <div className="grid gap-4 md:grid-cols-2">
         <LlistaJugades titol="Millor jugada" llista={j.millors} />
         <LlistaJugades titol="Millor jugada amb lletra especial" llista={j.lletra} />
