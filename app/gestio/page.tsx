@@ -37,11 +37,16 @@ export default async function Gestio() {
           <h1 className="text-2xl font-semibold tracking-tight">Gestió</h1>
           <p className="mt-1 text-sm text-stone-600">Hola, {gestor?.nom}.</p>
         </div>
-        <form action={surt}>
-          <button type="submit" className="text-sm text-stone-500 underline hover:text-stone-900">
-            Sortir
-          </button>
-        </form>
+        <div className="flex items-baseline gap-4 text-sm">
+          <Link href="/gestio/contrasenya" className="text-stone-500 underline hover:text-stone-900">
+            Contrasenya
+          </Link>
+          <form action={surt}>
+            <button type="submit" className="text-stone-500 underline hover:text-stone-900">
+              Sortir
+            </button>
+          </form>
+        </div>
       </header>
 
       <dl className="grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-stone-200 bg-stone-200 sm:grid-cols-3">
