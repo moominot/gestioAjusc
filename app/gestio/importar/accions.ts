@@ -3,8 +3,8 @@
 import { revalidatePath } from 'next/cache'
 
 import type { JugadorCercable } from '../../../components/CercaJugador'
-import { llegeixFitxerDeResultats } from '../../../lib/importacio/fitxers'
-import { construeixTorneigDeFull } from '../../../lib/importacio/fulls'
+import { llegeixCsv, llegeixFitxerDeResultats } from '../../../lib/importacio/fitxers'
+import { construeixTorneigDeFull, interpretaFiles } from '../../../lib/importacio/fulls'
 import { resolNoms, type JugadorRegistre, type Nivell } from '../../../lib/importacio/resolucio'
 import {
   llegeixTorneig,
@@ -71,6 +71,7 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
     const sco = dades.get('sco')
     const ini = dades.get('ini')
     const full = dades.get('full')
+    const text = dades.get('text')
 
     let torneig: Torneig
     let origen: Proposta['origen']
@@ -96,8 +97,17 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
       pestanya = llegit.pestanya
       rondesDeduides = delFull.rondesDeduides
       rondesPerBlocs = delFull.rondesPerBlocs
+    } else if (typeof text === 'string' && text.trim()) {
+      const delFull = construeixTorneigDeFull(interpretaFiles(llegeixCsv(text)))
+      torneig = delFull
+      origen = 'full'
+      rondesDeduides = delFull.rondesDeduides
+      rondesPerBlocs = delFull.rondesPerBlocs
     } else {
-      return { ok: false, error: 'Cal pujar els fitxers del SwissPerfect o bé un full de càlcul.' }
+      return {
+        ok: false,
+        error: 'Cal pujar els fitxers del SwissPerfect, un full de càlcul o enganxar-hi les dades.',
+      }
     }
 
     // Registre contra el qual resoldre els noms.

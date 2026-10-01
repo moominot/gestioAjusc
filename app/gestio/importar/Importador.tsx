@@ -228,6 +228,22 @@ export function Importador({
             </label>
           </fieldset>
 
+          <div className="text-center text-sm text-stone-400">o bé</div>
+
+          <fieldset className="rounded-lg border border-stone-200 bg-white p-5">
+            <legend className="px-2 text-sm font-semibold">Enganxat del full de càlcul</legend>
+            <p className="text-sm text-stone-600">
+              Seleccioneu les cel·les al full de càlcul, copieu-les (Ctrl+C) i enganxeu-les aquí
+              (Ctrl+V). Mateixes columnes que a dalt.
+            </p>
+            <textarea
+              name="text"
+              rows={6}
+              placeholder="Enganxeu aquí les files copiades del full de càlcul…"
+              className="mt-3 block w-full rounded border border-stone-300 px-3 py-2 font-mono text-sm"
+            />
+          </fieldset>
+
           <button
             type="submit"
             disabled={treballant}
