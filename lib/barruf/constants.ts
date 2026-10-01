@@ -35,7 +35,12 @@ export const K_NOVELL = 30
 export const LLINDAR_PARTIDES_ACTIU = 10
 
 /**
- * Temporades senceres sense jugar cap campionat barrufat abans de passar a
- * inactiu. La transició s'aplica a l'inici de temporada, el setembre.
+ * Temporades que es miren per saber si un jugador és actiu: la de referència i
+ * l'anterior. Qui no ha jugat cap campionat barrufat en cap de les dues passa a
+ * inactiu, com diu la llegenda del BARRUF («cap resultat publicat en la
+ * temporada actual ni en l'anterior»). La transició s'aplica a l'inici de
+ * temporada, quan es publica la primera edició amb la temporada nova.
+ *
+ * Fins a l'octubre del 2026 se'n miraven tres, com feia el full de l'AJUSC.
  */
 export const TEMPORADES_INACTIVITAT = 2

@@ -54,6 +54,7 @@ export function calculaEstat({
   // Amb BARRUF ferm però sense constància de quan va jugar, val més desactivar.
   if (darreraTemporada === null) return 'inact'
 
-  const llindar = anyTemporada(temporadaActual) - TEMPORADES_INACTIVITAT
+  // Amb referència 2025-26, és actiu qui hagi jugat el 2024-25 o el 2025-26.
+  const llindar = anyTemporada(temporadaActual) - (TEMPORADES_INACTIVITAT - 1)
   return anyTemporada(darreraTemporada) >= llindar ? 'act' : 'inact'
 }

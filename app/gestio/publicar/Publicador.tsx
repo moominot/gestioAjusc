@@ -115,7 +115,7 @@ export function Publicador({ temporades }: { temporades: string[] }) {
               ))}
             </select>
             <span className="mt-1 block text-xs text-stone-500">
-              Decideix qui passa a inactiu: qui fa dues temporades que no juga.
+              Decideix qui passa a inactiu: qui no ha jugat ni aquesta temporada ni l’anterior.
             </span>
           </label>
           <label className="block text-sm">
