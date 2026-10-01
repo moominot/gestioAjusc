@@ -60,3 +60,21 @@ describe('trobaDuplicats', () => {
     expect(p.periodesSeparats).toBe(true)
   })
 })
+
+describe('cerca per cognoms', () => {
+  it('troba qui comparteix els dos cognoms o un cognom i la inicial', () => {
+    const parelles = trobaDuplicats([
+      jugador('Magdalena Riera'),
+      jugador('Pau Riera'),
+      jugador('Maria Rosa Cons'),
+      jugador('Marosa Cons'),
+      jugador('Xisca Bonet Riera'),
+      jugador('Francisca Bonet Riera'),
+    ])
+    const per = (nom: string) => parelles.find((p) => p.a.nom === nom || p.b.nom === nom)?.motius
+    expect(per('Marosa Cons')).toContain('mateix cognom')
+    expect(per('Xisca Bonet Riera')).toContain('mateixos cognoms')
+    // «Magdalena» i «Pau» no comencen igual: un sol cognom no n'hi ha prou.
+    expect(per('Pau Riera')).toBeUndefined()
+  })
+})

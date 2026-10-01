@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache'
 import type { JugadorCercable } from '../../../components/CercaJugador'
 import { llegeixFitxerDeResultats } from '../../../lib/importacio/fitxers'
 import { construeixTorneigDeFull } from '../../../lib/importacio/fulls'
-import { resolNoms, type JugadorRegistre } from '../../../lib/importacio/resolucio'
+import { resolNoms, type JugadorRegistre, type Nivell } from '../../../lib/importacio/resolucio'
 import {
   llegeixTorneig,
   type EstadistiquesPartida,
@@ -22,7 +22,7 @@ export interface ParticipantProposat {
   jugadorNumero: number | null
   /** Com s'ha resolt: exacte, alies, dubtos o nou. */
   com: 'exacte' | 'alies' | 'dubtos' | 'nou'
-  candidats: { numero: number; nom: string; semblanca: number; corroborat: boolean }[]
+  candidats: { numero: number; nom: string; semblanca: number; nivell: Nivell; corroborat: boolean }[]
 }
 
 export interface PartidaProposada {
@@ -163,6 +163,7 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
                 numero: c.jugador.numero,
                 nom: perId.get(c.jugador.id)?.nomComplet ?? c.jugador.nomComplet,
                 semblanca: Math.round(c.semblanca * 100),
+                nivell: c.nivell,
                 corroborat: c.unicAmbAquestaPuntuacio,
               }))
             : [],

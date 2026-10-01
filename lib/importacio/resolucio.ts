@@ -30,9 +30,56 @@ export interface AliesRegistre {
   aliesNorm: string
 }
 
+/**
+ * Per on s'ha trobat un candidat, del més fiable al menys:
+ *  · `nom complet`: el nom sencer s'assembla prou.
+ *  · `cognoms`: els dos darrers mots coincideixen.
+ *  · `cognom`: el darrer cognom de l'un és un dels dos darrers de l'altre.
+ */
+export type Nivell = 'nom complet' | 'cognoms' | 'cognom'
+
+const ORDRE_NIVELL: Record<Nivell, number> = { 'nom complet': 0, cognoms: 1, cognom: 2 }
+
+/** Partícules que no són cognom: «Joan de la Fuente» té per cognom «Fuente». */
+const PARTICULES = new Set(['de', 'del', 'dels', 'la', 'les', 'el', 'els', 'i', 'y', 'd', 'l'])
+
+/** Els mots d'un nom normalitzat, sense partícules. Una inicial («P.») és un mot: ocupa el lloc del nom. */
+function mots(nomNormalitzat: string): string[] {
+  return nomNormalitzat
+    .replace(/[.'’-]/g, ' ')
+    .split(' ')
+    .filter((m) => m.length > 0 && !PARTICULES.has(m))
+}
+
+/**
+ * Quants cognoms comparteixen dos noms ja normalitzats, mirant-los des del
+ * final i per mots sencers: 2 si coincideixen els dos darrers, 1 si el darrer
+ * de l'un és un dels dos darrers de l'altre, 0 si no. El primer mot és el nom
+ * de pila i no compta mai com a cognom.
+ */
+export function cognomsComuns(a: string, b: string): 0 | 1 | 2 {
+  const ma = mots(a)
+  const mb = mots(b)
+  if (ma.length < 2 || mb.length < 2) return 0
+  const cognoms = (m: string[]) => m.slice(Math.max(1, m.length - 2))
+  const ca = cognoms(ma)
+  const cb = cognoms(mb)
+  if (ca.length === 2 && cb.length === 2 && ca[0] === cb[0] && ca[1] === cb[1]) return 2
+  if (cb.includes(ca[ca.length - 1]) || ca.includes(cb[cb.length - 1])) return 1
+  return 0
+}
+
+/** El nivell al qual un nom del registre és candidat per a un altre, o null si no ho és. */
+export function nivellCandidat(a: string, b: string, s = semblanca(a, b)): Nivell | null {
+  if (s >= LLINDAR_CANDIDAT) return 'nom complet'
+  const comuns = cognomsComuns(a, b)
+  return comuns === 2 ? 'cognoms' : comuns === 1 ? 'cognom' : null
+}
+
 export interface Candidat {
   jugador: JugadorRegistre
   semblanca: number
+  nivell: Nivell
   /** El fitxer del torneig porta la mateixa puntuació que aquest jugador. */
   mateixaPuntuacio: boolean
   /**
@@ -70,7 +117,7 @@ export interface NomResolt<T> {
 export const LLINDAR_CANDIDAT = 0.55
 
 /** Quants candidats es proposen com a màxim per a un nom dubtós. */
-export const MAXIM_CANDIDATS = 5
+export const MAXIM_CANDIDATS = 8
 
 /**
  * Distància de Levenshtein amb dues files, que és tot el que cal: aquí es
@@ -163,25 +210,31 @@ export function resolNoms<T>(
       }
     }
 
+    // Es busca a tres nivells: el nom sencer, els dos cognoms i un cognom.
     const candidats = registre.jugadors
-      .map((jugador) => {
+      .flatMap((jugador): Candidat[] => {
+        const norm = normalitzaNom(jugador.nomComplet)
+        const s = semblanca(nomNormalitzat, norm)
+        const nivell = nivellCandidat(nomNormalitzat, norm, s)
+        if (nivell === null) return []
         const mateixaPuntuacio =
           typeof puntuacioInicial === 'number' && jugador.barruf === puntuacioInicial
-        return {
+        return [{
           jugador,
-          semblanca: semblanca(nomNormalitzat, normalitzaNom(jugador.nomComplet)),
+          semblanca: s,
+          nivell,
           mateixaPuntuacio,
           unicAmbAquestaPuntuacio:
             mateixaPuntuacio && quantsAmb.get(puntuacioInicial as number) === 1,
-        }
+        }]
       })
-      .filter((c) => c.semblanca >= LLINDAR_CANDIDAT)
       // Un candidat corroborat per la puntuació va davant encara que un altre
-      // s'assembli una mica més de nom.
+      // s'assembli una mica més de nom; després, per nivell i per semblança.
       .sort(
         (a, b) =>
           Number(b.unicAmbAquestaPuntuacio) - Number(a.unicAmbAquestaPuntuacio) ||
           Number(b.mateixaPuntuacio) - Number(a.mateixaPuntuacio) ||
+          ORDRE_NIVELL[a.nivell] - ORDRE_NIVELL[b.nivell] ||
           b.semblanca - a.semblanca,
       )
       .slice(0, MAXIM_CANDIDATS)

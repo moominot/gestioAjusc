@@ -420,7 +420,12 @@ export function Importador({
                           <option value="">Donar-lo d’alta com a jugador nou</option>
                           {participant.candidats.map((candidat) => (
                             <option key={candidat.numero} value={candidat.numero}>
-                              {candidat.nom} (núm. {candidat.numero}, {candidat.semblanca} %
+                              {candidat.nom} (núm. {candidat.numero},{' '}
+                              {candidat.nivell === 'nom complet'
+                                ? `${candidat.semblanca} %`
+                                : candidat.nivell === 'cognoms'
+                                  ? 'mateixos cognoms'
+                                  : 'mateix cognom'}
                               {candidat.corroborat ? ', mateixa puntuació' : ''})
                             </option>
                           ))}

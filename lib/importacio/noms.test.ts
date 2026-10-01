@@ -47,3 +47,23 @@ describe('normalitzaNom', () => {
     expect(normalitzaNom(un)).toBe(un)
   })
 })
+
+import { cognomsComuns, nivellCandidat } from './resolucio'
+
+describe('cerca per cognoms', () => {
+  it('compara des del final i per mots sencers', () => {
+    expect(cognomsComuns('pere grimalt vert', 'p grimalt vert')).toBe(2)
+    expect(cognomsComuns('pere grimalt vert', 'pere g grimalt vert')).toBe(2)
+    expect(cognomsComuns('pere grimalt', 'pere grimalt vert')).toBe(1)
+    expect(cognomsComuns('toni casas', 'antoni casas')).toBe(1)
+    expect(cognomsComuns('joan de la fuente', 'joan fuente')).toBe(1)
+    expect(cognomsComuns('antoni casas', 'antoni casals')).toBe(0)
+  })
+
+  it('dona el nivell del candidat', () => {
+    expect(nivellCandidat('toni casas', 'antoni casas')).toBe('nom complet')
+    expect(nivellCandidat('maria magdalena pou mas', 'joan pou mas')).toBe('cognoms')
+    expect(nivellCandidat('magdalena riera', 'pau riera')).toBe('cognom')
+    expect(nivellCandidat('tomeu riera', 'pau vidal')).toBeNull()
+  })
+})

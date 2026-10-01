@@ -7,7 +7,7 @@
  */
 
 import { normalitzaNom } from '../importacio/noms'
-import { semblanca } from '../importacio/resolucio'
+import { cognomsComuns, semblanca } from '../importacio/resolucio'
 
 export interface JugadorDades {
   numero: number
@@ -20,7 +20,13 @@ export interface JugadorDades {
   campionats: string[]
 }
 
-export type Motiu = 'mateix nom' | 'noms semblants' | 'un nom dins l’altre' | 'inicials'
+export type Motiu =
+  | 'mateix nom'
+  | 'noms semblants'
+  | 'un nom dins l’altre'
+  | 'inicials'
+  | 'mateixos cognoms'
+  | 'mateix cognom'
 
 export interface ParellaCandidata {
   a: JugadorDades
@@ -104,6 +110,13 @@ export function trobaDuplicats(
         const c = contingut(x.paraules, y.paraules)
         if (c.inicials) motius.push('inicials')
         else if (c.contingut) motius.push('un nom dins l’altre')
+        // Pels cognoms, des del final i per mots sencers. Amb un sol cognom en comú
+        // n'hi ha massa (tots els Riera): cal que el nom comenci per la mateixa lletra.
+        if (!c.contingut) {
+          const comuns = cognomsComuns(x.norm, y.norm)
+          if (comuns === 2) motius.push('mateixos cognoms')
+          else if (comuns === 1 && x.norm[0] === y.norm[0]) motius.push('mateix cognom')
+        }
       }
       if (motius.length === 0) continue
 
@@ -126,7 +139,11 @@ export function trobaDuplicats(
         motius,
         semblanca: s,
         periodesSeparats: separats,
-        puntuacio: Math.max(s, motius.includes('un nom dins l’altre') || motius.includes('inicials') ? 0.85 : 0) +
+        puntuacio: Math.max(
+          s,
+          motius.includes('un nom dins l’altre') || motius.includes('inicials') ? 0.85 : 0,
+          motius.includes('mateixos cognoms') ? 0.75 : motius.includes('mateix cognom') ? 0.6 : 0,
+        ) +
           (separats ? 0.1 : 0) +
           (mateixClub ? 0.05 : 0),
       })
