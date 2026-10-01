@@ -13,6 +13,7 @@ import {
   type ResultatDesat,
   type ResultatReimportacio,
 } from './accions'
+import { Previsualitzacio } from './Previsualitzacio'
 
 const avui = () => new Date().toISOString().slice(0, 10)
 
@@ -469,6 +470,26 @@ export function Importador({
               })}
             </ul>
           </section>
+
+          <Previsualitzacio
+            proposta={proposta}
+            decisioDe={decisioDe}
+            registre={registre}
+            campionat={
+              reimportacio
+                ? null
+                : {
+                    nom: campionat.nom,
+                    data: campionat.data,
+                    temporada: campionat.temporadaCodi,
+                    estat: !campionat.computaBarruf
+                      ? 'no computa per al BARRUF'
+                      : campionat.finalitzat
+                        ? 'acabat: entrarà a la propera publicació'
+                        : 'en curs: encara no entra al BARRUF',
+                  }
+            }
+          />
 
           <div className="flex flex-wrap items-center gap-4">
             <button

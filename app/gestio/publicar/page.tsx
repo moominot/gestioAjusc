@@ -24,6 +24,16 @@ export default async function PublicarBarruf() {
           s&apos;actualitza a trossos: es recalcula tot cada vegada, de manera que corregir un
           resultat antic i tornar a publicar refà tota la història posterior.
         </p>
+        <p className="mt-2 max-w-2xl text-sm text-stone-600">
+          <strong>Calcular sense desar</strong> mostra el resultat sense tocar res.{' '}
+          <strong>Publicar</strong> crea l&apos;edició nova, desa l&apos;estat de tots els jugadors,
+          marca com a computats els campionats acabats nous i refà l&apos;evolució dels campionats de
+          la cadena. Les edicions ja publicades no canvien mai.{' '}
+          <Link href="/gestio/manual#publicar" className="underline">
+            Més detalls al manual
+          </Link>
+          .
+        </p>
       </div>
 
       <Publicador temporades={(data ?? []).map((t) => t.codi as string)} />

@@ -38,6 +38,9 @@ export default async function Gestio() {
           <p className="mt-1 text-sm text-stone-600">Hola, {gestor?.nom}.</p>
         </div>
         <div className="flex items-baseline gap-4 text-sm">
+          <Link href="/gestio/manual" className="text-stone-500 underline hover:text-stone-900">
+            Manual
+          </Link>
           <Link href="/gestio/contrasenya" className="text-stone-500 underline hover:text-stone-900">
             Contrasenya
           </Link>

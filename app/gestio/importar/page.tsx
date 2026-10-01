@@ -21,7 +21,11 @@ export default async function ImportarCampionat() {
         <h1 className="mt-2 text-2xl font-semibold tracking-tight">Importar un campionat</h1>
         <p className="mt-1 max-w-2xl text-sm text-stone-600">
           Res no es desa fins que ho confirmeu. Primer es llegeixen els fitxers i es miren els noms
-          contra el registre; després reviseu el que hagi quedat dubtós.
+          contra el registre; després reviseu el que hagi quedat dubtós.{' '}
+          <Link href="/gestio/manual#importar" className="underline">
+            Com funciona
+          </Link>
+          .
         </p>
       </div>
 
