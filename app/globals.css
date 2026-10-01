@@ -4,6 +4,10 @@
 
 :root {
   color-scheme: light;
+  /* Tota l'aplicació un 12,5 % més gran (18 px en comptes de 16). Les mides de
+     Tailwind van en rem, i escalen juntes: lletra, espais i amplades. En
+     percentatge, perquè respecti la mida que cadascú tingui al navegador. */
+  font-size: 112.5%;
 }
 
 body {
