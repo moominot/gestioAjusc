@@ -160,12 +160,21 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
       ) : null}
 
       <section>
-        <h2 className="mb-3 text-lg font-semibold">Classificació</h2>
+        <h2 className="text-lg font-semibold">
+          {ambBarruf ? 'Participants i efecte al BARRUF' : 'Participants'}
+        </h2>
+        <p className="mb-3 mt-1 max-w-3xl text-sm text-stone-600">
+          Ordenats per victòries i, a igualtat, per diferència de punts. No és necessàriament la
+          classificació oficial del campionat, que pot tenir altres criteris de desempat.
+          {ambBarruf
+            ? ` Les columnes de la dreta són el BARRUF: les victòries esperades, el BARRUF abans i després del campionat, la variació i la posició al BARRUF ${campionat.primera_edicio ?? ''}.`
+            : null}
+        </p>
         <div className="overflow-x-auto rounded-lg border border-stone-200 bg-white">
           <table className="min-w-full text-sm">
             <thead className="border-b border-stone-200 text-left text-xs uppercase tracking-wide text-stone-500">
               <tr>
-                <th className="px-3 py-2 font-medium">#</th>
+                <th className="px-3 py-2 font-medium" title="Ordre per victòries i diferència de punts">#</th>
                 <th className="px-3 py-2 font-medium">Jugador</th>
                 <th className="px-3 py-2 text-right font-medium">V</th>
                 <th className="px-3 py-2 text-right font-medium">P</th>
@@ -189,7 +198,7 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
                     </th>
                     <th className="px-3 py-2 text-right font-medium">BARRUF</th>
                     <th className="px-3 py-2 text-right font-medium">Variació</th>
-                    <th className="px-3 py-2 text-right font-medium">Posició</th>
+                    <th className="px-3 py-2 text-right font-medium" title="Posició al BARRUF en què es va computar el campionat">Posició BARRUF</th>
                   </>
                 ) : null}
               </tr>
