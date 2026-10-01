@@ -79,6 +79,12 @@ export function EditorJugadors({ jugadors, clubs }: { jugadors: JugadorEditable[
                 >
                   Editar
                 </button>
+                <a
+                  href={`/gestio/jugadors/${j.numero}`}
+                  className="text-sm text-stone-600 underline hover:text-stone-900"
+                >
+                  Fitxa completa
+                </a>
               </li>
             ),
           )}

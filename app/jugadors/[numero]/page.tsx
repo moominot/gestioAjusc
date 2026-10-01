@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
 
-import { clientServidor } from '../../../lib/supabase/servidor'
+import { clientServidor, gestorConnectat } from '../../../lib/supabase/servidor'
 import { PartidesJugador } from './PartidesJugador'
 import {
   ETIQUETA_ESTAT,
@@ -45,6 +45,8 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
     notFound()
   }
 
+  const gestor = await gestorConnectat()
+
   const [{ data: evolucio }, { data: partides }] = await Promise.all([
     supabase
       .from('jugador_evolucio')
@@ -83,7 +85,17 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
     <div className="space-y-8">
       <header>
         <p className="text-sm text-stone-500">Jugador núm. {fitxa.numero}</p>
-        <h1 className="text-2xl font-semibold tracking-tight">{fitxa.nom_complet}</h1>
+        <div className="flex flex-wrap items-center gap-3">
+          <h1 className="text-2xl font-semibold tracking-tight">{fitxa.nom_complet}</h1>
+          {gestor ? (
+            <Link
+              href={`/gestio/jugadors/${fitxa.numero}`}
+              className="rounded bg-stone-900 px-3 py-1 text-sm text-white hover:bg-stone-700"
+            >
+              Editar
+            </Link>
+          ) : null}
+        </div>
         {fitxa.club ? (
           <p className="mt-1 text-stone-600">
             <Link href={`/clubs/${encodeURIComponent(fitxa.club)}`} className="hover:underline">
