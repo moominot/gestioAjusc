@@ -3,6 +3,7 @@ import { revalidatePath } from 'next/cache'
 import { notFound, redirect } from 'next/navigation'
 
 import { clientServidor } from '../../../../lib/supabase/servidor'
+import { invalidaEstadistiques } from '../../../../lib/estadistiques/invalida'
 
 export const metadata = { title: 'Fitxa del jugador' }
 
@@ -68,6 +69,7 @@ export default async function FitxaJugadorGestio({
     if (error) torna(numero, 'error', error.message)
     revalidatePath(`/jugadors/${numero}`)
     revalidatePath('/barruf')
+    invalidaEstadistiques()
     torna(numero, 'fet', 'Desat.')
   }
 

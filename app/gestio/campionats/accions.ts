@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 
 import { clientServidor, gestorConnectat } from '../../../lib/supabase/servidor'
+import { invalidaEstadistiques } from '../../../lib/estadistiques/invalida'
 
 export type Resultat = { ok: true } | { ok: false; error: string }
 
@@ -23,6 +24,7 @@ function revalida(id: string) {
   revalidatePath(`/campionats/${id}`)
   revalidatePath(`/gestio/campionats/${id}`)
   revalidatePath('/campionats')
+  invalidaEstadistiques()
 }
 
 /** Desa les dades d'un campionat. L'RLS només ho deixa fer als gestors. */

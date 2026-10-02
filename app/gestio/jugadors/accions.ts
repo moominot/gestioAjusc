@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 
 import { clientServidor, gestorConnectat } from '../../../lib/supabase/servidor'
+import { invalidaEstadistiques } from '../../../lib/estadistiques/invalida'
 
 export type ResultatEdicio =
   | { ok: true; numero: number; nom: string; club: string | null }
@@ -26,6 +27,7 @@ export async function editaJugador(numero: number, nom: string, club: string): P
   revalidatePath('/gestio/jugadors')
   revalidatePath('/barruf')
   revalidatePath(`/jugadors/${numero}`)
+  invalidaEstadistiques()
 
   const desat = data as { numero: number; nom: string; club: string | null }
   return { ok: true, ...desat }
@@ -52,6 +54,7 @@ export async function fusionaJugadors(bo: number, duplicat: number): Promise<Res
   revalidatePath('/campionats')
   revalidatePath(`/jugadors/${bo}`)
   revalidatePath(`/jugadors/${duplicat}`)
+  invalidaEstadistiques()
 
   const r = data as { bo: number; nom: string; duplicat: number; nom_duplicat: string }
   return { ok: true, bo: r.bo, nom: r.nom, duplicat: r.duplicat, nomDuplicat: r.nom_duplicat }

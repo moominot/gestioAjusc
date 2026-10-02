@@ -101,7 +101,7 @@ export const CONSULTES: Consulta[] = [
     slug: 'activitat',
     titol: 'Partides i activitat',
     descripcio:
-      'Qui ha jugat més partides, en quants campionats i temporades, i com ha evolucionat la participació temporada a temporada.',
+      'Qui ha jugat més partides, en quants campionats i temporades, i com ha evolucionat la participació temporada a temporada. Les partides són les del BARRUF, com a la fitxa de cada jugador, i inclouen les d’abans del 2014-15, de les quals només se’n sap el total. Les registrades són les que tenim una a una, des del 2014-15: són les úniques que es poden filtrar per temporades o per campionat, i d’on surten els campionats, les temporades i els punts.',
     perTemporada: true,
     blocs: [
       {
@@ -110,12 +110,18 @@ export const CONSULTES: Consulta[] = [
         columnes: [
           jugador,
           club,
-          { etiqueta: 'Partides', text: (f) => enter(f.partides), dreta: true },
+          { etiqueta: 'Partides', text: (f) => enter(f.valor), dreta: true },
+          {
+            etiqueta: 'Registrades',
+            text: (f) => (f.partides_barruf === null || f.partides_barruf === undefined ? '' : enter(f.partides)),
+            dreta: true,
+            secundaria: true,
+          },
           { etiqueta: 'Campionats', text: (f) => enter(f.campionats), dreta: true },
           { etiqueta: 'Temporades', text: (f) => enter(f.temporades), dreta: true, secundaria: true },
           { etiqueta: 'Punts per partida', text: (f) => enter(f.punts_mitjans), dreta: true, secundaria: true },
         ],
-        barres: { valor: (f) => n(f.partides), etiqueta: (f) => String(f.nom) },
+        barres: { valor: (f) => n(f.valor), etiqueta: (f) => String(f.nom) },
       },
     ],
   },

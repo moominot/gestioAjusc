@@ -12,6 +12,7 @@ import {
   type Torneig,
 } from '../../../lib/importacio/torneig'
 import { clientServidor, gestorConnectat } from '../../../lib/supabase/servidor'
+import { invalidaEstadistiques } from '../../../lib/estadistiques/invalida'
 
 export interface ParticipantProposat {
   localId: number
@@ -323,6 +324,7 @@ export async function desa(
 
   revalidatePath('/campionats')
   revalidatePath('/gestio')
+  invalidaEstadistiques()
 
   const resum = data as {
     campionat_id: string
@@ -369,6 +371,7 @@ export async function reimporta(
   revalidatePath(`/campionats/${campionatId}`)
   revalidatePath(`/gestio/campionats/${campionatId}`)
   revalidatePath('/campionats')
+  invalidaEstadistiques()
 
   const resum = data as {
     participants: number

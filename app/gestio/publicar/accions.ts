@@ -1,8 +1,9 @@
 'use server'
 
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidatePath } from 'next/cache'
 
 import { calculaEdicio, type JugadorLlavor } from '../../../lib/barruf/publicacio'
+import { invalidaEstadistiques } from '../../../lib/estadistiques/invalida'
 import type { CampionatEntrada, Resultat } from '../../../lib/barruf/tipus'
 import { clientServidor, gestorConnectat } from '../../../lib/supabase/servidor'
 
@@ -238,7 +239,7 @@ export async function publica(
 
     revalidatePath('/')
     revalidatePath('/barruf')
-    revalidateTag('estadistiques', 'max')
+    invalidaEstadistiques()
     revalidatePath('/gestio')
 
     const resum = data as { numero: number; valors: number; variacions: number }
@@ -265,7 +266,7 @@ export async function despublica(numero: number): Promise<ResultatDespublicacio>
 
   revalidatePath('/')
   revalidatePath('/barruf')
-  revalidateTag('estadistiques', 'max')
+  invalidaEstadistiques()
   revalidatePath('/campionats')
   revalidatePath('/gestio')
   revalidatePath('/gestio/publicar')

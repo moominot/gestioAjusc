@@ -95,7 +95,11 @@ export default async function Estadistiques() {
             valor={xifra(partides?.valor)}
             unitat="partides"
             r={partides}
-            detall={partides ? `${xifra(partides.campionats)} campionats en ${xifra(partides.temporades)} temporades` : null}
+            detall={
+              partides
+                ? `${xifra(partides.partides)} des del 2014-15, en ${xifra(partides.campionats)} campionats i ${xifra(partides.temporades)} temporades`
+                : null
+            }
             consulta="activitat"
           />
           <Fitxa
