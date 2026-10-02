@@ -12,7 +12,7 @@ export default async function EditarCampionat({ params }: { params: Promise<{ id
   if (!/^[0-9a-f-]{36}$/i.test(id)) notFound()
 
   const supabase = await clientServidor()
-  const [{ data: fitxa }, { data: fila }, { data: clubs }, { data: temporades }] = await Promise.all([
+  const [{ data: fitxa }, { data: fila }, { data: clubs }, { data: temporades }, { data: jugadors }] = await Promise.all([
     supabase.rpc('fitxa_campionat', { p_id: id }),
     supabase
       .from('campionats')
@@ -21,6 +21,7 @@ export default async function EditarCampionat({ params }: { params: Promise<{ id
       .maybeSingle(),
     supabase.from('clubs').select('nom').order('nom'),
     supabase.from('temporades').select('codi').order('any_inici', { ascending: false }),
+    supabase.from('jugadors_publics').select('numero, nom_complet, club_nom').order('nom_complet'),
   ])
   if (!fitxa || !fila) notFound()
 
@@ -56,6 +57,11 @@ export default async function EditarCampionat({ params }: { params: Promise<{ id
           finalitzat: fila.finalitzat as boolean,
         }}
         partides={(fitxa as FitxaCampionat).partides}
+        registre={(jugadors ?? []).map((j) => ({
+          numero: j.numero as number,
+          nom: j.nom_complet as string,
+          club: (j.club_nom as string | null) ?? null,
+        }))}
         clubs={(clubs ?? []).map((c) => c.nom as string)}
         temporades={(temporades ?? []).map((t) => t.codi as string)}
       />

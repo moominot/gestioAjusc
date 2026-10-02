@@ -4,8 +4,10 @@ import Link from 'next/link'
 import { useState, useTransition } from 'react'
 
 import { CampSuggerit } from '../../../../components/CampSuggerit'
-import { perRonda, type PartidaCampionat } from '../../../../lib/campionats/fitxa'
-import { desaCampionat, desaPartida, type DadesEditables } from '../accions'
+import type { JugadorCercable } from '../../../../components/CercaJugador'
+import type { PartidaCampionat } from '../../../../lib/campionats/fitxa'
+import { desaCampionat, type DadesEditables } from '../accions'
+import { EditorPartides } from './EditorPartides'
 
 const camp = 'mt-1 w-full rounded border border-stone-300 px-2 py-1.5 text-sm'
 
@@ -14,6 +16,7 @@ export function EditorCampionat({
   publicatA,
   inicial,
   partides,
+  registre,
   clubs,
   temporades,
 }: {
@@ -21,6 +24,7 @@ export function EditorCampionat({
   publicatA: number | null
   inicial: DadesEditables
   partides: PartidaCampionat[]
+  registre: JugadorCercable[]
   clubs: string[]
   temporades: string[]
 }) {
@@ -136,120 +140,7 @@ export function EditorCampionat({
         </div>
       </section>
 
-      <section className="rounded-lg border border-stone-200 bg-white p-5">
-        <h2 className="font-semibold">Partides</h2>
-        <p className="mt-1 text-sm text-stone-600">
-          Corregiu la puntuació, o el resultat si no n&apos;hi ha. Amb puntuació, guanya qui en fa més.
-        </p>
-        <div className="mt-4 space-y-4">
-          {perRonda(partides).map(([ronda, llista]) => (
-            <div key={ronda}>
-              <h3 className="text-sm font-medium text-stone-500">Ronda {ronda}</h3>
-              <ul className="mt-1 divide-y divide-stone-100">
-                {llista.map((p) => (
-                  <FilaPartida key={p.id} campionatId={id} partida={p} onDesada={() => setResultatsTocats(true)} />
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
+      <EditorPartides campionatId={id} partides={partides} registre={registre} onCanvi={() => setResultatsTocats(true)} />
     </div>
-  )
-}
-
-function FilaPartida({
-  campionatId,
-  partida,
-  onDesada,
-}: {
-  campionatId: string
-  partida: PartidaCampionat
-  onDesada: () => void
-}) {
-  const [punts1, setPunts1] = useState(partida.punts_1?.toString() ?? '')
-  const [punts2, setPunts2] = useState(partida.punts_2?.toString() ?? '')
-  const [resultat, setResultat] = useState(Number(partida.resultat_1))
-  const [estat, setEstat] = useState<string | null>(null)
-  const [desant, comença] = useTransition()
-
-  if (partida.numero_2 === null) {
-    return (
-      <li className="py-1.5 text-sm text-stone-500">
-        {partida.jugador_1} descansa
-      </li>
-    )
-  }
-
-  const ambPunts = punts1 !== '' || punts2 !== ''
-  const canviada =
-    punts1 !== (partida.punts_1?.toString() ?? '') ||
-    punts2 !== (partida.punts_2?.toString() ?? '') ||
-    resultat !== Number(partida.resultat_1)
-
-  function desa() {
-    setEstat(null)
-    comença(async () => {
-      const r = await desaPartida(
-        campionatId,
-        partida.id,
-        punts1 === '' ? null : Number(punts1),
-        punts2 === '' ? null : Number(punts2),
-        resultat,
-      )
-      if (r.ok) {
-        setEstat('Desada')
-        onDesada()
-      } else setEstat(r.error)
-    })
-  }
-
-  return (
-    <li className="grid grid-cols-[1fr_auto_1fr_auto] items-center gap-2 py-1.5 text-sm">
-      <span className="text-right">{partida.jugador_1}</span>
-      <span className="flex items-center gap-1">
-        <input
-          inputMode="numeric"
-          value={punts1}
-          onChange={(e) => setPunts1(e.target.value.replace(/\D/g, ''))}
-          className="xifres w-14 rounded border border-stone-300 px-1 py-0.5 text-right"
-          placeholder="—"
-        />
-        –
-        <input
-          inputMode="numeric"
-          value={punts2}
-          onChange={(e) => setPunts2(e.target.value.replace(/\D/g, ''))}
-          className="xifres w-14 rounded border border-stone-300 px-1 py-0.5"
-          placeholder="—"
-        />
-        {!ambPunts ? (
-          <select
-            value={resultat}
-            onChange={(e) => setResultat(Number(e.target.value))}
-            className="ml-1 rounded border border-stone-300 px-1 py-0.5"
-            title="Resultat del jugador de l'esquerra"
-          >
-            <option value={1}>1 – 0</option>
-            <option value={0.5}>½ – ½</option>
-            <option value={0}>0 – 1</option>
-          </select>
-        ) : null}
-      </span>
-      <span>{partida.jugador_2}</span>
-      <span className="flex items-center gap-2">
-        {canviada ? (
-          <button
-            type="button"
-            onClick={desa}
-            disabled={desant}
-            className="rounded bg-stone-900 px-2 py-0.5 text-xs text-white disabled:opacity-50"
-          >
-            {desant ? '…' : 'Desa'}
-          </button>
-        ) : null}
-        {estat ? <span className={`text-xs ${estat === 'Desada' ? 'text-emerald-700' : 'text-red-700'}`}>{estat}</span> : null}
-      </span>
-    </li>
   )
 }
