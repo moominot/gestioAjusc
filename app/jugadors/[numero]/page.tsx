@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
 
+import { categoria } from '../../../lib/informe/model'
 import { clientServidor, gestorConnectat } from '../../../lib/supabase/servidor'
 import { PartidesJugador } from './PartidesJugador'
 import {
@@ -54,7 +55,7 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
 
   const gestor = await gestorConnectat()
 
-  const [{ data: evolucio }, { data: partides }, { data: jugadesCrues }] = await Promise.all([
+  const [{ data: evolucio }, { data: partides }, { data: jugadesCrues }, { data: marquesCrues }] = await Promise.all([
     supabase
       .from('jugador_evolucio')
       .select('*')
@@ -73,8 +74,11 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
       .order('ronda', { ascending: false })
       .returns<FilaEnfrontament[]>(),
     supabase.rpc('jugades_jugador', { p_numero: identificador }),
+    supabase.rpc('millors_marques', { p_numero: identificador }),
   ])
   const jugades = jugadesCrues as Jugades | null
+  const marques = marquesCrues as Marques | null
+  const categoriaMaxima = marques?.maxim ? categoria(Number(marques.maxim.barruf)) : null
   const ambJugades = !!jugades && (jugades.millors.length > 0 || jugades.lletra.length > 0 || jugades.scrabbles.partides > 0)
 
   const dades = [
@@ -129,6 +133,40 @@ export default async function Jugador({ params }: { params: Promise<{ numero: st
           </div>
         ))}
       </dl>
+
+      {marques?.millor_posicio || marques?.maxim ? (
+        <dl className="-mt-5 flex flex-wrap gap-x-8 gap-y-2 rounded-lg border border-stone-200 bg-white px-4 py-2.5 text-sm">
+          {marques.millor_posicio ? (
+            <div className="flex items-baseline gap-2">
+              <dt className="text-xs uppercase tracking-wide text-stone-500">Millor posició</dt>
+              <dd>
+                <strong className="xifres">{marques.millor_posicio.posicio}a</strong>
+                <span className="ml-1.5 text-xs text-stone-500">
+                  <a href={`/barruf/pdf?edicio=${marques.millor_posicio.edicio}`} className="hover:underline">
+                    BARRUF {marques.millor_posicio.edicio}
+                  </a>
+                  , {marques.millor_posicio.temporada}
+                  {marques.millor_posicio.vegades > 1 ? ` · ${marques.millor_posicio.vegades} edicions` : ''}
+                </span>
+              </dd>
+            </div>
+          ) : null}
+          {marques.maxim && categoriaMaxima ? (
+            <div className="flex items-baseline gap-2">
+              <dt className="text-xs uppercase tracking-wide text-stone-500">Millor categoria</dt>
+              <dd>
+                <strong>{NOM_CATEGORIA[categoriaMaxima - 1]}</strong>
+                <span className="ml-1.5 text-xs text-stone-500">
+                  màxim {marques.maxim.barruf} al{' '}
+                  <a href={`/barruf/pdf?edicio=${marques.maxim.edicio}`} className="hover:underline">
+                    BARRUF {marques.maxim.edicio}
+                  </a>
+                </span>
+              </dd>
+            </div>
+          ) : null}
+        </dl>
+      ) : null}
 
       {ambJugades && jugades ? <MillorsJugades j={jugades} /> : null}
 
@@ -321,3 +359,10 @@ function MillorsJugades({ j }: { j: Jugades }) {
     </section>
   )
 }
+
+interface Marques {
+  millor_posicio: { posicio: number; edicio: number; temporada: string; vegades: number } | null
+  maxim: { barruf: number; edicio: number; temporada: string } | null
+}
+
+const NOM_CATEGORIA = ['Gran Gran Mestre', 'Gran Mestre', 'Mestre', 'Expert', 'Avançat']
