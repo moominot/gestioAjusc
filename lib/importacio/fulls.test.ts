@@ -78,6 +78,23 @@ describe('lectura del full', () => {
   })
 })
 
+describe('dades lliures del full', () => {
+  it('desa les columnes que no són de resultats, amb nom conegut si en tenen', () => {
+    const [primera, segona] = csv(
+      'Ronda;Jugador 1;Puntuació 1;Jugador 2;Puntuació 2;Mesa;Foto full;Observacions;Àrbitre de sala\n' +
+        '1;Anna;400;Bernat;350;3;https://x/f.jpg;Reclamació;Pere\n' +
+        '1;Carla;380;Dani;390;;;;\n',
+    )
+    expect(primera.dades).toEqual({ taula: 3, full: 'https://x/f.jpg', comentaris: 'Reclamació', 'Àrbitre de sala': 'Pere' })
+    expect(segona.dades).toBeUndefined()
+  })
+
+  it('les passa a les partides del torneig', () => {
+    const torneig = construeixTorneigDeFull(csv('Jugador 1;Puntuació 1;Jugador 2;Puntuació 2;Taula\nAnna;400;Bernat;350;7\n'))
+    expect(torneig.partides[0].dades).toEqual({ taula: 7 })
+  })
+})
+
 describe('construeixTorneigDeFull', () => {
   it('numera els jugadors per ordre d’aparició', () => {
     const torneig = construeixTorneigDeFull(

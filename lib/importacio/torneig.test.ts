@@ -102,7 +102,17 @@ describe('llegeixResultats', () => {
       resultatBlanc: 0,
       puntsBlanc: 361,
       puntsNegre: 383,
+      dades: { taula: 1 },
     })
+  })
+
+  it('numera les taules per l’ordre de cada ronda', () => {
+    const { partides } = llegeixResultats(sco())
+    const primeraRonda = partides.filter((p) => p.ronda === 1).map((p) => p.dades?.taula)
+    expect(primeraRonda.slice(0, 3)).toEqual([1, 2, 3])
+    // Cada ronda torna a començar, i el .ini pot dir des de quin número.
+    expect(partides.find((p) => p.ronda === 2)?.dades).toEqual({ taula: 1 })
+    expect(llegeixResultats(sco(), 5).partides[0].dades).toEqual({ taula: 5 })
   })
 
   it('desdobla el resultat de la partida', () => {
@@ -125,6 +135,7 @@ describe('llegeixInfo', () => {
       organitzador: 'Club Scrabble Manacor',
       arbitre: '',
       rondesPrevistes: 26,
+      primeraTaula: 1,
     })
   })
 

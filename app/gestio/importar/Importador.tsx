@@ -70,6 +70,8 @@ export function Importador({
   const [desat, setDesat] = useState<ResultatDesat | null>(null)
   const [reimportat, setReimportat] = useState<ResultatReimportacio | null>(null)
   const [treballant, comença] = useTransition()
+  // Columnes de dades lliures que el gestor ha decidit no desar.
+  const [excloses, setExcloses] = useState<Set<string>>(new Set())
 
   const [campionat, setCampionat] = useState<DadesCampionat>(() => {
     const data = inicial?.campionat.data || avui()
@@ -109,8 +111,24 @@ export function Importador({
     })
   }
 
+  /** La proposta sense les dades lliures que s'han desmarcat. */
+  function ambDadesTriades(p: Proposta): Proposta {
+    if (excloses.size === 0) return p
+    const filtra = (d: Record<string, unknown> | null | undefined) => {
+      if (!d) return null
+      const net = Object.fromEntries(Object.entries(d).filter(([clau]) => !excloses.has(clau)))
+      return Object.keys(net).length ? net : null
+    }
+    return {
+      ...p,
+      partides: p.partides.map((partida) => ({ ...partida, dades: filtra(partida.dades) })),
+      dadesCampionat: filtra(p.dadesCampionat),
+    }
+  }
+
   function desaCampionat() {
     if (!proposta) return
+    const propostaFinal = ambDadesTriades(proposta)
     setError(null)
     if (reimportacio) {
       const avis =
@@ -118,7 +136,7 @@ export function Importador({
         `les ${proposta.partides.length} del fitxer. Les correccions fetes a mà es perdran. Continuar?`
       if (!window.confirm(avis)) return
       comença(async () => {
-        const resultat = await reimporta(reimportacio.id, proposta, decisions)
+        const resultat = await reimporta(reimportacio.id, propostaFinal, decisions)
         if (!resultat.ok) setError(resultat.error)
         else {
           if (inicial) await marcaRebuda(inicial.rebudaId, reimportacio.id, 'importada')
@@ -128,7 +146,7 @@ export function Importador({
       return
     }
     comença(async () => {
-      const resultat = await desa(proposta, campionat, decisions)
+      const resultat = await desa(propostaFinal, campionat, decisions)
       if (!resultat.ok) setError(resultat.error)
       else {
         if (inicial) await marcaRebuda(inicial.rebudaId, resultat.campionatId, 'importada')
@@ -218,7 +236,7 @@ export function Importador({
             <legend className="px-2 text-sm font-semibold">Des del SwissPerfect</legend>
             <p className="text-sm text-stone-600">
               Els fitxers del torneig. Porten els noms, totes les rondes i la puntuació de cada
-              partida.
+              partida. També se’n desa la taula de cada partida i, del .ini, l’àrbitre.
             </p>
             <div className="mt-4 grid gap-4 sm:grid-cols-3">
               {[
@@ -256,6 +274,12 @@ export function Importador({
               Opcionalment, per a cada jugador (acabades en 1 o 2): <strong>Scrabbles</strong>, la
               millor jugada (<strong>Mot</strong> i <strong>Puntsmot</strong>) i la millor jugada
               amb lletra especial (<strong>Lletra</strong> i <strong>Punts lletra</strong>).
+            </p>
+            <p className="mt-2 text-sm text-stone-600">
+              Qualsevol altra columna es desa com a dades lliures de la partida: per exemple{' '}
+              <strong>Taula</strong>, <strong>Full</strong> i <strong>Tauler</strong> (enllaços a
+              les imatges), <strong>Lloc</strong>, <strong>Hora</strong> o{' '}
+              <strong>Comentaris</strong>. Abans de desar es pot triar quines.
             </p>
             <label className="mt-4 block text-sm">
               <input
@@ -523,6 +547,8 @@ export function Importador({
             </ul>
           </section>
 
+          <DadesLliuresProposta proposta={proposta} excloses={excloses} setExcloses={setExcloses} />
+
           <Previsualitzacio
             proposta={proposta}
             decisioDe={decisioDe}
@@ -577,5 +603,70 @@ export function Importador({
         </>
       )}
     </div>
+  )
+}
+
+/**
+ * Les dades lliures que porta el fitxer (columnes del full que no són de les
+ * conegudes, la taula del SwissPerfect, l'àrbitre...), amb un exemple de cada
+ * una. Les que es desmarquen no es desen.
+ */
+function DadesLliuresProposta({
+  proposta,
+  excloses,
+  setExcloses,
+}: {
+  proposta: Proposta
+  excloses: Set<string>
+  setExcloses: (s: Set<string>) => void
+}) {
+  const columnes = new Map<string, { partides: number; exemple: unknown }>()
+  for (const p of proposta.partides) {
+    for (const [clau, valor] of Object.entries(p.dades ?? {})) {
+      const c = columnes.get(clau) ?? { partides: 0, exemple: valor }
+      c.partides++
+      columnes.set(clau, c)
+    }
+  }
+  const campionat = Object.entries(proposta.dadesCampionat ?? {})
+  if (columnes.size === 0 && campionat.length === 0) return null
+
+  const commuta = (clau: string) => {
+    const nou = new Set(excloses)
+    if (nou.has(clau)) nou.delete(clau)
+    else nou.add(clau)
+    setExcloses(nou)
+  }
+  const mostra = (v: unknown) => {
+    const t = typeof v === 'object' ? JSON.stringify(v) : String(v)
+    return t.length > 60 ? `${t.slice(0, 57)}…` : t
+  }
+
+  return (
+    <section className="rounded-lg border border-stone-200 bg-white p-5">
+      <h2 className="font-semibold">Dades lliures</h2>
+      <p className="mt-1 text-sm text-stone-600">
+        El que porta el fitxer a més dels resultats i les estadístiques. Es desa a cada partida i
+        surt a la fitxa del campionat. Desmarqueu el que no vulgueu guardar.
+      </p>
+      <ul className="mt-3 space-y-1 text-sm">
+        {campionat.map(([clau, valor]) => (
+          <li key={`c-${clau}`} className="flex items-baseline gap-2">
+            <input type="checkbox" checked={!excloses.has(clau)} onChange={() => commuta(clau)} />
+            <span className="font-medium">{clau}</span>
+            <span className="text-stone-500">del campionat: {mostra(valor)}</span>
+          </li>
+        ))}
+        {[...columnes].map(([clau, { partides, exemple }]) => (
+          <li key={clau} className="flex items-baseline gap-2">
+            <input type="checkbox" checked={!excloses.has(clau)} onChange={() => commuta(clau)} />
+            <span className="font-medium">{clau}</span>
+            <span className="text-stone-500">
+              a {partides} {partides === 1 ? 'partida' : 'partides'} · p. ex. {mostra(exemple)}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
   )
 }

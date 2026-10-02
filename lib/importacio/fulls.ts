@@ -73,6 +73,20 @@ const COLUMNES: Record<string, string[]> = {
   puntsLletra2: ['punts lletra 2', 'punts mot lletra 2', 'punts millor lletra 2'],
 }
 
+/**
+ * Columnes de dades lliures amb nom conegut: es desen amb la clau de
+ * l'esquerra. Qualsevol altra columna que no sigui de les de dalt també es
+ * desa, amb el nom tal com surt a la capçalera.
+ */
+const LLIURES: Record<string, string[]> = {
+  full: ['full', 'full anotacions', "full d'anotacions", 'imatge full', 'foto full', 'enllac full'],
+  tauler: ['tauler', 'imatge tauler', 'foto tauler', 'enllac tauler'],
+  taula: ['taula', 'mesa', 'table', 'board'],
+  lloc: ['lloc', 'sala'],
+  hora: ['hora'],
+  comentaris: ['comentaris', 'comentari', 'observacions', 'notes', 'nota'],
+}
+
 // Els guions baixos valen com a espais: «Puntuacio_1» és «Puntuacio 1».
 const normalitzaCapcalera = (text: string) => normalitzaNom(String(text ?? '').replace(/_/g, ' '))
 
@@ -96,6 +110,15 @@ function mapaColumnes(capcalera: unknown[]): Record<string, number> {
       }
     }
   }
+
+  // La resta de columnes amb capçalera són dades lliures.
+  const usades = new Set(Object.values(mapa))
+  normalitzades.forEach((nom, posicio) => {
+    if (usades.has(posicio) || nom === '') return
+    const conegut = Object.entries(LLIURES).find(([, sinonims]) => sinonims.includes(nom))?.[0]
+    const clau = conegut ?? String(capcalera[posicio]).trim()
+    if (!Object.values(mapa).includes(posicio)) mapa[`lliure:${clau}`] = posicio
+  })
 
   const obligatories = ['jugador1', 'puntuacio1', 'jugador2', 'puntuacio2']
   const absents = obligatories.filter((clau) => !(clau in mapa))
@@ -151,6 +174,8 @@ export interface FilaResultat {
   puntuacio2: number | null
   /** `null` si el full no en porta cap per a aquesta partida. */
   estadistiques?: EstadistiquesPartida | null
+  /** Les columnes de dades lliures que tenen valor en aquesta fila. */
+  dades?: Record<string, unknown> | null
 }
 
 /**
@@ -186,6 +211,26 @@ function estadistiquesDe(fila: unknown[], columnes: Record<string, number>): Est
   return buit(estadistiques.jugador1) && buit(estadistiques.jugador2) ? null : estadistiques
 }
 
+/** Les dades lliures d'una fila: les columnes `lliure:…` que no són buides. */
+function dadesLliuresDe(fila: unknown[], columnes: Record<string, number>): Record<string, unknown> | null {
+  const dades: Record<string, unknown> = {}
+  for (const [clau, posicio] of Object.entries(columnes)) {
+    if (!clau.startsWith('lliure:')) continue
+    const valor = fila[posicio]
+    if (valor === null || valor === undefined) continue
+    if (typeof valor === 'number') {
+      if (Number.isFinite(valor)) dades[clau.slice(7)] = valor
+      continue
+    }
+    const text = String(valor).trim()
+    if (text === '') continue
+    // Un número pur (una taula, un temps) es desa com a número, com al full
+    // de càlcul; amb zeros al davant es deixa com a text.
+    dades[clau.slice(7)] = /^-?(0|[1-9]\d*)([.,]\d+)?$/.test(text) ? Number(text.replace(',', '.')) : text
+  }
+  return Object.keys(dades).length ? dades : null
+}
+
 /** Converteix les files crues d'un full en resultats, amb la capçalera a la primera. */
 export function interpretaFiles(files: unknown[][]): FilaResultat[] {
   const sensebuides = files.filter((fila) => fila.some((c) => c !== null && String(c ?? '') !== ''))
@@ -215,6 +260,7 @@ export function interpretaFiles(files: unknown[][]): FilaResultat[] {
     }
 
     const estadistiques = esBye ? null : estadistiquesDe(fila, columnes)
+    const dades = esBye ? null : dadesLliuresDe(fila, columnes)
     resultats.push({
       fila: numeroFila,
       ronda: 'ronda' in columnes ? aNombre(fila[columnes.ronda]) : null,
@@ -223,6 +269,7 @@ export function interpretaFiles(files: unknown[][]): FilaResultat[] {
       jugador2: esBye ? null : jugador2Cru,
       puntuacio2,
       ...(estadistiques ? { estadistiques } : {}),
+      ...(dades ? { dades } : {}),
     })
   })
 
@@ -386,6 +433,7 @@ export function construeixTorneigDeFull(
       puntsBlanc: sonPuntsScrabble ? resultat.puntuacio1 : null,
       puntsNegre: sonPuntsScrabble ? (resultat.puntuacio2 ?? null) : null,
       estadistiques: resultat.estadistiques ?? null,
+      dades: resultat.dades ?? null,
     })
   })
 

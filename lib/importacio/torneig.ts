@@ -44,6 +44,8 @@ export interface PartidaTorneig {
   puntsNegre: number | null
   /** Scrabbles i millors jugades, si el fitxer els porta. */
   estadistiques?: EstadistiquesPartida | null
+  /** Dades lliures de la partida (taula, enllaç al full, comentaris...). */
+  dades?: Record<string, unknown> | null
 }
 
 /** El que es desa de cada jugador d'una partida, a més de la puntuació. */
@@ -67,6 +69,8 @@ export interface InfoTorneig {
   organitzador: string
   arbitre: string
   rondesPrevistes: number | null
+  /** El número de la primera taula (TableNosStart del .ini). */
+  primeraTaula?: number
 }
 
 export interface Torneig {
@@ -152,7 +156,7 @@ function puntsDesDoblats(doblat: number | null, ronda: number, camp: string): nu
 }
 
 /** Llegeix el fitxer `.sco` amb tots els resultats. */
-export function llegeixResultats(dades: Uint8Array): {
+export function llegeixResultats(dades: Uint8Array, primeraTaula = 1): {
   partides: PartidaTorneig[]
   rondesJugades: number[]
   rondesPendents: number[]
@@ -162,12 +166,17 @@ export function llegeixResultats(dades: Uint8Array): {
   const partides: PartidaTorneig[] = []
   const jugades = new Set<number>()
   const pendents = new Set<number>()
+  // El SwissPerfect desa cada ronda en l'ordre de les taules: la posició de la
+  // partida dins de la seva ronda és el número de taula.
+  const taulesPerRonda = new Map<number, number>()
 
   for (const registre of registres) {
     const ronda = enter(registre.ROUND)
     const blancId = enter(registre.WHITE)
     const negreId = enter(registre.BLACK)
     if (ronda === null || blancId === null || negreId === null) continue
+    const taula = (taulesPerRonda.get(ronda) ?? primeraTaula - 1) + 1
+    taulesPerRonda.set(ronda, taula)
 
     // W_TYPE i B_TYPE valen 1 quan la partida s'ha jugat. Les rondes ja
     // aparellades però pendents hi consten amb tot a zero.
@@ -193,6 +202,7 @@ export function llegeixResultats(dades: Uint8Array): {
       resultatBlanc,
       puntsBlanc: puntsDesDoblats(enter(registre.W_SUBSCO), ronda, 'W_SUBSCO'),
       puntsNegre: puntsDesDoblats(enter(registre.B_SUBSCO), ronda, 'B_SUBSCO'),
+      dades: { taula },
     })
   }
 
@@ -229,12 +239,14 @@ export function llegeixInfo(contingut: string): InfoTorneig {
 
   const torneig = seccions.get('Tournament Info') ?? new Map<string, string>()
   const rondes = Number.parseInt(torneig.get('Rounds') ?? '', 10)
+  const primeraTaula = Number.parseInt(torneig.get('TableNosStart') ?? '', 10)
 
   return {
     nom: torneig.get('Name') ?? '',
     organitzador: torneig.get('Organiser') ?? '',
     arbitre: torneig.get('Arbiter') ?? '',
     rondesPrevistes: Number.isNaN(rondes) ? null : rondes,
+    primeraTaula: Number.isNaN(primeraTaula) ? 1 : primeraTaula,
   }
 }
 
@@ -250,7 +262,8 @@ export interface FitxersTorneig {
  */
 export function llegeixTorneig({ trn, sco, ini }: FitxersTorneig): Torneig {
   const participants = llegeixParticipants(trn)
-  const { partides, rondesJugades, rondesPendents } = llegeixResultats(sco)
+  const info = ini === undefined ? null : llegeixInfo(ini)
+  const { partides, rondesJugades, rondesPendents } = llegeixResultats(sco, info?.primeraTaula ?? 1)
 
   const coneguts = new Set(participants.map((p) => p.id))
   for (const partida of partides) {
@@ -278,7 +291,7 @@ export function llegeixTorneig({ trn, sco, ini }: FitxersTorneig): Torneig {
   }
 
   return {
-    info: ini === undefined ? null : llegeixInfo(ini),
+    info,
     participants,
     partides,
     rondesJugades,

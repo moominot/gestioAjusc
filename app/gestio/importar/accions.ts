@@ -267,7 +267,10 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
           punts1: p.puntsBlanc,
           punts2: p.puntsNegre,
           estadistiques: p.estadistiques ?? null,
+          dades: p.dades ?? null,
         })),
+        // Del SwissPerfect, l'àrbitre del .ini.
+        dadesCampionat: torneig.info?.arbitre ? { arbitre: torneig.info.arbitre } : null,
       },
     }
   } catch (error) {
