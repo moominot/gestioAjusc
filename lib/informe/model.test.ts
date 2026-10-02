@@ -144,7 +144,7 @@ it('apostrofa els mesos que comencen per vocal', () => {
   expect(deMes('octubre 2019')).toBe('d’octubre 2019')
 })
 
-it('llista els que passen a inactius: actius a l’edició anterior i inactius ara', () => {
+it('llista els canvis d’estat respecte de l’edició anterior', () => {
   const anterior = { barruf: 1100, estat: 'act', posicio: 40, partides_totals: 80, victories_totals: 40 }
   const nou = fila({ nom: 'Nou inactiu', barruf: 1100, estat: 'inact', posicio: null, partides_totals: 80, anterior })
   const vell = fila({
@@ -155,5 +155,11 @@ it('llista els que passen a inactius: actius a l’edició anterior i inactius a
     anterior: { ...anterior, estat: 'inact', posicio: null },
   })
   const actiu = fila({ nom: 'Segueix actiu', barruf: 1000, anterior })
-  expect(construeixInforme(informe([nou, vell, actiu])).nousInactius).toEqual(['Nou inactiu'])
+  const tornat = fila({ nom: 'Torna a jugar', barruf: 1050, posicio: 30, anterior: { ...anterior, estat: 'inact', posicio: null } })
+  const exp = fila({ nom: 'Deixa l’expectativa', barruf: 980, posicio: 31, anterior: { ...anterior, estat: 'exp', posicio: null } })
+  const c = construeixInforme(informe([nou, vell, actiu, tornat, exp])).canvisEstat
+  expect(c.passenAInactius.map((j) => j.nom)).toEqual(['Nou inactiu'])
+  expect(c.passenAInactius[0].valor).toBe('BARRUF 1100')
+  expect(c.tornenAActius.map((j) => [j.nom, j.valor])).toEqual([['Torna a jugar', '30a posició · 1050']])
+  expect(c.deixenExpectativa.map((j) => j.nom)).toEqual(['Deixa l’expectativa'])
 })

@@ -108,10 +108,25 @@ export interface Informe {
   /** Algun jugador canvia de BARRUF sense haver jugat: cal la nota de l'asterisc. */
   ambCorreccions: boolean
   /**
-   * Els que eren actius a l'edició anterior i ara són inactius. Passa a la
-   * primera edició de cada temporada, quan s'aplica la inactivitat.
+   * Qui canvia d'estat respecte de l'edició anterior. Els actius passen a
+   * inactius a la primera edició de cada temporada, quan s'aplica la
+   * inactivitat; a actiu s'hi passa en qualsevol edició, tornant a jugar o
+   * superant les 10 partides. Si n'hi ha, el PDF hi dedica una pàgina.
    */
-  nousInactius: string[]
+  canvisEstat: CanvisEstat
+}
+
+export interface JugadorCanvi {
+  numero: number
+  nom: string
+  club: string | null
+  valor: string
+}
+
+export interface CanvisEstat {
+  passenAInactius: JugadorCanvi[]
+  tornenAActius: JugadorCanvi[]
+  deixenExpectativa: JugadorCanvi[]
 }
 
 // --- Format ---------------------------------------------------------------------
@@ -279,6 +294,17 @@ const clauClub = (nom: string) =>
     .replace(/\p{Mn}/gu, '')
     .toLowerCase()
 
+function canvisEstat(actius: FilaCrua[], espera: FilaCrua[]): CanvisEstat {
+  const posicio = (f: FilaCrua) => ({ numero: f.numero, nom: f.nom, club: f.club, valor: `${f.posicio}a posició · ${arrodoneix(f.barruf)}` })
+  return {
+    passenAInactius: espera
+      .filter((f) => f.estat === 'inact' && f.anterior?.estat === 'act')
+      .map((f) => ({ numero: f.numero, nom: f.nom, club: f.club, valor: `BARRUF ${arrodoneix(f.barruf)}` })),
+    tornenAActius: actius.filter((f) => f.anterior?.estat === 'inact').map(posicio),
+    deixenExpectativa: actius.filter((f) => f.anterior?.estat === 'exp').map(posicio),
+  }
+}
+
 export function construeixInforme(
   cru: InformeCru,
   opcions: { especial?: 'temporada' | 'comparativa' } = {},
@@ -299,7 +325,7 @@ export function construeixInforme(
       .map((c) => ({ nom: c.nom, nomLlegenda: c.nom_llegenda }))
       .sort((a, b) => clauClub(a.nom).localeCompare(clauClub(b.nom), 'ca')),
     ambCorreccions: cru.files.some(esCorreccio),
-    nousInactius: espera.filter((f) => f.estat === 'inact' && f.anterior?.estat === 'act').map((f) => f.nom),
+    canvisEstat: canvisEstat(actius, espera),
     especial:
       opcions.especial && cru.anterior !== null
         ? { anterior: cru.anterior, temporada: opcions.especial === 'temporada' }

@@ -397,10 +397,23 @@ const sd = StyleSheet.create({
   linia: { flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 5, paddingVertical: 1.8, fontSize: 9 },
 })
 
-function Bloc({ titol, jugadors, buit = 'Cap' }: { titol: string; jugadors: JugadorDestacat[]; buit?: string }) {
+function Bloc({
+  titol,
+  jugadors,
+  buit = 'Cap',
+  color = VERD,
+  trencable = false,
+}: {
+  titol: string
+  jugadors: JugadorDestacat[]
+  buit?: string
+  color?: string
+  /** Una llista llarga pot continuar a la pàgina següent. */
+  trencable?: boolean
+}) {
   return (
-    <View style={sd.bloc} wrap={false}>
-      <Text style={sd.titolBloc}>{titol}</Text>
+    <View style={sd.bloc} wrap={trencable}>
+      <Text style={[sd.titolBloc, { backgroundColor: color }]}>{titol}</Text>
       {jugadors.length === 0 ? (
         <Text style={sd.linia}>{buit}</Text>
       ) : (
@@ -414,6 +427,78 @@ function Bloc({ titol, jugadors, buit = 'Cap' }: { titol: string; jugadors: Juga
           </View>
         ))
       )}
+    </View>
+  )
+}
+
+// --- Canvis d'estat -------------------------------------------------------------
+
+const sc = StyleSheet.create({
+  criteris: { borderWidth: 0.8, borderColor: '#999', padding: 8, marginBottom: 14 },
+  titolCriteris: { fontWeight: 'bold', fontSize: 10, marginBottom: 4 },
+  criteri: { fontSize: 9, lineHeight: 1.4, marginBottom: 3 },
+})
+
+/**
+ * La pàgina d'abans del BARRUF en espera, quan algú canvia d'estat: els
+ * criteris de cada llista i qui hi entra o en surt en aquesta edició.
+ */
+function PaginaCanvisEstat({ informe, especial }: { informe: Informe; especial: boolean }) {
+  const c = informe.canvisEstat
+  const color = fons(especial)
+  const n = (l: unknown[]) => (l.length ? ` (${l.length})` : '')
+  return (
+    <View>
+      <View style={[s.bandaEspera, { backgroundColor: color }]}>
+        <Text style={s.titolEspera}>Canvis d’estat</Text>
+        <Text style={s.liniaEspera}>
+          BARRUF {informe.numero} · temporada {informe.temporada}
+        </Text>
+      </View>
+      <View style={sc.criteris}>
+        <Text style={sc.titolCriteris}>Com s’entra i se surt de cada llista</Text>
+        <Text style={sc.criteri}>
+          <Text style={s.negreta}>Actius.</Text> Tenen més de 10 partides amb resultat publicat i han jugat alguna
+          partida la temporada en curs o alguna de les dues anteriors. Són els únics que tenen posició a la
+          classificació.
+        </Text>
+        <Text style={sc.criteri}>
+          <Text style={s.negreta}>En expectativa (exp).</Text> Tenen 10 partides o menys: el seu BARRUF encara és
+          provisional. Hi són fins que superen les 10 partides, encara que faci temps que no juguin.
+        </Text>
+        <Text style={sc.criteri}>
+          <Text style={s.negreta}>Inactius (inact).</Text> Tenen més de 10 partides, però no han jugat cap partida la
+          temporada en curs ni les dues anteriors. Es comprova al primer BARRUF de cada temporada. Conserven el seu
+          BARRUF i tornen a ser actius tan bon punt juguen un campionat barrufat.
+        </Text>
+      </View>
+      <View style={sd.columnes}>
+        <View style={sd.columna}>
+          <Bloc
+            titol={`Passen a inactius${n(c.passenAInactius)}`}
+            jugadors={c.passenAInactius}
+            buit="Cap jugador passa a inactiu en aquest BARRUF"
+            color={color}
+            trencable
+          />
+        </View>
+        <View style={sd.columna}>
+          <Bloc
+            titol={`Tornen a ser actius${n(c.tornenAActius)}`}
+            jugadors={c.tornenAActius}
+            buit="Cap jugador inactiu ha tornat a jugar"
+            color={color}
+            trencable
+          />
+          <Bloc
+            titol={`Deixen l’expectativa i passen a actius${n(c.deixenExpectativa)}`}
+            jugadors={c.deixenExpectativa}
+            buit="Cap jugador ha superat les 10 partides"
+            color={color}
+            trencable
+          />
+        </View>
+      </View>
     </View>
   )
 }
@@ -486,6 +571,8 @@ export function DocumentBarruf({ informe, destacats }: { informe: Informe; desta
   const actius = trosseja(informe.actius, informe.ambCorreccions ? FILES_PRIMERA - 2 : FILES_PRIMERA, FILES_PAGINA)
   const espera = trosseja(informe.espera, FILES_PRIMERA_ESPERA, FILES_PAGINA)
   const llegendaApart = (actius.at(-1)?.length ?? 0) > FILES_AMB_LLEGENDA
+  const c = informe.canvisEstat
+  const ambCanvis = c.passenAInactius.length + c.tornenAActius.length + c.deixenExpectativa.length > 0
 
 
   return (
@@ -514,6 +601,13 @@ export function DocumentBarruf({ informe, destacats }: { informe: Informe; desta
           <Text style={s.numPagina} render={({ pageNumber }) => `${pageNumber}`} fixed />
         </Page>
       ) : null}
+      {ambCanvis ? (
+        <Page size="A4" style={s.pagina}>
+          <PaginaCanvisEstat informe={informe} especial={especial} />
+          <Text style={s.web} fixed>www.ajuscrabble.cat</Text>
+          <Text style={s.numPagina} render={({ pageNumber }) => `${pageNumber}`} fixed />
+        </Page>
+      ) : null}
       {espera.map((files, i) => (
         <Page key={`e${i}`} size="A4" style={s.pagina}>
           {i === 0 ? (
@@ -527,11 +621,6 @@ export function DocumentBarruf({ informe, destacats }: { informe: Informe; desta
                 inact = jugadors inactius, tenen més de 10 partides, però no han jugat cap partida la
                 temporada en curs ni les dues anteriors
               </Text>
-              {informe.nousInactius.length > 0 ? (
-                <Text style={[s.liniaEspera, { marginTop: 3 }]}>
-                  Passen a inactius en aquest BARRUF ({informe.nousInactius.length}): {informe.nousInactius.join(', ')}.
-                </Text>
-              ) : null}
             </View>
           ) : null}
           <CapTaula numero={informe.numero} temporada={informe.temporada} espera especial={especial} />
