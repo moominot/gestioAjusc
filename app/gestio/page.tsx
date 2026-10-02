@@ -8,7 +8,7 @@ export default async function Gestio() {
   const gestor = await gestorConnectat()
   const supabase = await clientServidor()
 
-  const [{ count: jugadors }, { count: campionats }, { count: pendents }] = await Promise.all([
+  const [{ count: jugadors }, { count: campionats }, { count: pendents }, { count: rebudes }] = await Promise.all([
     supabase.from('jugadors').select('id', { count: 'exact', head: true }),
     supabase.from('campionats').select('id', { count: 'exact', head: true }),
     supabase
@@ -16,6 +16,7 @@ export default async function Gestio() {
       .select('id', { count: 'exact', head: true })
       .eq('computa_barruf', true)
       .eq('finalitzat', false),
+    supabase.from('importacions_rebudes').select('id', { count: 'exact', head: true }).eq('estat', 'pendent'),
   ])
 
   async function surt() {
@@ -66,12 +67,22 @@ export default async function Gestio() {
         <p className="mt-1 text-sm text-stone-600">
           Des dels fitxers del SwissPerfect o des d&apos;un full de càlcul.
         </p>
-        <Link
-          href="/gestio/importar"
-          className="mt-3 inline-block rounded-lg bg-stone-900 px-4 py-2 text-sm text-white hover:bg-stone-700"
-        >
-          Importar
-        </Link>
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <Link
+            href="/gestio/importar"
+            className="inline-block rounded-lg bg-stone-900 px-4 py-2 text-sm text-white hover:bg-stone-700"
+          >
+            Importar
+          </Link>
+          <Link
+            href="/gestio/importacions"
+            className={`inline-block rounded-lg border px-4 py-2 text-sm ${
+              rebudes ? 'border-amber-400 bg-amber-50 text-amber-900 hover:border-amber-600' : 'border-stone-300 hover:border-stone-500'
+            }`}
+          >
+            Rebudes d’altres aplicacions{rebudes ? ` (${rebudes} per revisar)` : ''}
+          </Link>
+        </div>
       </section>
 
       <section className="rounded-lg border border-stone-200 bg-white p-6">
@@ -101,9 +112,9 @@ export default async function Gestio() {
       </section>
 
       <section className="rounded-lg border border-stone-200 bg-white p-6">
-        <h2 className="font-semibold">Gestors i registre de canvis</h2>
+        <h2 className="font-semibold">Gestors, connexions i registre de canvis</h2>
         <p className="mt-1 text-sm text-stone-600">
-          Qui pot gestionar, i què ha canviat cadascú.
+          Qui pot gestionar, quines aplicacions poden enviar resultats, i què ha canviat cadascú.
         </p>
         <div className="mt-4 flex gap-2">
           <Link
@@ -111,6 +122,12 @@ export default async function Gestio() {
             className="inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm hover:border-stone-500"
           >
             Gestors
+          </Link>
+          <Link
+            href="/gestio/connexions"
+            className="inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm hover:border-stone-500"
+          >
+            Connexions
           </Link>
           <Link
             href="/gestio/registre"

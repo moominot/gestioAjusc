@@ -6,6 +6,7 @@ import type { JugadorCercable } from '../../../components/CercaJugador'
 import { llegeixCsv, llegeixFitxerDeResultats } from '../../../lib/importacio/fitxers'
 import { construeixTorneigDeFull, interpretaFiles } from '../../../lib/importacio/fulls'
 import { resolNoms, type JugadorRegistre, type Nivell } from '../../../lib/importacio/resolucio'
+import { validaImportacio } from '../../../lib/api/importacio'
 import {
   llegeixTorneig,
   type EstadistiquesPartida,
@@ -34,10 +35,12 @@ export interface PartidaProposada {
   punts1: number | null
   punts2: number | null
   estadistiques: EstadistiquesPartida | null
+  /** Dades lliures de la partida (enllaços, taula, comentaris...), si n'hi ha. */
+  dades?: Record<string, unknown> | null
 }
 
 export interface Proposta {
-  origen: 'swissperfect' | 'full'
+  origen: 'swissperfect' | 'full' | 'api'
   nom: string
   organitzador: string
   rondesPrevistes: number | null
@@ -50,6 +53,8 @@ export interface Proposta {
   ambEstadistiques: number
   participants: ParticipantProposat[]
   partides: PartidaProposada[]
+  /** Dades lliures del campionat, si n'hi ha. */
+  dadesCampionat?: Record<string, unknown> | null
 }
 
 export type ResultatAnalisi =
@@ -62,6 +67,117 @@ async function bytes(fitxer: File): Promise<Uint8Array> {
 
 const teContingut = (fitxer: unknown): fitxer is File =>
   fitxer instanceof File && fitxer.size > 0
+
+/** El que se sap de cada participant abans de mirar-lo contra el registre. */
+export interface ParticipantAResoldre {
+  localId: number
+  nom: string
+  puntuacioInicial: number | null
+  partides: number
+  /** El número del registre, si qui envia les dades ja el sap. */
+  numero: number | null
+}
+
+/**
+ * Mira els participants contra el registre (nom exacte, àlies, semblança) i
+ * torna la proposta de cadascun, amb el registre sencer per triar-ne a mà.
+ * No s'exporta: en un fitxer 'use server' seria una acció pública.
+ */
+async function resolParticipants(
+  entrada: ParticipantAResoldre[],
+): Promise<{ participants: ParticipantProposat[]; registre: JugadorCercable[] }> {
+  // Registre contra el qual resoldre els noms.
+  const supabase = await clientServidor()
+  const [{ data: jugadors }, { data: alies }] = await Promise.all([
+    supabase.from('jugadors').select('id, numero, nom_complet, clubs(nom)').is('fusionat_a', null),
+    supabase.from('jugador_alies').select('jugador_id, alies_norm'),
+  ])
+
+  const { data: barrufs } = await supabase
+    .from('barruf_classificacio')
+    .select('jugador_numero, barruf')
+
+  const barrufPerNumero = new Map(
+    (barrufs ?? []).map((b) => [b.jugador_numero as number, Number(b.barruf)]),
+  )
+
+  const registre: JugadorRegistre[] = (jugadors ?? []).map((j) => ({
+    id: j.id as string,
+    numero: j.numero as number,
+    nomComplet: j.nom_complet as string,
+    barruf: barrufPerNumero.get(j.numero as number) ?? null,
+  }))
+  const perId = new Map(registre.map((j) => [j.id, j]))
+  // Els números fusionats també valen: porten al jugador on es van fusionar.
+  const { data: fusionats } = await supabase.from('jugadors').select('numero, fusionat_a').not('fusionat_a', 'is', null)
+  const perNumero = new Map(registre.map((j) => [j.numero, j]))
+  for (const f of fusionats ?? []) {
+    const bo = perId.get(f.fusionat_a as string)
+    if (bo) perNumero.set(f.numero as number, bo)
+  }
+
+  const resolts = resolNoms(
+    entrada.map((p) => ({
+      origen: p,
+      nom: p.nom,
+      puntuacioInicial: p.puntuacioInicial,
+    })),
+    {
+      jugadors: registre,
+      alies: (alies ?? []).map((a) => ({
+        jugadorId: a.jugador_id as string,
+        aliesNorm: a.alies_norm as string,
+      })),
+    },
+  )
+
+  const participants: ParticipantProposat[] = resolts.map((resolt) => {
+    const { resolucio } = resolt
+    const resolt_ =
+      resolucio.tipus === 'exacte' || resolucio.tipus === 'alies' ? resolucio.jugador : null
+    // Si qui envia el campionat ja diu quin número del registre és, mana això.
+    const donat = resolt.origen.numero !== null ? perNumero.get(resolt.origen.numero) : undefined
+    if (donat) {
+      return {
+        localId: resolt.origen.localId,
+        nom: resolt.nom,
+        puntuacioInicial: resolt.origen.puntuacioInicial,
+        partides: resolt.origen.partides,
+        jugadorNumero: donat.numero,
+        com: 'exacte' as const,
+        candidats: [],
+      }
+    }
+
+    return {
+      localId: resolt.origen.localId,
+      nom: resolt.nom,
+      puntuacioInicial: resolt.origen.puntuacioInicial,
+      partides: resolt.origen.partides,
+      jugadorNumero: resolt_?.numero ?? null,
+      com: resolucio.tipus,
+      candidats:
+        resolucio.tipus === 'dubtos' || resolucio.tipus === 'nou'
+          ? resolucio.candidats.map((c) => ({
+              numero: c.jugador.numero,
+              nom: perId.get(c.jugador.id)?.nomComplet ?? c.jugador.nomComplet,
+              semblanca: Math.round(c.semblanca * 100),
+              nivell: c.nivell,
+              corroborat: c.unicAmbAquestaPuntuacio,
+            }))
+          : [],
+    }
+  })
+
+  return {
+    participants,
+    registre: (jugadors ?? []).map((j) => ({
+      numero: j.numero as number,
+      nom: j.nom_complet as string,
+      club: (j.clubs as unknown as { nom: string } | null)?.nom ?? null,
+    })),
+  }
+}
 
 /** Llegeix els fitxers, resol els noms i torna una proposta per revisar. */
 export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
@@ -111,84 +227,26 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
       }
     }
 
-    // Registre contra el qual resoldre els noms.
-    const supabase = await clientServidor()
-    const [{ data: jugadors }, { data: alies }] = await Promise.all([
-      supabase.from('jugadors').select('id, numero, nom_complet, clubs(nom)').is('fusionat_a', null),
-      supabase.from('jugador_alies').select('jugador_id, alies_norm'),
-    ])
-
-    const { data: barrufs } = await supabase
-      .from('barruf_classificacio')
-      .select('jugador_numero, barruf')
-
-    const barrufPerNumero = new Map(
-      (barrufs ?? []).map((b) => [b.jugador_numero as number, Number(b.barruf)]),
-    )
-
-    const registre: JugadorRegistre[] = (jugadors ?? []).map((j) => ({
-      id: j.id as string,
-      numero: j.numero as number,
-      nomComplet: j.nom_complet as string,
-      barruf: barrufPerNumero.get(j.numero as number) ?? null,
-    }))
-    const perId = new Map(registre.map((j) => [j.id, j]))
-
-    const resolts = resolNoms(
-      torneig.participants.map((p) => ({
-        origen: p,
-        nom: p.nomComplet,
-        puntuacioInicial: p.puntuacioInicial,
-      })),
-      {
-        jugadors: registre,
-        alies: (alies ?? []).map((a) => ({
-          jugadorId: a.jugador_id as string,
-          aliesNorm: a.alies_norm as string,
-        })),
-      },
-    )
-
     const partidesPer = new Map<number, number>()
     for (const partida of torneig.partides) {
       for (const jugador of [partida.blancId, partida.negreId]) {
         partidesPer.set(jugador, (partidesPer.get(jugador) ?? 0) + 1)
       }
     }
-
-    const participants: ParticipantProposat[] = resolts.map((resolt) => {
-      const { resolucio } = resolt
-      const resolt_ =
-        resolucio.tipus === 'exacte' || resolucio.tipus === 'alies' ? resolucio.jugador : null
-
-      return {
-        localId: resolt.origen.id,
-        nom: resolt.nom,
-        puntuacioInicial: resolt.origen.puntuacioInicial,
-        partides: partidesPer.get(resolt.origen.id) ?? 0,
-        jugadorNumero: resolt_?.numero ?? null,
-        com: resolucio.tipus,
-        candidats:
-          resolucio.tipus === 'dubtos' || resolucio.tipus === 'nou'
-            ? resolucio.candidats.map((c) => ({
-                numero: c.jugador.numero,
-                nom: perId.get(c.jugador.id)?.nomComplet ?? c.jugador.nomComplet,
-                semblanca: Math.round(c.semblanca * 100),
-                nivell: c.nivell,
-                corroborat: c.unicAmbAquestaPuntuacio,
-              }))
-            : [],
-      }
-    })
+    const { participants, registre } = await resolParticipants(
+      torneig.participants.map((p) => ({
+        localId: p.id,
+        nom: p.nomComplet,
+        puntuacioInicial: p.puntuacioInicial,
+        partides: partidesPer.get(p.id) ?? 0,
+        numero: null,
+      })),
+    )
 
     return {
       ok: true,
       // El registre sencer, per poder triar a mà un jugador que la resolució no ha proposat.
-      registre: (jugadors ?? []).map((j) => ({
-        numero: j.numero as number,
-        nom: j.nom_complet as string,
-        club: (j.clubs as unknown as { nom: string } | null)?.nom ?? null,
-      })),
+      registre,
       proposta: {
         origen,
         nom: torneig.info?.nom ?? '',
@@ -250,6 +308,7 @@ function partidesPerDesar(proposta: Proposta) {
       punts_mot_2: e?.jugador2.puntsMot ?? null,
       mot_lletra_2: e?.jugador2.motLletra ?? null,
       punts_lletra_2: e?.jugador2.puntsLletra ?? null,
+      dades: p.dades ?? null,
     }
   })
 }
@@ -322,6 +381,13 @@ export async function desa(
 
   if (error) return { ok: false, error: error.message }
 
+  if (proposta.dadesCampionat) {
+    await supabase
+      .from('campionats')
+      .update({ dades: proposta.dadesCampionat })
+      .eq('id', (data as { campionat_id: string }).campionat_id)
+  }
+
   revalidatePath('/campionats')
   revalidatePath('/gestio')
   invalidaEstadistiques()
@@ -368,6 +434,10 @@ export async function reimporta(
 
   if (error) return { ok: false, error: error.message }
 
+  if (proposta.dadesCampionat) {
+    await supabase.from('campionats').update({ dades: proposta.dadesCampionat }).eq('id', campionatId)
+  }
+
   revalidatePath(`/campionats/${campionatId}`)
   revalidatePath(`/gestio/campionats/${campionatId}`)
   revalidatePath('/campionats')
@@ -386,4 +456,132 @@ export async function reimporta(
     partides: resum.partides,
     partidesAnteriors: resum.partides_anteriors,
   }
+}
+
+// --- Importacions rebudes d'altres aplicacions ----------------------------------
+
+export interface Rebuda {
+  id: string
+  connexio: string
+  idExtern: string
+  versio: number
+  estat: 'pendent' | 'importada' | 'descartada'
+  campionatId: string | null
+  /** Les dades del campionat, per omplir el formulari. */
+  campionat: Pick<DadesCampionat, 'nom' | 'data' | 'organitzador' | 'clubOrganitzador' | 'finalitzat'>
+}
+
+export type ResultatRebuda =
+  | { ok: true; rebuda: Rebuda; proposta: Proposta; registre: JugadorCercable[] }
+  | { ok: false; error: string }
+
+/** Una importació rebuda, convertida en la proposta de l'importador. */
+export async function analitzaRebuda(id: string): Promise<ResultatRebuda> {
+  if (!(await gestorConnectat())) return { ok: false, error: 'Cal haver entrat com a gestor.' }
+
+  const supabase = await clientServidor()
+  const { data: fila, error } = await supabase
+    .from('importacions_rebudes')
+    .select('id, id_extern, versio, estat, campionat_id, dades, connexions(nom)')
+    .eq('id', id)
+    .maybeSingle()
+  if (error) return { ok: false, error: error.message }
+  if (!fila) return { ok: false, error: 'Aquesta importació no existeix.' }
+
+  const validacio = validaImportacio(fila.dades)
+  if (!validacio.ok) return { ok: false, error: `Les dades rebudes no són vàlides: ${validacio.errors.join('; ')}` }
+  const { campionat, participants, partides } = validacio.importacio
+
+  const local = new Map(participants.map((p, i) => [p.id, i + 1]))
+  const partidesPer = new Map<number, number>()
+  for (const p of partides) {
+    for (const j of [p.jugador_1, p.jugador_2]) {
+      if (j) partidesPer.set(local.get(j)!, (partidesPer.get(local.get(j)!) ?? 0) + 1)
+    }
+  }
+  const { participants: resolts, registre } = await resolParticipants(
+    participants.map((p, i) => ({
+      localId: i + 1,
+      nom: p.nom,
+      puntuacioInicial: null,
+      partides: partidesPer.get(i + 1) ?? 0,
+      numero: p.numero,
+    })),
+  )
+
+  const estadistiques = (p: (typeof partides)[number]): EstadistiquesPartida | null => {
+    const e = {
+      jugador1: { scrabbles: p.scrabbles_1, mot: p.mot_1, puntsMot: p.punts_mot_1, motLletra: p.mot_lletra_1, puntsLletra: p.punts_lletra_1 },
+      jugador2: { scrabbles: p.scrabbles_2, mot: p.mot_2, puntsMot: p.punts_mot_2, motLletra: p.mot_lletra_2, puntsLletra: p.punts_lletra_2 },
+    }
+    return [...Object.values(e.jugador1), ...Object.values(e.jugador2)].some((v) => v !== null) ? e : null
+  }
+  const rondes = [...new Set(partides.map((p) => p.ronda))]
+
+  return {
+    ok: true,
+    registre,
+    rebuda: {
+      id: fila.id as string,
+      connexio: (fila.connexions as unknown as { nom: string } | null)?.nom ?? '',
+      idExtern: fila.id_extern as string,
+      versio: fila.versio as number,
+      estat: fila.estat as Rebuda['estat'],
+      campionatId: (fila.campionat_id as string | null) ?? null,
+      campionat: {
+        nom: campionat.nom,
+        data: campionat.data,
+        organitzador: campionat.organitzador ?? '',
+        clubOrganitzador: campionat.club_organitzador ?? '',
+        finalitzat: campionat.acabat,
+      },
+    },
+    proposta: {
+      origen: 'api',
+      nom: campionat.nom,
+      organitzador: campionat.organitzador ?? '',
+      rondesPrevistes: campionat.rondes_previstes,
+      rondesJugades: rondes.length,
+      rondesPendents: [],
+      pestanya: null,
+      rondesDeduides: false,
+      rondesPerBlocs: false,
+      ambEstadistiques: partides.filter((p) => estadistiques(p)).length,
+      participants: resolts,
+      partides: partides.map((p) => ({
+        ronda: p.ronda,
+        local1: local.get(p.jugador_1)!,
+        local2: p.jugador_2 === null ? null : local.get(p.jugador_2)!,
+        // Sense resultat només hi pot haver els descansos, que compten com a victòria.
+        resultat1: p.resultat_1 ?? 1,
+        punts1: p.punts_1,
+        punts2: p.punts_2,
+        estadistiques: estadistiques(p),
+        dades: p.dades,
+      })),
+      dadesCampionat: campionat.dades,
+    },
+  }
+}
+
+/** Després de revisar-la: importada (i lligada al campionat, per a les versions següents) o descartada. */
+export async function marcaRebuda(id: string, campionatId: string | null, estat: 'importada' | 'descartada') {
+  if (!(await gestorConnectat())) return { ok: false as const, error: 'Cal haver entrat com a gestor.' }
+  const supabase = await clientServidor()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const { error } = await supabase
+    .from('importacions_rebudes')
+    .update({
+      estat,
+      revisada_el: new Date().toISOString(),
+      revisada_per: user?.id ?? null,
+      ...(campionatId ? { campionat_id: campionatId } : {}),
+    })
+    .eq('id', id)
+  if (error) return { ok: false as const, error: error.message }
+  revalidatePath('/gestio/importacions')
+  revalidatePath('/gestio')
+  return { ok: true as const }
 }

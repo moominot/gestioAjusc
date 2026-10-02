@@ -9,6 +9,7 @@ import {
   type FitxaCampionat,
   type PartidaCampionat,
 } from '../../../lib/campionats/fitxa'
+import { DadesLliures } from '../../../components/DadesLliures'
 import { clientServidor, gestorConnectat } from '../../../lib/supabase/servidor'
 
 export const revalidate = 300
@@ -34,7 +35,14 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
   if (!fitxa) notFound()
 
   const { campionat } = fitxa
-  const gestor = await gestorConnectat()
+  const supabase = await clientServidor()
+  // Les dades lliures (enllaços al full, taula, comentaris...), si n'hi ha.
+  const [gestor, { data: lliuresCampionat }, { data: lliuresPartides }] = await Promise.all([
+    gestorConnectat(),
+    supabase.from('campionats').select('dades').eq('id', campionat.id).maybeSingle(),
+    supabase.from('partides').select('id, dades').eq('campionat_id', campionat.id).not('dades', 'is', null),
+  ])
+  const dadesPartida = new Map((lliuresPartides ?? []).map((p) => [p.id as string, p.dades as Record<string, unknown>]))
   const files = classificacio(fitxa.jugadors)
   const xifres = estadistiques(fitxa)
   const rondes = perRonda(fitxa.partides)
@@ -277,6 +285,12 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
         </div>
       </section>
 
+      {lliuresCampionat?.dades ? (
+        <section className="rounded-lg border border-stone-200 bg-white p-4">
+          <DadesLliures dades={lliuresCampionat.dades as Record<string, unknown>} />
+        </section>
+      ) : null}
+
       <section>
         <h2 className="mb-3 text-lg font-semibold">Partides</h2>
         <div className="space-y-2">
@@ -319,6 +333,11 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
                       ) : (
                         <span />
                       )}
+                      {dadesPartida.has(p.id) ? (
+                        <span className="col-span-3 -mt-1">
+                          <DadesLliures dades={dadesPartida.get(p.id)} compacte />
+                        </span>
+                      ) : null}
                     </li>
                   )
                 })}

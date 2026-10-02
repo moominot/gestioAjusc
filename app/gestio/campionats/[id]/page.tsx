@@ -12,7 +12,7 @@ export default async function EditarCampionat({ params }: { params: Promise<{ id
   if (!/^[0-9a-f-]{36}$/i.test(id)) notFound()
 
   const supabase = await clientServidor()
-  const [{ data: fitxa }, { data: fila }, { data: clubs }, { data: temporades }, { data: jugadors }] = await Promise.all([
+  const [{ data: fitxa }, { data: fila }, { data: clubs }, { data: temporades }, { data: jugadors }, { data: lliures }] = await Promise.all([
     supabase.rpc('fitxa_campionat', { p_id: id }),
     supabase
       .from('campionats')
@@ -22,7 +22,9 @@ export default async function EditarCampionat({ params }: { params: Promise<{ id
     supabase.from('clubs').select('nom').order('nom'),
     supabase.from('temporades').select('codi').order('any_inici', { ascending: false }),
     supabase.from('jugadors_publics').select('numero, nom_complet, club_nom').order('nom_complet'),
+    supabase.from('partides').select('id, dades').eq('campionat_id', id).not('dades', 'is', null),
   ])
+  const dades = new Map((lliures ?? []).map((p) => [p.id as string, p.dades as Record<string, unknown>]))
   if (!fitxa || !fila) notFound()
 
   return (
@@ -56,7 +58,7 @@ export default async function EditarCampionat({ params }: { params: Promise<{ id
           motiuNoComputa: (fila.motiu_no_computa as string | null) ?? '',
           finalitzat: fila.finalitzat as boolean,
         }}
-        partides={(fitxa as FitxaCampionat).partides}
+        partides={(fitxa as FitxaCampionat).partides.map((p) => ({ ...p, dades: dades.get(p.id) ?? null }))}
         registre={(jugadors ?? []).map((j) => ({
           numero: j.numero as number,
           nom: j.nom_complet as string,

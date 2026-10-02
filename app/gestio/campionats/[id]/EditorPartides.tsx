@@ -24,6 +24,8 @@ type Formulari = {
   puntsMot2: string
   motLletra2: string
   puntsLletra2: string
+  /** Les dades lliures, en JSON. */
+  dades: string
 }
 
 const text = (v: number | string | null | undefined) => (v === null || v === undefined ? '' : String(v))
@@ -48,6 +50,7 @@ function deLaPartida(p: PartidaCampionat): Formulari {
     puntsMot2: text(p.punts_mot_2),
     motLletra2: text(p.mot_lletra_2),
     puntsLletra2: text(p.punts_lletra_2),
+    dades: p.dades ? JSON.stringify(p.dades, null, 2) : '',
   }
 }
 
@@ -68,12 +71,25 @@ const buit = (ronda: number): Formulari => ({
   puntsMot2: '',
   motLletra2: '',
   puntsLletra2: '',
+  dades: '',
 })
 
 function perDesar(f: Formulari, descans: boolean): DadesPartida | string {
   if (f.jugador1 === null) return 'Falta el primer jugador.'
   if (!descans && f.jugador2 === null) return 'Falta el segon jugador (o marqueu que descansa).'
+  let dades: Record<string, unknown> | null = null
+  if (f.dades.trim()) {
+    try {
+      dades = JSON.parse(f.dades)
+    } catch {
+      return 'Les altres dades no són JSON vàlid.'
+    }
+    if (typeof dades !== 'object' || dades === null || Array.isArray(dades)) {
+      return 'Les altres dades han de ser un objecte JSON, entre claus { }.'
+    }
+  }
   return {
+    dades,
     ronda: Number(f.ronda),
     jugador1: f.jugador1,
     jugador2: descans ? null : f.jugador2,
@@ -398,6 +414,16 @@ function FormulariPartida({
         {Costat({ c: 1 })}
         {descans ? null : Costat({ c: 2 })}
       </div>
+      <label className="block text-xs text-stone-600">
+        Altres dades (JSON): enllaç al full o al tauler, taula, lloc, hora, comentaris…
+        <textarea
+          value={f.dades}
+          onChange={(e) => setF({ ...f, dades: e.target.value })}
+          rows={f.dades ? Math.min(8, f.dades.split('\n').length + 1) : 2}
+          placeholder={'{ "full": "https://…", "taula": 5, "comentaris": "…" }'}
+          className={`mt-0.5 block w-full font-mono ${petit}`}
+        />
+      </label>
       <div className="flex flex-wrap items-center gap-3">
         <button
           type="button"

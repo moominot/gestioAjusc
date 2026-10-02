@@ -9,6 +9,7 @@ import { normalitzaNom } from '../../../lib/importacio/noms'
 import {
   analitza,
   desa,
+  marcaRebuda,
   reimporta,
   type DadesCampionat,
   type Proposta,
@@ -42,33 +43,47 @@ export interface CampionatAReimportar {
   arxiu: boolean
 }
 
+/** Una importació rebuda d'una altra aplicació, ja convertida en proposta. */
+export interface ImportacioInicial {
+  rebudaId: string
+  proposta: Proposta
+  registre: JugadorCercable[]
+  campionat: Partial<DadesCampionat>
+}
+
 export function Importador({
   temporades,
   clubs = [],
   reimportacio,
+  inicial,
 }: {
   temporades: string[]
   /** Noms curts dels clubs, per suggerir l'organitzador. */
   clubs?: string[]
   reimportacio?: CampionatAReimportar
+  inicial?: ImportacioInicial
 }) {
-  const [proposta, setProposta] = useState<Proposta | null>(null)
-  const [registre, setRegistre] = useState<JugadorCercable[]>([])
+  const [proposta, setProposta] = useState<Proposta | null>(inicial?.proposta ?? null)
+  const [registre, setRegistre] = useState<JugadorCercable[]>(inicial?.registre ?? [])
   const [error, setError] = useState<string | null>(null)
   const [decisions, setDecisions] = useState<Record<number, number | null>>({})
   const [desat, setDesat] = useState<ResultatDesat | null>(null)
   const [reimportat, setReimportat] = useState<ResultatReimportacio | null>(null)
   const [treballant, comença] = useTransition()
 
-  const [campionat, setCampionat] = useState<DadesCampionat>({
-    nom: '',
-    data: avui(),
-    temporadaCodi: temporadaDe(avui()),
-    organitzador: '',
-    clubOrganitzador: '',
-    computaBarruf: true,
-    motiuNoComputa: '',
-    finalitzat: false,
+  const [campionat, setCampionat] = useState<DadesCampionat>(() => {
+    const data = inicial?.campionat.data || avui()
+    return {
+      nom: '',
+      data,
+      temporadaCodi: temporadaDe(data),
+      organitzador: '',
+      clubOrganitzador: '',
+      computaBarruf: true,
+      motiuNoComputa: '',
+      finalitzat: false,
+      ...inicial?.campionat,
+    }
   })
 
   function analitzaFitxers(dades: FormData) {
@@ -105,14 +120,20 @@ export function Importador({
       comença(async () => {
         const resultat = await reimporta(reimportacio.id, proposta, decisions)
         if (!resultat.ok) setError(resultat.error)
-        else setReimportat(resultat)
+        else {
+          if (inicial) await marcaRebuda(inicial.rebudaId, reimportacio.id, 'importada')
+          setReimportat(resultat)
+        }
       })
       return
     }
     comença(async () => {
       const resultat = await desa(proposta, campionat, decisions)
       if (!resultat.ok) setError(resultat.error)
-      else setDesat(resultat)
+      else {
+        if (inicial) await marcaRebuda(inicial.rebudaId, resultat.campionatId, 'importada')
+        setDesat(resultat)
+      }
     })
   }
 
@@ -159,17 +180,23 @@ export function Importador({
           <Link href="/campionats" className="underline">
             Veure els campionats
           </Link>
-          <button
-            type="button"
-            className="underline"
-            onClick={() => {
-              setProposta(null)
-              setDesat(null)
-              setDecisions({})
-            }}
-          >
-            Importar-ne un altre
-          </button>
+          {inicial ? (
+            <Link href="/gestio/importacions" className="underline">
+              Tornar a les importacions rebudes
+            </Link>
+          ) : (
+            <button
+              type="button"
+              className="underline"
+              onClick={() => {
+                setProposta(null)
+                setDesat(null)
+                setDecisions({})
+              }}
+            >
+              Importar-ne un altre
+            </button>
+          )}
         </div>
       </div>
     )
@@ -529,16 +556,18 @@ export function Importador({
                   ? 'Substituir les partides'
                   : 'Importar el campionat'}
             </button>
-            <button
-              type="button"
-              onClick={() => {
-                setProposta(null)
-                setDecisions({})
-              }}
-              className="text-sm text-stone-500 underline hover:text-stone-900"
-            >
-              Tornar a començar
-            </button>
+            {inicial ? null : (
+              <button
+                type="button"
+                onClick={() => {
+                  setProposta(null)
+                  setDecisions({})
+                }}
+                className="text-sm text-stone-500 underline hover:text-stone-900"
+              >
+                Tornar a començar
+              </button>
+            )}
             {pendents > 0 ? (
               <span className="text-sm text-stone-600">
                 {pendents} jugadors entraran com a altes noves.

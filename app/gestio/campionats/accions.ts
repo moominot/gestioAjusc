@@ -100,6 +100,8 @@ export interface DadesPartida {
   puntsMot2: number | null
   motLletra2: string
   puntsLletra2: number | null
+  /** Dades lliures: enllaç al full o al tauler, taula, lloc, comentaris... */
+  dades: Record<string, unknown> | null
 }
 
 const enterPositiu = (n: number | null) => n === null || (Number.isInteger(n) && n >= 0)
@@ -134,6 +136,7 @@ function columnesPartida(d: DadesPartida): { ok: true; fila: Record<string, unkn
     ok: true,
     fila: {
       ronda: d.ronda,
+      dades: d.dades && Object.keys(d.dades).length ? d.dades : null,
       resultat_1: resultat,
       punts_1: descans ? null : d.punts1,
       punts_2: descans ? null : d.punts2,

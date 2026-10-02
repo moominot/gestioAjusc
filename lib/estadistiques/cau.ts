@@ -1,17 +1,12 @@
-import { createServerClient } from '@supabase/ssr'
 import { unstable_cache } from 'next/cache'
 
-import { configuracioSupabase } from '../supabase/configuracio'
+import { clientAnonim } from '../supabase/anonim'
 
 /**
- * Les estadístiques són de lectura pública i no depenen de qui mira: es poden
- * calcular sense galetes i guardar una estona. Les més lentes (el Saló de la
- * fama) així només es calculen un cop per hora.
+ * Les estadístiques són de lectura pública i no depenen de qui mira: es
+ * calculen sense galetes i es guarden una estona. Les més lentes (el Saló de
+ * la fama) així només es calculen un cop per hora.
  */
-function clientAnonim() {
-  const { url, clau } = configuracioSupabase()
-  return createServerClient(url, clau, { cookies: { getAll: () => [], setAll: () => {} } })
-}
 
 export const estadistica = unstable_cache(
   async (metrica: string, filtres: Record<string, string>, limit: number) => {

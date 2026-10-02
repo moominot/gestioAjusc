@@ -49,6 +49,8 @@ export interface PartidaCampionat {
   punts_mot_2?: number | null
   mot_lletra_2?: string | null
   punts_lletra_2?: number | null
+  /** Dades lliures (enllaç al full, taula, comentaris...). La fitxa no les porta: s'hi afegeixen a part. */
+  dades?: Record<string, unknown> | null
 }
 
 export interface FitxaCampionat {
