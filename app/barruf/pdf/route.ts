@@ -52,10 +52,11 @@ export async function GET(peticio: Request) {
     headers: {
       'Content-Type': 'application/pdf',
       'Content-Disposition': `inline; filename*=UTF-8''${encodeURIComponent(nomFitxer(informe))}`,
-      // Una edició publicada no canvia mai; l'última, o una temporada en curs, sí.
+      // Una edició es pot despublicar i tornar a publicar amb el mateix número:
+      // no es guarda gaire, perquè no quedi el PDF vell als navegadors.
       'Cache-Control':
         numero !== null && temporada === null
-          ? 'public, max-age=86400, s-maxage=31536000'
+          ? 'public, max-age=3600, s-maxage=3600'
           : 'public, max-age=300, s-maxage=300',
     },
   })

@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { clientServidor } from '../../../lib/supabase/servidor'
 import { Despublicador } from './Despublicador'
+import { ImatgeXarxes } from './ImatgeXarxes'
 import { Publicador } from './Publicador'
 
 export const metadata = { title: 'Publicar el BARRUF' }
@@ -43,6 +44,13 @@ export default async function PublicarBarruf() {
       </div>
 
       <Publicador temporades={(data ?? []).map((t) => t.codi as string)} />
+
+      {ultima && !ultima.es_llavor ? (
+        <section className="rounded-lg border border-stone-200 bg-white p-5">
+          <h2 className="mb-3 font-semibold">Imatge per a les xarxes del BARRUF {ultima.numero as number}</h2>
+          <ImatgeXarxes numero={ultima.numero as number} />
+        </section>
+      ) : null}
 
       {ultima && !ultima.es_llavor ? (
         <Despublicador

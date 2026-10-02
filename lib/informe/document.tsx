@@ -524,8 +524,8 @@ export function DocumentBarruf({ informe, destacats }: { informe: Informe; desta
                 competicions de scrabble clàssic
               </Text>
               <Text style={s.liniaEspera}>
-                inact = jugadors inactius, tenen més de 10 partides, però cap resultat publicat en la
-                temporada actual ni en l&apos;anterior
+                inact = jugadors inactius, tenen més de 10 partides, però no han jugat cap partida la
+                temporada en curs ni les dues anteriors
               </Text>
               {informe.nousInactius.length > 0 ? (
                 <Text style={[s.liniaEspera, { marginTop: 3 }]}>

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState, useTransition } from 'react'
 
 import { previsualitza, publica, type Previsualitzacio } from './accions'
+import { ImatgeXarxes } from './ImatgeXarxes'
 
 const ETIQUETA_ESTAT: Record<string, string> = {
   nov: 'Novell',
@@ -92,6 +93,8 @@ export function Publicador({ temporades }: { temporades: string[] }) {
         <Link href="/barruf" className="mt-3 inline-block text-sm underline">
           Veure la classificació
         </Link>
+        <h3 className="mt-5 mb-2 font-medium text-emerald-900">Per anunciar-ho a les xarxes</h3>
+        <ImatgeXarxes numero={publicat} />
       </div>
     )
   }
