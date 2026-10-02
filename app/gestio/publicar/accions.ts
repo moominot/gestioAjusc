@@ -59,6 +59,7 @@ export interface Previsualitzacio {
   totalJugadors: number
   actius: number
   ambVariacio: number
+  /** Qui canvia d'estat respecte de l'última edició: a l'inici de temporada, els que passen a inactius. */
   canvisDEstat: CanviJugador[]
   majorsPujades: CanviJugador[]
   majorsBaixades: CanviJugador[]
@@ -121,7 +122,7 @@ export async function previsualitza(temporadaActual: string): Promise<ResultatPr
     const [{ data: jugadors }, { data: ultima }] = await Promise.all([
       supabase.from('jugadors_publics').select('numero, nom_complet'),
       // L'última edició publicada: és amb la que es compara.
-      supabase.from('barruf_classificacio').select('jugador_numero, barruf'),
+      supabase.from('barruf_classificacio').select('jugador_numero, barruf, estat'),
     ])
     const noms = new Map((jugadors ?? []).map((j) => [String(j.numero), j.nom_complet as string]))
 
@@ -132,9 +133,11 @@ export async function previsualitza(temporadaActual: string): Promise<ResultatPr
     // Qui juga algun campionat nou.
     const nous = crues.campionats.filter((c) => c.primera_edicio === null)
     const juguenNou = new Set(nous.flatMap((c) => (edicio.variacions.get(c.id) ?? []).map((v) => v.jugadorId)))
-    const estatsAbans = new Map(
+    // L'estat de cadascú a l'última edició, per veure qui canvia d'estat.
+    const estatsAbans = new Map<string, string | null>(
       crues.llavor.map((j) => [clau(j.jugador_numero), j.cohort_llegat ? 'inact' : null]),
     )
+    for (const u of ultima ?? []) estatsAbans.set(clau(u.jugador_numero as number), u.estat as string)
 
     const canvis: CanviJugador[] = edicio.valors.map((valor) => {
       const abans = abansPerJugador.get(valor.jugadorId)
@@ -166,7 +169,9 @@ export async function previsualitza(temporadaActual: string): Promise<ResultatPr
         totalJugadors: edicio.valors.length,
         actius: edicio.valors.filter((v) => v.estat === 'act').length,
         ambVariacio: ambVariacio.length,
-        canvisDEstat: [],
+        canvisDEstat: canvis
+          .filter((c) => c.estatAbans !== null && c.estatAbans !== c.estatDespres)
+          .sort((a, b) => b.barrufDespres - a.barrufDespres),
         majorsPujades: perVariacio.slice(0, 10),
         majorsBaixades: perVariacio.slice(-10).reverse(),
         correccions,

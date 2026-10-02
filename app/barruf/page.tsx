@@ -38,10 +38,20 @@ export default async function Classificacio({
   const files = (data ?? []) as FilaClassificacio[]
   const edicio = files[0]?.edicio
 
-  // El campionat que va entrar en aquesta edició, per enllaçar-hi.
-  const { data: computats } = edicio
-    ? await supabase.from('campionats_publics').select('id, nom').eq('primera_edicio', edicio)
-    : { data: [] }
+  // El campionat que va entrar en aquesta edició, per enllaçar-hi; i els que
+  // hi passen a inactius: només els actius tenen posició, així que són els
+  // inactius que a l'edició anterior en tenien.
+  const [{ data: computats }, { data: nousInactius }] = edicio
+    ? await Promise.all([
+        supabase.from('campionats_publics').select('id, nom').eq('primera_edicio', edicio),
+        supabase
+          .from('barruf_classificacio')
+          .select('jugador_numero, nom_complet')
+          .eq('estat', 'inact')
+          .not('posicio_anterior', 'is', null)
+          .order('barruf', { ascending: false }),
+      ])
+    : [{ data: [] }, { data: [] }]
 
   return (
     <div className="space-y-6">
@@ -94,6 +104,23 @@ export default async function Classificacio({
           </Link>
         ))}
       </div>
+
+      {(nousInactius ?? []).length > 0 && (triat === 'act' || triat === 'inact') ? (
+        <p className="rounded-lg border border-stone-200 bg-white px-4 py-3 text-sm text-stone-600">
+          <span className="font-medium text-stone-900">
+            Passen a inactius en aquesta edició ({nousInactius!.length}):
+          </span>{' '}
+          {nousInactius!.map((j, i) => (
+            <span key={j.jugador_numero as number}>
+              {i > 0 ? ', ' : ''}
+              <Link href={`/jugadors/${j.jugador_numero}`} className="hover:underline">
+                {j.nom_complet as string}
+              </Link>
+            </span>
+          ))}
+          . No han jugat ni aquesta temporada ni les dues anteriors.
+        </p>
+      ) : null}
 
       {files.length === 0 ? (
         <Avis titol={`No hi ha cap jugador en estat «${ETIQUETA_ESTAT[triat as 'act']}»`} />

@@ -12,6 +12,14 @@ const ETIQUETA_ESTAT: Record<string, string> = {
   inact: 'Inactiu',
 }
 
+type Canvi = Previsualitzacio['canvisDEstat'][number]
+
+const GRUPS_ESTAT: { titol: string; filtre: (c: Canvi) => boolean }[] = [
+  { titol: 'Passen a inactius', filtre: (c) => c.estatDespres === 'inact' },
+  { titol: 'Tornen a ser actius', filtre: (c) => c.estatAbans === 'inact' && c.estatDespres === 'act' },
+  { titol: 'Surten d’expectativa', filtre: (c) => c.estatAbans === 'exp' && c.estatDespres === 'act' },
+]
+
 function Moviments({
   titol,
   files,
@@ -174,6 +182,37 @@ export function Publicador({ temporades }: { temporades: string[] }) {
               </ul>
             )}
           </section>
+
+          {previ.canvisDEstat.length > 0 ? (
+            <section className="rounded-lg border border-stone-200 bg-white p-5">
+              <h2 className="font-semibold">Canvis d’estat</h2>
+              <p className="mt-1 text-sm text-stone-600">
+                Respecte de l’última edició. A la primera edició d’una temporada nova és quan
+                passen a inactius els que no han jugat ni aquesta temporada ni les dues anteriors.
+              </p>
+              <div className="mt-3 grid gap-6 sm:grid-cols-3">
+                {GRUPS_ESTAT.map((g) => {
+                  const llista = previ.canvisDEstat.filter(g.filtre)
+                  if (llista.length === 0) return null
+                  return (
+                    <div key={g.titol}>
+                      <h3 className="text-sm font-medium">
+                        {g.titol} ({llista.length})
+                      </h3>
+                      <ul className="mt-1 space-y-0.5 text-sm">
+                        {llista.map((c) => (
+                          <li key={c.numero} className="flex items-baseline justify-between gap-3">
+                            <Link href={`/jugadors/${c.numero}`} className="hover:underline">{c.nom}</Link>
+                            <span className="xifres text-stone-500">{Math.round(c.barrufDespres)}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )
+                })}
+              </div>
+            </section>
+          ) : null}
 
           {previ.correccions.length > 0 ? (
             <section className="rounded-lg border border-amber-200 bg-amber-50 p-5">

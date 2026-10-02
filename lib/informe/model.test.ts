@@ -143,3 +143,17 @@ it('apostrofa els mesos que comencen per vocal', () => {
   expect(deMes('agost 2018')).toBe('d’agost 2018')
   expect(deMes('octubre 2019')).toBe('d’octubre 2019')
 })
+
+it('llista els que passen a inactius: actius a l’edició anterior i inactius ara', () => {
+  const anterior = { barruf: 1100, estat: 'act', posicio: 40, partides_totals: 80, victories_totals: 40 }
+  const nou = fila({ nom: 'Nou inactiu', barruf: 1100, estat: 'inact', posicio: null, partides_totals: 80, anterior })
+  const vell = fila({
+    nom: 'Ja ho era',
+    barruf: 1200,
+    estat: 'inact',
+    posicio: null,
+    anterior: { ...anterior, estat: 'inact', posicio: null },
+  })
+  const actiu = fila({ nom: 'Segueix actiu', barruf: 1000, anterior })
+  expect(construeixInforme(informe([nou, vell, actiu])).nousInactius).toEqual(['Nou inactiu'])
+})

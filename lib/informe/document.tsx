@@ -527,6 +527,11 @@ export function DocumentBarruf({ informe, destacats }: { informe: Informe; desta
                 inact = jugadors inactius, tenen més de 10 partides, però cap resultat publicat en la
                 temporada actual ni en l&apos;anterior
               </Text>
+              {informe.nousInactius.length > 0 ? (
+                <Text style={[s.liniaEspera, { marginTop: 3 }]}>
+                  Passen a inactius en aquest BARRUF ({informe.nousInactius.length}): {informe.nousInactius.join(', ')}.
+                </Text>
+              ) : null}
             </View>
           ) : null}
           <CapTaula numero={informe.numero} temporada={informe.temporada} espera especial={especial} />

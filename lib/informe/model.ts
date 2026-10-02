@@ -107,6 +107,11 @@ export interface Informe {
   especial: { anterior: number; temporada: boolean } | null
   /** Algun jugador canvia de BARRUF sense haver jugat: cal la nota de l'asterisc. */
   ambCorreccions: boolean
+  /**
+   * Els que eren actius a l'edició anterior i ara són inactius. Passa a la
+   * primera edició de cada temporada, quan s'aplica la inactivitat.
+   */
+  nousInactius: string[]
 }
 
 // --- Format ---------------------------------------------------------------------
@@ -294,6 +299,7 @@ export function construeixInforme(
       .map((c) => ({ nom: c.nom, nomLlegenda: c.nom_llegenda }))
       .sort((a, b) => clauClub(a.nom).localeCompare(clauClub(b.nom), 'ca')),
     ambCorreccions: cru.files.some(esCorreccio),
+    nousInactius: espera.filter((f) => f.estat === 'inact' && f.anterior?.estat === 'act').map((f) => f.nom),
     especial:
       opcions.especial && cru.anterior !== null
         ? { anterior: cru.anterior, temporada: opcions.especial === 'temporada' }
