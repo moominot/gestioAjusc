@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 
 import { calculaEdicio, type JugadorLlavor } from '../../../lib/barruf/publicacio'
 import type { CampionatEntrada, Resultat } from '../../../lib/barruf/tipus'
@@ -233,6 +233,7 @@ export async function publica(
 
     revalidatePath('/')
     revalidatePath('/barruf')
+    revalidateTag('estadistiques', 'max')
     revalidatePath('/gestio')
 
     const resum = data as { numero: number; valors: number; variacions: number }
@@ -259,6 +260,7 @@ export async function despublica(numero: number): Promise<ResultatDespublicacio>
 
   revalidatePath('/')
   revalidatePath('/barruf')
+  revalidateTag('estadistiques', 'max')
   revalidatePath('/campionats')
   revalidatePath('/gestio')
   revalidatePath('/gestio/publicar')

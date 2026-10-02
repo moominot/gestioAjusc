@@ -2,12 +2,14 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useEffect, useRef } from 'react'
 
 const ENLLACOS = [
   { href: '/barruf', text: 'BARRUF' },
   { href: '/campionats', text: 'Campionats' },
   { href: '/clubs', text: 'Clubs' },
   { href: '/comparar', text: 'Comparar' },
+  { href: '/estadistiques', text: 'Estadístiques' },
 ]
 
 /**
@@ -17,6 +19,12 @@ const ENLLACOS = [
  */
 export function Navegacio({ gestor }: { gestor: string | null }) {
   const ruta = usePathname()
+  const fila = useRef<HTMLDivElement>(null)
+
+  // En un mòbil la fila de seccions es desplaça: que s'hi vegi la secció activa.
+  useEffect(() => {
+    fila.current?.querySelector('[aria-current]')?.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+  }, [ruta])
   const actiu = (href: string) => ruta === href || ruta.startsWith(`${href}/`) || (href === '/barruf' && ruta.startsWith('/jugadors'))
 
   return (
@@ -30,11 +38,12 @@ export function Navegacio({ gestor }: { gestor: string | null }) {
       >
         {gestor ? `Gestió · ${gestor}` : 'Entrar'}
       </Link>
-      <div className="col-span-2 -mx-4 flex gap-1 overflow-x-auto border-t border-stone-100 px-2 sm:mx-0 sm:border-0 sm:px-0">
+      <div ref={fila} className="col-span-2 -mx-4 flex gap-1 overflow-x-auto border-t border-stone-100 px-2 sm:mx-0 sm:border-0 sm:px-0">
         {ENLLACOS.map((e) => (
           <Link
             key={e.href}
             href={e.href}
+            aria-current={actiu(e.href) ? 'page' : undefined}
             className={`whitespace-nowrap border-b-2 px-3 py-2.5 text-sm sm:py-1 ${
               actiu(e.href)
                 ? 'border-stone-900 font-medium text-stone-900'
