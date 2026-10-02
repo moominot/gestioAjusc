@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from 'next/navigation'
 
 import { CercaJugador, type JugadorCercable } from '../../components/CercaJugador'
+import { ESTATS } from '../../lib/estadistiques/consultes'
 
 export interface ValorsFiltres {
   des_de?: string
@@ -10,6 +11,7 @@ export interface ValorsFiltres {
   club?: string
   campionat?: string
   jugador?: number
+  estat?: string
   minim?: number
 }
 
@@ -78,6 +80,10 @@ export function Filtres({
             {g.llista.map((c) => <option key={c.id} value={c.id}>{c.nom}</option>)}
           </optgroup>
         ))}
+      </select>
+      <select value={valors.estat ?? ''} onChange={(e) => canvia({ estat: e.target.value || undefined })} className={camp}>
+        <option value="">Tots els estats</option>
+        {ESTATS.map((e) => <option key={e.clau} value={e.clau}>{e.text}</option>)}
       </select>
       {jugador ? (
         <span className="inline-flex items-center gap-2 rounded-full border border-stone-300 px-3 py-1">

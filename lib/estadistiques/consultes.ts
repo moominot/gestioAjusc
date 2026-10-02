@@ -9,8 +9,17 @@ export interface Filtres {
   club?: string
   campionat?: string
   jugador?: number
+  estat?: Estat
   minim?: number
 }
+
+export type Estat = 'act' | 'exp' | 'inact'
+
+export const ESTATS: { clau: Estat; text: string }[] = [
+  { clau: 'act', text: 'Actius' },
+  { clau: 'exp', text: 'En expectativa' },
+  { clau: 'inact', text: 'Inactius' },
+]
 
 export type Fila = Record<string, unknown>
 
@@ -218,7 +227,70 @@ export const CONSULTES: Consulta[] = [
       },
     ],
   },
+  {
+    slug: 'estats',
+    titol: 'Actius, inactius i en expectativa',
+    descripcio:
+      'Com estan ara els jugadors del registre. Inactiu és qui fa tres temporades que no juga (ni la de referència ni les dues anteriors); en expectativa, qui té 10 partides o menys i encara no té un BARRUF ferm. Aquí el filtre de temporades mira la darrera temporada que van jugar.',
+    minim: 0,
+    blocs: [
+      {
+        titol: 'Resum per estats',
+        metrica: 'estats',
+        limit: 3,
+        columnes: [
+          { etiqueta: 'Estat', text: (f) => textEstat(f.estat) },
+          { etiqueta: 'Jugadors', text: (f) => enter(f.valor), dreta: true },
+          { etiqueta: 'Partides', text: (f) => enter(f.partides), dreta: true, secundaria: true },
+          { etiqueta: 'Partides per jugador', text: (f) => dec(f.partides_mitjanes), dreta: true },
+          { etiqueta: 'BARRUF mitjà', text: (f) => enter(f.barruf_mitja), dreta: true },
+          { etiqueta: 'Temporades per jugador', text: (f) => dec(f.temporades_mitjanes), dreta: true, secundaria: true },
+        ],
+        barres: { valor: (f) => n(f.valor), etiqueta: (f) => textEstat(f.estat) },
+      },
+      {
+        titol: 'Inactius',
+        metrica: 'inactius',
+        limit: 150,
+        columnes: [
+          jugador,
+          club,
+          { etiqueta: 'BARRUF final', text: (f) => enter(f.valor), dreta: true },
+          { etiqueta: 'Màxim', text: (f) => enter(f.barruf_maxim), dreta: true, secundaria: true },
+          { etiqueta: 'Millor posició', text: (f) => (f.millor_posicio ? `${f.millor_posicio}a` : '—'), dreta: true, secundaria: true },
+          { etiqueta: 'Partides', text: (f) => enter(f.partides), dreta: true },
+          { etiqueta: '% victòries', text: (f) => pct(f.percentatge), dreta: true, secundaria: true },
+          { etiqueta: 'Va jugar', text: (f) => periode(f.primera, f.darrera_temporada) },
+        ],
+        barres: { valor: (f) => n(f.valor), etiqueta: (f) => String(f.nom) },
+      },
+      {
+        titol: 'En expectativa',
+        metrica: 'expectativa',
+        limit: 150,
+        columnes: [
+          jugador,
+          club,
+          { etiqueta: 'Partides', text: (f) => enter(f.valor), dreta: true },
+          { etiqueta: 'En falten', text: (f) => enter(f.falten), dreta: true },
+          { etiqueta: 'BARRUF provisional', text: (f) => enter(f.barruf), dreta: true, secundaria: true },
+          { etiqueta: '% victòries', text: (f) => pct(f.percentatge), dreta: true, secundaria: true },
+          { etiqueta: 'Va jugar', text: (f) => periode(f.primera, f.darrera_temporada) },
+        ],
+      },
+    ],
+  },
 ]
+
+export function textEstat(e: unknown) {
+  return ESTATS.find((x) => x.clau === e)?.text ?? String(e ?? '')
+}
+
+function periode(primera: unknown, darrera: unknown) {
+  if (!primera && !darrera) return '—'
+  if (!primera || primera === darrera) return String(darrera ?? primera)
+  return `${primera} a ${darrera}`
+}
 
 export const consulta = (slug: string) => CONSULTES.find((c) => c.slug === slug) ?? null
 
@@ -233,6 +305,7 @@ export function llegeixFiltres(p: Record<string, string | string[] | undefined>,
     club: u('club'),
     campionat: u('campionat') && /^[0-9a-f-]{36}$/i.test(u('campionat')!) ? u('campionat') : undefined,
     jugador: enterPositiu(u('jugador')),
+    estat: ESTATS.find((e) => e.clau === u('estat'))?.clau,
     minim: enterPositiu(u('minim')) ?? perDefecte,
   }
 }

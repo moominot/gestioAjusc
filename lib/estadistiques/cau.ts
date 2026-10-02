@@ -41,7 +41,7 @@ export const opcionsFiltres = unstable_cache(
       s.from('temporades').select('codi').order('codi'),
       s.from('clubs').select('nom').order('nom'),
       s.from('campionats_publics').select('id, nom, temporada_codi').order('data'),
-      s.from('barruf_classificacio').select('jugador_numero, nom_complet, club').order('nom_complet'),
+      s.from('barruf_classificacio').select('jugador_numero, nom_complet, club, estat').order('nom_complet'),
     ])
     return {
       temporades: (t.data ?? []).map((r) => r.codi as string),
@@ -51,6 +51,7 @@ export const opcionsFiltres = unstable_cache(
         numero: r.jugador_numero as number,
         nom: r.nom_complet as string,
         club: (r.club as string | null) ?? null,
+        estat: r.estat as string,
       })),
     }
   },

@@ -52,13 +52,18 @@ export function Barres({
 export function Linies({
   etiquetes,
   series,
+  color = 0,
+  alt = 260,
 }: {
   etiquetes: string[]
   series: { nom: string; valors: number[] }[]
+  /** Color de la primera sèrie, per distingir gràfics d'una sola sèrie. */
+  color?: number
+  alt?: number
 }) {
   if (etiquetes.length === 0) return null
   const W = 800
-  const H = 260
+  const H = alt
   const M = { e: 44, d: 12, a: 12, b: 28 }
   const tots = series.flatMap((s) => s.valors)
   const max = Math.max(1, ...tots)
@@ -83,9 +88,9 @@ export function Linies({
         )}
         {series.map((s, k) => (
           <g key={s.nom}>
-            <polyline fill="none" stroke={COLORS[k % COLORS.length]} strokeWidth="2.5" points={s.valors.map((v, i) => `${x(i)},${y(v)}`).join(' ')} />
+            <polyline fill="none" stroke={COLORS[(k + color) % COLORS.length]} strokeWidth="2.5" points={s.valors.map((v, i) => `${x(i)},${y(v)}`).join(' ')} />
             {s.valors.map((v, i) => (
-              <circle key={i} cx={x(i)} cy={y(v)} r="3.5" fill={COLORS[k % COLORS.length]}>
+              <circle key={i} cx={x(i)} cy={y(v)} r="3.5" fill={COLORS[(k + color) % COLORS.length]}>
                 <title>{`${s.nom}, ${etiquetes[i]}: ${v.toLocaleString('ca-ES')}`}</title>
               </circle>
             ))}
@@ -95,7 +100,7 @@ export function Linies({
       <p className="mt-1 flex flex-wrap gap-x-4 text-xs text-stone-600">
         {series.map((s, k) => (
           <span key={s.nom} className="inline-flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS[k % COLORS.length] }} />
+            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: COLORS[(k + color) % COLORS.length] }} />
             {s.nom}
           </span>
         ))}

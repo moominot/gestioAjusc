@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 
 import { Avis } from '../../../components/Avis'
 import { Barres, Linies, Nuvol } from '../../../components/Grafics'
-import { consulta as troba, llegeixFiltres, perBaseDeDades, type Bloc, type Fila } from '../../../lib/estadistiques/consultes'
+import { consulta as troba, llegeixFiltres, perBaseDeDades, textEstat, type Bloc, type Fila } from '../../../lib/estadistiques/consultes'
 import { estadistica, opcionsFiltres } from '../../../lib/estadistiques/cau'
 import { Filtres } from '../Filtres'
 
@@ -14,8 +14,21 @@ export async function generateMetadata({ params }: { params: Promise<{ consulta:
   return { title: c ? `${c.titol} · Estadístiques` : 'Estadístiques' }
 }
 
+/** Els actius no porten marca: només es marquen els inactius i els que són en expectativa. */
+function MarcaEstat({ estat }: { estat?: string }) {
+  if (!estat || estat === 'act') return null
+  return (
+    <span
+      className={`ml-1.5 rounded px-1 py-px text-[0.7rem] ${estat === 'exp' ? 'bg-amber-100 text-amber-800' : 'bg-stone-100 text-stone-500'}`}
+      title={textEstat(estat)}
+    >
+      {estat === 'exp' ? 'exp' : 'inactiu'}
+    </span>
+  )
+}
+
 /** Un bloc: gràfic dels primers i la taula sencera. */
-function Taula({ bloc, files }: { bloc: Bloc; files: Fila[] }) {
+function Taula({ bloc, files, estats }: { bloc: Bloc; files: Fila[]; estats: Map<number, string> }) {
   if (files.length === 0) return <p className="text-sm text-stone-500">No hi ha dades amb aquests filtres.</p>
   return (
     <div className="space-y-4">
@@ -79,6 +92,7 @@ function Taula({ bloc, files }: { bloc: Bloc; files: Fila[] }) {
                       ) : (
                         c.text(f)
                       )}
+                      {c.etiqueta === 'Jugador' ? <MarcaEstat estat={estats.get(Number(f.numero))} /> : null}
                     </td>
                   )
                 })}
@@ -117,6 +131,8 @@ export default async function Consulta({
     return <Avis titol="No s'ha pogut fer la consulta">{(e as Error).message}</Avis>
   }
 
+  const estats = new Map(opcions.registre.map((j) => [j.numero, j.estat]))
+
   // Els mateixos filtres per a la baixada en CSV.
   const query = new URLSearchParams(Object.entries(parametres).filter(([, v]) => typeof v === 'string') as [string, string][])
   const csv = (i: number) => `/estadistiques/${c.slug}/csv?${query.size ? `${query}&` : ''}bloc=${i}`
@@ -147,22 +163,40 @@ export default async function Consulta({
       {c.perTemporada && temporades.length ? (
         <section>
           <h2 className="mb-3 text-lg font-semibold">Temporada a temporada</h2>
-          <div className="rounded-lg border border-stone-200 bg-white p-3">
-            <Linies
-              etiquetes={temporades.map((t) => String(t.temporada))}
-              series={[
-                { nom: 'Partides', valors: temporades.map((t) => Number(t.partides)) },
-                { nom: 'Jugadors', valors: temporades.map((t) => Number(t.jugadors)) },
-                { nom: 'Debutants', valors: temporades.map((t) => Number(t.debutants)) },
-                { nom: 'Campionats', valors: temporades.map((t) => Number(t.campionats)) },
-              ]}
-            />
+          <div className="grid gap-3 lg:grid-cols-2">
+            <div className="rounded-lg border border-stone-200 bg-white p-3">
+              <p className="mb-1 text-sm font-medium">Jugadors</p>
+              <Linies
+                etiquetes={temporades.map((t) => String(t.temporada))}
+                series={[
+                  { nom: 'Jugadors', valors: temporades.map((t) => Number(t.jugadors)) },
+                  { nom: 'Debutants', valors: temporades.map((t) => Number(t.debutants)) },
+                  { nom: 'Comiats (darrera temporada dels que ara són inactius)', valors: temporades.map((t) => Number(t.comiats ?? 0)) },
+                ]}
+              />
+            </div>
+            <div className="rounded-lg border border-stone-200 bg-white p-3">
+              <p className="mb-1 text-sm font-medium">Partides i campionats</p>
+              <Linies
+                etiquetes={temporades.map((t) => String(t.temporada))}
+                series={[{ nom: 'Partides', valors: temporades.map((t) => Number(t.partides)) }]}
+              />
+              <Linies
+                etiquetes={temporades.map((t) => String(t.temporada))}
+                series={[{ nom: 'Campionats', valors: temporades.map((t) => Number(t.campionats)) }]}
+                color={3}
+                alt={130}
+              />
+            </div>
           </div>
         </section>
       ) : null}
 
-      {c.blocs.map((b, i) => (
-        <section key={b.metrica}>
+      {c.blocs.map((b, i) =>
+        // Amb un estat triat, la llista d'un altre estat sobra.
+        (b.metrica === 'inactius' && filtres.estat && filtres.estat !== 'inact') ||
+        (b.metrica === 'expectativa' && filtres.estat && filtres.estat !== 'exp') ? null : (
+          <section key={b.metrica}>
           <div className="mb-3 flex items-baseline justify-between gap-4">
             <h2 className="text-lg font-semibold">{b.titol ?? 'Classificació'}</h2>
             {resultats[i].length ? (
@@ -171,9 +205,10 @@ export default async function Consulta({
               </a>
             ) : null}
           </div>
-          <Taula bloc={b} files={resultats[i]} />
-        </section>
-      ))}
+          <Taula bloc={b} files={resultats[i]} estats={estats} />
+          </section>
+        ),
+      )}
     </div>
   )
 }

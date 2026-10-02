@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
 import { Avis } from '../../components/Avis'
-import { CONSULTES } from '../../lib/estadistiques/consultes'
-import { salo } from '../../lib/estadistiques/cau'
+import { CONSULTES, textEstat } from '../../lib/estadistiques/consultes'
+import { estadistica, salo } from '../../lib/estadistiques/cau'
 
 export const metadata = { title: 'Estadístiques' }
 export const revalidate = 3600
@@ -62,8 +62,9 @@ const Campionat = ({ r }: { r: Record<string, unknown> }) =>
 
 export default async function Estadistiques() {
   let s: Awaited<ReturnType<typeof salo>>
+  let estats: Record<string, unknown>[]
   try {
-    s = await salo()
+    ;[s, estats] = await Promise.all([salo(), estadistica('estats', {}, 3)])
   } catch (e) {
     return <Avis titol="No s'han pogut carregar les estadístiques">{(e as Error).message}</Avis>
   }
@@ -181,6 +182,28 @@ export default async function Estadistiques() {
               </Link>
             </div>
           ) : null}
+        </div>
+      </section>
+
+      <section>
+        <h2 className="mb-3 text-lg font-semibold">El registre, ara</h2>
+        <div className="grid gap-3 sm:grid-cols-3">
+          {estats.map((e) => (
+            <Link
+              key={String(e.estat)}
+              href={`/estadistiques/estats?estat=${e.estat}`}
+              className="rounded-lg border border-stone-200 bg-white p-4 transition hover:border-stone-400"
+            >
+              <p className="text-xs font-medium uppercase tracking-wide text-stone-500">{textEstat(e.estat)}</p>
+              <p className="xifres mt-1 text-3xl font-semibold tracking-tight">
+                {xifra(e.valor)}
+                <span className="ml-1 text-base font-normal text-stone-500">jugadors</span>
+              </p>
+              <p className="mt-1 text-sm text-stone-600">
+                {xifra(e.partides)} partides, {xifra(e.partides_mitjanes, 1)} per jugador · BARRUF mitjà {xifra(e.barruf_mitja)}
+              </p>
+            </Link>
+          ))}
         </div>
       </section>
 
