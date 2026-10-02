@@ -197,8 +197,10 @@ export default function Manual() {
           <li>
             <strong>Fusionar-les</strong>, triant quina queda: partides, inscripcions, historial del
             BARRUF, quotes i àlies passen a la que queda. El número de l’altra queda reservat i hi
-            redirigeix. On totes dues surten en una mateixa edició antiga, es conserva la fila amb
-            més partides. No es pot desfer des de l’aplicació.
+            redirigeix. On totes dues surten en una mateixa edició antiga, se’n sumen les partides i
+            les victòries, i el BARRUF, l’estat i la posició són els de la fitxa amb més partides. El
+            BARRUF de l’edició actual es refà sencer a la propera publicació. No es pot desfer des de
+            l’aplicació.
           </li>
           <li><strong>Dir que no són la mateixa persona</strong>: la parella no tornarà a sortir.</li>
         </ul>
