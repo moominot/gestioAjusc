@@ -12,12 +12,16 @@
 #
 #   DB_URL='postgresql://postgres.<ref>:<contrasenya>@<pooler>:5432/postgres' sh munta.sh
 #
+# Amb NOMES_DADES=1 se salta els passos 1 i 2 (per tornar a copiar les dades).
+#
 # Fa servir la «Session pooler» de Supabase, que funciona per IPv4.
 set -e
 : "${DB_URL:?Cal DB_URL, la cadena de connexió de Supabase (Session pooler)}"
 AQUI=$(cd "$(dirname "$0")" && pwd)
 MIGRACIONS=${MIGRACIONS:-$HOME/ajusc/supabase/migrations}
 BOLCAT=${BOLCAT:-$HOME/bolcat}
+# Abans de cap docker run: si no, Docker la crearia com a root.
+mkdir -p "$BOLCAT"
 
 # psql d'un contenidor: tiny no el té instal·lat.
 psql_prod() {
@@ -28,6 +32,7 @@ psql_prod() {
 echo "== 0. Connexió"
 psql_prod -At -c "SELECT current_user, version()"
 
+if [ -z "$NOMES_DADES" ]; then
 echo "== 1. Buidar"
 psql_prod <<'SQL'
 BEGIN;
@@ -54,6 +59,7 @@ for f in "$MIGRACIONS"/*.sql; do
   psql_prod -f "/migracions/$nom.sql" > /dev/null
   psql_prod -c "INSERT INTO supabase_migrations.schema_migrations (version, name) VALUES ('${nom%%_*}', '${nom#*_}')"
 done
+fi
 
 echo "== 3. Dades"
 sh "$AQUI/bolca.sh" "$BOLCAT"
