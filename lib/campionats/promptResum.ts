@@ -23,7 +23,9 @@ const ESTATS: Record<EstatBarruf, string> = {
   inact: 'inactiu',
 }
 
-const NOM_CATEGORIA = (c: number | null) => (c === null ? 'sense categoria' : `categoria ${c}`)
+const CATEGORIES = ['Gran Gran Mestre', 'Gran Mestre', 'Mestre', 'Expert', 'Avançat']
+
+const NOM_CATEGORIA = (c: number | null) => (c === null ? 'sense categoria' : CATEGORIES[c - 1])
 
 /**
  * Qui canvia d'estat o de categoria. La categoria 1 és la més alta; passar a
@@ -40,7 +42,7 @@ export function canvisDeCategoriaIEstat(jugadors: CanviJugador[]): { estat: stri
     if (j.barrufDespres === null) continue
     const ara = categoria(j.barrufDespres)
     if (j.barrufAbans === null) {
-      if (ara !== null) cat.push(`${j.nom}: entra a la ${NOM_CATEGORIA(ara)}`)
+      if (ara !== null) cat.push(`${j.nom}: entra com a ${NOM_CATEGORIA(ara)}`)
       continue
     }
     const abans = categoria(j.barrufAbans)

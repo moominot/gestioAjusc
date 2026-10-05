@@ -76,9 +76,9 @@ describe('promptResum', () => {
     ]
     const text = promptResum(dades(), '')
     expect(text).toContain('- Anna: de en expectativa (BARRUF provisional) a actiu')
-    expect(text).toContain('- Anna: puja de categoria 4 a categoria 3')
-    expect(text).toContain('- Berta: baixa de categoria 4 a categoria 5')
-    expect(text).toContain('- Dolors: entra a la categoria 5')
+    expect(text).toContain('- Anna: puja de Expert a Mestre')
+    expect(text).toContain('- Berta: baixa de Expert a Avançat')
+    expect(text).toContain('- Dolors: entra com a Avançat')
     expect(text).not.toContain('Cesc')
     jugadors = []
     expect(promptResum(dades(), '')).toContain("Cap jugador no canvia d'estat ni de categoria.")
