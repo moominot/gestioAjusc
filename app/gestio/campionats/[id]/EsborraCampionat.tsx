@@ -47,7 +47,7 @@ export function EsborraCampionat({
     <section className="rounded-lg border border-red-200 bg-red-50/40 p-5 text-sm">
       <h2 className="font-semibold text-red-900">Esborrar el campionat</h2>
       <p className="mt-1 text-stone-700">
-        S’esborra el campionat amb les seves {partides} partides i les inscripcions. Els jugadors es
+        S’esborra el campionat amb {partides === 0 ? 'les inscripcions' : partides === 1 ? 'la seva partida i les inscripcions' : `les seves ${partides} partides i les inscripcions`}. Els jugadors es
         queden al registre. No es pot desfer; el registre de canvis en guarda constància.
       </p>
       {obert ? (
