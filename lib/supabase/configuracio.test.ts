@@ -13,6 +13,8 @@ const posa = (url?: string, clau?: string) => {
   if (clau === undefined) delete process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   else process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = clau
   delete process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+  delete process.env.BARRUF_SUPABASE_URL
+  delete process.env.BARRUF_SUPABASE_CLAU
 }
 
 describe('configuracioSupabase', () => {
@@ -37,6 +39,16 @@ describe('configuracioSupabase', () => {
     posa('https://x.supabase.co', undefined)
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_vercel'
     expect(configuracioSupabase().clau).toBe('sb_publishable_vercel')
+  })
+
+  it('fa servir la que ha triat next.config.js, encara que la nostra sigui buida', () => {
+    posa('', '')
+    process.env.BARRUF_SUPABASE_URL = 'https://utbjfmlmvgewubxffakg.supabase.co'
+    process.env.BARRUF_SUPABASE_CLAU = 'sb_publishable_integracio'
+    expect(configuracioSupabase()).toEqual({
+      url: 'https://utbjfmlmvgewubxffakg.supabase.co',
+      clau: 'sb_publishable_integracio',
+    })
   })
 
   it('no es deixa enganyar per una variable amb espais', () => {

@@ -25,10 +25,13 @@ function exigeix(nom: string, valor: string | undefined, descripcio: string): st
 
 /** Llegeix i valida la configuració. Peta amb un missatge útil si no hi és. */
 export function configuracioSupabase(): ConfiguracioSupabase {
+  // BARRUF_SUPABASE_URL i BARRUF_SUPABASE_CLAU les tria next.config.js en compilar,
+  // d'entre els noms que poden tenir (els nostres o els de la integració de
+  // Supabase a Vercel), i s'incrusten tant al servidor com al navegador.
   const url = exigeix(
     'NEXT_PUBLIC_SUPABASE_URL',
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    "l'adreça del projecte, https://<referència>.supabase.co",
+    process.env.BARRUF_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL,
+    "l'adreça del projecte, https://<referència>.supabase.co; també val SUPABASE_URL",
   )
 
   // La integració de Vercel amb Supabase posa totes dues; a mà n'hi ha prou
@@ -36,7 +39,8 @@ export function configuracioSupabase(): ConfiguracioSupabase {
   // NEXT_PUBLIC_ que apareixen literalment al codi.
   const clau = exigeix(
     'NEXT_PUBLIC_SUPABASE_ANON_KEY',
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+    process.env.BARRUF_SUPABASE_CLAU ||
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
       process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
     'la clau publicable, la que va al navegador; també val ' +
       'NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY',
