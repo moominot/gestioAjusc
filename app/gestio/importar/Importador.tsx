@@ -15,6 +15,7 @@ import { normalitzaNom } from '../../../lib/importacio/noms'
 import {
   analitza,
   llegeixColumnes,
+  llegeixPestanyes,
   desa,
   marcaRebuda,
   reimporta,
@@ -23,6 +24,7 @@ import {
   type ResultatDesat,
   type ResultatReimportacio,
 } from './accions'
+import type { ResumPestanya } from '../../../lib/importacio/fitxers'
 import { Previsualitzacio } from './Previsualitzacio'
 
 const avui = () => new Date().toISOString().slice(0, 10)
@@ -116,22 +118,50 @@ export function Importador({
     })
   }
 
+  // Fitxer amb diverses pestanyes: cal dir a quina hi ha els resultats.
+  const [pestanyes, setPestanyes] = useState<ResumPestanya[] | null>(null)
+
+  function continuaAmbFull(dades: FormData) {
+    if (dades.get('revisaColumnes') && !dades.get('trn')) obreColumnes(dades)
+    else llegeix(dades)
+  }
+
+  function triaPestanya(nom: string) {
+    if (!pujat) return
+    pujat.set('pestanya', nom)
+    setPestanyes(null)
+    continuaAmbFull(pujat)
+  }
+
   function analitzaFitxers(dades: FormData) {
     setError(null)
+    dades.delete('pestanya')
     const esFull = dades.get('full') instanceof File && (dades.get('full') as File).size > 0
     const esText = typeof dades.get('text') === 'string' && String(dades.get('text')).trim() !== ''
-    if (dades.get('revisaColumnes') && (esFull || esText) && !dades.get('trn')) {
-      obreColumnes(dades)
+    if (esFull && !esText && !dades.get('trn')) {
+      comença(async () => {
+        const llistes = await llegeixPestanyes(dades)
+        if (!llistes.ok) {
+          setError(llistes.error)
+          return
+        }
+        if (llistes.pestanyes && llistes.pestanyes.length > 1) {
+          setPujat(dades)
+          setPestanyes(llistes.pestanyes)
+          return
+        }
+        continuaAmbFull(dades)
+      })
       return
     }
-    llegeix(dades)
+    continuaAmbFull(dades)
   }
 
   /** Llegeix amb la correspondència triada, si n'hi ha. */
   function llegeix(dades: FormData, triades?: string[]) {
     if (triades) {
       dades.set('assignacions', JSON.stringify(triades))
-      if (columnes?.pestanya) dades.set('pestanya', columnes.pestanya)
+      if (columnes?.pestanya && !dades.get('pestanya')) dades.set('pestanya', columnes.pestanya)
     }
     comença(async () => {
       const resultat = await analitza(dades)
@@ -286,7 +316,47 @@ export function Importador({
         </p>
       ) : null}
 
-      {!proposta && columnes && pujat ? (
+      {!proposta && pestanyes ? (
+        <section className="space-y-4 rounded-lg border border-stone-200 bg-white p-5">
+          <div>
+            <h2 className="font-semibold">A quina pestanya hi ha els resultats?</h2>
+            <p className="mt-1 text-sm text-stone-600">
+              El fitxer té {pestanyes.length} pestanyes. Trieu la que porta la llista de partides.
+            </p>
+          </div>
+          <ul className="divide-y divide-stone-100 rounded border border-stone-200">
+            {pestanyes.map((p) => (
+              <li key={p.nom} className="flex flex-wrap items-center gap-x-4 gap-y-1 px-4 py-3">
+                <div className="min-w-0 flex-1">
+                  <div className="font-medium">{p.nom}</div>
+                  <div className="truncate text-xs text-stone-500">
+                    {p.files} {p.files === 1 ? 'fila' : 'files'}
+                    {p.capcalera.length > 0 ? ` · ${p.capcalera.join(' | ')}` : ' · buida'}
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  disabled={treballant || p.files < 2}
+                  onClick={() => triaPestanya(p.nom)}
+                  className="rounded-lg bg-stone-900 px-3 py-1.5 text-sm text-white hover:bg-stone-700 disabled:opacity-40"
+                >
+                  Fer servir aquesta
+                </button>
+              </li>
+            ))}
+          </ul>
+          <button
+            type="button"
+            onClick={() => {
+              setPestanyes(null)
+              setPujat(null)
+            }}
+            className="text-sm text-stone-500 underline hover:text-stone-900"
+          >
+            Tornar enrere
+          </button>
+        </section>
+      ) : !proposta && columnes && pujat ? (
         <CorrespondenciaColumnes
           columnes={columnes}
           assignacions={assignacions}
@@ -362,7 +432,7 @@ export function Importador({
               <input
                 type="file"
                 name="full"
-                accept=".xlsx,.xls,.csv,.tsv,.txt"
+                accept=".xlsx,.xls,.ods,.csv,.tsv,.txt"
                 className="mt-1 block w-full text-sm file:mr-3 file:rounded file:border-0 file:bg-stone-900 file:px-3 file:py-1.5 file:text-white"
               />
             </label>

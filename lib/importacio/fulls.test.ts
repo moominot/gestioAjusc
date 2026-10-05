@@ -1,9 +1,10 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
+import { strToU8, zipSync } from 'fflate'
 import { describe, expect, it } from 'vitest'
 
-import { descodifica, llegeixCsv, llegeixFitxerDeResultats } from './fitxers'
+import { descodifica, llegeixCsv, llegeixFitxerDeResultats, llegeixOds, llistaPestanyes } from './fitxers'
 import {
   ErrorFull,
   construeixTorneigDeFull,
@@ -346,5 +347,59 @@ describe('correspondència de columnes triada a mà', () => {
     expect(() =>
       interpretaFiles(files, ['jugador1', 'jugador1', 'jugador2', 'puntuacio2', 'ignora']),
     ).toThrow(/més d'una columna/)
+  })
+})
+
+describe('fulls OpenDocument (.ods)', () => {
+  const cella = (v: string | number) =>
+    typeof v === 'number'
+      ? `<table:table-cell office:value-type="float" office:value="${v}"><text:p>${v}</text:p></table:table-cell>`
+      : `<table:table-cell office:value-type="string"><text:p>${v}</text:p></table:table-cell>`
+  const fila = (...v: (string | number)[]) => `<table:table-row>${v.map(cella).join('')}</table:table-row>`
+  const taula = (nom: string, files: string) => `<table:table table:name="${nom}">${files}</table:table>`
+  const ods = (...taules: string[]) =>
+    zipSync({
+      'content.xml': strToU8(
+        `<?xml version="1.0"?><office:document-content xmlns:office="o" xmlns:table="t" xmlns:text="x">` +
+          `<office:body><office:spreadsheet>${taules.join('')}</office:spreadsheet></office:body></office:document-content>`,
+      ),
+    })
+
+  const llibre = ods(
+    taula('Notes', fila('Instruccions') + fila('Res')),
+    taula(
+      'Resultats',
+      fila('Ronda', 'Jugador 1', 'Puntuació 1', 'Jugador 2', 'Puntuació 2') +
+        fila(1, 'Anna', 400, 'Bel', 350) +
+        '<table:table-row table:number-rows-repeated="1048000"><table:table-cell table:number-columns-repeated="5"/></table:table-row>',
+    ),
+  )
+
+  it('llista les pestanyes amb un resum', async () => {
+    const llista = await llistaPestanyes('a.ods', llibre)
+    expect(llista?.map((p) => [p.nom, p.files])).toEqual([['Notes', 2], ['Resultats', 2]])
+    expect(llista?.[1].capcalera[1]).toBe('Jugador 1')
+    expect(await llistaPestanyes('a.csv', new Uint8Array())).toBeNull()
+  })
+
+  it('llegeix la pestanya triada', async () => {
+    const llegit = await llegeixFitxerDeResultats('a.ods', llibre, { pestanya: 'Resultats' })
+    expect(llegit.pestanya).toBe('Resultats')
+    expect(llegit.files[0]).toMatchObject({ jugador1: 'Anna', puntuacio1: 400, jugador2: 'Bel' })
+    await expect(llegeixFitxerDeResultats('a.ods', llibre, { pestanya: 'Notes' })).rejects.toThrow(
+      /No trobo les columnes/,
+    )
+  })
+
+  it('les cel·les combinades no desplacen les columnes', () => {
+    const combinada = ods(
+      taula(
+        'T',
+        fila('Jugador 1', 'Puntuació 1', 'Jugador 2', 'Puntuació 2') +
+          '<table:table-row>' + cella('Anna') + '<table:covered-table-cell/>' + cella('Bel') + cella(3) + '</table:table-row>',
+      ),
+    )
+    const [p] = llegeixOds(combinada)
+    expect(p.files[1]).toEqual(['Anna', null, 'Bel', 3])
   })
 })

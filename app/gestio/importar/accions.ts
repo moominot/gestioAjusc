@@ -5,6 +5,8 @@ import { revalidatePath } from 'next/cache'
 import type { JugadorCercable } from '../../../components/CercaJugador'
 import {
   llegeixColumnesDeFitxer,
+  llistaPestanyes,
+  type ResumPestanya,
   llegeixCsv,
   llegeixFitxerDeResultats,
 } from '../../../lib/importacio/fitxers'
@@ -73,6 +75,25 @@ export type ResultatAnalisi =
   /** `calColumnes`: falten columnes obligatòries i cal triar la correspondència a mà. */
   | { ok: false; error: string; calColumnes?: boolean }
 
+export type ResultatPestanyes =
+  | { ok: true; pestanyes: ResumPestanya[] | null }
+  | { ok: false; error: string }
+
+/**
+ * Les pestanyes del full pujat, o `null` si no és un llibre (CSV, text
+ * enganxat), per poder preguntar a quina hi ha els resultats.
+ */
+export async function llegeixPestanyes(dades: FormData): Promise<ResultatPestanyes> {
+  if (!(await gestorConnectat())) return { ok: false, error: 'Cal haver entrat com a gestor.' }
+  try {
+    const full = dades.get('full')
+    if (!teContingut(full)) return { ok: true, pestanyes: null }
+    return { ok: true, pestanyes: await llistaPestanyes(full.name, await bytes(full)) }
+  } catch (error) {
+    return { ok: false, error: (error as Error).message }
+  }
+}
+
 export type ResultatColumnes =
   | { ok: true; columnes: PropostaColumnes & { pestanya: string | null } }
   | { ok: false; error: string }
@@ -87,7 +108,11 @@ export async function llegeixColumnes(dades: FormData): Promise<ResultatColumnes
     const full = dades.get('full')
     const text = dades.get('text')
     if (teContingut(full)) {
-      return { ok: true, columnes: await llegeixColumnesDeFitxer(full.name, await bytes(full)) }
+      return { ok: true, columnes: await llegeixColumnesDeFitxer(
+          full.name,
+          await bytes(full),
+          (dades.get('pestanya') as string | null) || null,
+        ) }
     }
     if (typeof text === 'string' && text.trim()) {
       return { ok: true, columnes: { ...proposaColumnes(llegeixCsv(text)), pestanya: null } }
@@ -228,14 +253,18 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
     const text = dades.get('text')
     // Correspondència de columnes triada a mà (una assignació per columna).
     const assignacionsCrues = dades.get('assignacions')
+    const pestanyaTriada = (dades.get('pestanya') as string | null) || null
     const triat =
-      typeof assignacionsCrues === 'string' && assignacionsCrues
+      pestanyaTriada || (typeof assignacionsCrues === 'string' && assignacionsCrues)
         ? {
-            assignacions: JSON.parse(assignacionsCrues) as string[],
-            pestanya: (dades.get('pestanya') as string | null) || null,
+            assignacions:
+              typeof assignacionsCrues === 'string' && assignacionsCrues
+                ? (JSON.parse(assignacionsCrues) as string[])
+                : undefined,
+            pestanya: pestanyaTriada,
           }
         : undefined
-    if (triat) {
+    if (triat?.assignacions) {
       const absents = absentsDeAssignacions(triat.assignacions)
       if (absents.length > 0) {
         return {
