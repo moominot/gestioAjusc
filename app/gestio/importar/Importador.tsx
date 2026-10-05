@@ -29,6 +29,38 @@ import { Previsualitzacio } from './Previsualitzacio'
 
 const avui = () => new Date().toISOString().slice(0, 10)
 
+/**
+ * Si el formulari porta un fitxer en aquest camp. Els camps de fitxer buits
+ * també arriben al FormData (com un fitxer de 0 bytes), i un `get` sol no ho
+ * distingeix.
+ */
+const teFitxer = (dades: FormData, camp: string) => {
+  const valor = dades.get(camp)
+  return valor instanceof File && valor.size > 0
+}
+
+/**
+ * El que admet una petició al servidor. Vercel no accepta cossos de més de
+ * 4,5 MB, i next.config.js posa el límit de les accions a 4 MB.
+ */
+const MIDA_MAXIMA = 4 * 1024 * 1024
+
+/** Els fitxers que superen el límit, amb un missatge per dir-ho abans d'enviar-los. */
+function massaGrans(dades: FormData): string | null {
+  const grans = [...dades.values()].filter((v): v is File => v instanceof File && v.size > MIDA_MAXIMA)
+  if (grans.length === 0) return null
+  const mb = (n: number) => (n / 1024 / 1024).toLocaleString('ca-ES', { maximumFractionDigits: 1 })
+  return (
+    grans.map((f) => `«${f.name}» fa ${mb(f.size)} MB`).join(', ') +
+    `, i el màxim és ${mb(MIDA_MAXIMA)} MB. Deseu-ne només la pestanya dels resultats en un fitxer nou (o com a CSV) i pugeu aquest.`
+  )
+}
+
+/** Quan la petició no arriba a respondre (fitxer massa gran, connexió tallada, servidor reiniciant). */
+const ERROR_XARXA =
+  'No s’ha pogut enviar el fitxer al servidor: la connexió s’ha tallat o el fitxer és massa gran. ' +
+  'Torneu-ho a provar; si torna a passar, deseu només la pestanya dels resultats en un fitxer nou.'
+
 /** Temporada a què pertany una data: de setembre a agost. */
 function temporadaDe(data: string): string {
   const dia = new Date(data)
@@ -78,7 +110,17 @@ export function Importador({
   const [decisions, setDecisions] = useState<Record<number, number | null>>({})
   const [desat, setDesat] = useState<ResultatDesat | null>(null)
   const [reimportat, setReimportat] = useState<ResultatReimportacio | null>(null)
-  const [treballant, comença] = useTransition()
+  const [treballant, començaTransicio] = useTransition()
+  // Cap acció del servidor no ha de fallar en silenci: si la petició no arriba
+  // a respondre (fitxer massa gran, connexió tallada), es diu a la pantalla.
+  const comença = (feina: () => Promise<void>) =>
+    començaTransicio(async () => {
+      try {
+        await feina()
+      } catch {
+        setError(ERROR_XARXA)
+      }
+    })
   // Columnes de dades lliures que el gestor ha decidit no desar.
   const [excloses, setExcloses] = useState<Set<string>>(new Set())
 
@@ -122,7 +164,7 @@ export function Importador({
   const [pestanyes, setPestanyes] = useState<ResumPestanya[] | null>(null)
 
   function continuaAmbFull(dades: FormData) {
-    if (dades.get('revisaColumnes') && !dades.get('trn')) obreColumnes(dades)
+    if (dades.get('revisaColumnes') && !teFitxer(dades, 'trn')) obreColumnes(dades)
     else llegeix(dades)
   }
 
@@ -136,9 +178,14 @@ export function Importador({
   function analitzaFitxers(dades: FormData) {
     setError(null)
     dades.delete('pestanya')
-    const esFull = dades.get('full') instanceof File && (dades.get('full') as File).size > 0
+    const esFull = teFitxer(dades, 'full')
     const esText = typeof dades.get('text') === 'string' && String(dades.get('text')).trim() !== ''
-    if (esFull && !esText && !dades.get('trn')) {
+    const gran = massaGrans(dades)
+    if (gran) {
+      setError(gran)
+      return
+    }
+    if (esFull && !esText && !teFitxer(dades, 'trn')) {
       comença(async () => {
         const llistes = await llegeixPestanyes(dades)
         if (!llistes.ok) {

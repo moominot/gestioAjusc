@@ -26,6 +26,12 @@ const nextConfig = {
   // pàgines públiques renderitzades al servidor i accions de gestió.
   reactStrictMode: true,
 
+  // Els fitxers que es pugen a l'importador passen per accions del servidor, que
+  // per defecte no admeten més d'1 MB. Vercel en talla qualsevol de més de 4,5 MB.
+  experimental: {
+    serverActions: { bodySizeLimit: '4mb' },
+  },
+
   // S'incrusten en compilar, al servidor i al navegador (vegeu a dalt).
   env: Object.fromEntries(Object.entries(supabase).filter(([, valor]) => valor !== undefined)),
 
