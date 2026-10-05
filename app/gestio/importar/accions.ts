@@ -20,6 +20,7 @@ import {
 } from '../../../lib/importacio/fulls'
 import { resolNoms, type JugadorRegistre, type Nivell } from '../../../lib/importacio/resolucio'
 import { validaImportacio } from '../../../lib/api/importacio'
+import { desempaqueta } from '../../../lib/importacio/transport'
 import {
   llegeixTorneig,
   type EstadistiquesPartida,
@@ -83,8 +84,9 @@ export type ResultatPestanyes =
  * Les pestanyes del full pujat, o `null` si no és un llibre (CSV, text
  * enganxat), per poder preguntar a quina hi ha els resultats.
  */
-export async function llegeixPestanyes(dades: FormData): Promise<ResultatPestanyes> {
+export async function llegeixPestanyes(enviat: FormData): Promise<ResultatPestanyes> {
   if (!(await gestorConnectat())) return { ok: false, error: 'Cal haver entrat com a gestor.' }
+  const dades = desempaqueta(enviat)
   try {
     const full = dades.get('full')
     if (!teContingut(full)) return { ok: true, pestanyes: null }
@@ -102,8 +104,9 @@ export type ResultatColumnes =
  * Les capçaleres del full o del text enganxat, amb la correspondència proposada
  * amb els camps del programa, perquè el gestor la pugui canviar.
  */
-export async function llegeixColumnes(dades: FormData): Promise<ResultatColumnes> {
+export async function llegeixColumnes(enviat: FormData): Promise<ResultatColumnes> {
   if (!(await gestorConnectat())) return { ok: false, error: 'Cal haver entrat com a gestor.' }
+  const dades = desempaqueta(enviat)
   try {
     const full = dades.get('full')
     const text = dades.get('text')
@@ -242,8 +245,9 @@ async function resolParticipants(
 }
 
 /** Llegeix els fitxers, resol els noms i torna una proposta per revisar. */
-export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
+export async function analitza(enviat: FormData): Promise<ResultatAnalisi> {
   if (!(await gestorConnectat())) return { ok: false, error: 'Cal haver entrat com a gestor.' }
+  const dades = desempaqueta(enviat)
 
   try {
     const trn = dades.get('trn')

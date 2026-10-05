@@ -12,6 +12,7 @@ import {
   type PropostaColumnes,
 } from '../../../lib/importacio/fulls'
 import { normalitzaNom } from '../../../lib/importacio/noms'
+import { empaqueta, MIDA_MAXIMA_FITXER } from '../../../lib/importacio/transport'
 import {
   analitza,
   llegeixColumnes,
@@ -39,11 +40,8 @@ const teFitxer = (dades: FormData, camp: string) => {
   return valor instanceof File && valor.size > 0
 }
 
-/**
- * El que admet una petició al servidor. Vercel no accepta cossos de més de
- * 4,5 MB, i next.config.js posa el límit de les accions a 4 MB.
- */
-const MIDA_MAXIMA = 4 * 1024 * 1024
+/** El màxim d'un fitxer: viatja codificat com a text (vegeu lib/importacio/transport.ts). */
+const MIDA_MAXIMA = MIDA_MAXIMA_FITXER
 
 /** Els fitxers que superen el límit, amb un missatge per dir-ho abans d'enviar-los. */
 function massaGrans(dades: FormData): string | null {
@@ -173,7 +171,7 @@ Detall: ${detall} · ${new Date().toLocaleTimeString('ca-ES')}`)
 
   function obreColumnes(dades: FormData, missatge?: string) {
     comença(async () => {
-      const llegides = await llegeixColumnes(dades)
+      const llegides = await llegeixColumnes(await empaqueta(dades))
       if (!llegides.ok) {
         setError(llegides.error)
         return
@@ -231,7 +229,7 @@ Detall: ${detall} · ${new Date().toLocaleTimeString('ca-ES')}`)
     const esText = typeof dades.get('text') === 'string' && String(dades.get('text')).trim() !== ''
     if (esFull && !esText && !teFitxer(dades, 'trn')) {
       comença(async () => {
-        const llistes = await llegeixPestanyes(dades)
+        const llistes = await llegeixPestanyes(await empaqueta(dades))
         if (!llistes.ok) {
           setError(llistes.error)
           return
@@ -255,11 +253,11 @@ Detall: ${detall} · ${new Date().toLocaleTimeString('ca-ES')}`)
       if (columnes?.pestanya && !dades.get('pestanya')) dades.set('pestanya', columnes.pestanya)
     }
     comença(async () => {
-      const resultat = await analitza(dades)
+      const resultat = await analitza(await empaqueta(dades))
       if (!resultat.ok) {
         if (resultat.calColumnes && !triades) {
           // No s'han reconegut les capçaleres: es deixa triar-les a mà.
-          const llegides = await llegeixColumnes(dades)
+          const llegides = await llegeixColumnes(await empaqueta(dades))
           if (llegides.ok) {
             setError(resultat.error)
             setPujat(dades)
