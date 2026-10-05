@@ -1,10 +1,9 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { classificacio, estadistiques, type FitxaCampionat } from '../../../../lib/campionats/fitxa'
+import type { FitxaCampionat } from '../../../../lib/campionats/fitxa'
 import { clientServidor } from '../../../../lib/supabase/servidor'
 import { EditorCampionat } from './EditorCampionat'
-import { PromptResum } from './PromptResum'
 
 export const metadata = { title: 'Editar campionat' }
 
@@ -43,15 +42,6 @@ export default async function EditarCampionat({ params }: { params: Promise<{ id
           (SwissPerfect, full de càlcul o CSV).
         </p>
       </div>
-
-      <PromptResum
-        dades={{
-          campionat: (fitxa as FitxaCampionat).campionat,
-          notes: (fila.notes as string | null) ?? '',
-          classificacio: classificacio((fitxa as FitxaCampionat).jugadors),
-          estadistiques: estadistiques(fitxa as FitxaCampionat),
-        }}
-      />
 
       <EditorCampionat
         id={id}

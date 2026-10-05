@@ -41,11 +41,14 @@ const fitxa: FitxaCampionat = {
   partides: [],
 }
 
+let jugadors: DadesPrompt['jugadors'] = []
+
 const dades = (notes = ''): DadesPrompt => ({
   campionat: fitxa.campionat,
   notes,
   classificacio: classificacio(fitxa.jugadors),
   estadistiques: estadistiques(fitxa),
+  jugadors,
 })
 
 describe('promptResum', () => {
@@ -62,5 +65,22 @@ describe('promptResum', () => {
     expect(text).toContain("no n'ha facilitat la classificació oficial")
     expect(text).toContain('1. Anna (Club X) — 4 victòries en 5 partides')
     expect(text).toContain("## Notes de l'organització\nGran ambient")
+  })
+
+  it('diu qui puja de categoria i qui canvia d\'estat', () => {
+    jugadors = [
+      { nom: 'Anna', estatAbans: 'exp', estatDespres: 'act', barrufAbans: 1195, barrufDespres: 1210 },
+      { nom: 'Berta', estatAbans: 'act', estatDespres: 'act', barrufAbans: 1105, barrufDespres: 1090 },
+      { nom: 'Cesc', estatAbans: 'act', estatDespres: 'act', barrufAbans: 1150, barrufDespres: 1160 },
+      { nom: 'Dolors', estatAbans: null, estatDespres: null, barrufAbans: null, barrufDespres: 1000 },
+    ]
+    const text = promptResum(dades(), '')
+    expect(text).toContain('- Anna: de en expectativa (BARRUF provisional) a actiu')
+    expect(text).toContain('- Anna: puja de categoria 4 a categoria 3')
+    expect(text).toContain('- Berta: baixa de categoria 4 a categoria 5')
+    expect(text).toContain('- Dolors: entra a la categoria 5')
+    expect(text).not.toContain('Cesc')
+    jugadors = []
+    expect(promptResum(dades(), '')).toContain("Cap jugador no canvia d'estat ni de categoria.")
   })
 })

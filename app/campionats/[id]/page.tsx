@@ -10,6 +10,9 @@ import {
   type PartidaCampionat,
 } from '../../../lib/campionats/fitxa'
 import { DadesLliures } from '../../../components/DadesLliures'
+import type { InformeCru } from '../../../lib/informe/model'
+import type { DadesPrompt } from '../../../lib/campionats/promptResum'
+import { ResumIA } from './ResumIA'
 import { clientServidor, gestorConnectat } from '../../../lib/supabase/servidor'
 
 export const revalidate = 300
@@ -28,6 +31,51 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return { title: fitxa?.campionat.nom ?? 'Campionat' }
 }
 
+/**
+ * Les dades del prompt del resum. L'estat i la categoria d'abans i de després
+ * surten de l'edició del BARRUF que va computar el campionat, comparada amb
+ * l'anterior; si encara no s'ha publicat, només es compara el BARRUF abans i
+ * després del campionat i l'estat queda en blanc.
+ */
+async function carregaDadesPrompt(
+  fitxa: FitxaCampionat,
+  classificacioCampionat: DadesPrompt['classificacio'],
+  estadistiquesCampionat: DadesPrompt['estadistiques'],
+  notes: string,
+): Promise<DadesPrompt> {
+  const edicio = fitxa.campionat.primera_edicio
+  let informe: InformeCru | null = null
+  if (edicio) {
+    const supabase = await clientServidor()
+    informe = ((await supabase.rpc('informe_barruf', { p_numero: edicio })).data as InformeCru | null) ?? null
+  }
+  const files = new Map((informe?.files ?? []).map((f) => [f.numero, f]))
+  return {
+    campionat: fitxa.campionat,
+    notes,
+    classificacio: classificacioCampionat,
+    estadistiques: estadistiquesCampionat,
+    jugadors: fitxa.jugadors.map((j) => {
+      const f = files.get(j.numero)
+      return f
+        ? {
+            nom: j.nom,
+            estatAbans: f.anterior ? (f.anterior.estat as DadesPrompt['jugadors'][number]['estatAbans']) : null,
+            estatDespres: f.estat,
+            barrufAbans: f.anterior && Number(f.anterior.barruf) > 0 ? Number(f.anterior.barruf) : null,
+            barrufDespres: Number(f.barruf),
+          }
+        : {
+            nom: j.nom,
+            estatAbans: null,
+            estatDespres: null,
+            barrufAbans: j.barruf_abans === null ? null : Number(j.barruf_abans),
+            barrufDespres: j.barruf_despres === null ? null : Number(j.barruf_despres),
+          }
+    }),
+  }
+}
+
 const decimal = (valor: number) => valor.toLocaleString('ca-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
 
 export default async function Campionat({ params }: { params: Promise<{ id: string }> }) {
@@ -39,13 +87,14 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
   // Les dades lliures (enllaços al full, taula, comentaris...), si n'hi ha.
   const [gestor, { data: lliuresCampionat }, { data: lliuresPartides }] = await Promise.all([
     gestorConnectat(),
-    supabase.from('campionats').select('dades').eq('id', campionat.id).maybeSingle(),
+    supabase.from('campionats').select('dades, notes').eq('id', campionat.id).maybeSingle(),
     supabase.from('partides').select('id, dades').eq('campionat_id', campionat.id).not('dades', 'is', null),
   ])
   const dadesPartida = new Map((lliuresPartides ?? []).map((p) => [p.id as string, p.dades as Record<string, unknown>]))
   const files = classificacio(fitxa.jugadors)
   const xifres = estadistiques(fitxa)
   const rondes = perRonda(fitxa.partides)
+  const dadesPrompt = gestor ? await carregaDadesPrompt(fitxa, files, xifres, (lliuresCampionat?.notes as string | null) ?? '') : null
   const ambBarruf = files.some((f) => f.variacio !== null)
 
   const tesseles = [
@@ -101,6 +150,7 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
               Editar
             </Link>
           ) : null}
+          {dadesPrompt ? <ResumIA dades={dadesPrompt} /> : null}
         </div>
       </div>
 
