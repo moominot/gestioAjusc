@@ -56,6 +56,25 @@ function massaGrans(dades: FormData): string | null {
   )
 }
 
+/**
+ * Una còpia del formulari amb els fitxers ja llegits a la memòria del
+ * navegador. El fitxer s'envia més d'un cop (per veure'n les pestanyes, per
+ * llegir-ne les columnes, per llegir els resultats), i alguns llocs d'on es
+ * trien fitxers als mòbils (Drive, WhatsApp, Baixades) només els deixen llegir
+ * una vegada: el segon enviament fallava amb un error de xarxa.
+ */
+async function ambFitxersEnMemoria(dades: FormData): Promise<FormData> {
+  const copia = new FormData()
+  for (const [camp, valor] of dades.entries()) {
+    if (valor instanceof File && valor.size > 0) {
+      copia.append(camp, new File([await valor.arrayBuffer()], valor.name, { type: valor.type }))
+    } else {
+      copia.append(camp, valor)
+    }
+  }
+  return copia
+}
+
 /** Quan la petició no arriba a respondre (fitxer massa gran, connexió tallada, servidor reiniciant). */
 const ERROR_XARXA =
   'No s’ha pogut enviar el fitxer al servidor: la connexió s’ha tallat o el fitxer és massa gran. ' +
@@ -181,16 +200,35 @@ Detall: ${detall} · ${new Date().toLocaleTimeString('ca-ES')}`)
     continuaAmbFull(pujat)
   }
 
-  function analitzaFitxers(dades: FormData) {
+  function analitzaFitxers(original: FormData) {
     setError(null)
-    dades.delete('pestanya')
-    const esFull = teFitxer(dades, 'full')
-    const esText = typeof dades.get('text') === 'string' && String(dades.get('text')).trim() !== ''
-    const gran = massaGrans(dades)
+    original.delete('pestanya')
+    const gran = massaGrans(original)
     if (gran) {
       setError(gran)
       return
     }
+    començaTransicio(async () => {
+      let dades: FormData
+      try {
+        dades = await ambFitxersEnMemoria(original)
+      } catch (e) {
+        console.error('Importador: no s’ha pogut llegir el fitxer al navegador', e)
+        const detall = e instanceof Error ? `${e.name}: ${e.message}` : String(e)
+        setError(
+          'El navegador no ha pogut llegir el fitxer triat. Si és al mòbil i ve del Drive, de WhatsApp o ' +
+            'd’una altra aplicació, deseu-lo primer al dispositiu (Baixades) i trieu-lo des d’allà.' +
+            `\n\nDetall: ${detall}`,
+        )
+        return
+      }
+      continuaAmbFitxers(dades)
+    })
+  }
+
+  function continuaAmbFitxers(dades: FormData) {
+    const esFull = teFitxer(dades, 'full')
+    const esText = typeof dades.get('text') === 'string' && String(dades.get('text')).trim() !== ''
     if (esFull && !esText && !teFitxer(dades, 'trn')) {
       comença(async () => {
         const llistes = await llegeixPestanyes(dades)
