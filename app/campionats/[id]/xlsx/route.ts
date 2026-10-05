@@ -1,10 +1,10 @@
 import writeExcelFile from 'write-excel-file/node'
 
+import type { InformeCru } from '../../../../lib/informe/model'
 import type { FitxaCampionat } from '../../../../lib/campionats/fitxa'
 import {
   ESTATS_BARRUF,
   pestanyesCampionat,
-  type FilaBarruf,
 } from '../../../../lib/campionats/xlsx'
 import { clientServidor } from '../../../../lib/supabase/servidor'
 
@@ -27,29 +27,21 @@ export async function GET(_peticio: Request, { params }: { params: Promise<{ id:
   const fitxa = data as FitxaCampionat | null
   if (!fitxa) return new Response('No existeix aquest campionat.', { status: 404 })
 
-  const [{ data: camp }, { data: lliures }, ...estats] = await Promise.all([
+  // El BARRUF és el de l'edició que va computar el campionat, o l'últim publicat.
+  const [{ data: camp }, { data: lliures }, { data: informe }] = await Promise.all([
     supabase.from('campionats').select('dades').eq('id', id).maybeSingle(),
     supabase.from('partides').select('id, dades').eq('campionat_id', id).not('dades', 'is', null),
-    ...ESTATS_BARRUF.map((e) =>
-      supabase
-        .from('barruf_classificacio')
-        .select('*')
-        .eq('estat', e.clau)
-        .order('barruf', { ascending: false })
-        .order('nom_complet')
-        .limit(5000),
-    ),
+    supabase.rpc('informe_barruf', { p_numero: fitxa.campionat.primera_edicio }),
   ])
 
   const dadesPartida = new Map((lliures ?? []).map((p) => [p.id as string, p.dades as Record<string, unknown>]))
   fitxa.partides = fitxa.partides.map((p) => ({ ...p, dades: dadesPartida.get(p.id) ?? null }))
 
-  const barruf: Record<string, FilaBarruf[]> = {}
-  ESTATS_BARRUF.forEach((e, i) => {
-    barruf[e.clau] = (estats[i].data ?? []) as FilaBarruf[]
-  })
-
-  const pestanyes = pestanyesCampionat(fitxa, (camp?.dades as Record<string, unknown> | null) ?? null, barruf)
+  const cru = informe as InformeCru | null
+  const pestanyes = pestanyesCampionat(fitxa, (camp?.dades as Record<string, unknown> | null) ?? null,
+    cru?.files ?? [],
+    cru?.edicio.numero ?? null,
+  )
   const fitxer = await writeExcelFile(
     pestanyes.map((p) => ({
       sheet: p.nom,

@@ -3,6 +3,8 @@
  * final per estats. Només construeix les pestanyes; qui el crida les escriu.
  */
 
+import { categoria } from '../informe/model'
+import type { FilaCrua } from '../informe/model'
 import type { FitxaCampionat, PartidaCampionat } from './fitxa'
 
 export type Cel = string | number | null
@@ -13,23 +15,8 @@ export interface Pestanya {
   amples: number[]
 }
 
-/** Una fila de la classificació BARRUF (la vista `barruf_classificacio`). */
-export interface FilaBarruf {
-  posicio: number | null
-  jugador_numero: number
-  nom_complet: string
-  club: string | null
-  barruf: string
-  categoria: string | null
-  partides_totals: number
-  victories_totals: string
-  partides_temporada: number
-  victories_temporada: string
-  darrera_temporada: string | null
-  posicio_anterior: number | null
-  barruf_anterior: string | null
-  edicio: number
-}
+/** Una fila de `informe_barruf()`: el BARRUF d'una edició. */
+export type FilaBarruf = FilaCrua
 
 export const ESTATS_BARRUF = [
   { clau: 'act', nom: 'BARRUF actius' },
@@ -129,6 +116,7 @@ export function pestanyaPartides(partides: PartidaCampionat[]): Pestanya {
 }
 
 export function pestanyaBarruf(nom: string, files: FilaBarruf[]): Pestanya {
+  const ordenades = [...files].sort((x, y) => y.barruf - x.barruf || x.ordre - y.ordre)
   return {
     nom,
     files: [
@@ -143,39 +131,41 @@ export function pestanyaBarruf(nom: string, files: FilaBarruf[]): Pestanya {
         'Victòries',
         'Partides temporada',
         'Victòries temporada',
-        'Darrera temporada',
         'Posició anterior',
         'BARRUF anterior',
       ],
-      ...files.map((f): Cel[] => [
+      ...ordenades.map((f): Cel[] => [
         f.posicio,
-        f.jugador_numero,
-        f.nom_complet,
+        f.numero,
+        f.nom,
         f.club,
-        Number(f.barruf),
-        f.categoria,
+        f.barruf,
+        categoria(f.barruf),
         f.partides_totals,
-        Number(f.victories_totals),
+        f.victories_totals,
         f.partides_temporada,
-        Number(f.victories_temporada),
-        f.darrera_temporada,
-        f.posicio_anterior,
-        f.barruf_anterior === null ? null : Number(f.barruf_anterior),
+        f.victories_temporada,
+        f.anterior?.posicio ?? null,
+        f.anterior?.barruf ?? null,
       ]),
     ],
-    amples: [9, 8, 30, 22, 10, 12, 10, 10, 12, 12, 14, 12, 12],
+    amples: [9, 8, 30, 22, 10, 10, 10, 10, 12, 12, 12, 12],
   }
 }
 
-/** Les pestanyes del llibre, en ordre. */
+/** Les pestanyes del llibre, en ordre. El BARRUF és el d'`edicio`, amb el número al nom. */
 export function pestanyesCampionat(
   fitxa: FitxaCampionat,
   dadesCampionat: Record<string, unknown> | null,
-  barruf: Record<string, FilaBarruf[]>,
+  barruf: FilaBarruf[],
+  edicio: number | null = null,
 ): Pestanya[] {
+  const sufix = edicio === null ? '' : ` ${edicio}`
   return [
     pestanyaGeneral(fitxa, dadesCampionat),
     pestanyaPartides(fitxa.partides),
-    ...ESTATS_BARRUF.map((e) => pestanyaBarruf(e.nom, barruf[e.clau] ?? [])),
+    ...ESTATS_BARRUF.map((e) =>
+      pestanyaBarruf(`${e.nom}${sufix}`, barruf.filter((f) => f.estat === e.clau)),
+    ),
   ]
 }

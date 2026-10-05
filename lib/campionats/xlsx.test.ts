@@ -17,16 +17,16 @@ const fitxa = {
   ],
 } as unknown as FitxaCampionat
 
-const fila = { posicio: 1, jugador_numero: 1, nom_complet: 'Anna', club: null, barruf: '1500.5', categoria: null,
-  partides_totals: 10, victories_totals: '6', partides_temporada: 2, victories_temporada: '1',
-  darrera_temporada: '2025-26', posicio_anterior: null, barruf_anterior: null, edicio: 210 } as FilaBarruf
+const fila = { numero: 1, nom: 'Anna', club: null, ordre: 1, barruf: 1500.5, estat: 'act', posicio: 1,
+  debutant: false, partides_totals: 10, victories_totals: 6, partides_temporada: 2, victories_temporada: 1,
+  anterior: null } as FilaBarruf
 
 describe('llibre del campionat', () => {
-  const pestanyes = pestanyesCampionat(fitxa, { arbitre: 'Joan' }, { act: [fila], inact: [] })
+  const pestanyes = pestanyesCampionat(fitxa, { arbitre: 'Joan' }, [fila, { ...fila, numero: 2, estat: 'inact' }], 210)
 
   it('porta les pestanyes en ordre, amb les dades lliures', () => {
     expect(pestanyes.map((p) => p.nom)).toEqual([
-      'Campionat', 'Partides', 'BARRUF actius', 'BARRUF en espera', 'BARRUF inactius', 'BARRUF novells',
+      'Campionat', 'Partides', 'BARRUF actius 210', 'BARRUF en espera 210', 'BARRUF inactius 210', 'BARRUF novells 210',
     ])
     expect(pestanyes[0].files).toContainEqual(['arbitre', 'Joan'])
     const partides = pestanyes[1].files
@@ -35,6 +35,7 @@ describe('llibre del campionat', () => {
     expect(partides[1][4]).toBe('descansa')
     expect(partides[2].slice(-2)).toEqual([null, 3])
     expect(pestanyes[2].files[1][4]).toBe(1500.5)
+    expect(pestanyes[4].files[1][1]).toBe(2)
   })
 
   it('s\'escriu com a xlsx', async () => {
