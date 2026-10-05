@@ -117,8 +117,14 @@ export function Importador({
     començaTransicio(async () => {
       try {
         await feina()
-      } catch {
-        setError(ERROR_XARXA)
+      } catch (e) {
+        // El detall tècnic, a la pantalla i a la consola: sense això no hi ha manera
+        // de saber si ha estat la xarxa, el servidor o el navegador.
+        console.error('Importador: la petició al servidor ha fallat', e)
+        const detall = e instanceof Error ? `${e.name}: ${e.message}` : String(e)
+        setError(`${ERROR_XARXA}
+
+Detall: ${detall} · ${new Date().toLocaleTimeString('ca-ES')}`)
       }
     })
   // Columnes de dades lliures que el gestor ha decidit no desar.
