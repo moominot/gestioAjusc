@@ -292,7 +292,16 @@ export default async function Campionat({ params }: { params: Promise<{ id: stri
       ) : null}
 
       <section>
-        <h2 className="mb-3 text-lg font-semibold">Partides</h2>
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+          <h2 className="text-lg font-semibold">Partides</h2>
+          {/* Un <a> i no un <Link>: és un fitxer, no una pàgina de l'aplicació. */}
+          <a
+            href={`/campionats/${campionat.id}/xlsx`}
+            className="rounded border border-stone-300 px-3 py-1 text-sm text-stone-700 hover:border-stone-500"
+          >
+            Descarrega en .xlsx
+          </a>
+        </div>
         <div className="space-y-2">
           {rondes.map(([ronda, partides]) => (
             <details key={ronda} className="rounded-lg border border-stone-200 bg-white" open={rondes.length <= 3}>
