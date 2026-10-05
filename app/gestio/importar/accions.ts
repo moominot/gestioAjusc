@@ -3,8 +3,19 @@
 import { revalidatePath } from 'next/cache'
 
 import type { JugadorCercable } from '../../../components/CercaJugador'
-import { llegeixCsv, llegeixFitxerDeResultats } from '../../../lib/importacio/fitxers'
-import { construeixTorneigDeFull, interpretaFiles } from '../../../lib/importacio/fulls'
+import {
+  llegeixColumnesDeFitxer,
+  llegeixCsv,
+  llegeixFitxerDeResultats,
+} from '../../../lib/importacio/fitxers'
+import {
+  absentsDeAssignacions,
+  construeixTorneigDeFull,
+  ErrorColumnes,
+  interpretaFiles,
+  proposaColumnes,
+  type PropostaColumnes,
+} from '../../../lib/importacio/fulls'
 import { resolNoms, type JugadorRegistre, type Nivell } from '../../../lib/importacio/resolucio'
 import { validaImportacio } from '../../../lib/api/importacio'
 import {
@@ -59,7 +70,33 @@ export interface Proposta {
 
 export type ResultatAnalisi =
   | { ok: true; proposta: Proposta; registre: JugadorCercable[] }
+  /** `calColumnes`: falten columnes obligatòries i cal triar la correspondència a mà. */
+  | { ok: false; error: string; calColumnes?: boolean }
+
+export type ResultatColumnes =
+  | { ok: true; columnes: PropostaColumnes & { pestanya: string | null } }
   | { ok: false; error: string }
+
+/**
+ * Les capçaleres del full o del text enganxat, amb la correspondència proposada
+ * amb els camps del programa, perquè el gestor la pugui canviar.
+ */
+export async function llegeixColumnes(dades: FormData): Promise<ResultatColumnes> {
+  if (!(await gestorConnectat())) return { ok: false, error: 'Cal haver entrat com a gestor.' }
+  try {
+    const full = dades.get('full')
+    const text = dades.get('text')
+    if (teContingut(full)) {
+      return { ok: true, columnes: await llegeixColumnesDeFitxer(full.name, await bytes(full)) }
+    }
+    if (typeof text === 'string' && text.trim()) {
+      return { ok: true, columnes: { ...proposaColumnes(llegeixCsv(text)), pestanya: null } }
+    }
+    return { ok: false, error: 'Cal pujar un full de càlcul o enganxar-hi les dades.' }
+  } catch (error) {
+    return { ok: false, error: (error as Error).message }
+  }
+}
 
 async function bytes(fitxer: File): Promise<Uint8Array> {
   return new Uint8Array(await fitxer.arrayBuffer())
@@ -189,6 +226,25 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
     const ini = dades.get('ini')
     const full = dades.get('full')
     const text = dades.get('text')
+    // Correspondència de columnes triada a mà (una assignació per columna).
+    const assignacionsCrues = dades.get('assignacions')
+    const triat =
+      typeof assignacionsCrues === 'string' && assignacionsCrues
+        ? {
+            assignacions: JSON.parse(assignacionsCrues) as string[],
+            pestanya: (dades.get('pestanya') as string | null) || null,
+          }
+        : undefined
+    if (triat) {
+      const absents = absentsDeAssignacions(triat.assignacions)
+      if (absents.length > 0) {
+        return {
+          ok: false,
+          calColumnes: true,
+          error: `Falta assignar les columnes: ${absents.join(', ')}.`,
+        }
+      }
+    }
 
     let torneig: Torneig
     let origen: Proposta['origen']
@@ -207,7 +263,7 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
       })
       origen = 'swissperfect'
     } else if (teContingut(full)) {
-      const llegit = await llegeixFitxerDeResultats(full.name, await bytes(full))
+      const llegit = await llegeixFitxerDeResultats(full.name, await bytes(full), triat)
       const delFull = construeixTorneigDeFull(llegit.files)
       torneig = delFull
       origen = 'full'
@@ -215,7 +271,7 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
       rondesDeduides = delFull.rondesDeduides
       rondesPerBlocs = delFull.rondesPerBlocs
     } else if (typeof text === 'string' && text.trim()) {
-      const delFull = construeixTorneigDeFull(interpretaFiles(llegeixCsv(text)))
+      const delFull = construeixTorneigDeFull(interpretaFiles(llegeixCsv(text), triat?.assignacions))
       torneig = delFull
       origen = 'full'
       rondesDeduides = delFull.rondesDeduides
@@ -274,7 +330,11 @@ export async function analitza(dades: FormData): Promise<ResultatAnalisi> {
       },
     }
   } catch (error) {
-    return { ok: false, error: (error as Error).message }
+    return {
+      ok: false,
+      error: (error as Error).message,
+      ...(error instanceof ErrorColumnes ? { calColumnes: true } : {}),
+    }
   }
 }
 

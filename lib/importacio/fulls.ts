@@ -33,6 +33,14 @@ export class ErrorFull extends Error {
   }
 }
 
+/** Falten columnes obligatòries: es pot resoldre triant-les a mà. */
+export class ErrorColumnes extends ErrorFull {
+  constructor(missatge: string) {
+    super(missatge)
+    this.name = 'ErrorColumnes'
+  }
+}
+
 /** Marca que el jugador va descansar aquella ronda. */
 const PARAULES_BYE = new Set(['bye', 'descansa', 'descans', '-', '—'])
 
@@ -90,14 +98,40 @@ const LLIURES: Record<string, string[]> = {
 // Els guions baixos valen com a espais: «Puntuacio_1» és «Puntuacio 1».
 const normalitzaCapcalera = (text: string) => normalitzaNom(String(text ?? '').replace(/_/g, ' '))
 
+/** Els camps bàsics del programa als quals es pot lligar una columna del full. */
+export const CAMPS_BASICS: { clau: string; etiqueta: string; obligatori: boolean }[] = [
+  { clau: 'ronda', etiqueta: 'Ronda', obligatori: false },
+  { clau: 'jugador1', etiqueta: 'Jugador 1', obligatori: true },
+  { clau: 'puntuacio1', etiqueta: 'Puntuació 1', obligatori: true },
+  { clau: 'jugador2', etiqueta: 'Jugador 2', obligatori: true },
+  { clau: 'puntuacio2', etiqueta: 'Puntuació 2', obligatori: true },
+  { clau: 'scrabbles1', etiqueta: 'Scrabbles 1', obligatori: false },
+  { clau: 'scrabbles2', etiqueta: 'Scrabbles 2', obligatori: false },
+  { clau: 'mot1', etiqueta: 'Millor mot 1', obligatori: false },
+  { clau: 'mot2', etiqueta: 'Millor mot 2', obligatori: false },
+  { clau: 'puntsMot1', etiqueta: 'Punts millor mot 1', obligatori: false },
+  { clau: 'puntsMot2', etiqueta: 'Punts millor mot 2', obligatori: false },
+  { clau: 'motLletra1', etiqueta: 'Mot amb lletra especial 1', obligatori: false },
+  { clau: 'motLletra2', etiqueta: 'Mot amb lletra especial 2', obligatori: false },
+  { clau: 'puntsLletra1', etiqueta: 'Punts lletra especial 1', obligatori: false },
+  { clau: 'puntsLletra2', etiqueta: 'Punts lletra especial 2', obligatori: false },
+]
+
+/** Valors de l'assignació d'una columna que no són un camp bàsic. */
+export const ASSIGNACIO_LLIURE = 'lliure'
+export const ASSIGNACIO_IGNORA = 'ignora'
+
+const OBLIGATORIES = CAMPS_BASICS.filter((c) => c.obligatori).map((c) => c.clau)
+
 /**
- * Associa cada columna que ens interessa amb la seva posició a la capçalera.
+ * Associa cada columna que ens interessa amb la seva posició a la capçalera,
+ * pels noms. No falla si en falten: això ho mira qui el crida.
  *
  * Mana l'ordre dels sinònims, no el de les columnes: si el full porta alhora
  * «Punts 1» (el resultat, 1 o 0) i «Puntuació 1» (la de la partida), es queda
  * la puntuació, que és la primera de la llista.
  */
-function mapaColumnes(capcalera: unknown[]): Record<string, number> {
+function mapaAutomatic(capcalera: unknown[]): Record<string, number> {
   const normalitzades = capcalera.map((c) => normalitzaCapcalera(String(c ?? '')))
   const mapa: Record<string, number> = {}
 
@@ -117,13 +151,55 @@ function mapaColumnes(capcalera: unknown[]): Record<string, number> {
     if (usades.has(posicio) || nom === '') return
     const conegut = Object.entries(LLIURES).find(([, sinonims]) => sinonims.includes(nom))?.[0]
     const clau = conegut ?? String(capcalera[posicio]).trim()
-    if (!Object.values(mapa).includes(posicio)) mapa[`lliure:${clau}`] = posicio
+    mapa[`lliure:${clau}`] = posicio
   })
 
-  const obligatories = ['jugador1', 'puntuacio1', 'jugador2', 'puntuacio2']
-  const absents = obligatories.filter((clau) => !(clau in mapa))
+  return mapa
+}
+
+/** Les assignacions (una per columna) que correspondrien a un mapa. */
+function assignacionsDeMapa(capcalera: unknown[], mapa: Record<string, number>): string[] {
+  const resultat = capcalera.map(() => ASSIGNACIO_IGNORA)
+  for (const [clau, posicio] of Object.entries(mapa)) {
+    resultat[posicio] = clau.startsWith('lliure:') ? ASSIGNACIO_LLIURE : clau
+  }
+  return resultat
+}
+
+/**
+ * Mapa de columnes a partir de les assignacions triades a mà: per a cada
+ * columna, un camp bàsic, `lliure` (es desa amb el nom de la capçalera) o
+ * `ignora`.
+ */
+function mapaDeAssignacions(capcalera: unknown[], assignacions: string[]): Record<string, number> {
+  const mapa: Record<string, number> = {}
+  const claus = new Set(CAMPS_BASICS.map((c) => c.clau))
+  assignacions.forEach((assignacio, posicio) => {
+    if (posicio >= capcalera.length || assignacio === ASSIGNACIO_IGNORA || !assignacio) return
+    if (assignacio === ASSIGNACIO_LLIURE) {
+      const nom = String(capcalera[posicio] ?? '').trim() || `Columna ${posicio + 1}`
+      const conegut = Object.entries(LLIURES).find(([, sinonims]) =>
+        sinonims.includes(normalitzaCapcalera(nom)),
+      )?.[0]
+      mapa[`lliure:${conegut ?? nom}`] = posicio
+      return
+    }
+    if (!claus.has(assignacio)) return
+    if (assignacio in mapa) {
+      const etiqueta = CAMPS_BASICS.find((c) => c.clau === assignacio)!.etiqueta
+      throw new ErrorFull(`La columna «${etiqueta}» està assignada a més d'una columna del full.`)
+    }
+    mapa[assignacio] = posicio
+  })
+  return mapa
+}
+
+function mapaColumnes(capcalera: unknown[], assignacions?: string[]): Record<string, number> {
+  const mapa = assignacions ? mapaDeAssignacions(capcalera, assignacions) : mapaAutomatic(capcalera)
+
+  const absents = OBLIGATORIES.filter((clau) => !(clau in mapa))
   if (absents.length > 0) {
-    throw new ErrorFull(
+    throw new ErrorColumnes(
       `No trobo les columnes ${absents.join(', ')}. ` +
         `La capçalera hauria de tenir: Ronda, Jugador 1, Puntuació 1, Jugador 2, Puntuació 2. ` +
         `Hi he llegit: ${capcalera.map((c) => `«${String(c ?? '')}»`).join(', ')}`,
@@ -131,6 +207,38 @@ function mapaColumnes(capcalera: unknown[]): Record<string, number> {
   }
 
   return mapa
+}
+
+/** Les columnes de la capçalera, amb un exemple i la correspondència proposada. */
+export interface PropostaColumnes {
+  capcalera: string[]
+  /** El primer valor no buit de cada columna. */
+  exemples: string[]
+  /** Per a cada columna: un camp bàsic, `lliure` o `ignora`. */
+  assignacions: string[]
+}
+
+/** Proposa la correspondència de columnes d'un full, sense exigir-ne cap. */
+export function proposaColumnes(files: unknown[][]): PropostaColumnes {
+  const sensebuides = filesSenseBuides(files)
+  if (sensebuides.length < 2) {
+    throw new ErrorFull('El full no té capçalera i almenys una fila de resultats')
+  }
+  const [capcalera, ...dades] = sensebuides
+  const exemples = capcalera.map((_, posicio) => {
+    const fila = dades.find((f) => f[posicio] !== null && f[posicio] !== undefined && String(f[posicio]).trim() !== '')
+    return fila ? String(fila[posicio]).trim() : ''
+  })
+  return {
+    capcalera: capcalera.map((c) => String(c ?? '').trim()),
+    exemples,
+    assignacions: assignacionsDeMapa(capcalera, mapaAutomatic(capcalera)),
+  }
+}
+
+/** Les obligatòries que no queden cobertes per unes assignacions. */
+export function absentsDeAssignacions(assignacions: string[]): string[] {
+  return OBLIGATORIES.filter((clau) => !assignacions.includes(clau))
 }
 
 function aNombre(valor: unknown): number | null {
@@ -231,14 +339,21 @@ function dadesLliuresDe(fila: unknown[], columnes: Record<string, number>): Reco
   return Object.keys(dades).length ? dades : null
 }
 
-/** Converteix les files crues d'un full en resultats, amb la capçalera a la primera. */
-export function interpretaFiles(files: unknown[][]): FilaResultat[] {
-  const sensebuides = files.filter((fila) => fila.some((c) => c !== null && String(c ?? '') !== ''))
+const filesSenseBuides = (files: unknown[][]) =>
+  files.filter((fila) => fila.some((c) => c !== null && String(c ?? '') !== ''))
+
+/**
+ * Converteix les files crues d'un full en resultats, amb la capçalera a la
+ * primera. Amb `assignacions` (una per columna) es fa servir la correspondència
+ * triada a mà en comptes de la deduïda pels noms.
+ */
+export function interpretaFiles(files: unknown[][], assignacions?: string[]): FilaResultat[] {
+  const sensebuides = filesSenseBuides(files)
   if (sensebuides.length < 2) {
     throw new ErrorFull('El full no té capçalera i almenys una fila de resultats')
   }
 
-  const columnes = mapaColumnes(sensebuides[0])
+  const columnes = mapaColumnes(sensebuides[0], assignacions)
   const resultats: FilaResultat[] = []
 
   sensebuides.slice(1).forEach((fila, index) => {

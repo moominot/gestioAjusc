@@ -5,9 +5,16 @@ import { useState, useTransition } from 'react'
 
 import { CampSuggerit } from '../../../components/CampSuggerit'
 import { CercaJugador, type JugadorCercable } from '../../../components/CercaJugador'
+import {
+  ASSIGNACIO_IGNORA,
+  ASSIGNACIO_LLIURE,
+  CAMPS_BASICS,
+  type PropostaColumnes,
+} from '../../../lib/importacio/fulls'
 import { normalitzaNom } from '../../../lib/importacio/noms'
 import {
   analitza,
+  llegeixColumnes,
   desa,
   marcaRebuda,
   reimporta,
@@ -88,14 +95,63 @@ export function Importador({
     }
   })
 
+  // Pas de correspondència de columnes: el que s'ha pujat i les capçaleres llegides.
+  const [pujat, setPujat] = useState<FormData | null>(null)
+  const [columnes, setColumnes] = useState<(PropostaColumnes & { pestanya: string | null }) | null>(
+    null,
+  )
+  const [assignacions, setAssignacions] = useState<string[]>([])
+
+  function obreColumnes(dades: FormData, missatge?: string) {
+    comença(async () => {
+      const llegides = await llegeixColumnes(dades)
+      if (!llegides.ok) {
+        setError(llegides.error)
+        return
+      }
+      setError(missatge ?? null)
+      setPujat(dades)
+      setColumnes(llegides.columnes)
+      setAssignacions(llegides.columnes.assignacions)
+    })
+  }
+
   function analitzaFitxers(dades: FormData) {
     setError(null)
+    const esFull = dades.get('full') instanceof File && (dades.get('full') as File).size > 0
+    const esText = typeof dades.get('text') === 'string' && String(dades.get('text')).trim() !== ''
+    if (dades.get('revisaColumnes') && (esFull || esText) && !dades.get('trn')) {
+      obreColumnes(dades)
+      return
+    }
+    llegeix(dades)
+  }
+
+  /** Llegeix amb la correspondència triada, si n'hi ha. */
+  function llegeix(dades: FormData, triades?: string[]) {
+    if (triades) {
+      dades.set('assignacions', JSON.stringify(triades))
+      if (columnes?.pestanya) dades.set('pestanya', columnes.pestanya)
+    }
     comença(async () => {
       const resultat = await analitza(dades)
       if (!resultat.ok) {
+        if (resultat.calColumnes && !triades) {
+          // No s'han reconegut les capçaleres: es deixa triar-les a mà.
+          const llegides = await llegeixColumnes(dades)
+          if (llegides.ok) {
+            setError(resultat.error)
+            setPujat(dades)
+            setColumnes(llegides.columnes)
+            setAssignacions(llegides.columnes.assignacions)
+            return
+          }
+        }
         setError(resultat.error)
         return
       }
+      setColumnes(null)
+      setPujat(null)
       setProposta(resultat.proposta)
       setRegistre(resultat.registre)
       setCampionat((actual) => ({
@@ -230,7 +286,20 @@ export function Importador({
         </p>
       ) : null}
 
-      {!proposta ? (
+      {!proposta && columnes && pujat ? (
+        <CorrespondenciaColumnes
+          columnes={columnes}
+          assignacions={assignacions}
+          setAssignacions={setAssignacions}
+          treballant={treballant}
+          onContinua={() => llegeix(pujat, assignacions)}
+          onCancela={() => {
+            setColumnes(null)
+            setPujat(null)
+            setError(null)
+          }}
+        />
+      ) : !proposta ? (
         <form action={analitzaFitxers} className="space-y-6">
           <fieldset className="rounded-lg border border-stone-200 bg-white p-5">
             <legend className="px-2 text-sm font-semibold">Des del SwissPerfect</legend>
@@ -281,6 +350,14 @@ export function Importador({
               les imatges), <strong>Lloc</strong>, <strong>Hora</strong> o{' '}
               <strong>Comentaris</strong>. Abans de desar es pot triar quines.
             </p>
+            <label className="mt-4 flex items-start gap-2 text-sm">
+              <input type="checkbox" name="revisaColumnes" className="mt-1" />
+              <span>
+                <strong>Triar la correspondència de les columnes.</strong> Si les capçaleres del
+                full són unes altres, podreu dir quina columna és cada cosa. Si no es reconeixen,
+                es demanarà igualment.
+              </span>
+            </label>
             <label className="mt-4 block text-sm">
               <input
                 type="file"
@@ -667,6 +744,122 @@ function DadesLliuresProposta({
           </li>
         ))}
       </ul>
+    </section>
+  )
+}
+
+/**
+ * Per a cada columna del full, a quin camp del programa correspon: un dels
+ * bàsics, una dada lliure (es desa amb el nom de la capçalera) o res.
+ */
+function CorrespondenciaColumnes({
+  columnes,
+  assignacions,
+  setAssignacions,
+  treballant,
+  onContinua,
+  onCancela,
+}: {
+  columnes: PropostaColumnes & { pestanya: string | null }
+  assignacions: string[]
+  setAssignacions: (a: string[]) => void
+  treballant: boolean
+  onContinua: () => void
+  onCancela: () => void
+}) {
+  const repetits = new Set(
+    assignacions.filter(
+      (a, i) =>
+        a !== ASSIGNACIO_LLIURE && a !== ASSIGNACIO_IGNORA && assignacions.indexOf(a) !== i,
+    ),
+  )
+  const absents = CAMPS_BASICS.filter((c) => c.obligatori && !assignacions.includes(c.clau))
+
+  return (
+    <section className="space-y-4 rounded-lg border border-stone-200 bg-white p-5">
+      <div>
+        <h2 className="font-semibold">Correspondència de les columnes</h2>
+        <p className="mt-1 text-sm text-stone-600">
+          Trieu a quin camp del programa correspon cada columna del full
+          {columnes.pestanya ? ` (pestanya «${columnes.pestanya}»)` : null}. Les que marqueu com a{' '}
+          <em>dada lliure</em> es desen a cada partida amb el nom de la capçalera.
+        </p>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-stone-200 text-left text-stone-500">
+              <th className="py-2 pr-4 font-medium">Columna del full</th>
+              <th className="py-2 pr-4 font-medium">Exemple</th>
+              <th className="py-2 font-medium">Correspon a</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-stone-100">
+            {columnes.capcalera.map((nom, posicio) => {
+              const valor = assignacions[posicio] ?? ASSIGNACIO_IGNORA
+              return (
+                <tr key={posicio}>
+                  <td className="py-2 pr-4 font-medium">{nom || <em>(sense nom)</em>}</td>
+                  <td className="max-w-[16rem] truncate py-2 pr-4 text-stone-500">
+                    {columnes.exemples[posicio]}
+                  </td>
+                  <td className="py-2">
+                    <select
+                      value={valor}
+                      onChange={(e) => {
+                        const noves = [...assignacions]
+                        noves[posicio] = e.target.value
+                        setAssignacions(noves)
+                      }}
+                      className={`rounded border px-2 py-1 ${
+                        repetits.has(valor) ? 'border-red-400 bg-red-50' : 'border-stone-300'
+                      }`}
+                    >
+                      <option value={ASSIGNACIO_IGNORA}>— Ignorar</option>
+                      <option value={ASSIGNACIO_LLIURE}>Dada lliure ({nom || 'sense nom'})</option>
+                      <optgroup label="Camps del programa">
+                        {CAMPS_BASICS.map((c) => (
+                          <option key={c.clau} value={c.clau}>
+                            {c.etiqueta}
+                            {c.obligatori ? ' *' : ''}
+                          </option>
+                        ))}
+                      </optgroup>
+                    </select>
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+      {absents.length > 0 ? (
+        <p className="text-sm text-amber-800">
+          Falta assignar: {absents.map((c) => c.etiqueta).join(', ')}.
+        </p>
+      ) : null}
+      {repetits.size > 0 ? (
+        <p className="text-sm text-red-800">
+          Hi ha camps assignats a més d’una columna: {[...repetits].join(', ')}.
+        </p>
+      ) : null}
+      <div className="flex items-center gap-4">
+        <button
+          type="button"
+          onClick={onContinua}
+          disabled={treballant || absents.length > 0 || repetits.size > 0}
+          className="rounded-lg bg-stone-900 px-4 py-2 text-white hover:bg-stone-700 disabled:opacity-50"
+        >
+          {treballant ? 'Llegint…' : 'Llegir amb aquesta correspondència'}
+        </button>
+        <button
+          type="button"
+          onClick={onCancela}
+          className="text-sm text-stone-500 underline hover:text-stone-900"
+        >
+          Tornar enrere
+        </button>
+      </div>
     </section>
   )
 }

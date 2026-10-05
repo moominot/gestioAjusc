@@ -7,7 +7,10 @@ import { descodifica, llegeixCsv, llegeixFitxerDeResultats } from './fitxers'
 import {
   ErrorFull,
   construeixTorneigDeFull,
+  absentsDeAssignacions,
+  ErrorColumnes,
   interpretaFiles,
+  proposaColumnes,
   interpretaResultat,
   normalitzaMot,
 } from './fulls'
@@ -314,5 +317,34 @@ describe('estadístiques de partida', () => {
     expect(normalitzaMot('  xoc ')).toBe('XOC')
     expect(normalitzaMot('')).toBeNull()
     expect(normalitzaMot('-')).toBeNull()
+  })
+})
+
+describe('correspondència de columnes triada a mà', () => {
+  const files = [
+    ['Qui', 'Pts', 'Contrari', 'Pts rival', 'Pista'],
+    ['Anna', 400, 'Bel', 350, 'A1'],
+  ]
+
+  it('proposa la correspondència i falla sense assignacions si no es reconeixen', () => {
+    const proposta = proposaColumnes(files)
+    expect(proposta.capcalera).toEqual(['Qui', 'Pts', 'Contrari', 'Pts rival', 'Pista'])
+    expect(proposta.exemples[0]).toBe('Anna')
+    expect(absentsDeAssignacions(proposta.assignacions)).toHaveLength(4)
+    expect(() => interpretaFiles(files)).toThrow(ErrorColumnes)
+  })
+
+  it('llegeix amb les assignacions triades i desa les lliures amb el nom de la capçalera', () => {
+    const [fila] = interpretaFiles(files, ['jugador1', 'puntuacio1', 'jugador2', 'puntuacio2', 'lliure'])
+    expect(fila).toMatchObject({ jugador1: 'Anna', puntuacio1: 400, jugador2: 'Bel', puntuacio2: 350 })
+    expect(fila.dades).toEqual({ Pista: 'A1' })
+  })
+
+  it('ignora columnes i rebutja un camp assignat dues vegades', () => {
+    const [fila] = interpretaFiles(files, ['jugador1', 'puntuacio1', 'jugador2', 'puntuacio2', 'ignora'])
+    expect(fila.dades).toBeUndefined()
+    expect(() =>
+      interpretaFiles(files, ['jugador1', 'jugador1', 'jugador2', 'puntuacio2', 'ignora']),
+    ).toThrow(/més d'una columna/)
   })
 })

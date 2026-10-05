@@ -7,7 +7,14 @@
 
 import Papa from 'papaparse'
 
-import { ErrorFull, interpretaFiles, type FilaResultat } from './fulls'
+import {
+  ErrorFull,
+  ErrorColumnes,
+  interpretaFiles,
+  proposaColumnes,
+  type FilaResultat,
+  type PropostaColumnes,
+} from './fulls'
 
 /** Extensions que sabem obrir com a full de resultats. */
 export const EXTENSIONS_FULL = ['.csv', '.tsv', '.txt', '.xlsx', '.xls']
@@ -101,33 +108,39 @@ export interface ResultatsLlegits {
 export async function llegeixFitxerDeResultats(
   nomFitxer: string,
   dades: Uint8Array,
+  triat?: { assignacions: string[]; pestanya?: string | null },
 ): Promise<ResultatsLlegits> {
   const extensio = extensioDe(nomFitxer)
 
   if (extensio === '.xlsx' || extensio === '.xls') {
     const pestanyes = await llegeixXlsx(dades)
     const problemes: string[] = []
+    const candidates = triat?.pestanya
+      ? pestanyes.filter((p) => p.nom === triat.pestanya)
+      : pestanyes
 
-    for (const pestanya of pestanyes) {
+    let faltenColumnes = false
+    for (const pestanya of candidates) {
       try {
         return {
-          files: interpretaFiles(pestanya.files),
+          files: interpretaFiles(pestanya.files, triat?.assignacions),
           pestanya: pestanya.nom,
           altresPestanyes: pestanyes.map((p) => p.nom).filter((n) => n !== pestanya.nom),
         }
       } catch (error) {
+        if (error instanceof ErrorColumnes) faltenColumnes = true
         problemes.push(`«${pestanya.nom}»: ${(error as Error).message}`)
       }
     }
 
-    throw new ErrorFull(
+    throw new (faltenColumnes ? ErrorColumnes : ErrorFull)(
       `Cap pestanya del full no té una llista de resultats que pugui llegir.\n${problemes.join('\n')}`,
     )
   }
 
   if (extensio === '.csv' || extensio === '.tsv' || extensio === '.txt') {
     return {
-      files: interpretaFiles(llegeixCsv(descodifica(dades))),
+      files: interpretaFiles(llegeixCsv(descodifica(dades)), triat?.assignacions),
       pestanya: null,
       altresPestanyes: [],
     }
@@ -138,3 +151,47 @@ export async function llegeixFitxerDeResultats(
       `Els formats admesos són ${EXTENSIONS_FULL.join(', ')}.`,
   )
 }
+
+export interface ColumnesLlegides extends PropostaColumnes {
+  pestanya: string | null
+}
+
+/**
+ * Les columnes d'un fitxer de resultats, per triar-ne la correspondència. D'un
+ * full de càlcul es tria la primera pestanya que es llegeix sola i, si cap no
+ * es llegeix, la primera que tingui dades.
+ */
+export async function llegeixColumnesDeFitxer(
+  nomFitxer: string,
+  dades: Uint8Array,
+): Promise<ColumnesLlegides> {
+  const extensio = extensioDe(nomFitxer)
+
+  if (extensio === '.xlsx' || extensio === '.xls') {
+    const pestanyes = await llegeixXlsx(dades)
+    let primera: ColumnesLlegides | null = null
+    for (const pestanya of pestanyes) {
+      try {
+        const columnes = { ...proposaColumnes(pestanya.files), pestanya: pestanya.nom }
+        if (!absentsEnPropostes(columnes)) return columnes
+        primera ??= columnes
+      } catch {
+        // Una pestanya buida o sense dades: es mira la següent.
+      }
+    }
+    if (primera) return primera
+    throw new ErrorFull('Cap pestanya del full no té una capçalera i files de resultats.')
+  }
+
+  if (extensio === '.csv' || extensio === '.tsv' || extensio === '.txt') {
+    return { ...proposaColumnes(llegeixCsv(descodifica(dades))), pestanya: null }
+  }
+
+  throw new ErrorFull(
+    `No sé obrir els fitxers «${extensio || nomFitxer}». ` +
+      `Els formats admesos són ${EXTENSIONS_FULL.join(', ')}.`,
+  )
+}
+
+const absentsEnPropostes = (c: PropostaColumnes) =>
+  ['jugador1', 'puntuacio1', 'jugador2', 'puntuacio2'].some((k) => !c.assignacions.includes(k))
