@@ -8,6 +8,7 @@ import type { JugadorCercable } from '../../../../components/CercaJugador'
 import type { PartidaCampionat } from '../../../../lib/campionats/fitxa'
 import { desaCampionat, type DadesEditables } from '../accions'
 import { EditorPartides } from './EditorPartides'
+import { EsborraCampionat } from './EsborraCampionat'
 
 const camp = 'mt-1 w-full rounded border border-stone-300 px-2 py-1.5 text-sm'
 
@@ -141,6 +142,8 @@ export function EditorCampionat({
       </section>
 
       <EditorPartides campionatId={id} partides={partides} registre={registre} onCanvi={() => setResultatsTocats(true)} />
+
+      <EsborraCampionat id={id} nom={inicial.nom} publicatA={publicatA} partides={partides.filter((p) => p.numero_2 !== null).length} />
     </div>
   )
 }

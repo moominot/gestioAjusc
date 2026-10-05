@@ -277,3 +277,45 @@ export async function esborraPartida(campionatId: string, partidaId: string): Pr
   revalida(campionatId)
   return { ok: true }
 }
+
+/**
+ * Esborra un campionat sencer: les partides i les inscripcions se'n van amb
+ * ell. Només si no ha entrat a cap edició del BARRUF: un campionat publicat
+ * forma part de la cadena, i esborrar-lo canviaria el que ja s'ha publicat
+ * (primer cal despublicar l'edició). Cal escriure'n el nom per confirmar-ho.
+ */
+export async function esborraCampionat(id: string, nomConfirmat: string): Promise<Resultat> {
+  if (!(await gestorConnectat())) return { ok: false, error: 'Cal haver entrat com a gestor.' }
+
+  const supabase = await clientServidor()
+  const { data: campionat, error } = await supabase
+    .from('campionats')
+    .select('nom, primera_edicio')
+    .eq('id', id)
+    .maybeSingle()
+  if (error) return { ok: false, error: error.message }
+  if (!campionat) return { ok: false, error: 'Aquest campionat ja no existeix.' }
+
+  if (campionat.primera_edicio !== null) {
+    return {
+      ok: false,
+      error: `Ja és al BARRUF ${campionat.primera_edicio}: no es pot esborrar sense despublicar abans aquella edició.`,
+    }
+  }
+  const { count: variacions } = await supabase
+    .from('barruf_variacions')
+    .select('campionat_id', { count: 'exact', head: true })
+    .eq('campionat_id', id)
+  if (variacions) return { ok: false, error: 'Aquest campionat té variacions del BARRUF desades: no es pot esborrar.' }
+
+  if (nomConfirmat.trim() !== String(campionat.nom).trim()) {
+    return { ok: false, error: 'El nom escrit no coincideix amb el del campionat.' }
+  }
+
+  const { error: errorEsborrant } = await supabase.from('campionats').delete().eq('id', id)
+  if (errorEsborrant) return { ok: false, error: errorEsborrant.message }
+
+  revalidatePath('/gestio')
+  revalida(id)
+  return { ok: true }
+}
