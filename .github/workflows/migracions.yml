@@ -1,0 +1,45 @@
+# Aplica a la base de dades de producció les migracions noves de
+# `supabase/migrations/` cada vegada que se'n puja alguna a main.
+# Les ja aplicades no es tornen a aplicar: `db push` mira l'historial
+# (`supabase_migrations.schema_migrations`).
+#
+# Cal tenir dos secrets al repositori (Settings → Secrets and variables → Actions):
+#   SUPABASE_ACCESS_TOKEN  un token personal de supabase.com/dashboard/account/tokens
+#   SUPABASE_DB_PASSWORD   la contrasenya de la base de dades del projecte
+name: Migracions
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/migrations/**'
+  workflow_dispatch:
+
+# Mai dues alhora, i la segona espera que acabi la primera.
+concurrency:
+  group: migracions
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  db-push:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      PROJECT_REF: utbjfmlmvgewubxffakg
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: supabase/setup-cli@v1
+        with:
+          # La mateixa versió que el package.json.
+          version: 2.117.0
+
+      - name: Migracions pendents
+        run: supabase db push --project-ref "$PROJECT_REF" --password "$SUPABASE_DB_PASSWORD" --dry-run
+
+      - name: Aplicar-les
+        run: supabase db push --project-ref "$PROJECT_REF" --password "$SUPABASE_DB_PASSWORD" --yes

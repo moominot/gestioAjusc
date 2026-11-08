@@ -243,6 +243,21 @@ pujar el codi.
 `supabase/config.toml` porta l'identificador del projecte i és el que fa que la
 integració sàpiga on ha d'anar.
 
-Compte amb una cosa: amb això, **pujar una migració a main l'aplica a la base de
+### Amb la GitHub Action
+
+L'alternativa a la integració és `.github/workflows/migracions.yml`: cada vegada
+que es puja a main alguna migració nova, fa `supabase db push` contra el
+projecte (abans en mostra la llista amb `--dry-run`). També es pot llançar a mà
+des de la pestanya **Actions** de GitHub. Necessita dos secrets al repositori
+(**Settings → Secrets and variables → Actions**):
+
+| Secret | Què és |
+|---|---|
+| `SUPABASE_ACCESS_TOKEN` | Un token personal, de supabase.com/dashboard/account/tokens |
+| `SUPABASE_DB_PASSWORD` | La contrasenya de la base de dades (**Project Settings → Database**) |
+
+Feu servir l'una o l'altra, no les dues alhora.
+
+Compte amb una cosa: amb qualsevol de les dues, **pujar una migració a main l'aplica a la base de
 dades de debò**. És còmode, però vol dir que el que es puja ha d'estar provat.
 Per a això hi ha la rèplica de [`docker/`](../docker/README.md).
