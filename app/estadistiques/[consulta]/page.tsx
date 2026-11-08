@@ -201,10 +201,15 @@ export default async function Consulta({
             <h2 className="text-lg font-semibold">{b.titol ?? 'Classificació'}</h2>
             {resultats[i].length ? (
               <a href={csv(i)} className="text-sm text-stone-500 hover:text-stone-900">
-                Baixar en CSV
+                {b.complet ? 'Baixar-les totes en CSV' : 'Baixar en CSV'}
               </a>
             ) : null}
           </div>
+          {b.complet && resultats[i].length >= b.limit ? (
+            <p className="-mt-2 mb-3 text-sm text-stone-500">
+              Aquí hi ha les {b.limit} primeres; el CSV les porta totes.
+            </p>
+          ) : null}
           <Taula bloc={b} files={resultats[i]} estats={estats} />
           </section>
         ),

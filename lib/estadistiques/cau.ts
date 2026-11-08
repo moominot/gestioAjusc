@@ -8,12 +8,15 @@ import { clientAnonim } from '../supabase/anonim'
  * la fama) així només es calculen un cop per hora.
  */
 
+/** Una consulta, sense passar per la cau: per a les llistes senceres, que hi podrien no cabre. */
+export async function estadisticaDirecta(metrica: string, filtres: Record<string, string>, limit: number) {
+  const { data, error } = await clientAnonim().rpc('estadistica', { p_metrica: metrica, p_filtres: filtres, p_limit: limit })
+  if (error) throw new Error(error.message)
+  return (data ?? []) as Record<string, unknown>[]
+}
+
 export const estadistica = unstable_cache(
-  async (metrica: string, filtres: Record<string, string>, limit: number) => {
-    const { data, error } = await clientAnonim().rpc('estadistica', { p_metrica: metrica, p_filtres: filtres, p_limit: limit })
-    if (error) throw new Error(error.message)
-    return (data ?? []) as Record<string, unknown>[]
-  },
+  estadisticaDirecta,
   ['estadistica'],
   { revalidate: 600, tags: ['estadistiques'] },
 )

@@ -7,7 +7,8 @@ export interface Filtres {
   des_de?: string
   fins_a?: string
   club?: string
-  campionat?: string
+  /** Un o més campionats (a l'adreça, separats per comes). */
+  campionat?: string[]
   jugador?: number
   estat?: Estat
   minim?: number
@@ -37,7 +38,10 @@ export interface Columna {
 export interface Bloc {
   titol?: string
   metrica: string
+  /** Les files que es mostren a la pàgina. */
   limit: number
+  /** El CSV dona la llista sencera, no només les primeres. */
+  complet?: boolean
   columnes: Columna[]
   /** El gràfic de barres: quin valor i quina etiqueta. */
   barres?: { valor: (f: Fila) => number; etiqueta: (f: Fila) => string; format?: (v: number) => string }
@@ -165,6 +169,7 @@ export const CONSULTES: Consulta[] = [
         titol: 'Millors jugades',
         metrica: 'millors_jugades',
         limit: 50,
+        complet: true,
         columnes: [
           { etiqueta: 'Mot', text: (f) => String(f.mot ?? '—') },
           { etiqueta: 'Punts', text: (f) => enter(f.valor), dreta: true },
@@ -178,6 +183,7 @@ export const CONSULTES: Consulta[] = [
         titol: 'Millors jugades amb lletra especial',
         metrica: 'millors_lletra',
         limit: 30,
+        complet: true,
         columnes: [
           { etiqueta: 'Mot', text: (f) => String(f.mot ?? '—') },
           { etiqueta: 'Punts', text: (f) => enter(f.valor), dreta: true },
@@ -309,16 +315,31 @@ export function llegeixFiltres(p: Record<string, string | string[] | undefined>,
     des_de: temporada(u('des_de')),
     fins_a: temporada(u('fins_a')),
     club: u('club'),
-    campionat: u('campionat') && /^[0-9a-f-]{36}$/i.test(u('campionat')!) ? u('campionat') : undefined,
+    campionat: campionats(u('campionat')),
     jugador: enterPositiu(u('jugador')),
     estat: ESTATS.find((e) => e.clau === u('estat'))?.clau,
     minim: enterPositiu(u('minim')) ?? perDefecte,
   }
 }
 
-/** Els filtres com els vol la base de dades: sense els buits. */
+/** Els ids de campionat vàlids d'una llista separada per comes, sense repetits. */
+function campionats(v?: string): string[] | undefined {
+  const ids = [...new Set((v ?? '').split(',').map((x) => x.trim().toLowerCase()))].filter((x) =>
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(x),
+  )
+  return ids.length ? ids.sort() : undefined
+}
+
+/** Els filtres com els vol la base de dades: sense els buits, i els campionats separats per comes. */
 export const perBaseDeDades = (f: Filtres) =>
-  Object.fromEntries(Object.entries(f).filter(([, v]) => v !== undefined && v !== '').map(([k, v]) => [k, String(v)]))
+  Object.fromEntries(
+    Object.entries(f)
+      .filter(([, v]) => v !== undefined && v !== '')
+      .map(([k, v]) => [k, Array.isArray(v) ? v.join(',') : String(v)]),
+  )
+
+/** El màxim de files d'una llista sencera (el mateix tope que la base de dades). */
+export const LIMIT_COMPLET = 100000
 
 /** Una taula en CSV, separada per punts i comes (com l'obre l'Excel en català). */
 export function csv(columnes: Columna[], files: Fila[]): string {

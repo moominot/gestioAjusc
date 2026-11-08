@@ -76,7 +76,7 @@ export default async function Estadistiques() {
         <h1 className="text-2xl font-semibold tracking-tight">Estadístiques</h1>
         <p className="mt-1 max-w-2xl text-sm text-stone-600">
           Tot l’historial del BARRUF des del 2014 en un sol lloc. Comenceu pel Saló de la fama, o obriu una consulta per
-          filtrar per temporades, club, campionat o jugador, veure-ho en gràfic i baixar-ho en CSV.
+          filtrar per temporades, club, campionats o jugador, veure-ho en gràfic i baixar-ho en CSV.
         </p>
       </div>
 

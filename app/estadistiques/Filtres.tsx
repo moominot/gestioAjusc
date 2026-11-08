@@ -4,12 +4,13 @@ import { usePathname, useRouter } from 'next/navigation'
 
 import { CercaJugador, type JugadorCercable } from '../../components/CercaJugador'
 import { ESTATS } from '../../lib/estadistiques/consultes'
+import { SelectorCampionats } from './SelectorCampionats'
 
 export interface ValorsFiltres {
   des_de?: string
   fins_a?: string
   club?: string
-  campionat?: string
+  campionat?: string[]
   jugador?: number
   estat?: string
   minim?: number
@@ -38,15 +39,17 @@ export function Filtres({
   const router = useRouter()
   const ruta = usePathname()
 
-  const canvia = (canvis: Partial<Record<keyof ValorsFiltres, string | number | undefined>>) => {
+  const canvia = (canvis: Partial<Record<keyof ValorsFiltres, string | string[] | number | undefined>>) => {
     const nous = { ...valors, ...canvis }
     const p = new URLSearchParams()
-    for (const [k, v] of Object.entries(nous)) if (v !== undefined && v !== '') p.set(k, String(v))
+    for (const [k, v] of Object.entries(nous)) {
+      const text = Array.isArray(v) ? v.join(',') : v
+      if (text !== undefined && text !== '') p.set(k, String(text))
+    }
     router.push(p.size ? `${ruta}?${p}` : ruta, { scroll: false })
   }
 
   const jugador = registre.find((j) => j.numero === valors.jugador)
-  const perTemporada = temporades.map((t) => ({ t, llista: campionats.filter((c) => c.temporada === t) })).filter((g) => g.llista.length)
   const algun = Object.values(valors).some((v) => v !== undefined)
 
   return (
@@ -69,18 +72,13 @@ export function Filtres({
         <option value="">Tots els clubs</option>
         {clubs.map((c) => <option key={c} value={c}>{c}</option>)}
       </select>
-      <select
-        value={valors.campionat ?? ''}
-        onChange={(e) => canvia({ campionat: e.target.value || undefined })}
+      <SelectorCampionats
+        campionats={campionats}
+        temporades={temporades}
+        triats={valors.campionat ?? []}
+        onAplica={(ids) => canvia({ campionat: ids.length ? ids : undefined })}
         className={`${camp} max-w-[16rem]`}
-      >
-        <option value="">Tots els campionats</option>
-        {perTemporada.map((g) => (
-          <optgroup key={g.t} label={g.t}>
-            {g.llista.map((c) => <option key={c.id} value={c.id}>{c.nom}</option>)}
-          </optgroup>
-        ))}
-      </select>
+      />
       <select value={valors.estat ?? ''} onChange={(e) => canvia({ estat: e.target.value || undefined })} className={camp}>
         <option value="">Tots els estats</option>
         {ESTATS.map((e) => <option key={e.clau} value={e.clau}>{e.text}</option>)}
